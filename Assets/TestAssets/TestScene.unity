@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 458770767}
   - component: {fileID: 458770769}
   - component: {fileID: 458770768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1476,6 +1476,7 @@ MonoBehaviour:
   fallMaxSpeed: 20
   balloonFallMaxSpeed: 4
   balloonPower: 0
+  velocity: {x: 0, y: 0}
 --- !u!70 &1327696777
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

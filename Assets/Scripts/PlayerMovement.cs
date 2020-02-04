@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpBufferPeriod = 0.1f;
 	public float fallMaxSpeed = 20f;
 	public float balloonFallMaxSpeed = 4f;
+    public int maxJumpAmount = 1;
 
 	public bool balloonPower = false;
 
@@ -32,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private Vector2 velocity;
 	private float jumpGraceTimer = 0;
 	private float jumpBufferTimer = 0;
+
+    private int availableJumps = 0;
 
 	private Rigidbody2D rb2d;
 	private new BoxCollider2D collider;
@@ -53,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
 		if (grounded)
 		{
 			jumpGraceTimer = jumpGracePeriod;
+            availableJumps = maxJumpAmount;
 		}
 		bool headCollision = CheckRaycasts(Vector2.up);
 
@@ -86,7 +90,15 @@ public class PlayerMovement : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			jumpBufferTimer = jumpBufferPeriod;
+            if (availableJumps < maxJumpAmount && availableJumps > 0)
+            {
+                velocity.y = jumpSpeed;
+                availableJumps--;
+            }
+            else
+            {
+                jumpBufferTimer = jumpBufferPeriod;
+            }
 		}
 
 		if (jumpGraceTimer > 0)
@@ -98,12 +110,13 @@ public class PlayerMovement : MonoBehaviour
 				velocity.y = jumpSpeed;
 				jumpBufferTimer = 0;
 				jumpGraceTimer = 0;
-			}
+                availableJumps--;
+            }
 		}
 		else
 		{
-			float gravity = velocity.y > 0 ? ascendGravity : descendGravity;
-			velocity.y -= Time.deltaTime * gravity;
+			float gravity = velocity.y > 0 ? ascendGravity : descendGravity; 
+			velocity.y -= Time.deltaTime * gravity; //Velocity.y will not always be 0 when falling at descendGravity is 0 since ascendGravity can make Velocity.y go past 0 to negative
 			if (!Input.GetKey(KeyCode.Space) && velocity.y > jumpStopSpeed)
 			{
 				velocity.y = jumpStopSpeed;

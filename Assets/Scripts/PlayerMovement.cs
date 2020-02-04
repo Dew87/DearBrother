@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Air movement")]
     public float airAcceleration = 20f;
-    public float airDeceleration = 0f;
+    public float airDeceleration = 10f;
 
     [Header("Jumping")]
     public float jumpSpeed = 20f;
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpGracePeriod = 0.1f;
     public float jumpBufferPeriod = 0.1f;
     public float fallMaxSpeed = 20f;
-    public float balloonFallMaxSpeed = 2f;
+    public float balloonFallMaxSpeed = 4f;
 
     public bool balloonPower = false;
 
@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             velocity.y = Mathf.Max(velocity.y, balloonPower ? -balloonFallMaxSpeed : -fallMaxSpeed);
+
         }
 
 

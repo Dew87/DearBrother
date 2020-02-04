@@ -21,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
     public float jumpStopSpeed = 2f;
     public float jumpGracePeriod = 0.1f;
     public float jumpBufferPeriod = 0.1f;
+    public float fallMaxSpeed = 20f;
+    public float balloonFallMaxSpeed = 2f;
+
+    public bool balloonPower = false;
 
     private const float groundRayDistance = 0.05f;
 
@@ -101,6 +105,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 velocity.y = jumpStopSpeed;
             }
+
+            velocity.y = Mathf.Max(velocity.y, balloonPower ? -balloonFallMaxSpeed : -fallMaxSpeed);
         }
 
 

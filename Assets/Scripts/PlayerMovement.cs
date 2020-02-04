@@ -19,10 +19,14 @@ public class PlayerMovement : MonoBehaviour
     public float ascendGravity = 50f;
     public float descendGravity = 100f;
     public float jumpStopSpeed = 2f;
+    public float jumpGracePeriod = 0.1f;
+    public float jumpBufferPeriod = 0.1f;
 
-    private const float groundRayDistance = 0.02f;
+    private const float groundRayDistance = 0.05f;
 
     private Vector2 velocity;
+    private float jumpGraceTimer = -1;
+    private float jumpBufferTimer = -1;
 
     private Rigidbody2D rb2d;
     private new BoxCollider2D collider;
@@ -36,9 +40,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool grounded = rb2d.position.y <= -3.5f;
+        RaycastHit2D[] results = new RaycastHit2D[1];
 
-        // Horizontal movement //
+        bool grounded = rb2d.Cast(Vector2.down, results, groundRayDistance) > 0;
+        if (grounded)
+        {
+            jumpGraceTimer = jumpGracePeriod;
+        }
+        bool headCollision = rb2d.Cast(Vector2.up, results, groundRayDistance) > 0;
+
         float move = Input.GetAxisRaw("Horizontal");
 
         float speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
@@ -57,18 +67,31 @@ public class PlayerMovement : MonoBehaviour
             velocity.x = Mathf.MoveTowards(velocity.x, speed * Mathf.Sign(move), effectiveAccel * Time.deltaTime);
         }
 
-        // Jumping //
-        //var results = new RaycastHit2D[1];
-        //bool grounded = rb2d.Cast(Vector2.down, results, groundRayDistance) > 0;
-
-        if (grounded)
+        if (headCollision && velocity.y > 0)
         {
             velocity.y = 0;
-            rb2d.position = new Vector2(rb2d.position.x, -3.5f);
-            if (Input.GetKeyDown(KeyCode.Space))
+        }
+
+        if (jumpBufferTimer > 0)
+        {
+            jumpBufferTimer -= Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpBufferTimer = jumpBufferPeriod;
+        }
+
+        if (jumpGraceTimer > 0)
+        {
+            jumpGraceTimer -= Time.deltaTime;
+            velocity.y = 0;
+            if (jumpBufferTimer > 0)
             {
                 velocity.y = jumpSpeed;
-            } 
+                jumpBufferTimer = -1;
+                jumpGraceTimer = -1;
+            }
         }
         else
         {
@@ -80,8 +103,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        
-        rb2d.position += velocity * Time.deltaTime;
+
+        rb2d.velocity = velocity;
 
     }
 }

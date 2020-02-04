@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PickupBalloon : MonoBehaviour
 {
-    public GameObject player;
+    public PlayerMovement playerMovement;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == player)
+        if (collision.gameObject == playerMovement.gameObject)
         {
-            player.AddComponent<BalloonPower>();
+            playerMovement.balloonPower = true;
             Destroy(this.gameObject);
         }
     }

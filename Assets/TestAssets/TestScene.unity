@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToFollow: {fileID: 1327696771}
-  followOffset: {x: 0, y: 0}
+  followOffset: {x: 0, y: 0, z: -10}
 --- !u!1 &196437523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,6 +1167,7 @@ GameObject:
   - component: {fileID: 1327696772}
   - component: {fileID: 1327696775}
   - component: {fileID: 1327696774}
+  - component: {fileID: 1327696776}
   m_Layer: 0
   m_Name: StickMan
   m_TagString: Untagged
@@ -1231,7 +1232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327696771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.62987757, y: -3.363113, z: 0}
+  m_LocalPosition: {x: -0.62987757, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1271,7 +1272,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327696771}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1284,3 +1285,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1327696776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327696771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f18153d5ce5d74288123ea2125849c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 5
+  runSpeed: 10
+  acceleration: 20
+  deceleration: 20
+  jumpSpeed: 20
+  ascendGravity: 50
+  descendGravity: 100
+  jumpStopSpeed: 0

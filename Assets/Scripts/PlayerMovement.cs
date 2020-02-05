@@ -54,6 +54,19 @@ public class PlayerMovement : MonoBehaviour
 		solidMask = LayerMask.GetMask("Solid");
 	}
 
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			jumpBufferTimer = jumpBufferPeriod;
+			if (availableJumps < maxJumpAmount && availableJumps > 0)
+			{
+				velocity.y = jumpSpeed;
+				availableJumps--;
+			}
+		}
+	}
+
 	void FixedUpdate()
 	{
 		bool collidesDown = CheckRaycasts(Vector2.down);
@@ -107,16 +120,6 @@ public class PlayerMovement : MonoBehaviour
 		if (jumpBufferTimer > 0)
 		{
 			jumpBufferTimer -= Time.deltaTime;
-		}
-
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-            jumpBufferTimer = jumpBufferPeriod;
-            if (availableJumps < maxJumpAmount && availableJumps > 0)
-            {
-                velocity.y = jumpSpeed;
-                availableJumps--;
-            }
 		}
 
 		if (jumpGraceTimer > 0)

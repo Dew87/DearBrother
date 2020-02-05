@@ -80,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
 		if (collidesDown)
 		{
 			jumpGraceTimer = jumpGracePeriod;
+            availableJumps = maxJumpAmount;
 		}
 
 		if (collidesUp && velocity.y > 0)

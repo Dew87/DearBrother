@@ -25,10 +25,11 @@ public class PlayerMovement : MonoBehaviour
 	public float balloonFallMaxSpeed = 4f;
     public int maxJumpAmount = 1;
 
+	[Header("Debug")]
+
 	public bool balloonPower = false;
 
 	private const float raycastDistance = 0.05f;
-	private const float collisionTestOffset = 0.02f;
 
 	[SerializeField] private Vector2 velocity;
 	private float jumpGraceTimer = 0;
@@ -52,13 +53,11 @@ public class PlayerMovement : MonoBehaviour
 	{
 		RaycastHit2D[] results = new RaycastHit2D[1];
 
-		bool grounded = CheckRaycasts(Vector2.down);
-		if (grounded)
-		{
-			jumpGraceTimer = jumpGracePeriod;
-            availableJumps = maxJumpAmount;
-		}
-		bool headCollision = CheckRaycasts(Vector2.up);
+		bool collidesDown = CheckRaycasts(Vector2.down);
+		bool collidesUp = CheckRaycasts(Vector2.up);
+		bool collidesLeft = CheckRaycasts(Vector2.left);
+		bool collidesRight = CheckRaycasts(Vector2.right);
+
 
 		float move = Input.GetAxisRaw("Horizontal");
 
@@ -66,21 +65,31 @@ public class PlayerMovement : MonoBehaviour
 
 		if (Mathf.Abs(velocity.x) > speed || move == 0)
 		{
-			velocity.x = Mathf.MoveTowards(velocity.x, 0, (grounded ? deceleration : airDeceleration) * Time.deltaTime);
+			velocity.x = Mathf.MoveTowards(velocity.x, 0, (collidesDown ? deceleration : airDeceleration) * Time.deltaTime);
 		}
 		else
 		{
-			float effectiveAccel = grounded ? acceleration : airAcceleration;
+			float effectiveAccel = collidesDown ? acceleration : airAcceleration;
 			if (Mathf.Sign(move) == -Mathf.Sign(velocity.x))
 			{
-				effectiveAccel += grounded ? deceleration : airDeceleration;
+				effectiveAccel += collidesDown ? deceleration : airDeceleration;
 			}
 			velocity.x = Mathf.MoveTowards(velocity.x, speed * Mathf.Sign(move), effectiveAccel * Time.deltaTime);
 		}
 
-		if (headCollision && velocity.y > 0)
+		if (collidesDown)
+		{
+			jumpGraceTimer = jumpGracePeriod;
+		}
+
+		if (collidesUp && velocity.y > 0)
 		{
 			velocity.y = 0;
+		}
+
+		if ((collidesLeft && velocity.x < 0) || collidesRight && velocity.x > 0)
+		{
+			velocity.x = 0;
 		}
 
 		if (jumpBufferTimer > 0)
@@ -153,46 +162,5 @@ public class PlayerMovement : MonoBehaviour
 
 		Debug.LogError("Invalid direction " + direction, this);
 		return false;
-	}
-
-	bool DetectGround()
-	{
-		Bounds bbox = collider.bounds;
-		RaycastHit2D hitCenter = Physics2D.Raycast(new Vector2(bbox.center.x, bbox.min.y - 0.01f), Vector2.down, raycastDistance);
-		Debug.DrawRay(new Vector2(bbox.center.x, bbox.min.y), Vector2.down * raycastDistance, Color.yellow);
-		return hitCenter.collider != null;
-	}
-
-	private Vector2 MoveAndCollide(Vector2 movement)
-	{
-		Vector2 direction = movement.normalized;
-		float length = movement.magnitude;
-		if (length > 0)
-		{
-			RaycastHit2D[] hits = new RaycastHit2D[1];
-			int numHits = rb2d.Cast(direction, hits, length);
-			if (numHits > 0)
-			{
-				RaycastHit2D hit = hits[0];
-				Vector2 move = direction * (hit.distance - Physics2D.defaultContactOffset);
-				rb2d.position += move;
-				return move;
-			}
-			else
-			{
-				rb2d.position += movement;
-				return movement;
-			}
-		}
-
-		return Vector2.zero;
-	}
-
-	private Vector2 MoveAndSlide(Vector2 movement)
-	{
-		Vector2 moved = MoveAndCollide(movement);
-		Vector2 remainingMovement = movement - moved;
-
-		return moved;
 	}
 }

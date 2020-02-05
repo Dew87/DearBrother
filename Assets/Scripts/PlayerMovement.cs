@@ -25,19 +25,24 @@ public class PlayerMovement : MonoBehaviour
 	public float balloonFallMaxSpeed = 4f;
     public int maxJumpAmount = 1;
 
+    [Header("Landing")]
+    public float landingLagPeriod = 0.2f;
+    public float landingLagThreshold = 5f;
+
     [Header ("WallJumping")]
     public float wallJumpGracePeriod = 0.2f;
     public float wallJumpSpeed = 5f;
-    public float wallSlideSpeed = 1f;
+    public float wallSlideSpeed = -1f;
 
 	[Header("Debug")]
-
 	public bool hasBalloonPower = false;
     public int availableJumps = 0;
 
 	public float jumpGraceTimer = 0;
 	public float jumpBufferTimer = 0;
     public float wallJumpGraceTimer = 0;
+    public float landingLagTimer = 0;
+    public float fallingTimer = 0;
 
 	private const float raycastDistance = 0.05f;
 
@@ -54,18 +59,35 @@ public class PlayerMovement : MonoBehaviour
 		solidMask = LayerMask.GetMask("Solid");
 	}
 
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			jumpBufferTimer = jumpBufferPeriod;
-			if (availableJumps < maxJumpAmount && availableJumps > 0)
-			{
-				velocity.y = jumpSpeed;
-				availableJumps--;
-			}
-		}
-	}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && landingLagTimer <= 0)
+        {
+            jumpBufferTimer = jumpBufferPeriod;
+            if (availableJumps < maxJumpAmount && availableJumps > 0)
+            {
+                velocity.y = jumpSpeed;
+                availableJumps--;
+            }
+        }
+
+        if (jumpGraceTimer > 0)
+        {
+            jumpGraceTimer -= Time.deltaTime;
+        }
+        if (wallJumpGraceTimer > 0)
+        {
+            wallJumpGraceTimer -= Time.deltaTime;
+        }
+        if (jumpBufferTimer > 0)
+        {
+            jumpBufferTimer -= Time.deltaTime;
+        }
+        if (landingLagTimer > 0)
+        {
+            landingLagTimer -= Time.deltaTime;
+        }
+    }
 
 	void FixedUpdate()
 	{
@@ -78,22 +100,34 @@ public class PlayerMovement : MonoBehaviour
 
 		float speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
 
-		if (Mathf.Abs(velocity.x) > speed || move == 0)
-		{
-			velocity.x = Mathf.MoveTowards(velocity.x, 0, (collidesDown ? deceleration : airDeceleration) * Time.deltaTime);
-		}
-		else
-		{
-			float effectiveAccel = collidesDown ? acceleration : airAcceleration;
-			if (Mathf.Sign(move) == -Mathf.Sign(velocity.x))
-			{
-				effectiveAccel += collidesDown ? deceleration : airDeceleration;
-			}
-			velocity.x = Mathf.MoveTowards(velocity.x, speed * Mathf.Sign(move), effectiveAccel * Time.deltaTime);
-		}
+        if (landingLagTimer <= 0)
+        {
+		    if (Mathf.Abs(velocity.x) > speed || move == 0)
+		    {
+			    velocity.x = Mathf.MoveTowards(velocity.x, 0, (collidesDown ? deceleration : airDeceleration) * Time.deltaTime);
+		    }
+		    else
+		    {
+			    float effectiveAccel = collidesDown ? acceleration : airAcceleration;
+			    if (Mathf.Sign(move) == -Mathf.Sign(velocity.x))
+			    {
+				    effectiveAccel += collidesDown ? deceleration : airDeceleration;
+			    }
+			    velocity.x = Mathf.MoveTowards(velocity.x, speed * Mathf.Sign(move), effectiveAccel * Time.deltaTime);
+		    }
+        }
+        else
+        {
+            velocity.x = 0;
+        }
 
 		if (collidesDown)
 		{
+            if (jumpGraceTimer <= 0 && fallingTimer > landingLagThreshold)
+            {
+                landingLagTimer = landingLagPeriod;
+            }
+            fallingTimer = 0;
 			jumpGraceTimer = jumpGracePeriod;
             availableJumps = maxJumpAmount;
 		}
@@ -101,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
         {
             wallJumpGraceTimer = wallJumpGracePeriod;
             availableJumps = maxJumpAmount;
+            fallingTimer = 0;
         }
 
         if (collidesUp && velocity.y > 0)
@@ -113,23 +148,17 @@ public class PlayerMovement : MonoBehaviour
 			velocity.x = 0;
 		}
 
-		if (jumpBufferTimer > 0)
-		{
-			jumpBufferTimer -= Time.deltaTime;
-		}
-
-		if (jumpGraceTimer > 0)
-		{
-			jumpGraceTimer -= Time.deltaTime;
-			velocity.y = 0;
-			if (jumpBufferTimer > 0)
-			{
-				velocity.y = jumpSpeed;
-				jumpBufferTimer = 0;
-				jumpGraceTimer = 0;
+        if (jumpGraceTimer > 0)
+        {
+            velocity.y = 0;
+            if (jumpBufferTimer > 0)
+            {
+                velocity.y = jumpSpeed;
+                jumpBufferTimer = 0;
+                jumpGraceTimer = 0;
                 availableJumps--;
             }
-		}
+        }
 		else
 		{
 			float gravity = velocity.y > 0 ? ascendGravity : descendGravity; 
@@ -138,8 +167,11 @@ public class PlayerMovement : MonoBehaviour
 			{
 				velocity.y = jumpStopSpeed;
 			}
-
 			velocity.y = Mathf.Max(velocity.y, hasBalloonPower ? -balloonFallMaxSpeed : -fallMaxSpeed);
+            if (velocity.y < 0)
+            {
+                fallingTimer += -velocity.y * Time.deltaTime;
+            }
 		}
 
         if (velocity.y < wallSlideSpeed && (collidesLeft || collidesRight))
@@ -149,7 +181,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (wallJumpGraceTimer > 0)
         {
-            wallJumpGraceTimer -= Time.deltaTime;
             if (jumpBufferTimer > 0)
             {
                 velocity.y = jumpSpeed;

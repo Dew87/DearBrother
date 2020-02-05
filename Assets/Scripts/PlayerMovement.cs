@@ -54,15 +54,25 @@ public class PlayerMovement : MonoBehaviour
 		solidMask = LayerMask.GetMask("Solid");
 	}
 
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			jumpBufferTimer = jumpBufferPeriod;
+			if (availableJumps < maxJumpAmount && availableJumps > 0)
+			{
+				velocity.y = jumpSpeed;
+				availableJumps--;
+			}
+		}
+	}
+
 	void FixedUpdate()
 	{
-		//RaycastHit2D[] results = new RaycastHit2D[1];
-
 		bool collidesDown = CheckRaycasts(Vector2.down);
 		bool collidesUp = CheckRaycasts(Vector2.up);
 		bool collidesLeft = CheckRaycasts(Vector2.left);
 		bool collidesRight = CheckRaycasts(Vector2.right);
-
 
 		float move = Input.GetAxisRaw("Horizontal");
 
@@ -112,16 +122,6 @@ public class PlayerMovement : MonoBehaviour
 			jumpBufferTimer -= Time.deltaTime;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-            jumpBufferTimer = jumpBufferPeriod;
-            if (availableJumps < maxJumpAmount && availableJumps > 0)
-            {
-                velocity.y = jumpSpeed;
-                availableJumps--;
-            }
-		}
-
 		if (jumpGraceTimer > 0)
 		{
 			jumpGraceTimer -= Time.deltaTime;
@@ -169,9 +169,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //MoveAndSlide(velocity * Time.deltaTime);
         rb2d.velocity = velocity;
-
 	}
 
 	private bool CheckRaycasts(Vector2 direction)

@@ -35,13 +35,13 @@ public class PlayerMovement : MonoBehaviour
 	public bool hasBalloonPower = false;
     public int availableJumps = 0;
 
+	public float jumpGraceTimer = 0;
+	public float jumpBufferTimer = 0;
+    public float wallJumpGraceTimer = 0;
+
 	private const float raycastDistance = 0.05f;
 
 	[SerializeField] private Vector2 velocity;
-	private float jumpGraceTimer = 0;
-	private float jumpBufferTimer = 0;
-    private float wallJumpGraceTimer = 0;
-
 
 	private Rigidbody2D rb2d;
 	private new BoxCollider2D collider;
@@ -101,10 +101,6 @@ public class PlayerMovement : MonoBehaviour
         {
             wallJumpGraceTimer = wallJumpGracePeriod;
             availableJumps = maxJumpAmount;
-            if (availableJumps <= 0)
-            {
-                availableJumps = 1;
-            }
         }
 
         if (collidesUp && velocity.y > 0)
@@ -154,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         if (wallJumpGraceTimer > 0)
         {
             wallJumpGraceTimer -= Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (jumpBufferTimer > 0)
             {
                 velocity.y = jumpSpeed;
                 if (collidesLeft)

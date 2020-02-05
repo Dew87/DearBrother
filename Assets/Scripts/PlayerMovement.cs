@@ -56,13 +56,10 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		//RaycastHit2D[] results = new RaycastHit2D[1];
-
 		bool collidesDown = CheckRaycasts(Vector2.down);
 		bool collidesUp = CheckRaycasts(Vector2.up);
 		bool collidesLeft = CheckRaycasts(Vector2.left);
 		bool collidesRight = CheckRaycasts(Vector2.right);
-
 
 		float move = Input.GetAxisRaw("Horizontal");
 
@@ -169,9 +166,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //MoveAndSlide(velocity * Time.deltaTime);
         rb2d.velocity = velocity;
-
 	}
 
 	private bool CheckRaycasts(Vector2 direction)

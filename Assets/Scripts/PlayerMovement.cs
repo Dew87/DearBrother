@@ -21,18 +21,27 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpStopSpeed = 2f;
 	public float jumpGracePeriod = 0.1f;
 	public float jumpBufferPeriod = 0.1f;
-	public float fallMaxSpeed = 20f;
+    public float fallMaxSpeed = 20f;
 	public float balloonFallMaxSpeed = 4f;
+    public int maxJumpAmount = 1;
+
+    [Header ("WallJumping")]
+    public float wallJumpGracePeriod = 0.2f;
+    public float wallJumpSpeed = 5f;
+    public float wallSlideSpeed = 1f;
 
 	[Header("Debug")]
 
-	public bool balloonPower = false;
+	public bool hasBalloonPower = false;
+    public int availableJumps = 0;
 
 	private const float raycastDistance = 0.05f;
 
 	[SerializeField] private Vector2 velocity;
 	private float jumpGraceTimer = 0;
 	private float jumpBufferTimer = 0;
+    private float wallJumpGraceTimer = 0;
+
 
 	private Rigidbody2D rb2d;
 	private new BoxCollider2D collider;
@@ -45,10 +54,9 @@ public class PlayerMovement : MonoBehaviour
 		solidMask = LayerMask.GetMask("Solid");
 	}
 
-	// Update is called once per frame
 	void FixedUpdate()
 	{
-		RaycastHit2D[] results = new RaycastHit2D[1];
+		//RaycastHit2D[] results = new RaycastHit2D[1];
 
 		bool collidesDown = CheckRaycasts(Vector2.down);
 		bool collidesUp = CheckRaycasts(Vector2.up);
@@ -77,9 +85,19 @@ public class PlayerMovement : MonoBehaviour
 		if (collidesDown)
 		{
 			jumpGraceTimer = jumpGracePeriod;
+            availableJumps = maxJumpAmount;
 		}
+        else if (collidesLeft || collidesRight)
+        {
+            wallJumpGraceTimer = wallJumpGracePeriod;
+            availableJumps = maxJumpAmount;
+            if (availableJumps <= 0)
+            {
+                availableJumps = 1;
+            }
+        }
 
-		if (collidesUp && velocity.y > 0)
+        if (collidesUp && velocity.y > 0)
 		{
 			velocity.y = 0;
 		}
@@ -96,7 +114,12 @@ public class PlayerMovement : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			jumpBufferTimer = jumpBufferPeriod;
+            jumpBufferTimer = jumpBufferPeriod;
+            if (availableJumps < maxJumpAmount && availableJumps > 0)
+            {
+                velocity.y = jumpSpeed;
+                availableJumps--;
+            }
 		}
 
 		if (jumpGraceTimer > 0)
@@ -108,22 +131,46 @@ public class PlayerMovement : MonoBehaviour
 				velocity.y = jumpSpeed;
 				jumpBufferTimer = 0;
 				jumpGraceTimer = 0;
-			}
+                availableJumps--;
+            }
 		}
 		else
 		{
-			float gravity = velocity.y > 0 ? ascendGravity : descendGravity;
-			velocity.y -= Time.deltaTime * gravity;
+			float gravity = velocity.y > 0 ? ascendGravity : descendGravity; 
+			velocity.y -= Time.deltaTime * gravity; //Velocity.y will not always be 0 when falling at descendGravity 0 since ascendGravity can make Velocity.y go past 0 to negative
 			if (!Input.GetKey(KeyCode.Space) && velocity.y > jumpStopSpeed)
 			{
 				velocity.y = jumpStopSpeed;
 			}
 
-			velocity.y = Mathf.Max(velocity.y, balloonPower ? -balloonFallMaxSpeed : -fallMaxSpeed);
+			velocity.y = Mathf.Max(velocity.y, hasBalloonPower ? -balloonFallMaxSpeed : -fallMaxSpeed);
 		}
 
-		//MoveAndSlide(velocity * Time.deltaTime);
-		rb2d.velocity = velocity;
+        if (velocity.y < wallSlideSpeed && (collidesLeft || collidesRight))
+        {
+            velocity.y = wallSlideSpeed;
+        }
+
+        if (wallJumpGraceTimer > 0)
+        {
+            wallJumpGraceTimer -= Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                velocity.y = jumpSpeed;
+                if (collidesLeft)
+                {
+                    velocity.x = wallJumpSpeed;
+                }
+                else if (collidesRight)
+                {
+                    velocity.x = -wallJumpSpeed;
+                }
+                availableJumps = (availableJumps == maxJumpAmount) ? availableJumps - 1 : availableJumps;
+            }
+        }
+
+        //MoveAndSlide(velocity * Time.deltaTime);
+        rb2d.velocity = velocity;
 
 	}
 

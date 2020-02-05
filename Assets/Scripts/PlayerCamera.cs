@@ -56,7 +56,7 @@ public class PlayerCamera : MonoBehaviour
 		Vector3 followPosition = objectToFollow.transform.position + followOffset;
 		Vector2 objectVelocity = objectToFollow.velocity;
 
-		if (objectToFollow.velocity.x != 0)
+		if (Mathf.Abs(objectToFollow.velocity.x) > cameraSpeedWhenStill)
 		{
 			if (followPosition.x > currentPosition.x + bufferArea.x)
 			{
@@ -72,7 +72,7 @@ public class PlayerCamera : MonoBehaviour
 			newCameraPosition.x = Mathf.MoveTowards(newCameraPosition.x, followPosition.x, cameraSpeedWhenStill * Time.deltaTime);
 		}
 
-		if (objectToFollow.velocity.y != 0)
+		if (Mathf.Abs(objectToFollow.velocity.y) > cameraSpeedWhenStill)
 		{
 			if (followPosition.y > currentPosition.y + bufferArea.up)
 			{

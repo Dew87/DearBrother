@@ -216,9 +216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbda0de6526ef1441911e25bd30bbc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snapToTargetOnStart: 1
   objectToFollow: {fileID: 1327696775}
-  followOffset: {x: 0, y: 2}
-  cameraSpeedWhenStill: 5
+  followOffset: {x: 0, y: 2, z: 0}
+  cameraSpeedWhenStill: 2
   bufferArea:
     x: 1
     up: 2
@@ -2159,7 +2160,6 @@ MonoBehaviour:
   availableJumps: 0
   jumpGraceTimer: 0
   jumpBufferTimer: 0
-  wallJumpGraceTimer: 0
   wallJumpGraceTimer: 0
   landingLagTimer: 0
   fallingTimer: 0

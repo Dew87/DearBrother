@@ -9,7 +9,7 @@ public class PickupBalloon : MonoBehaviour
     {
         if (collision.gameObject == playerMovement.gameObject)
         {
-            playerMovement.balloonPower = true;
+            playerMovement.hasBalloonPower = true;
             Destroy(this.gameObject);
         }
     }

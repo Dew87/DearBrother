@@ -65,7 +65,7 @@ public class PlayerCamera : MonoBehaviour
 			else if (followPosition.x < currentPosition.x - bufferArea.x)
 			{
 				newCameraPosition.x = followPosition.x + bufferArea.x;
-			} 
+			}
 		}
 		else
 		{

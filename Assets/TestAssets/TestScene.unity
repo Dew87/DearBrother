@@ -1882,7 +1882,7 @@ GameObject:
   - component: {fileID: 502184847}
   - component: {fileID: 502184846}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: Balloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2148,11 +2148,18 @@ MonoBehaviour:
   fallMaxSpeed: 20
   balloonFallMaxSpeed: 4
   maxJumpAmount: 1
+  landingLagPeriod: 0.2
+  landingLagThreshold: 5
   wallJumpGracePeriod: 0.2
   wallJumpSpeed: 5
   wallSlideSpeed: -1
   hasBalloonPower: 0
   availableJumps: 0
+  jumpGraceTimer: 0
+  jumpBufferTimer: 0
+  wallJumpGraceTimer: 0
+  landingLagTimer: 0
+  fallingTimer: 0
   velocity: {x: 0, y: 0}
 --- !u!70 &1327696777
 CapsuleCollider2D:

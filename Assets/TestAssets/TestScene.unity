@@ -198,7 +198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167393083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.59, y: -3.68, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -213,14 +213,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 167393083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805524f4c94969d478349b8ae1e14ad1, type: 3}
+  m_Script: {fileID: 11500000, guid: dbda0de6526ef1441911e25bd30bbc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToFollow: {fileID: 1327696771}
-  followOffset: {x: 0, y: 0, z: -10}
-  cameraFollowSpeed: 10
-  isStuckOnObject: 0
-  hasAcceleration: 1
+  objectToFollow: {fileID: 1327696775}
+  followOffset: {x: 0, y: 2}
+  cameraSpeedWhenStill: 5
+  bufferArea:
+    x: 1
+    up: 2
+    down: 0.5
 --- !u!1 &196437523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,6 +2155,9 @@ MonoBehaviour:
   wallSlideSpeed: -1
   hasBalloonPower: 0
   availableJumps: 0
+  jumpGraceTimer: 0
+  jumpBufferTimer: 0
+  wallJumpGraceTimer: 0
   velocity: {x: 0, y: 0}
 --- !u!70 &1327696777
 CapsuleCollider2D:

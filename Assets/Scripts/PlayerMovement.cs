@@ -20,10 +20,15 @@ public class PlayerMovement : MonoBehaviour
 	public float descendGravity = 100f;
 	public float jumpStopSpeed = 2f;
 	public float jumpGracePeriod = 0.1f;
+
 	public float jumpBufferPeriod = 0.1f;
 	public float fallMaxSpeed = 20f;
 	public float balloonFallMaxSpeed = 4f;
 	public int maxJumpAmount = 1;
+
+	[Header("Landing")]
+	public float landingLagPeriod = 0.2f;
+	public float landingLagThreshold = 5f;
 
 	[Header("WallJumping")]
 	public float wallJumpGracePeriod = 0.2f;
@@ -57,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Space) && landingLagTimer <= 0)
 		{
 			jumpBufferTimer = jumpBufferPeriod;
 			if (availableJumps < maxJumpAmount && availableJumps > 0)
@@ -65,6 +70,23 @@ public class PlayerMovement : MonoBehaviour
 				velocity.y = jumpSpeed;
 				availableJumps--;
 			}
+		}
+
+		if (jumpGraceTimer > 0)
+		{
+			jumpGraceTimer -= Time.deltaTime;
+		}
+		if (wallJumpGraceTimer > 0)
+		{
+			wallJumpGraceTimer -= Time.deltaTime;
+		}
+		if (jumpBufferTimer > 0)
+		{
+			jumpBufferTimer -= Time.deltaTime;
+		}
+		if (landingLagTimer > 0)
+		{
+			landingLagTimer -= Time.deltaTime;
 		}
 	}
 
@@ -79,22 +101,34 @@ public class PlayerMovement : MonoBehaviour
 
 		float speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
 
-		if (Mathf.Abs(velocity.x) > speed || move == 0)
+		if (landingLagTimer <= 0)
 		{
-			velocity.x = Mathf.MoveTowards(velocity.x, 0, (collidesDown ? deceleration : airDeceleration) * Time.deltaTime);
+			if (Mathf.Abs(velocity.x) > speed || move == 0)
+			{
+				velocity.x = Mathf.MoveTowards(velocity.x, 0, (collidesDown ? deceleration : airDeceleration) * Time.deltaTime);
+			}
+			else
+			{
+				float effectiveAccel = collidesDown ? acceleration : airAcceleration;
+				if (Mathf.Sign(move) == -Mathf.Sign(velocity.x))
+				{
+					effectiveAccel += collidesDown ? deceleration : airDeceleration;
+				}
+				velocity.x = Mathf.MoveTowards(velocity.x, speed * Mathf.Sign(move), effectiveAccel * Time.deltaTime);
+			}
 		}
 		else
 		{
-			float effectiveAccel = collidesDown ? acceleration : airAcceleration;
-			if (Mathf.Sign(move) == -Mathf.Sign(velocity.x))
-			{
-				effectiveAccel += collidesDown ? deceleration : airDeceleration;
-			}
-			velocity.x = Mathf.MoveTowards(velocity.x, speed * Mathf.Sign(move), effectiveAccel * Time.deltaTime);
+			velocity.x = 0;
 		}
 
 		if (collidesDown)
 		{
+			if (jumpGraceTimer <= 0 && fallingTimer > landingLagThreshold)
+			{
+				landingLagTimer = landingLagPeriod;
+			}
+			fallingTimer = 0;
 			jumpGraceTimer = jumpGracePeriod;
 			availableJumps = maxJumpAmount;
 		}
@@ -102,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			wallJumpGraceTimer = wallJumpGracePeriod;
 			availableJumps = maxJumpAmount;
+			fallingTimer = 0;
 		}
 
 		if (collidesUp && velocity.y > 0)
@@ -114,14 +149,8 @@ public class PlayerMovement : MonoBehaviour
 			velocity.x = 0;
 		}
 
-		if (jumpBufferTimer > 0)
-		{
-			jumpBufferTimer -= Time.deltaTime;
-		}
-
 		if (jumpGraceTimer > 0)
 		{
-			jumpGraceTimer -= Time.deltaTime;
 			velocity.y = 0;
 			if (jumpBufferTimer > 0)
 			{
@@ -139,8 +168,11 @@ public class PlayerMovement : MonoBehaviour
 			{
 				velocity.y = jumpStopSpeed;
 			}
-
 			velocity.y = Mathf.Max(velocity.y, hasBalloonPower ? -balloonFallMaxSpeed : -fallMaxSpeed);
+			if (velocity.y < 0)
+			{
+				fallingTimer += -velocity.y * Time.deltaTime;
+			}
 		}
 
 		if (velocity.y < wallSlideSpeed && (collidesLeft || collidesRight))
@@ -150,7 +182,6 @@ public class PlayerMovement : MonoBehaviour
 
 		if (wallJumpGraceTimer > 0)
 		{
-			wallJumpGraceTimer -= Time.deltaTime;
 			if (jumpBufferTimer > 0)
 			{
 				velocity.y = jumpSpeed;

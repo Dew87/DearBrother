@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerState
 {
+	[Tooltip("Read only, only here for debug purposes. Changing this does nothing.")]
 	public bool isCurrentState;
 	[HideInInspector] public PlayerController player;
 
@@ -33,5 +34,9 @@ public class PlayerState
 	public virtual void Exit()
 	{
 
+	}
+
+	public virtual void OnValidate()
+	{
 	}
 }

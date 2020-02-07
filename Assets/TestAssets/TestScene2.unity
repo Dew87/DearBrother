@@ -2136,6 +2136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b11b14fd9eed01468a47e51caaf4e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpInputBuffer: 0.2
   standingState:
     isCurrentState: 0
     player: {fileID: 0}
@@ -2155,11 +2156,16 @@ MonoBehaviour:
   jumpingState:
     isCurrentState: 0
     player: {fileID: 0}
-    initialSpeed: 20
-    gravity: 50
+    initialSpeed:
+    - 20
+    - 10
+    gravity:
+    - 50
+    - 50
     stopSpeed: 2
     acceleration: 20
     deceleration: 10
+    doubleJumpCooldown: 0.4
   fallingState:
     isCurrentState: 0
     player: {fileID: 0}
@@ -2169,10 +2175,20 @@ MonoBehaviour:
     acceleration: 20
     deceleration: 10
     jumpGracePeriod: 0.2
+  glidingState:
+    isCurrentState: 0
+    player: {fileID: 0}
+    descendSpeed: 2
+    verticalDeceleration: 20
+    horizontalAcceleration: 20
+    horizontalDeceleration: 10
   landingLagState:
     isCurrentState: 0
     player: {fileID: 0}
     duration: 0.3
+  isGlideAvailable: 1
+  maxJumpsPossible: 2
+  jumpsLeft: 0
   velocity: {x: 0, y: 0}
 --- !u!70 &1327696777
 CapsuleCollider2D:

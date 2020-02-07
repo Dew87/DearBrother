@@ -15,6 +15,7 @@ public class PlayerWalkingState : PlayerState
 		base.Enter();
 
 		player.velocity.y = 0;
+		player.ResetAvailableJumps();
 	}
 
 	public override void Exit()
@@ -37,6 +38,8 @@ public class PlayerWalkingState : PlayerState
 	public override void Update()
 	{
 		base.Update();
+
+		player.RefillJumpGraceTimer();
 
 		if (player.horizontalInputAxis == 0 && player.rb2d.velocity.x == 0)
 		{

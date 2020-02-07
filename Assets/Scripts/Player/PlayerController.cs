@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
 	public bool isSprintInputHeld { get; private set; }
 	public bool isCrouchInputHeld { get; private set; }
+	public float jumpGraceTimer { get; private set; }
 
 	public Rigidbody2D rb2d { get; private set; }
 	public new Collider2D collider { get; private set; }
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
 	[Tooltip("If jump is pressed within this duration before touching the ground, the player will jump immediately after touching the ground")]
 	public float jumpInputBuffer = 0.2f;
+	[Tooltip("IF jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
+	public float jumpGracePeriod = 0.2f;
 
 	[Header("States")]
 	public PlayerStandingState standingState;
@@ -31,6 +34,10 @@ public class PlayerController : MonoBehaviour
 
 	[Header("Debug")]
 	public bool isGlideAvailable = true;
+	[Tooltip("1 means you can double jump, 0 means only normal jumps, etc.")]
+	public int maxAirJumps = 2;
+	[Tooltip("Don't edit this one if you want to change whether the player can double jump, edit availableJumps")]
+	public int airJumpsLeft;
 	public Vector2 velocity;
 
 	private const float castDistance = 0.05f;
@@ -57,6 +64,8 @@ public class PlayerController : MonoBehaviour
 		collider = GetComponent<BoxCollider2D>();
 		solidMask = LayerMask.GetMask("Solid");
 
+		airJumpsLeft = maxAirJumps;
+
 		foreach (PlayerState state in IterateStates())
 		{
 			state.player = this;
@@ -73,6 +82,11 @@ public class PlayerController : MonoBehaviour
 		ReadInput();
 
 		currentState.Update();
+
+		if (jumpGraceTimer > 0)
+		{
+			jumpGraceTimer -= Time.deltaTime;
+		}
 	}
 
 	private void FixedUpdate()
@@ -113,6 +127,21 @@ public class PlayerController : MonoBehaviour
 		jumpInputBufferTimer = 0;
 	}
 
+	public void ResetAvailableJumps()
+	{
+		airJumpsLeft = maxAirJumps;
+	}
+
+	public void RefillJumpGraceTimer()
+	{
+		jumpGraceTimer = jumpGracePeriod;
+	}
+
+	public void ResetJumpGraceTimer()
+	{
+		jumpGraceTimer = 0;
+	}
+
 	public void TransitionState(PlayerState newState)
 	{
 		if (currentState != null)
@@ -144,5 +173,13 @@ public class PlayerController : MonoBehaviour
 		}
 		isSprintInputHeld = Input.GetKey(KeyCode.LeftShift);
 		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < 0;
+	}
+
+	private void OnValidate()
+	{
+		foreach (PlayerState state in IterateStates())
+		{
+			state.OnValidate();
+		}
 	}
 }

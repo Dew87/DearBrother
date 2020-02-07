@@ -10,6 +10,7 @@ public class PlayerStandingState : PlayerState
 		base.Enter();
 
 		player.velocity.y = 0;
+		player.ResetAvailableJumps();
 	}
 
 	public override void Exit()
@@ -30,6 +31,8 @@ public class PlayerStandingState : PlayerState
 	public override void Update()
 	{
 		base.Update();
+
+		player.RefillJumpGraceTimer();
 
 		if (player.horizontalInputAxis != 0)
 		{

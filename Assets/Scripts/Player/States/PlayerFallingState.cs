@@ -10,25 +10,17 @@ public class PlayerFallingState : PlayerState
 	public float gravity = 100;
 	public float acceleration = 20;
 	public float deceleration = 10;
-	public float jumpGracePeriod = 0.2f;
-
-	private float jumpGraceTimer;
 
 	public override void Enter()
 	{
 		base.Enter();
-
-		if (player.previousState != player.jumpingState)
-		{
-			jumpGraceTimer = jumpGracePeriod; 
-		}
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
 
-		jumpGraceTimer = 0;
+		player.ResetJumpGraceTimer();
 	}
 
 	public override void FixedUpdate()
@@ -59,9 +51,19 @@ public class PlayerFallingState : PlayerState
 			return;
 		}
 
-		if (jumpGraceTimer > 0 && player.isJumpInputPressedBuffered)
+		if (player.jumpGraceTimer > 0 && player.isJumpInputPressedBuffered)
 		{
 			player.TransitionState(player.jumpingState);
+		}
+		else if (player.airJumpsLeft > 0 && player.isJumpInputPressedBuffered)
+		{
+			player.airJumpsLeft--;
+			Debug.Log("air jump (from fall)");
+			player.TransitionState(player.jumpingState);
+		}
+		else if (player.isJumpInputHeld && player.isGlideAvailable)
+		{
+			player.TransitionState(player.glidingState);
 		}
 	}
 
@@ -73,12 +75,5 @@ public class PlayerFallingState : PlayerState
 	public override void Update()
 	{
 		base.Update();
-
-		if (player.isJumpInputHeld && player.isGlideAvailable)
-		{
-			player.TransitionState(player.glidingState);
-		}
-
-		jumpGraceTimer -= Time.deltaTime;
 	}
 }

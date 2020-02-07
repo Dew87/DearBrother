@@ -16,6 +16,7 @@ public class PlayerJumpingState : PlayerState
 		base.Enter();
 
 		player.velocity.y = initialSpeed;
+		player.ResetJumpInputBuffer();
 	}
 
 	public override void Exit()

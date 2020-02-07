@@ -50,7 +50,7 @@ public class PlayerStandingState : PlayerState
 			return;
 		}
 
-		if (player.isJumpInputPressed)
+		if (player.isJumpInputPressedBuffered)
 		{
 			player.TransitionState(player.jumpingState);
 			return;

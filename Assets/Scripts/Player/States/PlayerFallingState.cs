@@ -59,7 +59,7 @@ public class PlayerFallingState : PlayerState
 			return;
 		}
 
-		if (jumpGraceTimer > 0 && player.isJumpInputPressed)
+		if (jumpGraceTimer > 0 && player.isJumpInputPressedBuffered)
 		{
 			player.TransitionState(player.jumpingState);
 		}
@@ -73,6 +73,11 @@ public class PlayerFallingState : PlayerState
 	public override void Update()
 	{
 		base.Update();
+
+		if (player.isJumpInputHeld && player.isGlideAvailable)
+		{
+			player.TransitionState(player.glidingState);
+		}
 
 		jumpGraceTimer -= Time.deltaTime;
 	}

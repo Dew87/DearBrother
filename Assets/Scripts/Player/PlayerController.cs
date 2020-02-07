@@ -6,13 +6,18 @@ public class PlayerController : MonoBehaviour
 {
 	public float horizontalInputAxis { get; private set; }
 	public bool isJumpInputHeld { get; private set; }
-	public bool isJumpInputPressed { get; private set; }
+	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
 	public bool isSprintInputHeld { get; private set; }
 	public bool isCrouchInputHeld { get; private set; }
+
 	public Rigidbody2D rb2d { get; private set; }
 	public new Collider2D collider { get; private set; }
+
 	public PlayerState previousState { get; private set; }
 	public PlayerState currentState { get; private set; }
+
+	[Tooltip("If jump is pressed within this duration before touching the ground, the player will jump immediately after touching the ground")]
+	public float jumpInputBuffer = 0.2f;
 
 	[Header("States")]
 	public PlayerStandingState standingState;
@@ -21,14 +26,17 @@ public class PlayerController : MonoBehaviour
 	public PlayerState crawlingState;
 	public PlayerJumpingState jumpingState;
 	public PlayerFallingState fallingState;
+	public PlayerGlidingState glidingState;
 	public PlayerLandingLagState landingLagState;
 
 	[Header("Debug")]
+	public bool isGlideAvailable = true;
 	public Vector2 velocity;
 
 	private const float castDistance = 0.05f;
 
 	private int solidMask;
+	private float jumpInputBufferTimer;
 
 	private IEnumerable<PlayerState> IterateStates()
 	{
@@ -38,6 +46,7 @@ public class PlayerController : MonoBehaviour
 		yield return crawlingState;
 		yield return jumpingState;
 		yield return fallingState;
+		yield return glidingState;
 		yield return landingLagState;
 	}
 
@@ -99,11 +108,16 @@ public class PlayerController : MonoBehaviour
 		return hit.collider != null;
 	}
 
+	public void ResetJumpInputBuffer()
+	{
+		jumpInputBufferTimer = 0;
+	}
+
 	public void TransitionState(PlayerState newState)
 	{
 		if (currentState != null)
 		{
-			currentState.isCurrentState = false; 
+			currentState.isCurrentState = false;
 			currentState.Exit();
 		}
 		previousState = currentState;
@@ -111,15 +125,23 @@ public class PlayerController : MonoBehaviour
 		if (currentState != null)
 		{
 			currentState.Enter();
-			currentState.isCurrentState = true; 
+			currentState.isCurrentState = true;
 		}
 	}
 
 	private void ReadInput()
 	{
+		if (jumpInputBufferTimer > 0)
+		{
+			jumpInputBufferTimer -= Time.deltaTime;
+		}
+
 		horizontalInputAxis = Input.GetAxisRaw("Horizontal");
 		isJumpInputHeld = Input.GetKey(KeyCode.Space);
-		isJumpInputPressed = Input.GetKeyDown(KeyCode.Space);
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			jumpInputBufferTimer = jumpInputBuffer;
+		}
 		isSprintInputHeld = Input.GetKey(KeyCode.LeftShift);
 		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < 0;
 	}

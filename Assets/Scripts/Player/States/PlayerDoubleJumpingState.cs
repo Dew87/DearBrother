@@ -10,18 +10,13 @@ public class PlayerDoubleJumpingState : PlayerBaseJumpingState
 	{
 		base.Enter();
 		player.doesDoubleJumpRemain = false;
-		if (player.TryGetComponent(out SpriteRenderer spriteRenderer))
-		{
-			spriteRenderer.flipY = true;
-		}
-	}
+        player.spriteRenderer.flipY = true;
+    }
 
 	public override void Exit()
 	{
+
 		base.Exit();
-		if (player.TryGetComponent(out SpriteRenderer spriteRenderer))
-		{
-			spriteRenderer.flipY = false;
-		}
-	}
+        player.spriteRenderer.flipY = false;
+    }
 }

@@ -3,29 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{
-	public float horizontalInputAxis { get; private set; }
-	public bool isJumpInputHeld { get; private set; }
-	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
-	public bool isCrouchInputHeld { get; private set; }
-	public float jumpGraceTimer { get; private set; }
-
-	public Rigidbody2D rb2d { get; private set; }
-	public new Collider2D collider { get; private set; }
-
-	public PlayerState previousState { get; private set; }
-	public PlayerState currentState { get; private set; }
-
+{ 
 	[Tooltip("If jump is pressed within this duration before touching the ground, the player will jump immediately after touching the ground")]
 	public float jumpInputBuffer = 0.2f;
 	[Tooltip("IF jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
 	public float jumpGracePeriod = 0.2f;
+    [Space()]
+    public Collider2D normalCollider;
+    public Collider2D crouchingCollider;
+    public SpriteRenderer spriteRenderer;
 
 	[Header("States")]
 	public PlayerStandingState standingState;
 	public PlayerWalkingState walkingState;
-	public PlayerState crouchingState;
-	public PlayerState crawlingState;
+	public PlayerCrouchingState crouchingState;
+	public PlayerCrawlingState crawlingState;
 	public PlayerNormalJumpingState jumpingState;
 	public PlayerDoubleJumpingState doubleJumpingState;
 	public PlayerFallingState fallingState;
@@ -37,6 +29,18 @@ public class PlayerController : MonoBehaviour
 	public bool hasDoubleJump = true;
     public bool doesDoubleJumpRemain;
 	public Vector2 velocity;
+
+	public float horizontalInputAxis { get; private set; }
+	public bool isJumpInputHeld { get; private set; }
+	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
+	public bool isCrouchInputHeld { get; private set; }
+	public float jumpGraceTimer { get; private set; }
+
+	public Rigidbody2D rb2d { get; private set; }
+	public Collider2D currentCollider { get; private set; }
+
+    public PlayerState previousState { get; private set; }
+	public PlayerState currentState { get; private set; }
 
 	private const float castDistance = 0.05f;
 
@@ -68,10 +72,13 @@ public class PlayerController : MonoBehaviour
     private void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
-		collider = GetComponent<BoxCollider2D>();
 		solidMask = LayerMask.GetMask("Solid");
 
-		foreach (PlayerState state in IterateStates())
+        normalCollider.enabled = false;
+        crouchingCollider.enabled = false;
+        SetCollider(normalCollider);
+
+        foreach (PlayerState state in IterateStates())
 		{
 			state.player = this;
 		}
@@ -123,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
 	public bool CheckBoxcast(Vector2 direction)
 	{
-		Bounds bounds = collider.bounds;
+		Bounds bounds = currentCollider.bounds;
 
 		RaycastHit2D hit = Physics2D.BoxCast(bounds.center, bounds.size, 0f, direction, castDistance, solidMask);
 
@@ -144,6 +151,16 @@ public class PlayerController : MonoBehaviour
 	{
 		jumpGraceTimer = 0;
 	}
+
+    public void SetCollider(Collider2D collider)
+    {
+        if (currentCollider)
+        {
+            currentCollider.enabled = false; 
+        }
+        collider.enabled = true;
+        currentCollider = collider;
+    }
 
 	public void TransitionState(PlayerState newState)
 	{

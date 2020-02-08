@@ -15,21 +15,15 @@ public class PlayerLandingLagState : PlayerState
 
 		timer = duration;
 		player.velocity = Vector3.zero;
-		if (player.TryGetComponent(out SpriteRenderer spriteRenderer))
-		{
-			spriteRenderer.flipY = true;
-		}
+        player.spriteRenderer.flipY = true;
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
 
-		if (player.TryGetComponent(out SpriteRenderer spriteRenderer))
-		{
-			spriteRenderer.flipY = false;
-		}
-	}
+        player.spriteRenderer.flipY = false;
+    }
 
 	public override void Update()
 	{

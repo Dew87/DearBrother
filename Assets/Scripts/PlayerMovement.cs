@@ -44,9 +44,9 @@ public class PlayerMovement : MonoBehaviour
     public float landingLagTimer = 0;
     public float fallingTimer = 0;
 
-	private const float raycastDistance = 0.05f;
+	public Vector2 velocity;
 
-	[SerializeField] private Vector2 velocity;
+	private const float raycastDistance = 0.05f;
 
 	private Rigidbody2D rb2d;
 	private new BoxCollider2D collider;

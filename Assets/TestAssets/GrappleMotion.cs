@@ -5,8 +5,8 @@ using UnityEngine;
 public class GrappleMotion : MonoBehaviour
 {
     public GameObject grapplePoint;
-    public float swingSpeed = 1f;
-    public float mass = 1f;
+    public float swingSpeed = 10f;
+    public float mass = 10f;
     public Vector2 gravity = new Vector2(0, -1);
     public Vector2 velocity = new Vector3(0, 0);
 
@@ -43,7 +43,7 @@ public class GrappleMotion : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //float move = Input.GetAxis("Horizontal");
+        float move = Input.GetAxis("Horizontal");
         if (playerRB != null)
         {
             if (grapplePoint != null)
@@ -65,6 +65,8 @@ public class GrappleMotion : MonoBehaviour
                     tensionForce += ((mass * Mathf.Pow(velocity.magnitude, 2)) / grappleLength);
 
                     velocity += grappleDirection * tensionForce * Time.deltaTime;
+
+                    velocity += velocity.normalized * (velocity.x > 0 ? move : -move) * swingSpeed * Time.deltaTime;
                 }
             }
             playerRB.velocity = velocity;

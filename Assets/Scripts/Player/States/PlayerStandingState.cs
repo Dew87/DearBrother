@@ -10,7 +10,7 @@ public class PlayerStandingState : PlayerState
 		base.Enter();
 
 		player.velocity.y = 0;
-		player.ResetAvailableJumps();
+		player.doesDoubleJumpRemain = true;
 	}
 
 	public override void Exit()

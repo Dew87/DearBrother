@@ -5,8 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerWalkingState : PlayerState
 {
-	public float walkSpeed = 5;
-	public float runSpeed = 10;
+	public float speed = 5;
 	public float acceleration = 20;
 	public float deceleration = 20;
 
@@ -15,7 +14,7 @@ public class PlayerWalkingState : PlayerState
 		base.Enter();
 
 		player.velocity.y = 0;
-		player.ResetAvailableJumps();
+        player.doesDoubleJumpRemain = true; 
 	}
 
 	public override void Exit()
@@ -27,7 +26,7 @@ public class PlayerWalkingState : PlayerState
 	{
 		base.FixedUpdate();
 
-		player.MoveHorizontally(player.isSprintInputHeld ? runSpeed : walkSpeed, acceleration, deceleration);
+		player.MoveHorizontally(speed, acceleration, deceleration);
 	}
 
 	public override void Start()

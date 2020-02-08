@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 	public float horizontalInputAxis { get; private set; }
 	public bool isJumpInputHeld { get; private set; }
 	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
-	public bool isSprintInputHeld { get; private set; }
 	public bool isCrouchInputHeld { get; private set; }
 	public float jumpGraceTimer { get; private set; }
 
@@ -27,17 +26,16 @@ public class PlayerController : MonoBehaviour
 	public PlayerWalkingState walkingState;
 	public PlayerState crouchingState;
 	public PlayerState crawlingState;
-	public PlayerJumpingState jumpingState;
+	public PlayerNormalJumpingState jumpingState;
+	public PlayerDoubleJumpingState doubleJumpingState;
 	public PlayerFallingState fallingState;
 	public PlayerGlidingState glidingState;
 	public PlayerLandingLagState landingLagState;
 
 	[Header("Debug")]
-	public bool isGlideAvailable = true;
-	[Tooltip("1 means you can double jump, 0 means only normal jumps, etc.")]
-	public int maxAirJumps = 2;
-	[Tooltip("Don't edit this one if you want to change whether the player can double jump, edit availableJumps")]
-	public int airJumpsLeft;
+	[Tooltip("Is the double jump powerup unlocked?")]
+	public bool hasDoubleJump = true;
+    public bool doesDoubleJumpRemain;
 	public Vector2 velocity;
 
 	private const float castDistance = 0.05f;
@@ -52,19 +50,26 @@ public class PlayerController : MonoBehaviour
 		yield return crouchingState;
 		yield return crawlingState;
 		yield return jumpingState;
+        yield return doubleJumpingState;
 		yield return fallingState;
 		yield return glidingState;
 		yield return landingLagState;
 	}
 
-	// Start is called before the first frame update
-	private void Start()
+    private void Awake()
+    {
+        foreach (PlayerState state in IterateStates())
+        {
+            state.Awake();
+        }
+    }
+
+    // Start is called before the first frame update
+    private void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
 		collider = GetComponent<BoxCollider2D>();
 		solidMask = LayerMask.GetMask("Solid");
-
-		airJumpsLeft = maxAirJumps;
 
 		foreach (PlayerState state in IterateStates())
 		{
@@ -73,7 +78,10 @@ public class PlayerController : MonoBehaviour
 
 		TransitionState(standingState);
 
-		currentState.Start();
+        foreach (PlayerState state in IterateStates())
+        {
+            currentState.Start(); 
+        }
 	}
 
 	// Update is called once per frame
@@ -127,11 +135,6 @@ public class PlayerController : MonoBehaviour
 		jumpInputBufferTimer = 0;
 	}
 
-	public void ResetAvailableJumps()
-	{
-		airJumpsLeft = maxAirJumps;
-	}
-
 	public void RefillJumpGraceTimer()
 	{
 		jumpGraceTimer = jumpGracePeriod;
@@ -171,7 +174,6 @@ public class PlayerController : MonoBehaviour
 		{
 			jumpInputBufferTimer = jumpInputBuffer;
 		}
-		isSprintInputHeld = Input.GetKey(KeyCode.LeftShift);
 		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < 0;
 	}
 

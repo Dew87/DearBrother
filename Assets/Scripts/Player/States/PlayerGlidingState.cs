@@ -14,7 +14,7 @@ public class PlayerGlidingState : PlayerState
 	{
 		base.FixedUpdate();
 
-		player.MoveHorizontally(player.isSprintInputHeld ? player.walkingState.runSpeed : player.walkingState.walkSpeed, horizontalAcceleration, horizontalDeceleration);
+		player.MoveHorizontally(player.walkingState.speed, horizontalAcceleration, horizontalDeceleration);
 
 		float delta = player.velocity.y > -descendSpeed ? player.fallingState.gravity : verticalDeceleration;
 		player.velocity.y = Mathf.MoveTowards(player.velocity.y, -descendSpeed, delta * Time.deltaTime);

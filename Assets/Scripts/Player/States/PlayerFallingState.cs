@@ -27,7 +27,7 @@ public class PlayerFallingState : PlayerState
 	{
 		base.FixedUpdate();
 
-		player.MoveHorizontally(player.isSprintInputHeld ? player.walkingState.runSpeed : player.walkingState.walkSpeed, acceleration, deceleration);
+		player.MoveHorizontally(player.walkingState.speed, acceleration, deceleration);
 
 		player.velocity.y = Mathf.MoveTowards(player.velocity.y, -maxFallSpeed, gravity * Time.deltaTime);
 
@@ -55,13 +55,11 @@ public class PlayerFallingState : PlayerState
 		{
 			player.TransitionState(player.jumpingState);
 		}
-		else if (player.airJumpsLeft > 0 && player.isJumpInputPressedBuffered)
+		else if (player.hasDoubleJump && player.doesDoubleJumpRemain && player.isJumpInputPressedBuffered)
 		{
-			player.airJumpsLeft--;
-			Debug.Log("air jump (from fall)");
-			player.TransitionState(player.jumpingState);
+			player.TransitionState(player.doubleJumpingState);
 		}
-		else if (player.isJumpInputHeld && player.isGlideAvailable)
+		else if (player.isJumpInputHeld)
 		{
 			player.TransitionState(player.glidingState);
 		}

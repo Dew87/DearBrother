@@ -8,6 +8,8 @@ public class PlayerSwingState : PlayerGrappleBaseState
     public float swingSpeed = 10f;
     public float mass = 10f;
 
+    public bool doesResetDoubleJump = true;
+
     private Vector2 gravity = new Vector2(0, -1);
     private Vector2 grappleDirection;
     private float tensionForce;
@@ -17,14 +19,24 @@ public class PlayerSwingState : PlayerGrappleBaseState
     {
         base.Enter();
         player.velocity.y = 0;
-        player.doesDoubleJumpRemain = true;
+        if (doesResetDoubleJump)
+        {
+            player.doesDoubleJumpRemain = true;
+        }
         player.ResetGrappleInputBuffer();
     }
 
     public override void Update()
     {
         base.Update();
-        if (player.isGrappleInputPressedBuffered)
+        if (player.isGrappleInputPressedBuffered && player.grappleDetection.nextGrapplePoint != null)
+        {
+            player.grappleDetection.ReleaseGrapplePoint();
+            player.grappleDetection.SwitchCurrentNext();
+            player.TransitionState(player.swingState);
+            return;
+        }
+        else if (player.isGrappleInputPressedBuffered)
         {
             player.grappleDetection.ReleaseGrapplePoint();
             player.TransitionState(player.fallingState);
@@ -45,7 +57,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
         }
         if (player.CheckBoxcast(Vector2.down))
         {
-            if (Vector2.Distance(new Vector2(player.transform.position.x + player.horizontalInputAxis * player.walkingState.speed * Time.deltaTime, player.transform.position.y), player.grappleDetection.grapplePoint.transform.position) < grappleLength)
+            if (Vector2.Distance(new Vector2(player.transform.position.x + player.horizontalInputAxis * player.walkingState.speed * Time.deltaTime, player.transform.position.y), player.grappleDetection.currentGrapplePoint.transform.position) < grappleLength)
             {
                 player.MoveHorizontally(player.walkingState.speed, player.walkingState.acceleration, player.walkingState.deceleration);
             }
@@ -59,7 +71,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
             player.velocity += gravity.normalized * (gravity.magnitude * mass) * Time.deltaTime;
 
             Vector2 playerPos = player.transform.position;
-            Vector2 grapplePointPos = player.grappleDetection.grapplePoint.transform.position;
+            Vector2 grapplePointPos = player.grappleDetection.currentGrapplePoint.transform.position;
 
             float distanceAfterGravity = Vector2.Distance(grapplePointPos, playerPos + (player.velocity * Time.deltaTime));
 

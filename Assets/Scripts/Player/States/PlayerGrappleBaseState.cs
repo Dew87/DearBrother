@@ -9,7 +9,7 @@ public class PlayerGrappleBaseState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        grappleLength = Vector2.Distance(player.transform.position, player.grappleDetection.grapplePoint.transform.position);
+        grappleLength = Vector2.Distance(player.transform.position, player.grappleDetection.currentGrapplePoint.transform.position);
     }
 
     public override void Exit()

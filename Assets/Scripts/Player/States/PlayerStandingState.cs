@@ -65,7 +65,7 @@ public class PlayerStandingState : PlayerState
 			return;
 		}
 
-        if (player.isGrappleInputPressedBuffered && player.grappleDetection.grapplePoint != null)
+        if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
         {
             if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
             {

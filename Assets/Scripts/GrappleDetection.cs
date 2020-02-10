@@ -6,10 +6,14 @@ using UnityEditor;
 public class GrappleDetection : MonoBehaviour
 {
     public float detectionRadius = 5f;
-    public GameObject targetingCircle;
+    public GameObject currentTargetCircle;
+    public GameObject nextTargetCircle;
 
-    public GameObject grapplePoint;
+    public GameObject currentGrapplePoint;
+    public GameObject nextGrapplePoint;
     public GrapplePointBehaviour grapplePointBehaviour;
+
+    private GameObject nearestGrapplePoint;
 
     private bool isFacingRight = true;
     private bool isHolding = false;
@@ -38,18 +42,21 @@ public class GrappleDetection : MonoBehaviour
         int length = results.Count;
         for (int i = 0; i < length; i++)
         {
-            if (isFacingRight)
+            if (results[i].gameObject != currentGrapplePoint)
             {
-                if (results[i].transform.position.x >= transform.position.x && !Physics2D.Linecast(transform.position, results[i].transform.position, solidMask))
+                if (isFacingRight)
                 {
-                    colliders.Add(results[i]);
+                    if (results[i].transform.position.x >= transform.position.x && !Physics2D.Linecast(transform.position, results[i].transform.position, solidMask))
+                    {
+                        colliders.Add(results[i]);
+                    }
                 }
-            }
-            else
-            {
-                if (results[i].transform.position.x <= transform.position.x && !Physics2D.Linecast(transform.position, results[i].transform.position, solidMask))
+                else
                 {
-                    colliders.Add(results[i]);
+                    if (results[i].transform.position.x <= transform.position.x && !Physics2D.Linecast(transform.position, results[i].transform.position, solidMask))
+                    {
+                        colliders.Add(results[i]);
+                    }
                 }
             }
         }
@@ -61,21 +68,31 @@ public class GrappleDetection : MonoBehaviour
                 closestIndex = i;
             }
         }
-        if (!isHolding)
+        if (colliders.Count <= 0)
         {
-            if (colliders.Count <= 0)
-            {
-                targetingCircle.SetActive(false);
-            }
-            else
-            {
-                targetingCircle.transform.position = colliders[closestIndex].transform.position;
-                targetingCircle.SetActive(true);
-            }
+            nextTargetCircle.SetActive(false);
         }
         else
         {
-            targetingCircle.transform.position = grapplePoint.transform.position;
+            nextTargetCircle.transform.position = colliders[closestIndex].transform.position;
+            nextTargetCircle.SetActive(true);
+        }
+        if (isHolding)
+        {
+            if (colliders.Count > 0)
+            {
+                nextGrapplePoint = colliders[closestIndex].gameObject;
+            }
+            else
+            {
+                nextGrapplePoint = null;
+            }
+            currentTargetCircle.SetActive(true);
+            currentTargetCircle.transform.position = currentGrapplePoint.transform.position;
+        }
+        else
+        {
+            currentTargetCircle.SetActive(false);
         }
         if (colliders.Count > 0)
         {
@@ -83,8 +100,8 @@ public class GrappleDetection : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    grapplePoint = colliders[closestIndex].gameObject;
-                    grapplePointBehaviour = grapplePoint.GetComponent<GrapplePointBehaviour>();
+                    currentGrapplePoint = colliders[closestIndex].gameObject;
+                    grapplePointBehaviour = currentGrapplePoint.GetComponent<GrapplePointBehaviour>();
                     if (grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing || grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
                     {
                         isHolding = true;
@@ -95,8 +112,18 @@ public class GrappleDetection : MonoBehaviour
     }
     public void ReleaseGrapplePoint()
     {
-        grapplePoint = null;
+        currentGrapplePoint = null;
         grapplePointBehaviour = null;
         isHolding = false;
+    }
+    public void SwitchCurrentNext()
+    {
+        currentGrapplePoint = nextGrapplePoint;
+        nextGrapplePoint = null;
+        grapplePointBehaviour = currentGrapplePoint.GetComponent<GrapplePointBehaviour>();
+        if (grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing || grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
+        {
+            isHolding = true;
+        }
     }
 }

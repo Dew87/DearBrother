@@ -5,12 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerFallingState : PlayerState
 {
-	public float maxFallSpeed = 20;
+	public float maxFallSpeed = 10;
     [Tooltip("If the player has fallen for at least this manys seconds when landing, landing lag occurs")]
-	public float landingLagDurationThreshold = 1f;
-	public float gravity = 100;
-	public float acceleration = 20;
-	public float deceleration = 10;
+	public float landingLagDurationThreshold = 12f;
+	public float gravity = 51;
+	public float acceleration = 18;
+	public float deceleration = 20;
 
     private float landingLagTimer;
 

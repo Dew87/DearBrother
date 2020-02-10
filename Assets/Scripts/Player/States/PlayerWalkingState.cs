@@ -5,9 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerWalkingState : PlayerState
 {
-	public float speed = 5;
-	public float acceleration = 20;
-	public float deceleration = 20;
+	public float speed = 4.3f;
+	public float acceleration = 40f;
+    public float deceleration = 30f;
 
 	public override void Enter()
 	{

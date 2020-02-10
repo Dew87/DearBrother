@@ -308,7 +308,7 @@ PrefabInstance:
     - target: {fileID: 8712877510723082836, guid: dba228401548c2548904609cda5aa0c6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.000000057218074
       objectReference: {fileID: 0}
     - target: {fileID: 8712877510723082836, guid: dba228401548c2548904609cda5aa0c6,
         type: 3}
@@ -334,6 +334,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712877510723082834, guid: dba228401548c2548904609cda5aa0c6,
+        type: 3}
+      propertyPath: cycleOffset
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dba228401548c2548904609cda5aa0c6, type: 3}
@@ -2354,22 +2359,22 @@ PrefabInstance:
     - target: {fileID: 8712877510723082836, guid: dba228401548c2548904609cda5aa0c6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8712877510723082836, guid: dba228401548c2548904609cda5aa0c6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8712877510723082836, guid: dba228401548c2548904609cda5aa0c6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.7598249
       objectReference: {fileID: 0}
     - target: {fileID: 8712877510723082836, guid: dba228401548c2548904609cda5aa0c6,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.65012795
       objectReference: {fileID: 0}
     - target: {fileID: 8712877510723082836, guid: dba228401548c2548904609cda5aa0c6,
         type: 3}
@@ -2389,6 +2394,11 @@ PrefabInstance:
     - target: {fileID: 8712877510723082836, guid: dba228401548c2548904609cda5aa0c6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 98.898
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712877510723082834, guid: dba228401548c2548904609cda5aa0c6,
+        type: 3}
+      propertyPath: cycleOffset
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public abstract class PlayerBaseJumpingState : PlayerState
 {
-	public float initialSpeed = 20f;
-	public float gravity = 50f;
+	public float initialSpeed = 14f;
+	public float gravity = 45f;
     [Tooltip("When releasing the jump button, the player's upwards speed is set to this (if it's not alredy lower)")]
-	public float stopSpeed = 2;
+	public float stopSpeed = 10;
 	public float horizontalAcceleration = 20;
-	public float verticalDeceleration = 10;
+	public float verticalDeceleration = 20;
     [Tooltip("If the player just taps the jump button, they will still not start falling/stop before this time has passed.\nYou can test this by ticking the Is Current State box.")]
-    public float minimumDuration = 0.2f;
+    public float minimumDuration = 0.008f;
 
     private float jumpTimer = 0;
 

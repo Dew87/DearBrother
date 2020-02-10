@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GrappleMotion : MonoBehaviour
 {
+    //Discontinued
+
     public GameObject grapplePoint;
     public float swingSpeed = 10f;
     public float mass = 10f;

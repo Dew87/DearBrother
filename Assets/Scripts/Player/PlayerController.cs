@@ -6,8 +6,9 @@ public class PlayerController : MonoBehaviour
 { 
 	[Tooltip("If jump is pressed within this duration before touching the ground, the player will jump immediately after touching the ground")]
 	public float jumpInputBuffer = 0.2f;
-	[Tooltip("IF jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
+	[Tooltip("If jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
 	public float jumpGracePeriod = 0.2f;
+    public float grappleInputBuffer = 0.2f;
     [Space()]
     public Collider2D normalCollider;
     public Collider2D crouchingCollider;
@@ -24,7 +25,9 @@ public class PlayerController : MonoBehaviour
 	public PlayerFallingState fallingState;
 	public PlayerGlidingState glidingState;
 	public PlayerLandingLagState landingLagState;
-    public PlayerGrappleState grappleState;
+    public PlayerSwingState swingState;
+    public PlayerWhipState whipState;
+    public PlayerPullState pullState;
 
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
@@ -36,9 +39,8 @@ public class PlayerController : MonoBehaviour
 	public bool isJumpInputHeld { get; private set; }
 	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
 	public bool isCrouchInputHeld { get; private set; }
-    public bool isGrappleButtonHeld { get; private set; }
+    public bool isGrappleInputPressedBuffered => grappleInputBufferTimer > 0;
 	public float jumpGraceTimer { get; private set; }
-
 	public Rigidbody2D rb2d { get; private set; }
 	public Collider2D currentCollider { get; private set; }
 
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
 	private int solidMask;
 	private float jumpInputBufferTimer;
+    private float grappleInputBufferTimer;
 
 	private IEnumerable<PlayerState> IterateStates()
 	{
@@ -61,8 +64,10 @@ public class PlayerController : MonoBehaviour
 		yield return fallingState;
 		yield return glidingState;
 		yield return landingLagState;
-        yield return grappleState;
-	}
+        yield return swingState;
+        yield return whipState;
+        yield return pullState;
+    }
 
     private void Awake()
     {
@@ -72,7 +77,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     private void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
@@ -95,7 +99,6 @@ public class PlayerController : MonoBehaviour
         }
 	}
 
-	// Update is called once per frame
 	private void Update()
 	{
 		ReadInput();
@@ -156,6 +159,11 @@ public class PlayerController : MonoBehaviour
 		jumpGraceTimer = 0;
 	}
 
+    public void ResetGrappleInputBuffer()
+    {
+        grappleInputBufferTimer = 0;
+    }
+
     public void SetCollider(Collider2D collider)
     {
         if (currentCollider)
@@ -188,10 +196,16 @@ public class PlayerController : MonoBehaviour
 		{
 			jumpInputBufferTimer -= Time.deltaTime;
 		}
-
+        if (grappleInputBufferTimer > 0)
+        {
+            grappleInputBufferTimer -= Time.deltaTime;
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            grappleInputBufferTimer = grappleInputBuffer;
+        }
 		horizontalInputAxis = Input.GetAxisRaw("Horizontal");
 		isJumpInputHeld = Input.GetKey(KeyCode.Space);
-        isGrappleButtonHeld = Input.GetKey(KeyCode.E);
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			jumpInputBufferTimer = jumpInputBuffer;

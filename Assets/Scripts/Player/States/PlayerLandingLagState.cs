@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerLandingLagState : PlayerState
 {
-	public float duration = 0.3f;
+	public float duration = 0.1f;
 
 	private float timer;
 

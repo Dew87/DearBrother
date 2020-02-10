@@ -5,9 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerWalkingState : PlayerState
 {
-	public float speed = 5;
-	public float acceleration = 20;
-	public float deceleration = 20;
+	public float speed = 4.3f;
+	public float acceleration = 40f;
+    public float deceleration = 30f;
 
 	public override void Enter()
 	{
@@ -71,9 +71,21 @@ public class PlayerWalkingState : PlayerState
 			return;
 		}
 
-        if (player.isGrappleButtonHeld && player.grappleDetection.grapplePoint != null)
+        if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
         {
-            player.TransitionState(player.grappleState);
+            if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
+            {
+                player.TransitionState(player.swingState);
+            }
+            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
+            {
+                player.TransitionState(player.pullState);
+            }
+            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
+            {
+                player.TransitionState(player.whipState);
+            }
+            return;
         }
     }
 }

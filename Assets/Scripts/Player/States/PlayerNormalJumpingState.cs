@@ -7,7 +7,7 @@ public class PlayerNormalJumpingState : PlayerBaseJumpingState
 {
 	[Tooltip("Delay before the player can double jump (seconds)")]
     [Space()]
-	public float doubleJumpCooldown = 0.2f;
+	public float doubleJumpCooldown = 0.4f;
 
 	private float doubleJumpTimer;
 

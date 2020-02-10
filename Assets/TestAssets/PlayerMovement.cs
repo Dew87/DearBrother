@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Discontinued
 	[Header("Ground movement")]
 	public float walkSpeed = 5f;
 	public float runSpeed = 10f;

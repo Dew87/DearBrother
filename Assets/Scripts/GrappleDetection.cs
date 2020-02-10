@@ -9,9 +9,10 @@ public class GrappleDetection : MonoBehaviour
     public GameObject targetingCircle;
 
     public GameObject grapplePoint;
+    public GrapplePointBehaviour grapplePointBehaviour;
 
     private bool isFacingRight = true;
-    private bool isSwinging = false;
+    private bool isHolding = false;
 
     private LayerMask grappleMask;
     private LayerMask solidMask;
@@ -60,7 +61,7 @@ public class GrappleDetection : MonoBehaviour
                 closestIndex = i;
             }
         }
-        if (!isSwinging)
+        if (!isHolding)
         {
             if (colliders.Count <= 0)
             {
@@ -83,14 +84,19 @@ public class GrappleDetection : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     grapplePoint = colliders[closestIndex].gameObject;
-                    isSwinging = true;
+                    grapplePointBehaviour = grapplePoint.GetComponent<GrapplePointBehaviour>();
+                    if (grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing || grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
+                    {
+                        isHolding = true;
+                    }
                 }
             }
         }
-        if (Input.GetKeyUp(KeyCode.E) && isSwinging)
-        {
-            grapplePoint = null;
-            isSwinging = false;
-        }
+    }
+    public void ReleaseGrapplePoint()
+    {
+        grapplePoint = null;
+        grapplePointBehaviour = null;
+        isHolding = false;
     }
 }

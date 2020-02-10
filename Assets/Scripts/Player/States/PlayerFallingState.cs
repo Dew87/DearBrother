@@ -63,11 +63,22 @@ public class PlayerFallingState : PlayerState
 		{
 			player.TransitionState(player.glidingState);
 		}
-        else if (player.isGrappleButtonHeld && player.grappleDetection.grapplePoint != null)
+        else if (player.isGrappleInputPressedBuffered && player.grappleDetection.grapplePoint != null)
         {
-            player.TransitionState(player.grappleState);
+            if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
+            {
+                player.TransitionState(player.swingState);
+            }
+            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
+            {
+                player.TransitionState(player.pullState);
+            }
+            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
+            {
+                player.TransitionState(player.whipState);
+            }
         }
-	}
+    }
 
 	public override void Start()
 	{

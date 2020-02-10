@@ -48,5 +48,11 @@ public class PlayerCrouchingState : PlayerState
             player.TransitionState(player.fallingState);
             return;
         }
+
+        if (player.isGrappleButtonHeld && player.grappleDetection.grapplePoint != null)
+        {
+            player.TransitionState(player.grappleState);
+            return;
+        }
     }
 }

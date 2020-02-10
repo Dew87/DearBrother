@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     public float landingLagTimer = 0;
     public float fallingTimer = 0;
 
-	[SerializeField] private Vector2 velocity;
+	public Vector2 velocity;
 
 	private Rigidbody2D rb2d;
 	private new BoxCollider2D collider;

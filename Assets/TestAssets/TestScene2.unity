@@ -2136,6 +2136,7 @@ MonoBehaviour:
     stopSpeed: 2
     horizontalAcceleration: 20
     verticalDeceleration: 10
+    minimumDuration: 0.03
     doubleJumpCooldown: 0.4
   doubleJumpingState:
     isCurrentState: 0
@@ -2145,6 +2146,7 @@ MonoBehaviour:
     stopSpeed: 2
     horizontalAcceleration: 20
     verticalDeceleration: 10
+    minimumDuration: 0.03
   fallingState:
     isCurrentState: 0
     player: {fileID: 0}

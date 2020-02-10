@@ -10,11 +10,16 @@ public abstract class PlayerBaseJumpingState : PlayerState
 	public float stopSpeed = 2;
 	public float horizontalAcceleration = 20;
 	public float verticalDeceleration = 10;
+    [Tooltip("If the player just taps the jump button, they will still not start falling/stop before this time has passed.\nYou can test this by ticking the Is Current State box.")]
+    public float minimumDuration = 0.2f;
+
+    private float jumpTimer = 0;
 
 	public override void Enter()
 	{
 		base.Enter();
 
+        jumpTimer = 0;
 		player.velocity.y = initialSpeed;
 		player.ResetJumpInputBuffer();
 	}
@@ -32,7 +37,9 @@ public abstract class PlayerBaseJumpingState : PlayerState
 
 		player.velocity.y = Mathf.MoveTowards(player.velocity.y, 0, gravity * Time.deltaTime);
 
-		if (!player.isJumpInputHeld && player.velocity.y > stopSpeed)
+        jumpTimer += Time.deltaTime;
+
+		if (!player.isJumpInputHeld && player.velocity.y > stopSpeed && jumpTimer > minimumDuration)
 		{
 			player.velocity.y = stopSpeed;
 		}
@@ -51,6 +58,7 @@ public abstract class PlayerBaseJumpingState : PlayerState
 	public override void Update()
 	{
 		base.Update();
+
 
 		if (player.velocity.y <= 0)
 		{

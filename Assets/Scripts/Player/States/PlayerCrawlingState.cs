@@ -52,6 +52,12 @@ public class PlayerCrawlingState : PlayerState
             player.TransitionState(player.fallingState);
             return;
         }
+
+        if (player.isGrappleButtonHeld && player.grappleDetection.grapplePoint != null)
+        {
+            player.TransitionState(player.grappleState);
+            return;
+        }
     }
 
     public override void FixedUpdate()
@@ -59,5 +65,4 @@ public class PlayerCrawlingState : PlayerState
         base.FixedUpdate();
         player.MoveHorizontally(speed, acceleration, deceleration);
     }
-
 }

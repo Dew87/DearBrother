@@ -41,5 +41,10 @@ public class PlayerGlidingState : PlayerState
 			}
 			return;
 		}
-	}
+
+        if (player.isGrappleButtonHeld && player.grappleDetection.grapplePoint != null)
+        {
+            player.TransitionState(player.grappleState);
+        }
+    }
 }

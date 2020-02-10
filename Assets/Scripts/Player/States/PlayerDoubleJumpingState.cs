@@ -15,7 +15,6 @@ public class PlayerDoubleJumpingState : PlayerBaseJumpingState
 
 	public override void Exit()
 	{
-
 		base.Exit();
         player.spriteRenderer.flipY = false;
     }

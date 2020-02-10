@@ -56,7 +56,11 @@ public abstract class PlayerBaseJumpingState : PlayerState
 		{
 			player.TransitionState(player.fallingState);
 		}
-	}
+        else if (player.isGrappleButtonHeld && player.grappleDetection.grapplePoint != null)
+        {
+            player.TransitionState(player.grappleState);
+        }
+    }
 
 	public override void OnValidate()
 	{

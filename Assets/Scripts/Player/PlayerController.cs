@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Collider2D normalCollider;
     public Collider2D crouchingCollider;
     public SpriteRenderer spriteRenderer;
+    public GrappleDetection grappleDetection;
 
 	[Header("States")]
 	public PlayerStandingState standingState;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
 	public PlayerFallingState fallingState;
 	public PlayerGlidingState glidingState;
 	public PlayerLandingLagState landingLagState;
+    public PlayerGrappleState grappleState;
 
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
 	public bool isJumpInputHeld { get; private set; }
 	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
 	public bool isCrouchInputHeld { get; private set; }
+    public bool isGrappleButtonHeld { get; private set; }
 	public float jumpGraceTimer { get; private set; }
 
 	public Rigidbody2D rb2d { get; private set; }
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour
 		yield return fallingState;
 		yield return glidingState;
 		yield return landingLagState;
+        yield return grappleState;
 	}
 
     private void Awake()
@@ -187,6 +191,7 @@ public class PlayerController : MonoBehaviour
 
 		horizontalInputAxis = Input.GetAxisRaw("Horizontal");
 		isJumpInputHeld = Input.GetKey(KeyCode.Space);
+        isGrappleButtonHeld = Input.GetKey(KeyCode.E);
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			jumpInputBufferTimer = jumpInputBuffer;

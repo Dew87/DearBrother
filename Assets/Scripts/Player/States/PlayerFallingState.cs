@@ -63,6 +63,10 @@ public class PlayerFallingState : PlayerState
 		{
 			player.TransitionState(player.glidingState);
 		}
+        else if (player.isGrappleButtonHeld && player.grappleDetection.grapplePoint != null)
+        {
+            player.TransitionState(player.grappleState);
+        }
 	}
 
 	public override void Start()

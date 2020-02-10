@@ -6,14 +6,19 @@ using UnityEngine;
 public class PlayerFallingState : PlayerState
 {
 	public float maxFallSpeed = 20;
-	public float landingLagSpeedThreshold = 15;
+    [Tooltip("If the player has fallen for at least this manys seconds when landing, landing lag occurs")]
+	public float landingLagDurationThreshold = 1f;
 	public float gravity = 100;
 	public float acceleration = 20;
 	public float deceleration = 10;
 
+    private float landingLagTimer;
+
 	public override void Enter()
 	{
 		base.Enter();
+
+        landingLagTimer = landingLagDurationThreshold;
 	}
 
 	public override void Exit()
@@ -31,9 +36,14 @@ public class PlayerFallingState : PlayerState
 
 		player.velocity.y = Mathf.MoveTowards(player.velocity.y, -maxFallSpeed, gravity * Time.deltaTime);
 
+        if (landingLagTimer > 0)
+        {
+            landingLagTimer -= Time.deltaTime;
+        }
+
 		if (player.CheckBoxcast(Vector2.down))
 		{
-			if (player.velocity.y > -landingLagSpeedThreshold)
+			if (landingLagTimer > 0)
 			{
 				if (player.velocity.x == 0)
 				{

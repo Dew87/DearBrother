@@ -52,6 +52,12 @@ public class PlayerFallingState : PlayerState
                     platform.Break(); 
                 }
             }
+            
+            if (ground.TryGetComponent<Bouncer>(out Bouncer bouncer))
+            {
+                bouncer.Bounce(player);
+                return;
+            }
 
 
             if (landingLagTimer > 0)

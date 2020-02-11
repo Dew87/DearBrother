@@ -16,6 +16,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 	{
 		base.Enter();
 		player.ResetGrappleInputBuffer();
+		player.lineRenderer.enabled = true;
 	}
 	public override void FixedUpdate()
 	{
@@ -38,6 +39,11 @@ public class PlayerPullState : PlayerGrappleBaseState
 		if (isPulling && Vector2.Distance(player.transform.position, grapplePos) > grappleLength)
 		{
 			player.grappleDetection.grapplePointBehaviour.rb2d.velocity = Vector2.MoveTowards(player.grappleDetection.grapplePointBehaviour.rb2d.velocity, player.rb2d.velocity, pullspeed * Time.deltaTime);
+		}
+		if (player.lineRenderer != null && player.grappleDetection.currentGrapplePoint != null)
+		{
+			player.lineRenderer.SetPosition(0, player.transform.position);
+			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
 		}
 	}
 	public override void Update()
@@ -95,5 +101,10 @@ public class PlayerPullState : PlayerGrappleBaseState
 				}
 			}
 		}
+	}
+	public override void Exit()
+	{
+		base.Exit();
+		player.lineRenderer.enabled = false;
 	}
 }

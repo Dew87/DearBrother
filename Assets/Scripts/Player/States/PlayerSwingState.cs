@@ -7,8 +7,12 @@ public class PlayerSwingState : PlayerGrappleBaseState
 {
 	public float swingSpeed = 10f;
 	public float mass = 10f;
+	[Tooltip("Fall faster when grapple is not fully stretched")]
+	public float gravityMultiplier = 3f;
 
 	public bool doesResetDoubleJump = true;
+
+	private float gravityMultiplierTolerance = 0.5f;
 
 	private Vector2 gravity = new Vector2(0, -1);
 	private Vector2 grappleDirection;
@@ -33,7 +37,18 @@ public class PlayerSwingState : PlayerGrappleBaseState
 		{
 			player.grappleDetection.ReleaseGrapplePoint();
 			player.grappleDetection.SwitchCurrentNext();
-			player.TransitionState(player.swingState);
+			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
+			{
+				player.TransitionState(player.swingState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
+			{
+				player.TransitionState(player.pullState);
+			}
+			else
+			{
+				player.TransitionState(player.whipState);
+			}
 			return;
 		}
 		else if (player.isGrappleInputPressedBuffered)
@@ -68,10 +83,18 @@ public class PlayerSwingState : PlayerGrappleBaseState
 		}
 		else
 		{
-			player.velocity += gravity.normalized * (gravity.magnitude * mass) * Time.deltaTime;
-
 			Vector2 playerPos = player.transform.position;
 			Vector2 grapplePointPos = player.grappleDetection.currentGrapplePoint.transform.position;
+
+			if (Vector2.Distance(grapplePointPos, playerPos) + gravityMultiplierTolerance < grappleLength)
+			{
+				player.velocity += gravity.normalized * (gravity.magnitude * mass) * gravityMultiplier * Time.deltaTime;
+			}
+			else
+			{
+				player.velocity += gravity.normalized * (gravity.magnitude * mass) * Time.deltaTime;
+			}
+
 
 			float distanceAfterGravity = Vector2.Distance(grapplePointPos, playerPos + (player.velocity * Time.deltaTime));
 

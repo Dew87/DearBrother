@@ -57,11 +57,6 @@ public class PlayerSwingState : PlayerGrappleBaseState
 			player.TransitionState(player.fallingState);
 			return;
 		}
-		if (player.lineRenderer != null)
-		{
-			player.lineRenderer.SetPosition(0, player.transform.position);
-			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
-		}
 	}
 	public override void FixedUpdate()
 	{

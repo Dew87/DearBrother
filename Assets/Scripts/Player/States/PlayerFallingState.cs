@@ -6,19 +6,19 @@ using UnityEngine;
 public class PlayerFallingState : PlayerState
 {
 	public float maxFallSpeed = 10;
-    [Tooltip("If the player has fallen for at least this manys seconds when landing, landing lag occurs")]
+	[Tooltip("If the player has fallen for at least this manys seconds when landing, landing lag occurs")]
 	public float landingLagDurationThreshold = 12f;
 	public float gravity = 51;
 	public float acceleration = 18;
 	public float deceleration = 20;
 
-    private float landingLagTimer;
+	private float landingLagTimer;
 
 	public override void Enter()
 	{
 		base.Enter();
 
-        landingLagTimer = landingLagDurationThreshold;
+		landingLagTimer = landingLagDurationThreshold;
 	}
 
 	public override void Exit()
@@ -36,10 +36,10 @@ public class PlayerFallingState : PlayerState
 
 		player.velocity.y = Mathf.MoveTowards(player.velocity.y, -maxFallSpeed, gravity * Time.deltaTime);
 
-        if (landingLagTimer > 0)
-        {
-            landingLagTimer -= Time.deltaTime;
-        }
+		if (landingLagTimer > 0)
+		{
+			landingLagTimer -= Time.deltaTime;
+		}
 
 		if (player.CheckBoxcast(Vector2.down))
 		{
@@ -73,22 +73,22 @@ public class PlayerFallingState : PlayerState
 		{
 			player.TransitionState(player.glidingState);
 		}
-        else if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
-        {
-            if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
-            {
-                player.TransitionState(player.swingState);
-            }
-            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
-            {
-                player.TransitionState(player.pullState);
-            }
-            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
-            {
-                player.TransitionState(player.whipState);
-            }
-        }
-    }
+		else if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
+		{
+			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
+			{
+				player.TransitionState(player.swingState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
+			{
+				player.TransitionState(player.pullState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
+			{
+				player.TransitionState(player.whipState);
+			}
+		}
+	}
 
 	public override void Start()
 	{

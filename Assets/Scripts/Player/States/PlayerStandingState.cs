@@ -42,7 +42,7 @@ public class PlayerStandingState : PlayerState
 			}
 			else
 			{
-				player.TransitionState(player.walkingState); 
+				player.TransitionState(player.walkingState);
 			}
 			return;
 		}
@@ -65,21 +65,21 @@ public class PlayerStandingState : PlayerState
 			return;
 		}
 
-        if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
-        {
-            if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
-            {
-                player.TransitionState(player.swingState);
-            }
-            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
-            {
-                player.TransitionState(player.pullState);
-            }
-            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
-            {
-                player.TransitionState(player.whipState);
-            }
-            return;
-        }
-    }
+		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
+		{
+			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
+			{
+				player.TransitionState(player.swingState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
+			{
+				player.TransitionState(player.pullState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
+			{
+				player.TransitionState(player.whipState);
+			}
+			return;
+		}
+	}
 }

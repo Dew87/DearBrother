@@ -5,23 +5,23 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerPullState : PlayerGrappleBaseState
 {
-    public float speed = 5;
-    public float acceleration = 20;
-    public float deceleration = 20;
+	public float speed = 5;
+	public float acceleration = 20;
+	public float deceleration = 20;
 
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
-        player.MoveHorizontally(speed, acceleration, deceleration);
-    }
-    public override void Update()
-    {
-        base.Update();
+	public override void FixedUpdate()
+	{
+		base.FixedUpdate();
+		player.MoveHorizontally(speed, acceleration, deceleration);
+	}
+	public override void Update()
+	{
+		base.Update();
 
-        if (!player.CheckBoxcast(Vector2.down))
-        {
-            player.TransitionState(player.fallingState);
-            return;
-        }
-    }
+		if (!player.CheckBoxcast(Vector2.down))
+		{
+			player.TransitionState(player.fallingState);
+			return;
+		}
+	}
 }

@@ -59,10 +59,13 @@ public class Dropper : MonoBehaviour
 	{
 		Bounds bounds = collider.bounds;
 		RaycastHit2D hit = Physics2D.BoxCast(bounds.center + Vector3.down * castStartOffset, bounds.size, 0, Vector2.down, Mathf.Infinity, castMask);
-		PlayerController player = hit.collider.GetComponentInParent<PlayerController>();
-		if (player != null)
+		if (hit != false)
 		{
-			sm.Transition(dropState);
+			PlayerController player = hit.collider.GetComponentInParent<PlayerController>();
+			if (player != null)
+			{
+				sm.Transition(dropState);
+			}
 		}
 	}
 

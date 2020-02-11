@@ -135,13 +135,13 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	public bool CheckBoxcast(Vector2 direction)
+	public Collider2D CheckBoxcast(Vector2 direction)
 	{
 		Bounds bounds = currentCollider.bounds;
 
 		RaycastHit2D hit = Physics2D.BoxCast(bounds.center, bounds.size, 0f, direction, castDistance, solidMask);
 
-		return hit.collider != null;
+        return hit.collider;
 	}
 
 	public void ResetJumpInputBuffer()

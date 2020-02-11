@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Bouncer : MonoBehaviour
 {
-    public float upwardsSpeedGained = 20;
-    public float minimumJumpDuration = 0.3f;
-    public bool regainDoubleJump = true;
+	public float upwardsSpeedGained = 20;
+	public float minimumJumpDuration = 0.3f;
+	public bool regainDoubleJump = true;
 
-    public System.Action onBounce = delegate { };
+	public System.Action onBounce = delegate { };
 
 	public virtual void Bounce(PlayerController player)
 	{
@@ -19,6 +19,6 @@ public class Bouncer : MonoBehaviour
 			player.doesDoubleJumpRemain = true;
 		}
 		player.jumpingState.minimumDurationOverride = minimumJumpDuration;
-		onBounce.Invoke(); 
+		onBounce.Invoke();
 	}
 }

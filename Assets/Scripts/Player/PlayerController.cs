@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{ 
+{
 	[Tooltip("If jump is pressed within this duration before touching the ground, the player will jump immediately after touching the ground")]
 	public float jumpInputBuffer = 0.2f;
 	[Tooltip("If jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
 	public float jumpGracePeriod = 0.2f;
-    public float grappleInputBuffer = 0.2f;
-    [Space()]
-    public Collider2D normalCollider;
-    public Collider2D crouchingCollider;
-    public SpriteRenderer spriteRenderer;
-    public GrappleDetection grappleDetection;
+	public float grappleInputBuffer = 0.2f;
+	[Space()]
+	public Collider2D normalCollider;
+	public Collider2D crouchingCollider;
+	public SpriteRenderer spriteRenderer;
+	public GrappleDetection grappleDetection;
 
 	[Header("States")]
 	public PlayerStandingState standingState;
@@ -25,33 +25,33 @@ public class PlayerController : MonoBehaviour
 	public PlayerFallingState fallingState;
 	public PlayerGlidingState glidingState;
 	public PlayerLandingLagState landingLagState;
-    public PlayerSwingState swingState;
-    public PlayerWhipState whipState;
-    public PlayerPullState pullState;
+	public PlayerSwingState swingState;
+	public PlayerWhipState whipState;
+	public PlayerPullState pullState;
 
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
 	public bool hasDoubleJump = true;
-    public bool doesDoubleJumpRemain;
+	public bool doesDoubleJumpRemain;
 	public Vector2 velocity;
 
 	public float horizontalInputAxis { get; private set; }
 	public bool isJumpInputHeld { get; private set; }
 	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
 	public bool isCrouchInputHeld { get; private set; }
-    public bool isGrappleInputPressedBuffered => grappleInputBufferTimer > 0;
+	public bool isGrappleInputPressedBuffered => grappleInputBufferTimer > 0;
 	public float jumpGraceTimer { get; private set; }
 	public Rigidbody2D rb2d { get; private set; }
 	public Collider2D currentCollider { get; private set; }
 
-    public PlayerState previousState { get; private set; }
+	public PlayerState previousState { get; private set; }
 	public PlayerState currentState { get; private set; }
 
 	private const float overlapDistance = 0.05f;
 	private const float overlapSizeOffset = 0.02f;
 	private int solidMask;
 	private float jumpInputBufferTimer;
-    private float grappleInputBufferTimer;
+	private float grappleInputBufferTimer;
 
 	private IEnumerable<PlayerState> IterateStates()
 	{
@@ -60,43 +60,43 @@ public class PlayerController : MonoBehaviour
 		yield return crouchingState;
 		yield return crawlingState;
 		yield return jumpingState;
-        yield return doubleJumpingState;
+		yield return doubleJumpingState;
 		yield return fallingState;
 		yield return glidingState;
 		yield return landingLagState;
-        yield return swingState;
-        yield return whipState;
-        yield return pullState;
-    }
+		yield return swingState;
+		yield return whipState;
+		yield return pullState;
+	}
 
-    private void Awake()
-    {
-        foreach (PlayerState state in IterateStates())
-        {
-            state.Awake();
-        }
-    }
+	private void Awake()
+	{
+		foreach (PlayerState state in IterateStates())
+		{
+			state.Awake();
+		}
+	}
 
-    private void Start()
+	private void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
 		solidMask = LayerMask.GetMask("Solid");
 
-        normalCollider.enabled = false;
-        crouchingCollider.enabled = false;
-        SetCollider(normalCollider);
+		normalCollider.enabled = false;
+		crouchingCollider.enabled = false;
+		SetCollider(normalCollider);
 
-        foreach (PlayerState state in IterateStates())
+		foreach (PlayerState state in IterateStates())
 		{
 			state.player = this;
 		}
 
 		TransitionState(standingState);
 
-        foreach (PlayerState state in IterateStates())
-        {
-            currentState.Start(); 
-        }
+		foreach (PlayerState state in IterateStates())
+		{
+			currentState.Start();
+		}
 	}
 
 	private void Update()
@@ -175,20 +175,20 @@ public class PlayerController : MonoBehaviour
 		jumpGraceTimer = 0;
 	}
 
-    public void ResetGrappleInputBuffer()
-    {
-        grappleInputBufferTimer = 0;
-    }
+	public void ResetGrappleInputBuffer()
+	{
+		grappleInputBufferTimer = 0;
+	}
 
-    public void SetCollider(Collider2D collider)
-    {
-        if (currentCollider)
-        {
-            currentCollider.enabled = false; 
-        }
-        collider.enabled = true;
-        currentCollider = collider;
-    }
+	public void SetCollider(Collider2D collider)
+	{
+		if (currentCollider)
+		{
+			currentCollider.enabled = false;
+		}
+		collider.enabled = true;
+		currentCollider = collider;
+	}
 
 	public void TransitionState(PlayerState newState)
 	{
@@ -212,14 +212,14 @@ public class PlayerController : MonoBehaviour
 		{
 			jumpInputBufferTimer -= Time.deltaTime;
 		}
-        if (grappleInputBufferTimer > 0)
-        {
-            grappleInputBufferTimer -= Time.deltaTime;
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            grappleInputBufferTimer = grappleInputBuffer;
-        }
+		if (grappleInputBufferTimer > 0)
+		{
+			grappleInputBufferTimer -= Time.deltaTime;
+		}
+		else if (Input.GetKeyDown(KeyCode.E))
+		{
+			grappleInputBufferTimer = grappleInputBuffer;
+		}
 		horizontalInputAxis = Input.GetAxisRaw("Horizontal");
 		isJumpInputHeld = Input.GetKey(KeyCode.Space);
 		if (Input.GetKeyDown(KeyCode.Space))

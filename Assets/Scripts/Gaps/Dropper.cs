@@ -71,7 +71,7 @@ public class Dropper : MonoBehaviour
 
 	private void DropStateEnter()
 	{
-		speed = dropInitialSpeed;
+		speed = -dropInitialSpeed;
 	}
 
 	private void DropStateUpdate()

@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 	public Collider2D crouchingCollider;
 	public SpriteRenderer spriteRenderer;
 	public GrappleDetection grappleDetection;
+	public LineRenderer lineRenderer;
 
 	[Header("States")]
 	public PlayerStandingState standingState;

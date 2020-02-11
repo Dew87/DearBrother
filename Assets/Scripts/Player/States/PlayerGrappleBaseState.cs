@@ -32,20 +32,10 @@ public class PlayerGrappleBaseState : PlayerState
 		base.Update();
 		if (player.isJumpInputPressedBuffered)
 		{
-			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing || player.CheckBoxcast(Vector2.down))
-			{
-				player.grappleDetection.ReleaseGrapplePoint();
-				player.TransitionState(player.jumpingState);
-				return;
-			}
-			else if (player.doesDoubleJumpRemain)
-			{
-				player.grappleDetection.ReleaseGrapplePoint();
-				player.TransitionState(player.doubleJumpingState);
-				return;
-			}
+			player.grappleDetection.ReleaseGrapplePoint();
+			player.TransitionState(player.jumpingState);
+			return;
 		}
-
 	}
 	public override void OnValidate()
 	{

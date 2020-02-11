@@ -36,7 +36,7 @@ public class PlayerCamera : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
+	{
 		if (snapToTargetOnStart)
 		{
 			Vector3 position = transform.position;
@@ -45,11 +45,11 @@ public class PlayerCamera : MonoBehaviour
 			position.y = followPosition.y;
 			transform.position = position;
 		}
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
 		Vector3 currentPosition = transform.position;
 		Vector3 newCameraPosition = currentPosition;
 
@@ -89,7 +89,7 @@ public class PlayerCamera : MonoBehaviour
 		}
 
 		transform.position = newCameraPosition;
-    }
+	}
 
 	private void OnDrawGizmos()
 	{

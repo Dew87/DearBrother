@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerNormalJumpingState : PlayerBaseJumpingState
 {
 	[Tooltip("Delay before the player can double jump (seconds)")]
-    [Space()]
+	[Space()]
 	public float doubleJumpCooldown = 0.4f;
 
 	private float doubleJumpTimer;

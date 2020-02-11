@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class CameraFollowObject : MonoBehaviour
 {
-    public Rigidbody2D objectToFollow;
-    public Vector3 followOffset = new Vector3(0, 0, -10);
-    public float cameraFollowSpeed = 0.1f;
-    public bool isStuckOnObject = false;
-    public bool hasAcceleration = true;
+	public Rigidbody2D objectToFollow;
+	public Vector3 followOffset = new Vector3(0, 0, -10);
+	public float cameraFollowSpeed = 0.1f;
+	public bool isStuckOnObject = false;
+	public bool hasAcceleration = true;
 	public Bounds bufferArea = new Bounds(Vector3.zero, new Vector3(2, 3));
 
 	private void Update()
-    {
-        if (isStuckOnObject)
-        {
-            transform.position = objectToFollow.transform.position + followOffset;
-        }
-        else
-        {
+	{
+		if (isStuckOnObject)
+		{
+			transform.position = objectToFollow.transform.position + followOffset;
+		}
+		else
+		{
 			Bounds worldSpaceBufferArea = bufferArea;
 			worldSpaceBufferArea.center += transform.position;
 			if (!worldSpaceBufferArea.Contains(objectToFollow.transform.position + followOffset) || objectToFollow.velocity == Vector2.zero)
@@ -34,8 +34,8 @@ public class CameraFollowObject : MonoBehaviour
 				}
 				transform.position = Vector3.MoveTowards(transform.position, (objectToFollow.transform.position + followOffset), followSpeed); 
 			}
-        }
-    }
+		}
+	}
 
 	private void OnDrawGizmos()
 	{

@@ -7,14 +7,14 @@ public class PlayerWalkingState : PlayerState
 {
 	public float speed = 4.3f;
 	public float acceleration = 40f;
-    public float deceleration = 30f;
+	public float deceleration = 30f;
 
 	public override void Enter()
 	{
 		base.Enter();
 
 		player.velocity.y = 0;
-        player.doesDoubleJumpRemain = true; 
+		player.doesDoubleJumpRemain = true; 
 	}
 
 	public override void Exit()
@@ -71,21 +71,21 @@ public class PlayerWalkingState : PlayerState
 			return;
 		}
 
-        if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
-        {
-            if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
-            {
-                player.TransitionState(player.swingState);
-            }
-            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
-            {
-                player.TransitionState(player.pullState);
-            }
-            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
-            {
-                player.TransitionState(player.whipState);
-            }
-            return;
-        }
-    }
+		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
+		{
+			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
+			{
+				player.TransitionState(player.swingState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
+			{
+				player.TransitionState(player.pullState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
+			{
+				player.TransitionState(player.whipState);
+			}
+			return;
+		}
+	}
 }

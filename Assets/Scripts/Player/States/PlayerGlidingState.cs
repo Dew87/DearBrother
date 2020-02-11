@@ -19,7 +19,7 @@ public class PlayerGlidingState : PlayerState
         float delta = player.velocity.y > -descendSpeed ? player.fallingState.gravity : verticalDeceleration;
         player.velocity.y = Mathf.MoveTowards(player.velocity.y, -descendSpeed, delta * Time.deltaTime);
 
-        Collider2D ground = player.CheckBoxcast(Vector2.down);
+        Collider2D ground = player.CheckOverlaps(Vector2.down);
 
         if (ground)
         {

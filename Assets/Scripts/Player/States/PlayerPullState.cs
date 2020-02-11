@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,7 +79,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 				else
 				{
 					player.grappleDetection.ReleaseGrapplePoint();
-					if (!player.CheckBoxcast(Vector2.down))
+					if (!player.CheckOverlaps(Vector2.down))
 					{
 						player.TransitionState(player.fallingState);
 						return;
@@ -94,7 +94,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 			else if (Vector2.Distance(player.transform.position, player.grappleDetection.currentGrapplePoint.transform.position) > (isStretchToleranceMultiplier ? grappleLength * stretchTolerance : grappleLength + stretchTolerance))
 			{
 				player.grappleDetection.ReleaseGrapplePoint();
-				if (!player.CheckBoxcast(Vector2.down))
+				if (!player.CheckOverlaps(Vector2.down))
 				{
 					player.TransitionState(player.fallingState);
 					return;

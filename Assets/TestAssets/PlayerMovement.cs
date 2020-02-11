@@ -92,10 +92,10 @@ public class PlayerMovement : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		bool collidesDown = CheckBoxcasts(Vector2.down);
-		bool collidesUp = CheckBoxcasts(Vector2.up);
-		bool collidesLeft = CheckBoxcasts(Vector2.left);
-		bool collidesRight = CheckBoxcasts(Vector2.right);
+		bool collidesDown = CheckOverlapss(Vector2.down);
+		bool collidesUp = CheckOverlapss(Vector2.up);
+		bool collidesLeft = CheckOverlapss(Vector2.left);
+		bool collidesRight = CheckOverlapss(Vector2.right);
 
 		float move = Input.GetAxisRaw("Horizontal");
 
@@ -200,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
 		rb2d.velocity = velocity;
 	}
 
-	private bool CheckBoxcasts(Vector2 direction)
+	private bool CheckOverlapss(Vector2 direction)
 	{
 		Bounds bounds = collider.bounds;
 

@@ -22,26 +22,40 @@ public class ExplodingShroom : MonoBehaviour
     private State poisonState;
     private State respawningState;
 
-    private void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        bouncer = GetComponent<Bouncer>();
-        bounceCollider = GetComponent<Collider2D>();
+	private void Awake()
+	{
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		bouncer = GetComponent<Bouncer>();
+		bounceCollider = GetComponent<Collider2D>();
 
         regularState = new State(null, RegularStateEnter, RegularStateExit);
         countdownState = new State(CountdownStateUpdate, CountdownStateEnter);
         poisonState = new State(PoisonStateUpdate, PoisonStateEnter);
         respawningState = new State(RespawningStateUpdate, RespawningStateEnter);
 
-        poisonCloud.SetActive(false);
-        sm.Transition(regularState);
-        bouncer.onBounce += () => sm.Transition(countdownState);
-    }
+		poisonCloud.SetActive(false);
+		sm.Transition(regularState);
+	}
 
-    private void Update()
-    {
-        sm.Update();
-    }
+	private void OnEnable()
+	{
+		bouncer.onBounce += OnBounce;
+	}
+
+	private void OnDisable()
+	{
+		bouncer.onBounce -= OnBounce;
+	}
+
+	private void OnBounce()
+	{
+		sm.Transition(countdownState);
+	}
+
+	private void Update()
+	{
+		sm.Update();
+	}
 
     private void RegularStateEnter()
     {

@@ -10,15 +10,15 @@ public class Bouncer : MonoBehaviour
 
     public System.Action onBounce = delegate { };
 
-    public virtual void Bounce(PlayerController player)
-    {
-        player.TransitionState(player.jumpingState);
-        player.velocity.y = upwardsSpeedGained;
-        if (regainDoubleJump)
-        {
-            player.doesDoubleJumpRemain = true;
-        }
-        player.jumpingState.minimumDurationOverride = minimumJumpDuration;
-        onBounce.Invoke();
-    }
+	public virtual void Bounce(PlayerController player)
+	{
+		player.TransitionState(player.jumpingState);
+		player.velocity.y = upwardsSpeedGained;
+		if (regainDoubleJump)
+		{
+			player.doesDoubleJumpRemain = true;
+		}
+		player.jumpingState.minimumDurationOverride = minimumJumpDuration;
+		onBounce.Invoke(); 
+	}
 }

@@ -47,7 +47,8 @@ public abstract class PlayerBaseJumpingState : PlayerState
 			player.velocity.y = stopSpeed;
 		}
 
-		if (player.velocity.y > 0 && player.CheckBoxcast(Vector2.up))
+		Collider2D ceiling = player.CheckBoxcast(Vector2.up);
+		if (player.velocity.y > 0 && ceiling && !ceiling.isTrigger)
 		{
 			player.velocity.y = 0;
 		}

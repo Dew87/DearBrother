@@ -47,8 +47,8 @@ public class PlayerController : MonoBehaviour
     public PlayerState previousState { get; private set; }
 	public PlayerState currentState { get; private set; }
 
-	private const float castDistance = 0.05f;
-
+	private const float overlapDistance = 0.05f;
+	private const float overlapSizeOffset = 0.02f;
 	private int solidMask;
 	private float jumpInputBufferTimer;
     private float grappleInputBufferTimer;
@@ -139,9 +139,25 @@ public class PlayerController : MonoBehaviour
 	{
 		Bounds bounds = currentCollider.bounds;
 
-		RaycastHit2D hit = Physics2D.BoxCast(bounds.center, bounds.size, 0f, direction, castDistance, solidMask);
-
-        return hit.collider;
+		if (direction.x == 0)
+		{
+			float y = direction.y < 0 ? bounds.min.y : bounds.max.y;
+			Vector2 position = new Vector2(bounds.center.x, y + direction.y * overlapDistance * 0.5f);
+			Vector2 size = new Vector2(bounds.size.x - overlapSizeOffset, overlapDistance);
+			return Physics2D.OverlapBox(position, size, 0, solidMask);
+		}
+		else if (direction.y == 0)
+		{
+			float x = direction.x < 0 ? bounds.min.x : bounds.max.x;
+			Vector2 position = new Vector2(x + direction.x * overlapDistance * 0.5f, bounds.center.y);
+			Vector2 size = new Vector2(overlapDistance, bounds.size.y - overlapSizeOffset);
+			return Physics2D.OverlapBox(position, size, 0, solidMask);
+		}
+		else
+		{
+			Debug.LogError("Invalid CheckBoxcast direction " + direction);
+			return null;
+		}
 	}
 
 	public void ResetJumpInputBuffer()

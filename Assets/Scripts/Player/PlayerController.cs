@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
 
 	private const float castDistance = 0.05f;
 
+	private const float overlapDistance = 0.05f;
+	private const float overlapSizeOffset = 0.02f;
 	private int solidMask;
 	private float jumpInputBufferTimer;
 	private float grappleInputBufferTimer;
@@ -141,7 +143,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	public Collider2D CheckBoxcast(Vector2 direction)
+	public Collider2D CheckOverlaps(Vector2 direction)
 	{
 		Bounds bounds = currentCollider.bounds;
 

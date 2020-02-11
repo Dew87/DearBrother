@@ -16,7 +16,7 @@ public class PlayerWhipState : PlayerGrappleBaseState
 	public override void Enter()
 	{
 		base.Enter();
-		player.grappleDetection.grapplePointBehaviour.UseGrapple();
+
 		if (player.previousState != player.whipState)
 		{
 			player.TransitionState(player.previousState);

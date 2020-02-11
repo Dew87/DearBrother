@@ -16,6 +16,11 @@ public class PlayerPullState : PlayerGrappleBaseState
 	{
 		base.Enter();
 		player.ResetGrappleInputBuffer();
+		if (player.lineRenderer != null && player.grappleDetection.currentGrapplePoint != null)
+		{
+			player.lineRenderer.SetPosition(0, player.transform.position);
+			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
+		}
 		player.lineRenderer.enabled = true;
 	}
 	public override void FixedUpdate()

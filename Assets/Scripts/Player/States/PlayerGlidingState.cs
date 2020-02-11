@@ -51,20 +51,20 @@ public class PlayerGlidingState : PlayerState
         }
 
 
-        if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
-        {
-            if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
-            {
-                player.TransitionState(player.swingState);
-            }
-            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
-            {
-                player.TransitionState(player.pullState);
-            }
-            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
-            {
-                player.TransitionState(player.whipState);
-            }
-        }
-    }
+		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
+		{
+			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
+			{
+				player.TransitionState(player.swingState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
+			{
+				player.TransitionState(player.pullState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
+			{
+				player.TransitionState(player.whipState);
+			}
+		}
+	}
 }

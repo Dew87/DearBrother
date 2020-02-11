@@ -47,15 +47,15 @@ public class PlayerSwingState : PlayerGrappleBaseState
     {
         base.FixedUpdate();
 
-        if (player.CheckBoxcast(Vector2.up) && player.velocity.y > 0)
+        if (player.CheckOverlaps(Vector2.up) && player.velocity.y > 0)
         {
             player.velocity = Vector2.zero;
         }
-        if ((player.CheckBoxcast(Vector2.left) || player.CheckBoxcast(Vector2.right)) && Mathf.Abs(player.velocity.x) > 0)
+        if ((player.CheckOverlaps(Vector2.left) || player.CheckOverlaps(Vector2.right)) && Mathf.Abs(player.velocity.x) > 0)
         {
             player.velocity = Vector2.zero;
         }
-        if (player.CheckBoxcast(Vector2.down))
+        if (player.CheckOverlaps(Vector2.down))
         {
             if (Vector2.Distance(new Vector2(player.transform.position.x + player.horizontalInputAxis * player.walkingState.speed * Time.deltaTime, player.transform.position.y), player.grappleDetection.currentGrapplePoint.transform.position) < grappleLength)
             {

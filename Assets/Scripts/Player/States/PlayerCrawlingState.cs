@@ -47,7 +47,7 @@ public class PlayerCrawlingState : PlayerState
             return;
         }
 
-        if (!player.CheckBoxcast(Vector2.down))
+        if (!player.CheckOverlaps(Vector2.down))
         {
             player.TransitionState(player.fallingState);
             return;

@@ -41,7 +41,7 @@ public class PlayerFallingState : PlayerState
             landingLagTimer -= Time.deltaTime;
         }
 
-        Collider2D ground = player.CheckBoxcast(Vector2.down);
+        Collider2D ground = player.CheckOverlaps(Vector2.down);
 
         if (ground)
         {

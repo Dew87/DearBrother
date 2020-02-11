@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	public Collider2D CheckBoxcast(Vector2 direction)
+	public Collider2D CheckOverlaps(Vector2 direction)
 	{
 		Bounds bounds = currentCollider.bounds;
 

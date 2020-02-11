@@ -81,7 +81,7 @@ public class PlayerCamera : MonoBehaviour
 			else if (followPosition.y < currentPosition.y - bufferArea.down)
 			{
 				newCameraPosition.y = followPosition.y + bufferArea.down;
-			} 
+			}
 		}
 		else
 		{
@@ -101,7 +101,7 @@ public class PlayerCamera : MonoBehaviour
 		}
 		else
 		{
-			Gizmos.DrawWireCube(objectToFollow.transform.position + bufferArea.localCenter, bufferArea.size); 
+			Gizmos.DrawWireCube(objectToFollow.transform.position + bufferArea.localCenter, bufferArea.size);
 		}
 	}
 }

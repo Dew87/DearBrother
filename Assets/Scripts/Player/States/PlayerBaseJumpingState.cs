@@ -13,9 +13,9 @@ public abstract class PlayerBaseJumpingState : PlayerState
 	[Tooltip("If the player just taps the jump button, they will still not start falling/stop before this time has passed.\nYou can test this by ticking the Is Current State box.")]
 	public float minimumDuration = 0.008f;
 
-	[HideInInspector] public float minimumDurationOverride;
+    [HideInInspector] public float minimumDurationOverride;
 
-	private float jumpTimer = 0;
+    private float jumpTimer = 0;
 
 	public override void Enter()
 	{
@@ -24,7 +24,7 @@ public abstract class PlayerBaseJumpingState : PlayerState
 		jumpTimer = 0;
 		player.velocity.y = initialSpeed;
 		player.ResetJumpInputBuffer();
-		minimumDurationOverride = minimumDuration;
+        minimumDurationOverride = minimumDuration;
 	}
 
 	public override void Exit()

@@ -32,7 +32,7 @@ public class CameraFollowObject : MonoBehaviour
 				{
 					followSpeed = cameraFollowSpeed * Time.deltaTime;
 				}
-				transform.position = Vector3.MoveTowards(transform.position, (objectToFollow.transform.position + followOffset), followSpeed); 
+				transform.position = Vector3.MoveTowards(transform.position, (objectToFollow.transform.position + followOffset), followSpeed);
 			}
 		}
 	}
@@ -41,7 +41,7 @@ public class CameraFollowObject : MonoBehaviour
 	{
 		if (objectToFollow)
 		{
-			Gizmos.DrawWireCube(objectToFollow.transform.position + followOffset + bufferArea.center, bufferArea.size); 
+			Gizmos.DrawWireCube(objectToFollow.transform.position + followOffset + bufferArea.center, bufferArea.size);
 		}
 	}
 }

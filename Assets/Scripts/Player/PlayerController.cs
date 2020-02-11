@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{ 
+{
+	public float inputThreshold = 0.1f;
 	[Tooltip("If jump is pressed within this duration before touching the ground, the player will jump immediately after touching the ground")]
 	public float jumpInputBuffer = 0.2f;
 	[Tooltip("If jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
@@ -52,6 +53,8 @@ public class PlayerController : MonoBehaviour
 	private int solidMask;
 	private float jumpInputBufferTimer;
 	private float grappleInputBufferTimer;
+	private bool jumpInputIsTriggered;
+	private bool grappleInputIsTriggered;
 
 	private IEnumerable<PlayerState> IterateStates()
 	{
@@ -82,6 +85,9 @@ public class PlayerController : MonoBehaviour
 		rb2d = GetComponent<Rigidbody2D>();
 		solidMask = LayerMask.GetMask("Solid");
 
+		jumpInputIsTriggered = false;
+		grappleInputIsTriggered = false;
+
 		normalCollider.enabled = false;
 		crouchingCollider.enabled = false;
 		SetCollider(normalCollider);
@@ -95,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
 		foreach (PlayerState state in IterateStates())
 		{
-			currentState.Start(); 
+			currentState.Start();
 		}
 	}
 
@@ -168,7 +174,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (currentCollider)
 		{
-			currentCollider.enabled = false; 
+			currentCollider.enabled = false;
 		}
 		collider.enabled = true;
 		currentCollider = collider;
@@ -196,21 +202,36 @@ public class PlayerController : MonoBehaviour
 		{
 			jumpInputBufferTimer -= Time.deltaTime;
 		}
+
+		bool isGrappleInputHeld = Input.GetAxisRaw("Grapple") > inputThreshold;
 		if (grappleInputBufferTimer > 0)
 		{
 			grappleInputBufferTimer -= Time.deltaTime;
 		}
-		else if (Input.GetKeyDown(KeyCode.E))
+		else if (isGrappleInputHeld && !grappleInputIsTriggered)
 		{
+			grappleInputIsTriggered = true;
 			grappleInputBufferTimer = grappleInputBuffer;
 		}
-		horizontalInputAxis = Input.GetAxisRaw("Horizontal");
-		isJumpInputHeld = Input.GetKey(KeyCode.Space);
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (!isGrappleInputHeld)
 		{
+			grappleInputIsTriggered = false;
+		}
+
+		horizontalInputAxis = Input.GetAxisRaw("Horizontal");
+
+		isJumpInputHeld = Input.GetAxisRaw("Jump") > inputThreshold;
+		if (isJumpInputHeld && !jumpInputIsTriggered)
+		{
+			jumpInputIsTriggered = true;
 			jumpInputBufferTimer = jumpInputBuffer;
 		}
-		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < 0;
+		if (!isJumpInputHeld)
+		{
+			jumpInputIsTriggered = false;
+		}
+
+		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < -inputThreshold;
 	}
 
 	private void OnValidate()

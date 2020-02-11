@@ -14,7 +14,7 @@ public class PlayerWalkingState : PlayerState
 		base.Enter();
 
 		player.velocity.y = 0;
-		player.doesDoubleJumpRemain = true; 
+		player.doesDoubleJumpRemain = true;
 	}
 
 	public override void Exit()

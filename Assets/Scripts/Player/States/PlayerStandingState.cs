@@ -42,7 +42,7 @@ public class PlayerStandingState : PlayerState
 			}
 			else
 			{
-				player.TransitionState(player.walkingState); 
+				player.TransitionState(player.walkingState);
 			}
 			return;
 		}

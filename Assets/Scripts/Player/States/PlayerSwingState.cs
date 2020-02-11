@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +28,12 @@ public class PlayerSwingState : PlayerGrappleBaseState
 			player.doesDoubleJumpRemain = true;
 		}
 		player.ResetGrappleInputBuffer();
+		if (player.lineRenderer != null && player.grappleDetection.currentGrapplePoint != null)
+		{
+			player.lineRenderer.SetPosition(0, player.transform.position);
+			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
+		}
+		player.lineRenderer.enabled = true;
 	}
 
 	public override void Update()
@@ -57,20 +63,25 @@ public class PlayerSwingState : PlayerGrappleBaseState
 			player.TransitionState(player.fallingState);
 			return;
 		}
+		if (player.lineRenderer != null && player.grappleDetection.currentGrapplePoint != null)
+		{
+			player.lineRenderer.SetPosition(0, player.transform.position);
+			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
+		}
 	}
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
 
-		if (player.CheckBoxcast(Vector2.up) && player.velocity.y > 0)
+		if (player.CheckOverlaps(Vector2.up) && player.velocity.y > 0)
 		{
 			player.velocity = Vector2.zero;
 		}
-		if ((player.CheckBoxcast(Vector2.left) || player.CheckBoxcast(Vector2.right)) && Mathf.Abs(player.velocity.x) > 0)
+		if ((player.CheckOverlaps(Vector2.left) || player.CheckOverlaps(Vector2.right)) && Mathf.Abs(player.velocity.x) > 0)
 		{
 			player.velocity = Vector2.zero;
 		}
-		if (player.CheckBoxcast(Vector2.down))
+		if (player.CheckOverlaps(Vector2.down))
 		{
 			if (Vector2.Distance(new Vector2(player.transform.position.x + player.horizontalInputAxis * player.walkingState.speed * Time.deltaTime, player.transform.position.y), player.grappleDetection.currentGrapplePoint.transform.position) < grappleLength)
 			{
@@ -112,5 +123,10 @@ public class PlayerSwingState : PlayerGrappleBaseState
 				player.velocity += player.velocity.normalized * (player.velocity.x > 0 ? player.horizontalInputAxis : -player.horizontalInputAxis) * swingSpeed * Time.deltaTime;
 			}
 		}
+	}
+	public override void Exit()
+	{
+		base.Exit();
+		player.lineRenderer.enabled = false;
 	}
 }

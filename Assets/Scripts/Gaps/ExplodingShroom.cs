@@ -22,7 +22,7 @@ public class ExplodingShroom : MonoBehaviour
 	private State poisonState;
 	private State respawningState;
 
-	private void Start()
+	private void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		bouncer = GetComponent<Bouncer>();
@@ -35,7 +35,21 @@ public class ExplodingShroom : MonoBehaviour
 
 		poisonCloud.SetActive(false);
 		sm.Transition(regularState);
-		bouncer.onBounce += () => sm.Transition(countdownState);
+	}
+
+	private void OnEnable()
+	{
+		bouncer.onBounce += OnBounce;
+	}
+
+	private void OnDisable()
+	{
+		bouncer.onBounce -= OnBounce;
+	}
+
+	private void OnBounce()
+	{
+		sm.Transition(countdownState);
 	}
 
 	private void Update()
@@ -43,11 +57,11 @@ public class ExplodingShroom : MonoBehaviour
 		sm.Update();
 	}
 
-	private void RegularStateEnter()
-	{
-		bounceCollider.enabled = true;
-		spriteRenderer.color = Color.white;
-	}
+    private void RegularStateEnter()
+    {
+        bounceCollider.enabled = true;
+        spriteRenderer.color = Color.white;
+    }
 
 	private void RegularStateExit()
 	{

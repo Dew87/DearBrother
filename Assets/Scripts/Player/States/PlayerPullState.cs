@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +16,12 @@ public class PlayerPullState : PlayerGrappleBaseState
 	{
 		base.Enter();
 		player.ResetGrappleInputBuffer();
+		if (player.lineRenderer != null && player.grappleDetection.currentGrapplePoint != null)
+		{
+			player.lineRenderer.SetPosition(0, player.transform.position);
+			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
+		}
+		player.lineRenderer.enabled = true;
 	}
 	public override void FixedUpdate()
 	{
@@ -38,6 +44,11 @@ public class PlayerPullState : PlayerGrappleBaseState
 		if (isPulling && Vector2.Distance(player.transform.position, grapplePos) > grappleLength)
 		{
 			player.grappleDetection.grapplePointBehaviour.rb2d.velocity = Vector2.MoveTowards(player.grappleDetection.grapplePointBehaviour.rb2d.velocity, player.rb2d.velocity, pullspeed * Time.deltaTime);
+		}
+		if (player.lineRenderer != null && player.grappleDetection.currentGrapplePoint != null)
+		{
+			player.lineRenderer.SetPosition(0, player.transform.position);
+			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
 		}
 	}
 	public override void Update()
@@ -68,7 +79,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 				else
 				{
 					player.grappleDetection.ReleaseGrapplePoint();
-					if (!player.CheckBoxcast(Vector2.down))
+					if (!player.CheckOverlaps(Vector2.down))
 					{
 						player.TransitionState(player.fallingState);
 						return;
@@ -83,7 +94,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 			else if (Vector2.Distance(player.transform.position, player.grappleDetection.currentGrapplePoint.transform.position) > (isStretchToleranceMultiplier ? grappleLength * stretchTolerance : grappleLength + stretchTolerance))
 			{
 				player.grappleDetection.ReleaseGrapplePoint();
-				if (!player.CheckBoxcast(Vector2.down))
+				if (!player.CheckOverlaps(Vector2.down))
 				{
 					player.TransitionState(player.fallingState);
 					return;
@@ -95,5 +106,10 @@ public class PlayerPullState : PlayerGrappleBaseState
 				}
 			}
 		}
+	}
+	public override void Exit()
+	{
+		base.Exit();
+		player.lineRenderer.enabled = false;
 	}
 }

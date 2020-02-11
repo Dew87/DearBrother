@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,10 +32,20 @@ public class PlayerGrappleBaseState : PlayerState
 		base.Update();
 		if (player.isJumpInputPressedBuffered)
 		{
-			player.grappleDetection.ReleaseGrapplePoint();
-			player.TransitionState(player.jumpingState);
-			return;
+			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing || player.CheckOverlaps(Vector2.down))
+			{
+				player.grappleDetection.ReleaseGrapplePoint();
+				player.TransitionState(player.jumpingState);
+				return;
+			}
+			else if (player.doesDoubleJumpRemain)
+			{
+				player.grappleDetection.ReleaseGrapplePoint();
+				player.TransitionState(player.doubleJumpingState);
+				return;
+			}
 		}
+
 	}
 	public override void OnValidate()
 	{

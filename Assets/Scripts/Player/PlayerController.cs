@@ -1,9 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public float inputThreshold = 0.1f;
 	[Tooltip("If jump is pressed within this duration before touching the ground, the player will jump immediately after touching the ground")]
 	public float jumpInputBuffer = 0.2f;
 	[Tooltip("If jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
 	public Collider2D crouchingCollider;
 	public SpriteRenderer spriteRenderer;
 	public GrappleDetection grappleDetection;
+	public LineRenderer lineRenderer;
 
 	[Header("States")]
 	public PlayerStandingState standingState;
@@ -49,9 +51,13 @@ public class PlayerController : MonoBehaviour
 
 	private const float castDistance = 0.05f;
 
+	private const float overlapDistance = 0.05f;
+	private const float overlapSizeOffset = 0.02f;
 	private int solidMask;
 	private float jumpInputBufferTimer;
 	private float grappleInputBufferTimer;
+	private bool jumpInputIsTriggered;
+	private bool grappleInputIsTriggered;
 
 	private IEnumerable<PlayerState> IterateStates()
 	{
@@ -81,6 +87,9 @@ public class PlayerController : MonoBehaviour
 	{
 		rb2d = GetComponent<Rigidbody2D>();
 		solidMask = LayerMask.GetMask("Solid");
+
+		jumpInputIsTriggered = false;
+		grappleInputIsTriggered = false;
 
 		normalCollider.enabled = false;
 		crouchingCollider.enabled = false;
@@ -135,13 +144,13 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	public Collider2D CheckBoxcast(Vector2 direction)
+	public Collider2D CheckOverlaps(Vector2 direction)
 	{
 		Bounds bounds = currentCollider.bounds;
 
 		RaycastHit2D hit = Physics2D.BoxCast(bounds.center, bounds.size, 0f, direction, castDistance, solidMask);
 
-        return hit.collider;
+		return hit.collider;
 	}
 
 	public void ResetJumpInputBuffer()
@@ -196,21 +205,36 @@ public class PlayerController : MonoBehaviour
 		{
 			jumpInputBufferTimer -= Time.deltaTime;
 		}
+
+		bool isGrappleInputHeld = Input.GetAxisRaw("Grapple") > inputThreshold;
 		if (grappleInputBufferTimer > 0)
 		{
 			grappleInputBufferTimer -= Time.deltaTime;
 		}
-		else if (Input.GetKeyDown(KeyCode.E))
+		else if (isGrappleInputHeld && !grappleInputIsTriggered)
 		{
+			grappleInputIsTriggered = true;
 			grappleInputBufferTimer = grappleInputBuffer;
 		}
-		horizontalInputAxis = Input.GetAxisRaw("Horizontal");
-		isJumpInputHeld = Input.GetKey(KeyCode.Space);
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (!isGrappleInputHeld)
 		{
+			grappleInputIsTriggered = false;
+		}
+
+		horizontalInputAxis = Input.GetAxisRaw("Horizontal");
+
+		isJumpInputHeld = Input.GetAxisRaw("Jump") > inputThreshold;
+		if (isJumpInputHeld && !jumpInputIsTriggered)
+		{
+			jumpInputIsTriggered = true;
 			jumpInputBufferTimer = jumpInputBuffer;
 		}
-		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < 0;
+		if (!isJumpInputHeld)
+		{
+			jumpInputIsTriggered = false;
+		}
+
+		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < -inputThreshold;
 	}
 
 	private void OnValidate()

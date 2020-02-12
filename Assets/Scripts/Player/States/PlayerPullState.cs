@@ -58,6 +58,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 		{
 			if (player.isGrappleInputPressedBuffered)
 			{
+				player.ResetGrappleInputBuffer();
 				if (player.grappleDetection.nextGrapplePoint != null)
 				{
 					player.grappleDetection.ReleaseGrapplePoint();

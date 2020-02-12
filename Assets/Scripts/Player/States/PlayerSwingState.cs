@@ -41,6 +41,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 		base.Update();
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.nextGrapplePoint != null)
 		{
+			player.ResetGrappleInputBuffer();
 			player.grappleDetection.ReleaseGrapplePoint();
 			player.grappleDetection.SwitchCurrentNext();
 			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
@@ -59,6 +60,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 		}
 		else if (player.isGrappleInputPressedBuffered)
 		{
+			player.ResetGrappleInputBuffer();
 			player.grappleDetection.ReleaseGrapplePoint();
 			player.TransitionState(player.fallingState);
 			return;

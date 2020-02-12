@@ -17,10 +17,12 @@ public class ProjectileEjector : MonoBehaviour
 	public float directionOverride;
 
 	private float timer;
+	private PrefabPool<Projectile> pool;
 
 	private void Awake()
 	{
 		timer = Mathf.Repeat(cycleOffset, interval);
+		pool = new PrefabPool<Projectile>(projectilePrefab);
 	}
 
 	private void Update()
@@ -29,7 +31,7 @@ public class ProjectileEjector : MonoBehaviour
 		if (timer >= interval)
 		{
 			timer = Mathf.Repeat(timer, interval);
-			Projectile newProjectile = Instantiate(projectilePrefab);
+			Projectile newProjectile = pool.Spawn();
 			newProjectile.transform.position = transform.TransformPoint(spawnPosition);
 			if (overrideDirection)
 			{

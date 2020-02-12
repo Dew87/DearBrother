@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : PoolableBehaviour
 {
     [Range(0, 360f)]
     [Tooltip("Degrees, 0 = right, 90 = up, etc.")]
@@ -29,12 +29,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Solid"))
         {
-            DestroySelf();
+            Die();
         }
-    }
-
-    private void DestroySelf()
-    {
-        Destroy(gameObject);
     }
 }

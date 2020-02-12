@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapToTargetOnStart: 1
-  objectToFollow: {fileID: 1203405100}
+  objectToFollow: {fileID: 663926180}
   followOffset: {x: 0, y: 2, z: 0}
   cameraSpeedWhenStill: 2
   bufferArea:
@@ -1861,21 +1861,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 541334089152062091, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 541334089152062093, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188890389470113860, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 5702585311898711822, guid: f8a66aa362b924144a5755f3944b43b5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1956,13 +1941,28 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.3584906
       objectReference: {fileID: 0}
+    - target: {fileID: 541334089152062091, guid: f8a66aa362b924144a5755f3944b43b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 541334089152062093, guid: f8a66aa362b924144a5755f3944b43b5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188890389470113860, guid: f8a66aa362b924144a5755f3944b43b5,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a66aa362b924144a5755f3944b43b5, type: 3}
---- !u!50 &1203405100 stripped
+--- !u!50 &663926180 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 5702585311898711823, guid: f8a66aa362b924144a5755f3944b43b5,
     type: 3}
-  m_PrefabInstance: {fileID: 1203405099}
+  m_PrefabInstance: {fileID: 663926179}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1428598698829714779
 PrefabInstance:

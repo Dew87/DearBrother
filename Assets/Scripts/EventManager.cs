@@ -5,26 +5,26 @@ using System.Collections.Generic;
 public class EventManager : MonoBehaviour
 {
 	private Dictionary<string, UnityEvent> eventDictionary;
-	private static EventManager eventManager;
+	private static EventManager instance;
 
-	public static EventManager Instance
+	private static EventManager Instance
 	{
 		get
 		{
-			if (eventManager == null)
+			if (instance == null)
 			{
-				eventManager = FindObjectOfType(typeof(EventManager)) as EventManager;
+				instance = FindObjectOfType(typeof(EventManager)) as EventManager;
 
-				if (eventManager == null)
+				if (instance == null)
 				{
 					Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
 				}
 				else
 				{
-					eventManager.Initialise();
+					instance.Initialise();
 				}
 			}
-			return eventManager;
+			return instance;
 		}
 	}
 
@@ -45,8 +45,9 @@ public class EventManager : MonoBehaviour
 
 	public static void StopListening(string eventName, UnityAction listener)
 	{
-		if (eventManager == null)
+		if (instance == null)
 		{
+			// Removes Debug.LogError if EventManager is removed before the listener
 			return;
 		}
 		UnityEvent thisEvent;

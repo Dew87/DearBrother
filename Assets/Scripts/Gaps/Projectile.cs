@@ -18,7 +18,17 @@ public class Projectile : PoolableBehaviour
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void FixedUpdate()
     {
         float angle = direction * Mathf.Deg2Rad;
         Vector2 directionVector = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
@@ -32,4 +42,9 @@ public class Projectile : PoolableBehaviour
             Die();
         }
     }
+
+	private void OnPlayerDeath()
+	{
+		Die();
+	}
 }

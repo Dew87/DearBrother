@@ -108,6 +108,16 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
+	}
+
 	private void Update()
 	{
 		ReadInput();
@@ -256,6 +266,12 @@ public class PlayerController : MonoBehaviour
 		}
 
 		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < -inputThreshold;
+	}
+
+	private void OnPlayerDeath()
+	{
+		rb2d.position = CheckPoint.GetActiveCheckPointPosition();
+		rb2d.velocity = Vector2.zero;
 	}
 
 	private void OnValidate()

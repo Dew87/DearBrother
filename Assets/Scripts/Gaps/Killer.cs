@@ -12,7 +12,7 @@ public class Killer : MonoBehaviour
 		if (player != null)
 		{
 			player.TakeDamage();
-			onHitPlayer.Invoke();
+			//onHitPlayer.Invoke();
 		}
 	}
 }

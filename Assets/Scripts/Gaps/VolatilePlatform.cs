@@ -4,16 +4,33 @@ using UnityEngine;
 
 public class VolatilePlatform : MonoBehaviour
 {
-	[Tooltip("If player's fall speed is larger than this when they land, the platform breaks")]
-	public float breakSpeed = 2f;
+	public float timeBeforeFalling = 1f;
+
+	private bool breaking = false;
 
 	public void Break()
 	{
-		StartCoroutine(AnimateBreak());
+		if (!breaking)
+		{
+			breaking = true;
+			StartCoroutine(AnimateBreak()); 
+		}
 	}
 
 	private IEnumerator AnimateBreak()
 	{
+		const float flashPeriod = 0.15f;
+		float timer = 0;
+		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+		while (timer < timeBeforeFalling)
+		{
+			timer += Time.deltaTime;
+			spriteRenderer.color = Mathf.Repeat(timer, flashPeriod) > 0.5f * flashPeriod ? Color.white : Color.grey;
+			yield return null;
+		}
+
+		spriteRenderer.color = Color.white;
+
 		float scale = 1;
 		float duration = 2f;
 		float speed = 0f;
@@ -25,7 +42,6 @@ public class VolatilePlatform : MonoBehaviour
 		{
 			scale -= Time.deltaTime / duration;
 			transform.localScale = baseScale * scale;
-
 
 			speed += Time.deltaTime * gravity;
 			transform.position += Vector3.down * speed * Time.deltaTime;

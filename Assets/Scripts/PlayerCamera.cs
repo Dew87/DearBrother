@@ -47,11 +47,7 @@ public class PlayerCamera : MonoBehaviour
 	{
 		if (snapToTargetOnStart)
 		{
-			Vector3 position = transform.position;
-			Vector3 followPosition = objectToFollow.transform.position + followOffset;
-			position.x = followPosition.x;
-			position.y = followPosition.y;
-			transform.position = position;
+			snapToTarget();
 		}
 		Collider2D[] colliders = new Collider2D[1];
 		objectToFollow.GetAttachedColliders(colliders);
@@ -63,6 +59,16 @@ public class PlayerCamera : MonoBehaviour
 			}
 		}
 		solidMask = LayerMask.GetMask("Solid");
+	}
+
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
 	}
 
 	// Update is called once per frame
@@ -109,13 +115,13 @@ public class PlayerCamera : MonoBehaviour
 		Bounds bounds = objectToFollowCollider.bounds;
 		bool grounded = Physics2D.BoxCast(bounds.center, bounds.size, 0f, Vector2.down, 0.05f, solidMask);
 
-		bool isAbleToMove = onlyLookWhenStill ? (Mathf.Approximately(objectToFollow.velocity.x, 0) ? true : false) : true;
+		bool isAbleToMove = onlyLookWhenStill ? Mathf.Approximately(objectToFollow.velocity.x, 0) : true;
 		if (lookDownTimer >= lookDownDelay)
 		{
 			newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y - lookDownDistance, lookDownSpeed * Time.deltaTime);
 		}
 
-		bool doLookDownTimer = (Input.GetAxis("Vertical") < 0 && grounded) && isAbleToMove ? true : false;
+		bool doLookDownTimer = Input.GetAxis("Vertical") < 0 && grounded && isAbleToMove;
 		lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
 		if (lookDownTimer <= 0 && newCameraPosition.y < followPosition.y - bufferArea.down && grounded)
 		{
@@ -137,5 +143,20 @@ public class PlayerCamera : MonoBehaviour
 		{
 			Gizmos.DrawWireCube(objectToFollow.transform.position + bufferArea.localCenter, bufferArea.size);
 		}
+	}
+
+	private void snapToTarget()
+	{
+
+		Vector3 position = transform.position;
+		Vector3 followPosition = objectToFollow.transform.position + followOffset;
+		position.x = followPosition.x;
+		position.y = followPosition.y;
+		transform.position = position;
+	}
+
+	private void OnPlayerDeath()
+	{
+		snapToTarget();
 	}
 }

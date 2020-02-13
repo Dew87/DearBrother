@@ -11,9 +11,11 @@ public class PlayerFallingState : PlayerState
 	public float gravity = 51;
 	public float acceleration = 18;
 	public float deceleration = 20;
+	[HideInInspector] public bool isInWind = false;
+	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
 
 	private float landingLagTimer;
-
+	
     public override void Enter()
     {
         base.Enter();
@@ -35,6 +37,10 @@ public class PlayerFallingState : PlayerState
         player.MoveHorizontally(player.walkingState.speed, acceleration, deceleration);
 
         player.velocity.y = Mathf.MoveTowards(player.velocity.y, -maxFallSpeed, gravity * Time.deltaTime);
+		if (isInWind)
+		{
+			player.velocity += windSpeed * Time.deltaTime;
+		}
 
 		if (landingLagTimer > 0)
 		{

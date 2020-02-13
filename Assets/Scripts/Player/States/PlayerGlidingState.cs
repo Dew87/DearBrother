@@ -10,7 +10,9 @@ public class PlayerGlidingState : PlayerState
     public float horizontalAcceleration = 20f;
     public float horizontalDeceleration = 10f;
 
-    public override void FixedUpdate()
+	[HideInInspector] public bool isInWind = false;
+	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
+	public override void FixedUpdate()
     {
         base.FixedUpdate();
 
@@ -19,9 +21,19 @@ public class PlayerGlidingState : PlayerState
         float delta = player.velocity.y > -descendSpeed ? player.fallingState.gravity : verticalDeceleration;
         player.velocity.y = Mathf.MoveTowards(player.velocity.y, -descendSpeed, delta * Time.deltaTime);
 
-        Collider2D ground = player.CheckOverlaps(Vector2.down);
+		if (isInWind)
+		{
+			player.velocity += windSpeed * Time.deltaTime;
+		}
 
-        if (ground)
+		Collider2D roof = player.CheckOverlaps(Vector2.up);
+		if (roof)
+		{
+			player.velocity.y = 0;
+		}
+
+        Collider2D ground = player.CheckOverlaps(Vector2.down);
+		if (ground)
         {
             if (ground.TryGetComponent<Bouncer>(out Bouncer bouncer))
             {

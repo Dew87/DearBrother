@@ -27,7 +27,7 @@ public class PlayerGlidingState : PlayerState
 		}
 
 		Collider2D roof = player.CheckOverlaps(Vector2.up);
-		if (roof)
+		if (roof && player.velocity.y > 0)
 		{
 			player.velocity.y = 0;
 		}

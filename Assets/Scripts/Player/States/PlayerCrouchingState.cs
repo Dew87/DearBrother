@@ -49,6 +49,8 @@ public class PlayerCrouchingState : PlayerState
             return;
         }
 
+		player.CheckForVolatilePlatforms();
+
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
 		{
 			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)

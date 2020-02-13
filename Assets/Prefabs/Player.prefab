@@ -170,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5702585311617581635}
   - component: {fileID: 5702585311617581633}
-  - component: {fileID: 5702585311617581634}
+  - component: {fileID: 919263530732430147}
   m_Layer: 0
   m_Name: CurrentTargetCircle
   m_TagString: Untagged
@@ -241,7 +241,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5702585311617581634
+--- !u!114 &919263530732430147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,11 +250,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5702585311617581628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef24474f09565424a8c504fdc994a3c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 96629201349834bc1b33fcea36765c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSize: 0.7
-  endSize: 0.6
+  startSize: 1
+  endSize: 0.8
   scaleSpeed: 1
   rotationSpeed: 90
 --- !u!1 &5702585311630747388
@@ -267,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5702585311630747139}
   - component: {fileID: 5702585311630747137}
-  - component: {fileID: 5702585311630747138}
+  - component: {fileID: 6859008721865393132}
   m_Layer: 0
   m_Name: NextTargetCircle
   m_TagString: Untagged
@@ -338,7 +338,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5702585311630747138
+--- !u!114 &6859008721865393132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -347,11 +347,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5702585311630747388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef24474f09565424a8c504fdc994a3c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 96629201349834bc1b33fcea36765c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startSize: 1
-  endSize: 0.7
+  endSize: 0.8
   scaleSpeed: 1
   rotationSpeed: 90
 --- !u!1 &5702585311898711817
@@ -529,6 +529,8 @@ MonoBehaviour:
     gravity: 51
     acceleration: 18
     deceleration: 20
+    isInWind: 0
+    windSpeed: {x: 0, y: 0}
   glidingState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
@@ -536,6 +538,8 @@ MonoBehaviour:
     verticalDeceleration: 20
     horizontalAcceleration: 20
     horizontalDeceleration: 10
+    isInWind: 0
+    windSpeed: {x: 0, y: 0}
   landingLagState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}

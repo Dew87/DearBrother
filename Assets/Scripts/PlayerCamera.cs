@@ -7,8 +7,16 @@ public class PlayerCamera : MonoBehaviour
 	public bool snapToTargetOnStart = true;
 	public Rigidbody2D objectToFollow;
 	public Vector3 followOffset;
-	public float cameraSpeedWhenStill = 5f;
+	public float cameraSpeedWhenStill = 2f;
 
+	public float lookDownSpeed = 20f;
+	public float lookDownDelay = 0.2f;
+	public float lookDownDistance = 6f;
+	public bool onlyLookWhenStill = true;
+
+	private Collider2D objectToFollowCollider;
+	private LayerMask solidMask;
+	private float lookDownTimer;
 	[System.Serializable]
 	public struct Extents
 	{
@@ -41,6 +49,16 @@ public class PlayerCamera : MonoBehaviour
 		{
 			snapToTarget();
 		}
+		Collider2D[] colliders = new Collider2D[1];
+		objectToFollow.GetAttachedColliders(colliders);
+		if (colliders.Length > 0)
+		{
+			if (colliders[0] != null)
+			{
+				objectToFollowCollider = colliders[0];
+			}
+		}
+		solidMask = LayerMask.GetMask("Solid");
 	}
 
 	private void OnEnable()
@@ -92,6 +110,22 @@ public class PlayerCamera : MonoBehaviour
 		else
 		{
 			newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y, cameraSpeedWhenStill * Time.deltaTime);
+		}
+
+		Bounds bounds = objectToFollowCollider.bounds;
+		bool grounded = Physics2D.BoxCast(bounds.center, bounds.size, 0f, Vector2.down, 0.05f, solidMask);
+
+		bool isAbleToMove = onlyLookWhenStill ? Mathf.Approximately(objectToFollow.velocity.x, 0) : true;
+		if (lookDownTimer >= lookDownDelay)
+		{
+			newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y - lookDownDistance, lookDownSpeed * Time.deltaTime);
+		}
+
+		bool doLookDownTimer = Input.GetAxis("Vertical") < 0 && grounded && isAbleToMove;
+		lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
+		if (lookDownTimer <= 0 && newCameraPosition.y < followPosition.y - bufferArea.down && grounded)
+		{
+			newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y, lookDownSpeed * Time.deltaTime);
 		}
 
 		transform.position = newCameraPosition;

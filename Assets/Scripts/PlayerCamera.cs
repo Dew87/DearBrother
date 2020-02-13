@@ -109,13 +109,13 @@ public class PlayerCamera : MonoBehaviour
 		Bounds bounds = objectToFollowCollider.bounds;
 		bool grounded = Physics2D.BoxCast(bounds.center, bounds.size, 0f, Vector2.down, 0.05f, solidMask);
 
-		bool isAbleToMove = onlyLookWhenStill ? (Mathf.Approximately(objectToFollow.velocity.x, 0) ? true : false) : true;
+		bool isAbleToMove = onlyLookWhenStill ? Mathf.Approximately(objectToFollow.velocity.x, 0) : true;
 		if (lookDownTimer >= lookDownDelay)
 		{
 			newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y - lookDownDistance, lookDownSpeed * Time.deltaTime);
 		}
 
-		bool doLookDownTimer = (Input.GetAxis("Vertical") < 0 && grounded) && isAbleToMove ? true : false;
+		bool doLookDownTimer = Input.GetAxis("Vertical") < 0 && grounded && isAbleToMove;
 		lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
 		if (lookDownTimer <= 0 && newCameraPosition.y < followPosition.y - bufferArea.down && grounded)
 		{

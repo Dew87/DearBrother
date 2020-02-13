@@ -50,15 +50,7 @@ public class PlayerFallingState : PlayerState
         Collider2D ground = player.CheckOverlaps(Vector2.down);
 
         if (ground)
-        {
-            if (ground.TryGetComponent<VolatilePlatform>(out VolatilePlatform platform))
-            {
-                if (player.velocity.y < -platform.breakSpeed)
-                {
-                    platform.Break(); 
-                }
-            }
-            
+        {   
             if (ground.TryGetComponent<Bouncer>(out Bouncer bouncer))
             {
                 bouncer.Bounce(player);

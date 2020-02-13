@@ -144,6 +144,18 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void CheckForVolatilePlatforms()
+	{
+		RaycastHit2D[] hits = CheckOverlapsAll(Vector2.down);
+		foreach (RaycastHit2D hit in hits)
+		{
+			if (hit.collider.TryGetComponent<VolatilePlatform>(out VolatilePlatform platform))
+			{
+				platform.Break();
+			}
+		}
+	}
+
 	public Collider2D CheckOverlaps(Vector2 direction)
 	{
 		Bounds bounds = currentCollider.bounds;
@@ -151,6 +163,15 @@ public class PlayerController : MonoBehaviour
 		RaycastHit2D hit = Physics2D.BoxCast(bounds.center, bounds.size, 0f, direction, castDistance, solidMask);
 
 		return hit.collider;
+	}
+
+	public RaycastHit2D[] CheckOverlapsAll(Vector2 direction)
+	{
+		Bounds bounds = currentCollider.bounds;
+
+		RaycastHit2D[] hits = Physics2D.BoxCastAll(bounds.center, bounds.size, 0f, direction, castDistance, solidMask);
+
+		return hits;
 	}
 
 	public void ResetJumpInputBuffer()

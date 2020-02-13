@@ -25,7 +25,8 @@ public class PlayerHealth : MonoBehaviour
 	}
 	public void TakeDamage()
 	{
-		Time.timeScale = 0;
-		StartCoroutine(FadeOut());
+		//Time.timeScale = 0;
+		//StartCoroutine(FadeOut());
+		EventManager.TriggerEvent("PlayerDeath");
 	}
 }

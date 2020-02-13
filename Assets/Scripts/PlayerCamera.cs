@@ -39,12 +39,18 @@ public class PlayerCamera : MonoBehaviour
 	{
 		if (snapToTargetOnStart)
 		{
-			Vector3 position = transform.position;
-			Vector3 followPosition = objectToFollow.transform.position + followOffset;
-			position.x = followPosition.x;
-			position.y = followPosition.y;
-			transform.position = position;
+			snapToTarget();
 		}
+	}
+
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
 	}
 
 	// Update is called once per frame
@@ -103,5 +109,20 @@ public class PlayerCamera : MonoBehaviour
 		{
 			Gizmos.DrawWireCube(objectToFollow.transform.position + bufferArea.localCenter, bufferArea.size);
 		}
+	}
+
+	private void snapToTarget()
+	{
+
+		Vector3 position = transform.position;
+		Vector3 followPosition = objectToFollow.transform.position + followOffset;
+		position.x = followPosition.x;
+		position.y = followPosition.y;
+		transform.position = position;
+	}
+
+	private void OnPlayerDeath()
+	{
+		snapToTarget();
 	}
 }

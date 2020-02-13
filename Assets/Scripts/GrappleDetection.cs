@@ -18,6 +18,9 @@ public class GrappleDetection : MonoBehaviour
 	private bool isFacingRight = true;
 	private bool isHolding = false;
 
+	private float grappleReleaseCooldown = 0.05f;
+	private float grappleReleaseTimer = 0;
+
 	private LayerMask grappleMask;
 	private LayerMask solidMask;
 	private void OnDrawGizmos()
@@ -32,6 +35,10 @@ public class GrappleDetection : MonoBehaviour
 	}
 	private void Update()
 	{
+		if (grappleReleaseTimer > 0)
+		{
+			grappleReleaseTimer -= Time.deltaTime;
+		}
 		float move = Input.GetAxis("Horizontal");
 		if (move != 0)
 		{
@@ -94,7 +101,7 @@ public class GrappleDetection : MonoBehaviour
 		{
 			currentTargetCircle.SetActive(false);
 		}
-		if (colliders.Count > 0)
+		if (colliders.Count > 0 && grappleReleaseTimer <= 0)
 		{
 			if (colliders[closestIndex] != null)
 			{
@@ -112,6 +119,7 @@ public class GrappleDetection : MonoBehaviour
 	}
 	public void ReleaseGrapplePoint()
 	{
+		grappleReleaseTimer = grappleReleaseCooldown;
 		currentGrapplePoint = null;
 		grapplePointBehaviour = null;
 		isHolding = false;

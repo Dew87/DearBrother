@@ -121,8 +121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8f0bffce47ceb49989e1519116878c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2d: {fileID: 0}
   grappleType: 2
+  whipEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  rb2d: {fileID: 0}
 --- !u!50 &4757739209963426719
 Rigidbody2D:
   serializedVersion: 4

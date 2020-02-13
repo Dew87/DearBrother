@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +28,12 @@ public class PlayerSwingState : PlayerGrappleBaseState
 			player.doesDoubleJumpRemain = true;
 		}
 		player.ResetGrappleInputBuffer();
+		if (player.lineRenderer != null && player.grappleDetection.currentGrapplePoint != null)
+		{
+			player.lineRenderer.SetPosition(0, player.transform.position);
+			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
+		}
+		player.lineRenderer.enabled = true;
 	}
 
 	public override void Update()
@@ -35,6 +41,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 		base.Update();
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.nextGrapplePoint != null)
 		{
+			player.ResetGrappleInputBuffer();
 			player.grappleDetection.ReleaseGrapplePoint();
 			player.grappleDetection.SwitchCurrentNext();
 			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
@@ -53,9 +60,15 @@ public class PlayerSwingState : PlayerGrappleBaseState
 		}
 		else if (player.isGrappleInputPressedBuffered)
 		{
+			player.ResetGrappleInputBuffer();
 			player.grappleDetection.ReleaseGrapplePoint();
 			player.TransitionState(player.fallingState);
 			return;
+		}
+		if (player.lineRenderer != null && player.grappleDetection.currentGrapplePoint != null)
+		{
+			player.lineRenderer.SetPosition(0, player.transform.position);
+			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
 		}
 	}
 	public override void FixedUpdate()
@@ -112,5 +125,10 @@ public class PlayerSwingState : PlayerGrappleBaseState
 				player.velocity += player.velocity.normalized * (player.velocity.x > 0 ? player.horizontalInputAxis : -player.horizontalInputAxis) * swingSpeed * Time.deltaTime;
 			}
 		}
+	}
+	public override void Exit()
+	{
+		base.Exit();
+		player.lineRenderer.enabled = false;
 	}
 }

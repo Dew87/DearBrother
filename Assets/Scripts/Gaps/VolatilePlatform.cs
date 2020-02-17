@@ -8,6 +8,38 @@ public class VolatilePlatform : MonoBehaviour
 
 	private bool breaking = false;
 
+	private void Start()
+	{
+		isBreaking = false;
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		originalPosition = transform.position;
+		originalColor = spriteRenderer.color;
+		originalScale = transform.localScale;
+	}
+
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnPlayerDeath()
+	{
+		StopAllCoroutines();
+		transform.position = originalPosition;
+		spriteRenderer.enabled = true;
+		spriteRenderer.color = originalColor;
+		transform.rotation = Quaternion.identity;
+		transform.localScale = Vector3.one;
+		GetComponent<Collider2D>().enabled = true;
+		isBreaking = false;
+		gameObject.SetActive(true);
+	}
+
 	public void Break()
 	{
 		if (!breaking)

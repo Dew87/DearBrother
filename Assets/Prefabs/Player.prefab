@@ -364,7 +364,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5702585311898711822}
   - component: {fileID: 5702585311898711823}
-  - component: {fileID: 5702585311898711816}
   - component: {fileID: 5702585311898711826}
   - component: {fileID: 5702585311898711827}
   - component: {fileID: 5702585311898711820}
@@ -417,32 +416,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &5702585311898711816
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702585311898711817}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.018400192}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.671875, y: 1}
-    newSize: {x: 0.43, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.53, y: 0.9631996}
-  m_EdgeRadius: 0
 --- !u!114 &5702585311898711826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,7 +521,9 @@ MonoBehaviour:
   swingState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
+    minGrappleLength: 1
     swingSpeed: 10
+    climbSpeed: 5
     mass: 10
     gravityMultiplier: 2
     doesResetDoubleJump: 1

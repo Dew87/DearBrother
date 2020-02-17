@@ -19,6 +19,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 	private float tensionForce;
 	private Vector2 pendulumSideDirection;
 	private Vector2 tangentDirection;
+	private bool doesPlayerHaveParentAtStart = false;
 	public override void Enter()
 	{
 		base.Enter();
@@ -33,6 +34,13 @@ public class PlayerSwingState : PlayerGrappleBaseState
 			player.lineRenderer.SetPosition(0, player.transform.position);
 			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
 		}
+
+		doesPlayerHaveParentAtStart = player.transform.parent != null;
+		if (player.grappleDetection.currentGrapplePoint.GetComponentInParent<MovingPlatform>() != null && !doesPlayerHaveParentAtStart)
+		{
+			player.transform.parent = player.grappleDetection.currentGrapplePoint.GetComponentInParent<MovingPlatform>().transform;     
+		}
+		
 		player.lineRenderer.enabled = true;
 	}
 
@@ -129,6 +137,10 @@ public class PlayerSwingState : PlayerGrappleBaseState
 	public override void Exit()
 	{
 		base.Exit();
+		if (!doesPlayerHaveParentAtStart)
+		{
+			player.transform.parent = null;
+		}
 		player.lineRenderer.enabled = false;
 	}
 }

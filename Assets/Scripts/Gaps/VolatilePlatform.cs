@@ -27,6 +27,7 @@ public class VolatilePlatform : MonoBehaviour
 
 	private void OnDisable()
 	{
+		// Can't be in OnDisable, as it should trigger even when object is deactivated (after breaking)
 		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
 	}
 

@@ -6,7 +6,11 @@ public class VolatilePlatform : MonoBehaviour
 {
 	public float timeBeforeFalling = 1f;
 
-	private bool breaking = false;
+	private bool isBreaking;
+	private SpriteRenderer spriteRenderer;
+	private Vector3 originalPosition;
+	private Color originalColor;
+	private Vector3 originalScale;
 
 	private void Start()
 	{
@@ -30,6 +34,7 @@ public class VolatilePlatform : MonoBehaviour
 	private void OnPlayerDeath()
 	{
 		StopAllCoroutines();
+		Debug.Log("Player died");
 		transform.position = originalPosition;
 		spriteRenderer.enabled = true;
 		spriteRenderer.color = originalColor;
@@ -42,9 +47,9 @@ public class VolatilePlatform : MonoBehaviour
 
 	public void Break()
 	{
-		if (!breaking)
+		if (!isBreaking)
 		{
-			breaking = true;
+			isBreaking = true;
 			StartCoroutine(AnimateBreak()); 
 		}
 	}
@@ -53,15 +58,14 @@ public class VolatilePlatform : MonoBehaviour
 	{
 		const float flashPeriod = 0.15f;
 		float timer = 0;
-		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 		while (timer < timeBeforeFalling)
 		{
 			timer += Time.deltaTime;
-			spriteRenderer.color = Mathf.Repeat(timer, flashPeriod) > 0.5f * flashPeriod ? Color.white : Color.grey;
+			spriteRenderer.color = Mathf.Repeat(timer, flashPeriod) > 0.5f * flashPeriod ? originalColor : Color.black;
 			yield return null;
 		}
 
-		spriteRenderer.color = Color.white;
+		spriteRenderer.color = originalColor;
 
 		float scale = 1;
 		float duration = 2f;
@@ -69,11 +73,10 @@ public class VolatilePlatform : MonoBehaviour
 		float gravity = 20f;
 		float rotateSpeed = 50f;
 		GetComponent<Collider2D>().enabled = false;
-		Vector3 baseScale = transform.localScale;
 		while (scale > 0)
 		{
 			scale -= Time.deltaTime / duration;
-			transform.localScale = baseScale * scale;
+			transform.localScale = originalScale * scale;
 
 			speed += Time.deltaTime * gravity;
 			transform.position += Vector3.down * speed * Time.deltaTime;
@@ -83,6 +86,6 @@ public class VolatilePlatform : MonoBehaviour
 			yield return null;
 		}
 
-		gameObject.SetActive(false);
+		spriteRenderer.enabled = false;
 	}
 }

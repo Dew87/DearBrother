@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IKillable
 {
 	private IEnumerator FadeOut()
 	{
@@ -15,9 +15,9 @@ public class PlayerHealth : MonoBehaviour
 			yield return null;
 		}
 
+		Debug.Log("PlayerDeath Triggered by " + this.ToString());
 		EventManager.TriggerEvent("PlayerDeath");
 		Time.timeScale = 1;
-		yield return null; // Wait a frame before fading in again to give everything time to set up in the background (like camera's position reset)
 
 		alpha = 1;
 		while (alpha > 0)

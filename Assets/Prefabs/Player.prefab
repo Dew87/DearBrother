@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3275449015901931223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 47.229267, y: 47.229267, z: 47.229267}
+  m_LocalScale: {x: 1.67, y: 1.67, z: 1.67}
   m_Children: []
   m_Father: {fileID: 5702585311898711822}
   m_RootOrder: 5
@@ -66,10 +66,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1720451991
-  m_SortingLayer: 1
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 31d7a986e8346ff4f8c7f421d34a757d, type: 3}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300000, guid: 35335bb459d52334aa8d7ad6d7b15ae8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,9 +146,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1720451991
-  m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: c2d1b3f264d373c46a4309230a230282, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -364,7 +364,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5702585311898711822}
   - component: {fileID: 5702585311898711823}
-  - component: {fileID: 5702585311898711816}
   - component: {fileID: 5702585311898711826}
   - component: {fileID: 5702585311898711827}
   - component: {fileID: 5702585311898711820}
@@ -417,32 +416,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &5702585311898711816
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702585311898711817}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.018400192}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.671875, y: 1}
-    newSize: {x: 0.43, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.53, y: 0.9631996}
-  m_EdgeRadius: 0
 --- !u!114 &5702585311898711826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +434,7 @@ MonoBehaviour:
   currentGrapplePoint: {fileID: 0}
   nextGrapplePoint: {fileID: 0}
   grapplePointBehaviour: {fileID: 0}
+  playerController: {fileID: 5702585311898711827}
 --- !u!114 &5702585311898711827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +521,9 @@ MonoBehaviour:
   swingState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
+    minGrappleLength: 1
     swingSpeed: 10
+    climbSpeed: 5
     mass: 10
     gravityMultiplier: 2
     doesResetDoubleJump: 1
@@ -688,7 +664,7 @@ GameObject:
   - component: {fileID: 5702585312812218394}
   m_Layer: 0
   m_Name: NormalCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -745,7 +721,7 @@ GameObject:
   - component: {fileID: 5702585313168279593}
   m_Layer: 0
   m_Name: CrouchingCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

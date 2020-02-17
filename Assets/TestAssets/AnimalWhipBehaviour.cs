@@ -13,19 +13,25 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	public Sprite moveSprite;
 	public Collider2D solidCollider;
 
+	private const float overlapDistance = 0.05f;
+
 	private SpriteRenderer spriteRenderer;
 	private Rigidbody2D rb2d;
 
 	private float moveTimer;
 	private Vector2 direction;
+	private int solidMask;
+	private Vector2 originalPosition;
 
-	private LayerMask playerMask;
-    void Start()
-    {
+	void Start()
+	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		rb2d = GetComponent<Rigidbody2D>();
 		spriteRenderer.sprite = idleSprite;
-    }
+		solidMask = LayerMask.GetMask("Solid");
+
+		originalPosition = rb2d.position;
+	}
 
 	private void OnEnable()
 	{

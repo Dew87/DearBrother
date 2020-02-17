@@ -52,10 +52,9 @@ public class PlayerController : MonoBehaviour
 	public PlayerState previousState { get; private set; }
 	public PlayerState currentState { get; private set; }
 
-	private const float castDistance = 0.05f;
-
 	private const float overlapDistance = 0.05f;
 	private const float overlapSizeOffset = 0.02f;
+
 	private int solidMask;
 	private float jumpInputBufferTimer;
 	private float grappleInputBufferTimer;
@@ -89,7 +88,7 @@ public class PlayerController : MonoBehaviour
 	private void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
-		solidMask = LayerMask.GetMask("Solid");
+		solidMask = LayerMask.GetMask("Solid", "SolidNoBlockGrapple");
 
 		isFacingRight = false;
 		jumpInputIsTriggered = false;
@@ -167,6 +166,19 @@ public class PlayerController : MonoBehaviour
 				platform.Break();
 			}
 		}
+	}
+
+	public bool IsColliderOneWay(Collider2D collider)
+	{
+		if (collider.usedByEffector && collider.TryGetComponent<PlatformEffector2D>(out PlatformEffector2D platform))
+		{
+			if (platform.useOneWay)
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public Collider2D CheckOverlaps(Vector2 direction)

@@ -90,9 +90,9 @@ public class PlayerController : MonoBehaviour
 		rb2d = GetComponent<Rigidbody2D>();
 		solidMask = LayerMask.GetMask("Solid");
 
+		isFacingRight = false;
 		jumpInputIsTriggered = false;
 		grappleInputIsTriggered = false;
-
 		normalCollider.enabled = false;
 		crouchingCollider.enabled = false;
 		SetCollider(normalCollider);

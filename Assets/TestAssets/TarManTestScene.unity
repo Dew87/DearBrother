@@ -216,8 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbda0de6526ef1441911e25bd30bbc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapToPlayerOnStart: 1
-  playerController: {fileID: 663926180}
+  snapToTargetOnStart: 1
+  objectToFollow: {fileID: 663926180}
   followOffset: {x: 0, y: 2, z: 0}
   cameraSpeedWhenStill: 2
   lookDownSpeed: 20
@@ -1974,18 +1974,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a66aa362b924144a5755f3944b43b5, type: 3}
---- !u!114 &663926180 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5702585311898711827, guid: f8a66aa362b924144a5755f3944b43b5,
+--- !u!50 &663926180 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 5702585311898711823, guid: f8a66aa362b924144a5755f3944b43b5,
     type: 3}
   m_PrefabInstance: {fileID: 663926179}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b11b14fd9eed01468a47e51caaf4e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &698348948
 GameObject:
   m_ObjectHideFlags: 0

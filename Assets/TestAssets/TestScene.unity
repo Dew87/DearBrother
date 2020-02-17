@@ -2858,6 +2858,11 @@ PrefabInstance:
       propertyPath: whipEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 642196599}
+    - target: {fileID: 713843763157882524, guid: 4d8d0011f4a94544ab0a851eea4b3e3d,
+        type: 3}
+      propertyPath: whipEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 642196599}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8d0011f4a94544ab0a851eea4b3e3d, type: 3}
 --- !u!1001 &4757739210727984692

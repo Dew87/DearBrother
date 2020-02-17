@@ -27,12 +27,7 @@ public class PendulumEnemy : MonoBehaviour
 
 	private void OnDisable()
 	{
-		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
-	}
-
-	private void OnPlayerDeath()
-	{
-		timer = 0;
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
 	}
 
 	private void FixedUpdate()
@@ -50,6 +45,11 @@ public class PendulumEnemy : MonoBehaviour
 			Vector2 down = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
 			UnityEditor.Handles.DrawWireArc(transform.position, Vector3.back, down, arcLength, distance);
 		}
+	}
+
+	private void OnPlayerDeath()
+	{
+		timer = 0;
 	}
 
 	private void OnValidate()

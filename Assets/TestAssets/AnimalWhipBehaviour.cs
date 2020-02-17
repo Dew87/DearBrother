@@ -33,9 +33,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		originalPosition = rb2d.position;
     }
 
-		originalPosition = rb2d.position;
-	}
-
 	private void OnEnable()
 	{
 		EventManager.StartListening("PlayerDeath", OnPlayerDeath);

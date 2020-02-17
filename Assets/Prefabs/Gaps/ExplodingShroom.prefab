@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8423659522629537998}
   - component: {fileID: 8423659522629537992}
   - component: {fileID: 8423659522629537993}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: ExplodingShroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

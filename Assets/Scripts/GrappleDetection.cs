@@ -53,6 +53,7 @@ public class GrappleDetection : MonoBehaviour
 			{
 				if (isFacingRight)
 				{
+					var hit = Physics2D.Linecast(transform.position, results[i].transform.position, solidMask);
 					if (results[i].transform.position.x >= transform.position.x && !Physics2D.Linecast(transform.position, results[i].transform.position, solidMask))
 					{
 						colliders.Add(results[i]);

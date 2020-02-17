@@ -6,9 +6,12 @@ public class AnimalWhipBehaviour : MonoBehaviour
 {
 	public float moveTimePeriod = 0.5f;
 	public float moveSpeed = 5f;
+	public float gravity = 10f;
+	public float maxFallSpeed = 20f;
 
 	public Sprite idleSprite;
 	public Sprite moveSprite;
+	public Collider2D solidCollider;
 
 	private SpriteRenderer spriteRenderer;
 	private Rigidbody2D rb2d;
@@ -23,20 +26,64 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		rb2d = GetComponent<Rigidbody2D>();
 		spriteRenderer.sprite = idleSprite;
     }
-    void Update()
-    {
-        if (moveTimer > 0)
+
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnPlayerDeath()
+	{
+		Respawn();
+	}
+
+	private void Respawn()
+	{
+		rb2d.position = originalPosition;
+		rb2d.velocity = Vector2.zero;
+		transform.rotation = Quaternion.identity;
+	}
+
+	private void FixedUpdate()
+	{
+		Bounds bounds = solidCollider.bounds;
+		float y = bounds.min.y;
+		Vector2 position = new Vector2(bounds.center.x, y - overlapDistance * 0.5f);
+		Vector2 size = new Vector2(bounds.size.x, overlapDistance);
+		foreach (Collider2D collider in Physics2D.OverlapBoxAll(position, size, 0, solidMask))
+		{
+			if (collider.TryGetComponent<VolatilePlatform>(out VolatilePlatform platform))
+			{
+				platform.Break();
+			}
+		}
+
+		Vector2 velocity = rb2d.velocity;
+		if (moveTimer > 0)
 		{
 			moveTimer -= Time.deltaTime;
 			spriteRenderer.sprite = moveSprite;
-			rb2d.velocity = direction * moveSpeed;
+			velocity.x = direction.x * moveSpeed;
 		}
 		else
 		{
 			spriteRenderer.sprite = idleSprite;
-			rb2d.velocity = Vector2.zero;
+			velocity.x = 0;
 		}
-    }
+		velocity.y -= gravity * Time.deltaTime;
+		if (velocity.y < -maxFallSpeed)
+		{
+			velocity.y = -maxFallSpeed;
+		}
+
+		rb2d.velocity = velocity;
+	}
+
 	public void Whip(GameObject player)
 	{
 		moveTimer = moveTimePeriod;

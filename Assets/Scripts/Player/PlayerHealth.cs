@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
 			yield return null;
 		}
 
+		Debug.Log("PlayerDeath Triggered by " + this.ToString());
 		EventManager.TriggerEvent("PlayerDeath");
 		Time.timeScale = 1;
 

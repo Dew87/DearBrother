@@ -15,8 +15,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
 
 	private float moveTimer;
 	private Vector2 direction;
-
-	private LayerMask playerMask;
     void Start()
     {
 		spriteRenderer = GetComponent<SpriteRenderer>();

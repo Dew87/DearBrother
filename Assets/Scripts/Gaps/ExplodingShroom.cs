@@ -30,7 +30,7 @@ public class ExplodingShroom : MonoBehaviour
 
 		regularState = new State(null, RegularStateEnter, RegularStateExit);
 		countdownState = new State(CountdownStateUpdate, CountdownStateEnter);
-		poisonState = new State(PoisonStateUpdate, PoisonStateEnter, PoisonStateExit);
+		poisonState = new State(PoisonStateUpdate, PoisonStateEnter);
 		respawningState = new State(RespawningStateUpdate, RespawningStateEnter);
 
 		poisonCloud.SetActive(false);
@@ -40,23 +40,16 @@ public class ExplodingShroom : MonoBehaviour
 	private void OnEnable()
 	{
 		bouncer.onBounce += OnBounce;
-		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
 	}
 
 	private void OnDisable()
 	{
 		bouncer.onBounce -= OnBounce;
-		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
 	}
 
 	private void OnBounce()
 	{
 		sm.Transition(countdownState);
-	}
-
-	private void OnPlayerDeath()
-	{
-		sm.Transition(regularState);
 	}
 
 	private void Update()
@@ -68,7 +61,6 @@ public class ExplodingShroom : MonoBehaviour
     {
         bounceCollider.enabled = true;
         spriteRenderer.color = Color.white;
-		spriteRenderer.enabled = true;
     }
 
 	private void RegularStateExit()
@@ -108,14 +100,10 @@ public class ExplodingShroom : MonoBehaviour
 			timer -= Time.deltaTime;
 			if (timer <= 0)
 			{
+				poisonCloud.SetActive(false);
 				sm.Transition(respawningState);
 			}
 		}
-	}
-
-	private void PoisonStateExit()
-	{
-		poisonCloud.SetActive(false);
 	}
 
 	private void RespawningStateEnter()

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-	public bool snapToPlayerOnStart = true;
-	public PlayerController playerController;
+	public bool snapToTargetOnStart = true;
+	public Rigidbody2D objectToFollow;
 	public Vector3 followOffset;
 	public float cameraSpeedWhenStill = 2f;
 
@@ -45,9 +45,18 @@ public class PlayerCamera : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		if (snapToPlayerOnStart)
+		if (snapToTargetOnStart)
 		{
 			SnapToTarget();
+		}
+		Collider2D[] colliders = new Collider2D[1];
+		objectToFollow.GetAttachedColliders(colliders);
+		if (colliders.Length > 0)
+		{
+			if (colliders[0] != null)
+			{
+				objectToFollowCollider = colliders[0];
+			}
 		}
 		solidMask = LayerMask.GetMask("Solid");
 	}
@@ -68,10 +77,10 @@ public class PlayerCamera : MonoBehaviour
 		Vector3 currentPosition = transform.position;
 		Vector3 newCameraPosition = currentPosition;
 
-		Vector3 followPosition = playerController.transform.position + followOffset;
-		Vector2 playerVelocity = playerController.rb2d.velocity;
+		Vector3 followPosition = objectToFollow.transform.position + followOffset;
+		Vector2 objectVelocity = objectToFollow.velocity;
 
-		if (Mathf.Abs(playerVelocity.x) >= cameraSpeedWhenStill)
+		if (Mathf.Abs(objectToFollow.velocity.x) >= cameraSpeedWhenStill)
 		{
 			if (followPosition.x > currentPosition.x + bufferArea.x)
 			{
@@ -87,7 +96,7 @@ public class PlayerCamera : MonoBehaviour
 			newCameraPosition.x = Mathf.MoveTowards(newCameraPosition.x, followPosition.x, cameraSpeedWhenStill * Time.deltaTime);
 		}
 
-		if (Mathf.Abs(playerVelocity.y) > cameraSpeedWhenStill)
+		if (Mathf.Abs(objectToFollow.velocity.y) > cameraSpeedWhenStill)
 		{
 			if (followPosition.y > currentPosition.y + bufferArea.up)
 			{
@@ -103,16 +112,16 @@ public class PlayerCamera : MonoBehaviour
 			newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y, cameraSpeedWhenStill * Time.deltaTime);
 		}
 
-		Bounds bounds = playerController.currentCollider.bounds;
+		Bounds bounds = objectToFollowCollider.bounds;
 		bool grounded = Physics2D.BoxCast(bounds.center, bounds.size, 0f, Vector2.down, 0.05f, solidMask);
 
-		bool isAbleToMove = onlyLookWhenStill ? Mathf.Approximately(playerVelocity.x, 0) : true;
+		bool isAbleToMove = onlyLookWhenStill ? Mathf.Approximately(objectToFollow.velocity.x, 0) : true;
 		if (lookDownTimer >= lookDownDelay)
 		{
 			newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y - lookDownDistance, lookDownSpeed * Time.deltaTime);
 		}
 
-		bool doLookDownTimer = (playerController.currentState == playerController.crouchingState || playerController.currentState == playerController.crawlingState) && grounded && isAbleToMove;
+		bool doLookDownTimer = Input.GetAxis("Vertical") < 0 && grounded && isAbleToMove;
 		lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
 		if (lookDownTimer <= 0 && newCameraPosition.y < followPosition.y - bufferArea.down && grounded)
 		{
@@ -132,14 +141,14 @@ public class PlayerCamera : MonoBehaviour
 		}
 		else
 		{
-			Gizmos.DrawWireCube(playerController.transform.position + bufferArea.localCenter, bufferArea.size);
+			Gizmos.DrawWireCube(objectToFollow.transform.position + bufferArea.localCenter, bufferArea.size);
 		}
 	}
 
 	private void SnapToTarget()
 	{
 		Vector3 position = transform.position;
-		Vector3 followPosition = playerController.transform.position + followOffset;
+		Vector3 followPosition = objectToFollow.transform.position + followOffset;
 		position.x = followPosition.x;
 		position.y = followPosition.y;
 		transform.position = position;

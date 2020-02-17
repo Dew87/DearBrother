@@ -50,18 +50,7 @@ public abstract class PlayerBaseJumpingState : PlayerState
 		Collider2D ceiling = player.CheckOverlaps(Vector2.up);
 		if (player.velocity.y > 0 && ceiling && !ceiling.isTrigger)
 		{
-			bool isOneWay = false;
-			if (ceiling.usedByEffector && ceiling.TryGetComponent<PlatformEffector2D>(out PlatformEffector2D platform))
-			{
-				if (platform.useOneWay)
-				{
-					isOneWay = true;
-				}
-			}
-			if (!isOneWay)
-			{
-				player.velocity.y = 0; 
-			}
+			player.velocity.y = 0;
 		}
 	}
 

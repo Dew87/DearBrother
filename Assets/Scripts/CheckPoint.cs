@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-	public bool isActive;
-
+	[SerializeField]
+	private bool isActive;
 	private static List<CheckPoint> CheckPointList = new List<CheckPoint>();
 
 	public static Vector2 GetActiveCheckPointPosition()
@@ -56,7 +56,7 @@ public class CheckPoint : MonoBehaviour
 	private void OnDrawGizmos()
 	{
 		Bounds bounds = GetComponent<Collider2D>().bounds;
-		Color fillColor = isActive ? Color.cyan : Color.blue;
+		Color fillColor = Color.blue;
 		fillColor.a = 0.5f;
 		Gizmos.color = fillColor;
 		Gizmos.DrawCube(bounds.center, bounds.size);

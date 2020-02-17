@@ -2063,27 +2063,6 @@ PrefabInstance:
       propertyPath: respawnTime
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 987893759108272444, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 31d7a986e8346ff4f8c7f421d34a757d,
-        type: 3}
-    - target: {fileID: 987893759108272444, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 987893759108272444, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 987893759108272444, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5702585312812218388, guid: f8a66aa362b924144a5755f3944b43b5,
         type: 3}
       propertyPath: m_TagString

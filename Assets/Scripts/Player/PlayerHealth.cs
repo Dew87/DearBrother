@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour, IKillable
 
 		EventManager.TriggerEvent("PlayerDeath");
 		Time.timeScale = 1;
+		yield return null; // Wait a frame before fading in again to give everything time to set up in the background (like camera's position reset)
 
 		alpha = 1;
 		while (alpha > 0)

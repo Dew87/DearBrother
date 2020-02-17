@@ -6,7 +6,7 @@ public class VolatilePlatform : MonoBehaviour
 {
 	public float timeBeforeFalling = 1f;
 
-	private bool breaking = false;
+	private bool isBreaking;
 	private SpriteRenderer spriteRenderer;
 	private Vector3 originalPosition;
 	private Color originalColor;
@@ -14,6 +14,7 @@ public class VolatilePlatform : MonoBehaviour
 
 	private void Start()
 	{
+		isBreaking = false;
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		originalPosition = transform.position;
 		originalColor = spriteRenderer.color;
@@ -27,7 +28,6 @@ public class VolatilePlatform : MonoBehaviour
 
 	private void OnDisable()
 	{
-		// Can't be in OnDisable, as it should trigger even when object is deactivated (after breaking)
 		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
 	}
 
@@ -36,19 +36,20 @@ public class VolatilePlatform : MonoBehaviour
 		StopAllCoroutines();
 		Debug.Log("Player died");
 		transform.position = originalPosition;
+		spriteRenderer.enabled = true;
 		spriteRenderer.color = originalColor;
 		transform.rotation = Quaternion.identity;
 		transform.localScale = Vector3.one;
 		GetComponent<Collider2D>().enabled = true;
-		breaking = false;
+		isBreaking = false;
 		gameObject.SetActive(true);
 	}
 
 	public void Break()
 	{
-		if (!breaking)
+		if (!isBreaking)
 		{
-			breaking = true;
+			isBreaking = true;
 			StartCoroutine(AnimateBreak()); 
 		}
 	}
@@ -85,6 +86,6 @@ public class VolatilePlatform : MonoBehaviour
 			yield return null;
 		}
 
-		gameObject.SetActive(false);
+		spriteRenderer.enabled = false;
 	}
 }

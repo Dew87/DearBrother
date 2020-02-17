@@ -14,8 +14,18 @@ public class PlayerHealth : MonoBehaviour
 			fadeOutSprite.color = new Color(fadeOutSprite.color.r, fadeOutSprite.color.g, fadeOutSprite.color.b, alpha);
 			yield return null;
 		}
+
+		EventManager.TriggerEvent("PlayerDeath");
 		Time.timeScale = 1;
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+		alpha = 1;
+		while (alpha > 0)
+		{
+			alpha -= 1 / respawnTime * Time.unscaledDeltaTime;
+			fadeOutSprite.color = new Color(fadeOutSprite.color.r, fadeOutSprite.color.g, fadeOutSprite.color.b, alpha);
+			yield return null;
+		}
+
 	}
 	public float respawnTime = 0.5f;
 	public SpriteRenderer fadeOutSprite;

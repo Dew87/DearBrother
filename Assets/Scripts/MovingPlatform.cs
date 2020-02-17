@@ -10,7 +10,6 @@ public class MovingPlatform : MonoBehaviour
 	public float moveSpeed = 5f;
 	public float tolerance = 1f;
 
-	private float castDistance = 0.05f;
 	private int currentPositionInPath;
 	private bool isMovingForward;
 	private void OnDrawGizmos()

@@ -37,7 +37,9 @@ public class PlayerController : MonoBehaviour
 	public bool doesDoubleJumpRemain;
 	public Vector2 velocity;
 
+
 	public float horizontalInputAxis { get; private set; }
+	public bool isFacingRight { get; private set; }
 	public bool isJumpInputHeld { get; private set; }
 	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
 	public bool isCrouchInputHeld { get; private set; }
@@ -106,6 +108,16 @@ public class PlayerController : MonoBehaviour
 		{
 			currentState.Start();
 		}
+	}
+
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
 	}
 
 	private void Update()
@@ -243,6 +255,10 @@ public class PlayerController : MonoBehaviour
 		}
 
 		horizontalInputAxis = Input.GetAxisRaw("Horizontal");
+		if (horizontalInputAxis != 0)
+		{
+			isFacingRight = horizontalInputAxis > 0 ? true : false;
+		}
 
 		isJumpInputHeld = Input.GetAxisRaw("Jump") > inputThreshold;
 		if (isJumpInputHeld && !jumpInputIsTriggered)
@@ -256,6 +272,14 @@ public class PlayerController : MonoBehaviour
 		}
 
 		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < -inputThreshold;
+	}
+
+	private void OnPlayerDeath()
+	{
+		rb2d.position = CheckPoint.GetActiveCheckPointPosition();
+		transform.position = rb2d.position; // Need to force-sync transform for camera snapping to work properly
+		rb2d.velocity = Vector2.zero;
+		velocity = Vector2.zero;
 	}
 
 	private void OnValidate()

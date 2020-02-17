@@ -10,11 +10,10 @@ public class ProjectileEjector : MonoBehaviour
 	public Vector2 spawnPosition;
 	public Projectile projectilePrefab;
 	[Space()]
-	[Tooltip("If checked,  the projectile's direction is set to directionOverride, ignoring the projectile prefab's own value")]
-	public bool overrideDirection = false;
-	[Range(0, 360f)]
-	[Tooltip("Degrees, 0 = right, 90 = up, etc. Only applies if overrideDirection is ticked")]
-	public float directionOverride;
+	[Tooltip("Degrees, 0 = right, 90 = up, etc")]
+	[Range(0,360f)]
+	[UnityEngine.Serialization.FormerlySerializedAs("directionOverride")]
+	public float fireDirection = 180f;
 
 	private float timer;
 	private PrefabPool<Projectile> pool;
@@ -25,6 +24,21 @@ public class ProjectileEjector : MonoBehaviour
 		pool = new PrefabPool<Projectile>(projectilePrefab);
 	}
 
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnPlayerDeath()
+	{
+		timer = Mathf.Repeat(cycleOffset, interval);
+	}
+
 	private void Update()
 	{
 		timer += Time.deltaTime;
@@ -33,10 +47,7 @@ public class ProjectileEjector : MonoBehaviour
 			timer = Mathf.Repeat(timer, interval);
 			Projectile newProjectile = pool.Spawn();
 			newProjectile.transform.position = transform.TransformPoint(spawnPosition);
-			if (overrideDirection)
-			{
-				newProjectile.direction = directionOverride;
-			}
+			newProjectile.direction = fireDirection;
 		}
 	}
 }

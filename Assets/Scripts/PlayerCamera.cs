@@ -47,7 +47,7 @@ public class PlayerCamera : MonoBehaviour
 	{
 		if (snapToTargetOnStart)
 		{
-			snapToTarget();
+			SnapToTarget();
 		}
 		Collider2D[] colliders = new Collider2D[1];
 		objectToFollow.GetAttachedColliders(colliders);
@@ -145,9 +145,8 @@ public class PlayerCamera : MonoBehaviour
 		}
 	}
 
-	private void snapToTarget()
+	private void SnapToTarget()
 	{
-
 		Vector3 position = transform.position;
 		Vector3 followPosition = objectToFollow.transform.position + followOffset;
 		position.x = followPosition.x;
@@ -157,6 +156,6 @@ public class PlayerCamera : MonoBehaviour
 
 	private void OnPlayerDeath()
 	{
-		snapToTarget();
+		SnapToTarget();
 	}
 }

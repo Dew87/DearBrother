@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3275449015901931223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.67, y: 1.67, z: 1.67}
   m_Children: []
   m_Father: {fileID: 5702585311898711822}
   m_RootOrder: 5
@@ -508,14 +508,14 @@ MonoBehaviour:
     stopSpeed: 10
     horizontalAcceleration: 22
     verticalDeceleration: 20
-    minimumDuration: 0.008
+    minimumDuration: 0.00008
     minimumDurationOverride: 0
     doubleJumpCooldown: 0.4
   doubleJumpingState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
-    initialSpeed: 9
-    gravity: 26
+    initialSpeed: 8
+    gravity: 20
     stopSpeed: 2
     horizontalAcceleration: 20
     verticalDeceleration: 20
@@ -536,8 +536,8 @@ MonoBehaviour:
     player: {fileID: 5702585311898711827}
     descendSpeed: 2
     verticalDeceleration: 20
-    horizontalAcceleration: 20
-    horizontalDeceleration: 10
+    horizontalAcceleration: 8
+    horizontalDeceleration: 5
     isInWind: 0
     windSpeed: {x: 0, y: 0}
   landingLagState:
@@ -560,7 +560,7 @@ MonoBehaviour:
     speed: 2
     acceleration: 40
     deceleration: 30
-    stretchTolerance: 1
+    stretchTolerance: 10
     isStretchToleranceMultiplier: 0
     pullspeed: 10
   hasDoubleJump: 1

@@ -6,15 +6,17 @@ public class AnimalWhipBehaviour : MonoBehaviour
 {
 	public float moveTimePeriod = 0.5f;
 	public float moveSpeed = 5f;
+	public float gravity = 10f;
+	public float maxFallSpeed = 20f;
 
 	public Sprite idleSprite;
 	public Sprite moveSprite;
+	public Collider2D solidCollider;
 
 	private const float overlapDistance = 0.05f;
 
 	private SpriteRenderer spriteRenderer;
 	private Rigidbody2D rb2d;
-	private new Collider2D collider;
 
 	private float moveTimer;
 	private Vector2 direction;
@@ -25,7 +27,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
     {
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		rb2d = GetComponent<Rigidbody2D>();
-		collider = GetComponent<Collider2D>();
 		spriteRenderer.sprite = idleSprite;
 		solidMask = LayerMask.GetMask("Solid");
 
@@ -47,21 +48,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		Respawn();
 	}
 
-	void Update()
-    {
-        if (moveTimer > 0)
-		{
-			moveTimer -= Time.deltaTime;
-			spriteRenderer.sprite = moveSprite;
-			rb2d.velocity = direction * moveSpeed;
-		}
-		else
-		{
-			spriteRenderer.sprite = idleSprite;
-			rb2d.velocity = Vector2.zero;
-		}
-    }
-
 	private void Respawn()
 	{
 		rb2d.position = originalPosition;
@@ -71,7 +57,7 @@ public class AnimalWhipBehaviour : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		Bounds bounds = collider.bounds;
+		Bounds bounds = solidCollider.bounds;
 		float y = bounds.min.y;
 		Vector2 position = new Vector2(bounds.center.x, y - overlapDistance * 0.5f);
 		Vector2 size = new Vector2(bounds.size.x, overlapDistance);
@@ -82,6 +68,26 @@ public class AnimalWhipBehaviour : MonoBehaviour
 				platform.Break();
 			}
 		}
+
+		Vector2 velocity = rb2d.velocity;
+		if (moveTimer > 0)
+		{
+			moveTimer -= Time.deltaTime;
+			spriteRenderer.sprite = moveSprite;
+			velocity.x = direction.x * moveSpeed;
+		}
+		else
+		{
+			spriteRenderer.sprite = idleSprite;
+			velocity.x = 0;
+		}
+		velocity.y -= gravity * Time.deltaTime;
+		if (velocity.y < -maxFallSpeed)
+		{
+			velocity.y = -maxFallSpeed;
+		}
+
+		rb2d.velocity = velocity;
 	}
 
 	public void Whip(GameObject player)

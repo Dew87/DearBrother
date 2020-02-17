@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
 	private void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
-		solidMask = LayerMask.GetMask("Solid");
+		solidMask = LayerMask.GetMask("Solid", "SolidNoBlockGrapple");
 
 		isFacingRight = false;
 		jumpInputIsTriggered = false;

@@ -52,4 +52,15 @@ public class CheckPoint : MonoBehaviour
 
 		isActive = true;
 	}
+
+	private void OnDrawGizmos()
+	{
+		Bounds bounds = GetComponent<Collider2D>().bounds;
+		Color fillColor = Color.blue;
+		fillColor.a = 0.5f;
+		Gizmos.color = fillColor;
+		Gizmos.DrawCube(bounds.center, bounds.size);
+		Gizmos.color = Color.blue;
+		Gizmos.DrawSphere(transform.position, 0.1f);
+	}
 }

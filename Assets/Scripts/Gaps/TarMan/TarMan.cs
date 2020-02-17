@@ -7,6 +7,7 @@ public class TarMan : MonoBehaviour
     public GameObject screamHitbox;
 
     public TarManState currentState { get; private set; }
+    public Rigidbody2D rb2d { get; private set; }
 
     public TarManWalkingState walkingState;
 
@@ -27,6 +28,8 @@ public class TarMan : MonoBehaviour
 
     void Start()
     {
+        rb2d = GetComponent<Rigidbody2D>();
+
         foreach (TarManState state in IterateStates())
         {
             state.tarMan = this;
@@ -38,6 +41,16 @@ public class TarMan : MonoBehaviour
         {
             currentState.Start();
         }
+    }
+
+    private void Update()
+    {
+        currentState.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        currentState.FixedUpdate();
     }
 
     public void TransitionState(TarManState newState)

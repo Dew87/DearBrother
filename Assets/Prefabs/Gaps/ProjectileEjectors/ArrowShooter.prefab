@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8241445576111694362}
   - component: {fileID: 8241445576111694360}
   m_Layer: 0
-  m_Name: Shooter
+  m_Name: ArrowShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,5 +98,4 @@ MonoBehaviour:
   spawnPosition: {x: -0.5762768, y: -0.05077672}
   projectilePrefab: {fileID: 6157554620944409969, guid: 1819ab7d03b81384980efe7bfbe42e36,
     type: 3}
-  overrideDirection: 0
-  directionOverride: 0
+  fireDirection: 180

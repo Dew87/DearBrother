@@ -5,7 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerSwingState : PlayerGrappleBaseState
 {
+	public float minGrappleLength = 1f;
 	public float swingSpeed = 10f;
+	public float climbSpeed = 1f;
 	public float mass = 10f;
 	[Tooltip("Fall faster when grapple is not fully stretched")]
 	public float gravityMultiplier = 3f;
@@ -14,14 +16,20 @@ public class PlayerSwingState : PlayerGrappleBaseState
 
 	private float gravityMultiplierTolerance = 0.5f;
 
+	private float maxVelocityMagnitude = 40;
 	private Vector2 gravity = new Vector2(0, -1);
 	private Vector2 grappleDirection;
 	private float tensionForce;
 	private Vector2 pendulumSideDirection;
 	private Vector2 tangentDirection;
+	private bool doesPlayerHaveParentAtStart = false;
 	public override void Enter()
 	{
 		base.Enter();
+		if (grappleLength < minGrappleLength)
+		{
+			grappleLength = minGrappleLength;
+		}
 		player.velocity.y = 0;
 		if (doesResetDoubleJump)
 		{
@@ -33,6 +41,13 @@ public class PlayerSwingState : PlayerGrappleBaseState
 			player.lineRenderer.SetPosition(0, player.transform.position);
 			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
 		}
+
+		doesPlayerHaveParentAtStart = player.transform.parent != null;
+		if (player.grappleDetection.currentGrapplePoint.GetComponentInParent<MovingPlatform>() != null && !doesPlayerHaveParentAtStart)
+		{
+			player.transform.parent = player.grappleDetection.currentGrapplePoint.GetComponentInParent<MovingPlatform>().transform;     
+		}
+		
 		player.lineRenderer.enabled = true;
 	}
 
@@ -73,8 +88,41 @@ public class PlayerSwingState : PlayerGrappleBaseState
 	}
 	public override void FixedUpdate()
 	{
+		if (player.velocity.magnitude > maxVelocityMagnitude)
+		{
+			Vector2 maxVelocity = player.velocity.normalized * maxVelocityMagnitude;
+			player.velocity = maxVelocity;
+		}
 		base.FixedUpdate();
-
+		Vector2 playerPos = player.transform.position;
+		Vector2 grapplePointPos = player.grappleDetection.currentGrapplePoint.transform.position;
+		if (Vector2.Distance(grapplePointPos, playerPos) > minGrappleLength && Vector2.Distance(grapplePointPos, playerPos) < maxGrappleLength)
+		{
+			if (Mathf.Abs(player.verticalInputAxis) > 0)
+			{
+				float lastLength = grappleLength;
+				grappleLength -= player.verticalInputAxis * climbSpeed * Time.deltaTime;
+				float grappleDiference = lastLength - grappleLength;
+				grappleLength = Mathf.Clamp(grappleLength, minGrappleLength, maxGrappleLength);
+				grappleDirection = (grapplePointPos - playerPos).normalized;
+				player.transform.position += grappleDiference * (Vector3)grappleDirection;
+			}
+		}
+		if (Vector2.Angle(playerPos - grapplePointPos, gravity) > 150)
+		{
+			if (player.velocity.y > 0)
+			{
+				player.velocity.y = 0;
+			}
+		}
+		if (Vector2.Distance(grapplePointPos, playerPos) + gravityMultiplierTolerance < grappleLength)
+		{
+			player.velocity += gravity.normalized * (gravity.magnitude * mass) * gravityMultiplier * Time.deltaTime;
+		}
+		else
+		{
+			player.velocity += gravity.normalized * (gravity.magnitude * mass) * Time.deltaTime;
+		}
 		if (player.CheckOverlaps(Vector2.up) && player.velocity.y > 0)
 		{
 			player.velocity = Vector2.zero;
@@ -96,19 +144,6 @@ public class PlayerSwingState : PlayerGrappleBaseState
 		}
 		else
 		{
-			Vector2 playerPos = player.transform.position;
-			Vector2 grapplePointPos = player.grappleDetection.currentGrapplePoint.transform.position;
-
-			if (Vector2.Distance(grapplePointPos, playerPos) + gravityMultiplierTolerance < grappleLength)
-			{
-				player.velocity += gravity.normalized * (gravity.magnitude * mass) * gravityMultiplier * Time.deltaTime;
-			}
-			else
-			{
-				player.velocity += gravity.normalized * (gravity.magnitude * mass) * Time.deltaTime;
-			}
-
-
 			float distanceAfterGravity = Vector2.Distance(grapplePointPos, playerPos + (player.velocity * Time.deltaTime));
 
 			if (distanceAfterGravity > grappleLength || Mathf.Approximately(distanceAfterGravity, grappleLength))
@@ -116,19 +151,25 @@ public class PlayerSwingState : PlayerGrappleBaseState
 				grappleDirection = (grapplePointPos - playerPos).normalized;
 
 				float angle = Vector2.Angle(playerPos - grapplePointPos, gravity);
-
 				tensionForce = mass * gravity.magnitude * Mathf.Cos(Mathf.Deg2Rad * angle);
 				tensionForce += ((mass * Mathf.Pow(player.velocity.magnitude, 2)) / grappleLength);
 
 				player.velocity += grappleDirection * tensionForce * Time.deltaTime;
 
-				player.velocity += player.velocity.normalized * (player.velocity.x > 0 ? player.horizontalInputAxis : -player.horizontalInputAxis) * swingSpeed * Time.deltaTime;
+				if (angle < 70)
+				{
+					player.velocity += player.velocity.normalized * (player.velocity.x > 0 ? player.horizontalInputAxis : -player.horizontalInputAxis) * swingSpeed * Time.deltaTime;
+				}
 			}
 		}
 	}
 	public override void Exit()
 	{
 		base.Exit();
+		if (!doesPlayerHaveParentAtStart)
+		{
+			player.transform.parent = null;
+		}
 		player.lineRenderer.enabled = false;
 	}
 }

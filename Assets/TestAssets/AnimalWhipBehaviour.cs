@@ -23,11 +23,14 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	private int solidMask;
 	private Vector2 originalPosition;
 
-	void Start()
-	{
+    void Start()
+    {
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		rb2d = GetComponent<Rigidbody2D>();
 		spriteRenderer.sprite = idleSprite;
+		solidMask = LayerMask.GetMask("Solid");
+
+		originalPosition = rb2d.position;
     }
 
 		originalPosition = rb2d.position;

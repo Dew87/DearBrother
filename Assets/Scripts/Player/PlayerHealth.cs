@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IKillable
 {
 	private IEnumerator FadeOut()
 	{
@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
 			yield return null;
 		}
 
+		Debug.Log("PlayerDeath Triggered by " + this.ToString());
 		EventManager.TriggerEvent("PlayerDeath");
 		Time.timeScale = 1;
 

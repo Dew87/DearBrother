@@ -34,7 +34,6 @@ public class VolatilePlatform : MonoBehaviour
 	private void OnPlayerDeath()
 	{
 		StopAllCoroutines();
-		Debug.Log("Player died");
 		transform.position = originalPosition;
 		spriteRenderer.enabled = true;
 		spriteRenderer.color = originalColor;

@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
 
 	public float horizontalInputAxis { get; private set; }
+	public float verticalInputAxis { get; private set; }
 	public bool isFacingRight { get; private set; }
 	public bool isJumpInputHeld { get; private set; }
 	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
@@ -291,6 +292,8 @@ public class PlayerController : MonoBehaviour
 		{
 			isFacingRight = horizontalInputAxis > 0 ? true : false;
 		}
+
+		verticalInputAxis = Input.GetAxisRaw("Vertical");
 
 		isJumpInputHeld = Input.GetAxisRaw("Jump") > inputThreshold;
 		if (isJumpInputHeld && !jumpInputIsTriggered)

@@ -51,10 +51,9 @@ public class PlayerController : MonoBehaviour
 	public PlayerState previousState { get; private set; }
 	public PlayerState currentState { get; private set; }
 
-	private const float castDistance = 0.05f;
-
 	private const float overlapDistance = 0.05f;
 	private const float overlapSizeOffset = 0.02f;
+
 	private int solidMask;
 	private float jumpInputBufferTimer;
 	private float grappleInputBufferTimer;

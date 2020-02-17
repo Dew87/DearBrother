@@ -168,6 +168,19 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public bool IsColliderOneWay(Collider2D collider)
+	{
+		if (collider.usedByEffector && collider.TryGetComponent<PlatformEffector2D>(out PlatformEffector2D platform))
+		{
+			if (platform.useOneWay)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public Collider2D CheckOverlaps(Vector2 direction)
 	{
 		Bounds bounds = currentCollider.bounds;

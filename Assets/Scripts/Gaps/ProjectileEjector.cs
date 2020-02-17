@@ -24,6 +24,21 @@ public class ProjectileEjector : MonoBehaviour
 		pool = new PrefabPool<Projectile>(projectilePrefab);
 	}
 
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnPlayerDeath()
+	{
+		timer = Mathf.Repeat(cycleOffset, interval);
+	}
+
 	private void Update()
 	{
 		timer += Time.deltaTime;

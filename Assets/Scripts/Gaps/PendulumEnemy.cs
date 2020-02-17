@@ -13,15 +13,27 @@ public class PendulumEnemy : MonoBehaviour
 	public float cycleOffset = 0;
 
 	private Rigidbody2D rb2d;
+	private float timer = 0;
 
 	private void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
 	}
 
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
+	}
+
 	private void FixedUpdate()
 	{
-		rb2d.rotation = Mathf.Sin((Time.fixedTime + cycleOffset) * Mathf.PI * 2 / period) * 0.5f * arcLength;
+		timer += Time.deltaTime;
+		rb2d.rotation = Mathf.Sin((timer + cycleOffset) * Mathf.PI * 2 / period) * 0.5f * arcLength;
 	}
 
 	private void OnDrawGizmos()
@@ -33,6 +45,11 @@ public class PendulumEnemy : MonoBehaviour
 			Vector2 down = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
 			UnityEditor.Handles.DrawWireArc(transform.position, Vector3.back, down, arcLength, distance);
 		}
+	}
+
+	private void OnPlayerDeath()
+	{
+		timer = 0;
 	}
 
 	private void OnValidate()

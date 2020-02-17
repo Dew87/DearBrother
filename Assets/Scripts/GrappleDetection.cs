@@ -13,37 +13,35 @@ public class GrappleDetection : MonoBehaviour
 	public GameObject nextGrapplePoint;
 	public GrapplePointBehaviour grapplePointBehaviour;
 
+	public PlayerController playerController;
+
 	private GameObject nearestGrapplePoint;
 
-	private bool isFacingRight = true;
 	private bool isHolding = false;
-
 	private float grappleReleaseCooldown = 0.05f;
 	private float grappleReleaseTimer = 0;
-
 	private LayerMask grappleMask;
 	private LayerMask solidMask;
+
 	private void OnDrawGizmos()
 	{
-		Handles.DrawWireArc(transform.position, Vector3.forward, isFacingRight ? Vector3.down : Vector3.up, 180f, detectionRadius);
+		Handles.DrawWireArc(transform.position, Vector3.forward, playerController.isFacingRight ? Vector3.down : Vector3.up, 180f, detectionRadius);
 		Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - 5, transform.position.z), new Vector3(transform.position.x, transform.position.y + 5, transform.position.z));
 	}
+
 	private void Start()
 	{
 		grappleMask = LayerMask.GetMask("GrapplePoint");
 		solidMask = LayerMask.GetMask("Solid");
 	}
+
 	private void Update()
 	{
 		if (grappleReleaseTimer > 0)
 		{
 			grappleReleaseTimer -= Time.deltaTime;
 		}
-		float move = Input.GetAxis("Horizontal");
-		if (move != 0)
-		{
-			isFacingRight = move > 0 ? true : false;
-		}
+
 		List<Collider2D> results = new List<Collider2D>(Physics2D.OverlapCircleAll(transform.position, detectionRadius, grappleMask));
 		List<Collider2D> colliders = new List<Collider2D>();
 		int length = results.Count;
@@ -51,7 +49,7 @@ public class GrappleDetection : MonoBehaviour
 		{
 			if (results[i].gameObject != currentGrapplePoint)
 			{
-				if (isFacingRight)
+				if (playerController.isFacingRight)
 				{
 					if (results[i].transform.position.x >= transform.position.x && !Physics2D.Linecast(transform.position, results[i].transform.position, solidMask))
 					{
@@ -67,6 +65,7 @@ public class GrappleDetection : MonoBehaviour
 				}
 			}
 		}
+
 		int closestIndex = 0;
 		for (int i = 0; i < colliders.Count; i++)
 		{
@@ -75,6 +74,7 @@ public class GrappleDetection : MonoBehaviour
 				closestIndex = i;
 			}
 		}
+
 		if (colliders.Count <= 0)
 		{
 			nextTargetCircle.SetActive(false);
@@ -84,6 +84,7 @@ public class GrappleDetection : MonoBehaviour
 			nextTargetCircle.transform.position = colliders[closestIndex].transform.position;
 			nextTargetCircle.SetActive(true);
 		}
+
 		if (isHolding)
 		{
 			if (colliders.Count > 0)
@@ -101,11 +102,12 @@ public class GrappleDetection : MonoBehaviour
 		{
 			currentTargetCircle.SetActive(false);
 		}
+
 		if (colliders.Count > 0 && grappleReleaseTimer <= 0)
 		{
 			if (colliders[closestIndex] != null)
 			{
-				if (Input.GetKeyDown(KeyCode.E))
+				if (playerController.isGrappleInputPressedBuffered)
 				{
 					currentGrapplePoint = colliders[closestIndex].gameObject;
 					grapplePointBehaviour = currentGrapplePoint.GetComponent<GrapplePointBehaviour>();
@@ -117,6 +119,7 @@ public class GrappleDetection : MonoBehaviour
 			}
 		}
 	}
+
 	public void ReleaseGrapplePoint()
 	{
 		grappleReleaseTimer = grappleReleaseCooldown;
@@ -124,6 +127,7 @@ public class GrappleDetection : MonoBehaviour
 		grapplePointBehaviour = null;
 		isHolding = false;
 	}
+
 	public void SwitchCurrentNext()
 	{
 		currentGrapplePoint = nextGrapplePoint;

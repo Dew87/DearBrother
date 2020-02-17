@@ -580,6 +580,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5702585311898711826, guid: f8a66aa362b924144a5755f3944b43b5,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 642196602}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a66aa362b924144a5755f3944b43b5, type: 3}
 --- !u!50 &336994688 stripped
@@ -2329,6 +2334,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 336994687}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &642196602 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5702585311898711827, guid: f8a66aa362b924144a5755f3944b43b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 336994687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642196599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b11b14fd9eed01468a47e51caaf4e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &858866389
 GameObject:
   m_ObjectHideFlags: 0
@@ -2703,6 +2720,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7644161214377885576, guid: a1259fdb2dd61f843b0228f8216b71da,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644161214377885576, guid: a1259fdb2dd61f843b0228f8216b71da,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1259fdb2dd61f843b0228f8216b71da, type: 3}
 --- !u!1001 &1791997353
@@ -2909,6 +2936,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644161214377885576, guid: a1259fdb2dd61f843b0228f8216b71da,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644161214377885576, guid: a1259fdb2dd61f843b0228f8216b71da,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644161214377885576, guid: a1259fdb2dd61f843b0228f8216b71da,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644161214377885576, guid: a1259fdb2dd61f843b0228f8216b71da,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1259fdb2dd61f843b0228f8216b71da, type: 3}

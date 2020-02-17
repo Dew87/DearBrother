@@ -18,10 +18,14 @@ public class VolatilePlatform : MonoBehaviour
 		originalPosition = transform.position;
 		originalColor = spriteRenderer.color;
 		originalScale = transform.localScale;
+	}
+
+	private void OnEnable()
+	{
 		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
 	}
 
-	private void OnDestroy()
+	private void OnDisable()
 	{
 		// Can't be in OnDisable, as it should trigger even when object is deactivated (after breaking)
 		EventManager.StopListening("PlayerDeath", OnPlayerDeath);

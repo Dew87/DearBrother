@@ -461,6 +461,7 @@ MonoBehaviour:
   currentGrapplePoint: {fileID: 0}
   nextGrapplePoint: {fileID: 0}
   grapplePointBehaviour: {fileID: 0}
+  playerController: {fileID: 5702585311898711827}
 --- !u!114 &5702585311898711827
 MonoBehaviour:
   m_ObjectHideFlags: 0

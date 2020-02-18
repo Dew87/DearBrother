@@ -330,6 +330,7 @@ public class PlayerController : MonoBehaviour
 		rb2d.velocity = Vector2.zero;
 		velocity = Vector2.zero;
 		TransitionState(standingState);
+		FindObjectOfType<PlayerCamera>().SnapToTarget();
 	}
 
 	private void OnValidate()

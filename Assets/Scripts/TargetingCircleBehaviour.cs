@@ -8,10 +8,12 @@ public class TargetingCircleBehaviour : MonoBehaviour
 	public float endSize = 0.8f;
 	public float scaleSpeed = 1f;
 	public float rotationSpeed = 90f;
+
 	private void OnDisable()
 	{
 		gameObject.transform.localScale = new Vector3(startSize, startSize, startSize);
 	}
+
 	private void Update()
 	{
 		if (gameObject.transform.localScale.x > endSize)

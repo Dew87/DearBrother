@@ -8,6 +8,7 @@ public class PlayerGrappleBaseState : PlayerState
 	public float grappleLength { get; protected set; }
 
 	protected float maxGrappleLength;
+
 	public override void Enter()
 	{
 		base.Enter();
@@ -54,6 +55,7 @@ public class PlayerGrappleBaseState : PlayerState
 		}
 
 	}
+
 	public override void OnValidate()
 	{
 		base.OnValidate();

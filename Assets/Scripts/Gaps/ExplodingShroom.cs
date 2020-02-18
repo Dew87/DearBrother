@@ -64,12 +64,12 @@ public class ExplodingShroom : MonoBehaviour
 		sm.Update();
 	}
 
-    private void RegularStateEnter()
-    {
-        bounceCollider.enabled = true;
-        spriteRenderer.color = Color.white;
+	private void RegularStateEnter()
+	{
+		bounceCollider.enabled = true;
+		spriteRenderer.color = Color.white;
 		spriteRenderer.enabled = true;
-    }
+	}
 
 	private void RegularStateExit()
 	{

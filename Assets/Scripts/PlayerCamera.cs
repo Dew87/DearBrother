@@ -8,7 +8,6 @@ public class PlayerCamera : MonoBehaviour
 	public PlayerController playerController;
 	public Vector3 followOffset;
 	public float cameraSpeedWhenStill = 2f;
-
 	public float lookDownSpeed = 20f;
 	public float lookDownDelay = 0.2f;
 	public float lookDownDistance = 6f;
@@ -17,6 +16,7 @@ public class PlayerCamera : MonoBehaviour
 	private Collider2D objectToFollowCollider;
 	private LayerMask solidMask;
 	private float lookDownTimer;
+
 	[System.Serializable]
 	public struct Extents
 	{
@@ -42,8 +42,7 @@ public class PlayerCamera : MonoBehaviour
 
 	public Extents bufferArea = new Extents(1, 2, 0.5f);
 
-	// Start is called before the first frame update
-	void Start()
+	private void Start()
 	{
 		if (snapToPlayerOnStart)
 		{
@@ -62,12 +61,10 @@ public class PlayerCamera : MonoBehaviour
 		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
 	}
 
-	// Update is called once per frame
-	void Update()
+	private void Update()
 	{
 		Vector3 currentPosition = transform.position;
 		Vector3 newCameraPosition = currentPosition;
-
 		Vector3 followPosition = playerController.transform.position + followOffset;
 		Vector2 playerVelocity = playerController.rb2d.velocity;
 

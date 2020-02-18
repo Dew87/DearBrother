@@ -4793,5 +4793,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0efdbae6dfebd14e9a8d0cb4332ba00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windSpeedFalling: 20
-  windSpeedGliding: 60
+  playerAccelerationGliding: 40
+  playerAccelerationFalling: 40
+  animalWindSpeed: 50

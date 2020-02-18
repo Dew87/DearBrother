@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 5702585312812218394}
   m_Layer: 0
   m_Name: NormalCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 5702585313168279593}
   m_Layer: 0
   m_Name: CrouchingCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

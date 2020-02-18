@@ -18,7 +18,7 @@ public class PlayerWhipState : PlayerGrappleBaseState
 		base.Enter();
 		player.grappleDetection.grapplePointBehaviour.UseGrapple();
 		player.grappleDetection.ReleaseGrapplePoint();
-		if (player.previousState != player.whipState)
+		if (player.previousState != player.whipState && player.previousState != player.swingState)
 		{
 			player.TransitionState(player.previousState);
 		}

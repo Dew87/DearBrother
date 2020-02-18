@@ -9,9 +9,15 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	public float gravity = 10f;
 	public float maxFallSpeed = 20f;
 
+	public float maxAscendSpeed = 20f;
+	public float maxHorizontalSpeed = 40f;
+
 	public Sprite idleSprite;
 	public Sprite moveSprite;
 	public Collider2D solidCollider;
+
+	[HideInInspector] public bool isInWind;
+	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
 
 	private const float overlapDistance = 0.05f;
 
@@ -77,16 +83,20 @@ public class AnimalWhipBehaviour : MonoBehaviour
 			spriteRenderer.sprite = moveSprite;
 			velocity.x = direction.x * moveSpeed;
 		}
-		else
+		else if (!isInWind)
 		{
 			spriteRenderer.sprite = idleSprite;
 			velocity.x = 0;
 		}
-		velocity.y -= gravity * Time.deltaTime;
-		if (velocity.y < -maxFallSpeed)
+		if (isInWind)
 		{
-			velocity.y = -maxFallSpeed;
+			velocity += windSpeed * Time.deltaTime;
 		}
+
+		velocity.y -= gravity * Time.deltaTime;
+
+		velocity.y = Mathf.Clamp(velocity.y, -maxFallSpeed, maxAscendSpeed);
+		velocity.x = Mathf.Clamp(velocity.x, -maxHorizontalSpeed, maxHorizontalSpeed);
 
 		rb2d.velocity = velocity;
 	}

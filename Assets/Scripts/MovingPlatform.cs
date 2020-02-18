@@ -10,7 +10,7 @@ public class MovingPlatform : MonoBehaviour
 	public float moveSpeed = 5f;
 	public float tolerance = 1f;
 
-	private List<GameObject> children;
+	private List<Collider2D> childrenColliders = new List<Collider2D>();
 
 	private float overlapDistance = 0.075f;
 
@@ -82,25 +82,33 @@ public class MovingPlatform : MonoBehaviour
 				}
 			}
 		}
+    }
+	private void Update()
+	{
 		Bounds bounds = platformCollider.bounds;
 		float y = bounds.max.y;
 		Vector2 position = new Vector2(bounds.center.x, y + overlapDistance * 0.5f);
 		Vector2 size = new Vector2(bounds.size.x, overlapDistance);
-		Collider2D[] colliders = Physics2D.OverlapBoxAll(position, size, 0);
-		for (int i = 0; i < colliders.Length; i++)
+		List<Collider2D> colliders = new List<Collider2D>();
+		colliders.AddRange(Physics2D.OverlapBoxAll(position, size, 0));
+		for (int i = 0; i < colliders.Count; i++)
 		{
-			if (!children.Contains(colliders[i].gameObject.transform.parent.gameObject))
+			if (!childrenColliders.Contains(colliders[i]))
 			{
 				if (colliders[i].gameObject.transform.parent.GetComponent<Rigidbody2D>() != null && colliders[i].gameObject.transform.parent.gameObject != gameObject)
 				{
-					Debug.Log(colliders[i].gameObject.transform.parent.gameObject, colliders[i].gameObject.transform.parent.gameObject);
-					children.Add(colliders[i].gameObject.transform.parent.gameObject);
+					colliders[i].gameObject.transform.parent.parent = gameObject.transform;
+					childrenColliders.Add(colliders[i]);
 				}
 			}
 		}
-		List<GameObject> remainingItems;
-		for (int i = 0; i <  colliders.Length; i++)
+		for (int i = 0; i < childrenColliders.Count; i++)
 		{
+			if (!colliders.Contains(childrenColliders[i]))
+			{
+				childrenColliders[i].gameObject.transform.parent.parent = null;
+				childrenColliders.Remove(childrenColliders[i]);
+			}
 		}
-    }
+	}
 }

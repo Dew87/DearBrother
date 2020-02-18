@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Killer : MonoBehaviour
 {
-	public System.Action onHitPlayer = delegate { };
-
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		PlayerHealth player = collision.GetComponentInParent<PlayerHealth>();
-		if (player != null)
+		IKillable killable = collision.GetComponentInParent<IKillable>();
+		if (killable != null)
 		{
-			player.TakeDamage();
-			//onHitPlayer.Invoke();
+			killable.TakeDamage();
 		}
 	}
 }

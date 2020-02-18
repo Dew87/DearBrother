@@ -29,7 +29,9 @@ public class PlayerCrawlingState : PlayerState
 
 		player.ResetJumpGraceTimer();
 
-		if (!player.isCrouchInputHeld)
+		bool canStand = !player.IsNormalColliderInWall();
+
+		if (!player.isCrouchInputHeld && canStand)
 		{
 			player.TransitionState(player.walkingState);
 			return;
@@ -41,7 +43,7 @@ public class PlayerCrawlingState : PlayerState
 			return;
 		}
 
-		if (player.isJumpInputPressedBuffered)
+		if (player.isJumpInputPressedBuffered && canStand)
 		{
 			player.TransitionState(player.jumpingState);
 			return;

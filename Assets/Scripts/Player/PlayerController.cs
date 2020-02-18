@@ -233,6 +233,12 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public bool IsNormalColliderInWall()
+	{
+		Bounds bounds = normalCollider.bounds;
+		return Physics2D.OverlapBox(bounds.center, bounds.size, 0, solidMask);
+	}
+
 	public void ResetJumpInputBuffer()
 	{
 		jumpInputBufferTimer = 0;

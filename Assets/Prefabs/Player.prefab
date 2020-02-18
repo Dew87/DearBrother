@@ -462,7 +462,7 @@ MonoBehaviour:
   walkingState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
-    speed: 4.3
+    speed: 4.4
     acceleration: 40
     deceleration: 30
   crouchingState:

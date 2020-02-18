@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 	public PlayerState currentState { get; private set; }
 
 	private const float overlapDistance = 0.05f;
+
 	private const float overlapSizeOffset = 0.02f;
 
 	private int solidMask;

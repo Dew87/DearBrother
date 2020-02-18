@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
 	public PlayerState currentState { get; private set; }
 
 	private const float overlapDistance = 0.05f;
+
 	private const float overlapSizeOffset = 0.02f;
 
 	private int solidMask;
@@ -235,6 +236,12 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public bool IsNormalColliderInWall()
+	{
+		Bounds bounds = normalCollider.bounds;
+		return Physics2D.OverlapBox(bounds.center, bounds.size, 0, solidMask);
+	}
+
 	public void ResetJumpInputBuffer()
 	{
 		jumpInputBufferTimer = 0;
@@ -332,6 +339,7 @@ public class PlayerController : MonoBehaviour
 		rb2d.velocity = Vector2.zero;
 		velocity = Vector2.zero;
 		TransitionState(standingState);
+		FindObjectOfType<PlayerCamera>().SnapToTarget();
 	}
 
 	private void OnValidate()

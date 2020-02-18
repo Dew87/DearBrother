@@ -164,6 +164,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &147091460 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 5702585311898711823, guid: f8a66aa362b924144a5755f3944b43b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1884790899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &154299767
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,8 +356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbda0de6526ef1441911e25bd30bbc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapToPlayerOnStart: 1
-  playerController: {fileID: 1884790900}
+  snapToTargetOnStart: 1
+  objectToFollow: {fileID: 147091460}
   followOffset: {x: 0.5, y: 2, z: 0}
   cameraSpeedWhenStill: 2
   lookDownSpeed: 10
@@ -32166,18 +32172,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a66aa362b924144a5755f3944b43b5, type: 3}
---- !u!114 &1884790900 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5702585311898711827, guid: f8a66aa362b924144a5755f3944b43b5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1884790899}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b11b14fd9eed01468a47e51caaf4e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1979022639
 PrefabInstance:
   m_ObjectHideFlags: 0

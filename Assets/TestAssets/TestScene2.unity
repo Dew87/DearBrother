@@ -2334,11 +2334,6 @@ PrefabInstance:
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1120768835443703552, guid: 4d8d0011f4a94544ab0a851eea4b3e3d,
-        type: 3}
-      propertyPath: maxFallSpeed
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8d0011f4a94544ab0a851eea4b3e3d, type: 3}
 --- !u!1001 &1026935679

@@ -11,11 +11,9 @@ public class PlayerSwingState : PlayerGrappleBaseState
 	public float mass = 10f;
 	[Tooltip("Fall faster when grapple is not fully stretched")]
 	public float gravityMultiplier = 3f;
-
 	public bool doesResetDoubleJump = true;
 
 	private float gravityMultiplierTolerance = 0.5f;
-
 	private float maxVelocityMagnitude = 40;
 	private Vector2 gravity = new Vector2(0, -1);
 	private Vector2 grappleDirection;
@@ -23,6 +21,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 	private Vector2 pendulumSideDirection;
 	private Vector2 tangentDirection;
 	private bool doesPlayerHaveParentAtStart = false;
+
 	public override void Enter()
 	{
 		base.Enter();
@@ -36,6 +35,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 			player.doesDoubleJumpRemain = true;
 		}
 		player.ResetGrappleInputBuffer();
+
 		if (player.lineRenderer != null && player.grappleDetection.currentGrapplePoint != null)
 		{
 			player.lineRenderer.SetPosition(0, player.transform.position);
@@ -80,12 +80,14 @@ public class PlayerSwingState : PlayerGrappleBaseState
 			player.TransitionState(player.fallingState);
 			return;
 		}
+
 		if (player.lineRenderer != null && player.grappleDetection.currentGrapplePoint != null)
 		{
 			player.lineRenderer.SetPosition(0, player.transform.position);
 			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
 		}
 	}
+
 	public override void FixedUpdate()
 	{
 		if (player.velocity.magnitude > maxVelocityMagnitude)
@@ -163,6 +165,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 			}
 		}
 	}
+
 	public override void Exit()
 	{
 		base.Exit();

@@ -9,14 +9,16 @@ public class ProjectileEjector : MonoBehaviour
 	public float cycleOffset = 0f;
 	public Vector2 spawnPosition;
 	public Projectile projectilePrefab;
+
 	[Space()]
 	[Tooltip("Degrees, 0 = right, 90 = up, etc")]
 	[Range(0,360f)]
 	[UnityEngine.Serialization.FormerlySerializedAs("directionOverride")]
 	public float fireDirection = 180f;
 
-	private float timer;
 	private PrefabPool<Projectile> pool;
+
+	private float timer;
 
 	private void Awake()
 	{

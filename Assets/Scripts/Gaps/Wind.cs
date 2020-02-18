@@ -6,6 +6,7 @@ public class Wind : MonoBehaviour
 {
 	public float windSpeedFalling = 1f;
 	public float windSpeedGliding = 2f;
+
 	private void OnTriggerStay2D(Collider2D collision)
 	{
 		if (collision.GetComponent<PlayerController>() != null)
@@ -23,6 +24,7 @@ public class Wind : MonoBehaviour
 			}
 		}
 	}
+
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		if (collision.GetComponent<PlayerController>() != null)

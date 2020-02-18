@@ -60,3 +60,5 @@ crashlytics-build.properties
 
 
 ProjectSettings/Physics2DSettings.asset
+
+fmod_editor.log

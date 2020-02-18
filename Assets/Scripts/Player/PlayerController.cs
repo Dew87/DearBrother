@@ -49,6 +49,9 @@ public class PlayerController : MonoBehaviour
 	public Rigidbody2D rb2d { get; private set; }
 	public Collider2D currentCollider { get; private set; }
 
+	[HideInInspector] public bool isInWind = false;
+	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
+
 	public PlayerState previousState { get; private set; }
 	public PlayerState currentState { get; private set; }
 

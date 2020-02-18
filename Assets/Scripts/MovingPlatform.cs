@@ -12,6 +12,7 @@ public class MovingPlatform : MonoBehaviour
 
 	private int currentPositionInPath;
 	private bool isMovingForward;
+
 	private void OnDrawGizmos()
 	{
 		for (int i = 0; i < pathPoints.Count; i++)
@@ -37,8 +38,9 @@ public class MovingPlatform : MonoBehaviour
 			}
 		}
 	}
+
 	private void Start()
-    {
+	{
 		int closestIndex = 0;
 		for (int i = 0; i < pathPoints.Count; i++)
 		{
@@ -48,10 +50,10 @@ public class MovingPlatform : MonoBehaviour
 			}
 		}
 		currentPositionInPath = closestIndex;
-    }
+	}
 
-    private void FixedUpdate()
-    {
+	private void FixedUpdate()
+	{
 		transform.position = Vector2.MoveTowards(transform.position, pathPoints[currentPositionInPath].position, Time.deltaTime * moveSpeed);
 		if (Vector2.Distance(transform.position, pathPoints[currentPositionInPath].position) < tolerance)
 		{
@@ -78,11 +80,13 @@ public class MovingPlatform : MonoBehaviour
 				}
 			}
 		}
-    }
+	}
+
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		collision.gameObject.transform.parent = transform;
 	}
+
 	private void OnCollisionExit2D(Collision2D collision)
 	{
 		collision.gameObject.transform.parent = null;

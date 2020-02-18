@@ -8,11 +8,9 @@ public class GrappleDetection : MonoBehaviour
 	public float detectionRadius = 5f;
 	public GameObject currentTargetCircle;
 	public GameObject nextTargetCircle;
-
 	public GameObject currentGrapplePoint;
 	public GameObject nextGrapplePoint;
 	public GrapplePointBehaviour grapplePointBehaviour;
-
 	public PlayerController playerController;
 
 	private GameObject nearestGrapplePoint;

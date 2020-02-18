@@ -15,7 +15,6 @@ public class PlayerHealth : MonoBehaviour, IKillable
 			yield return null;
 		}
 
-		Debug.Log("PlayerDeath Triggered by " + this.ToString());
 		EventManager.TriggerEvent("PlayerDeath");
 		Time.timeScale = 1;
 
@@ -28,12 +27,15 @@ public class PlayerHealth : MonoBehaviour, IKillable
 		}
 
 	}
+
 	public float respawnTime = 0.5f;
 	public SpriteRenderer fadeOutSprite;
+
 	public void Start()
 	{
 		fadeOutSprite.color = new Color(fadeOutSprite.color.r, fadeOutSprite.color.g, fadeOutSprite.color.b, 0);
 	}
+
 	public void TakeDamage()
 	{
 		Time.timeScale = 0;

@@ -9,9 +9,9 @@ public class Projectile : PoolableBehaviour
     public float direction = 270f;
     public float speed = 3f;
 
-    private float timer;
-
     private Rigidbody2D rb2d;
+
+    private float timer;
 
     private void Start()
     {

@@ -23,7 +23,7 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	private int solidMask;
 	private Vector2 originalPosition;
 
-	void Start()
+	private void Start()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		rb2d = GetComponent<Rigidbody2D>();
@@ -41,18 +41,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	private void OnDisable()
 	{
 		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
-	}
-
-	private void OnPlayerDeath()
-	{
-		Respawn();
-	}
-
-	private void Respawn()
-	{
-		rb2d.position = originalPosition;
-		rb2d.velocity = Vector2.zero;
-		transform.rotation = Quaternion.identity;
 	}
 
 	private void FixedUpdate()
@@ -91,6 +79,36 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		rb2d.velocity = velocity;
 	}
 
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		if (rb2d.velocity.y < 0 && collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth player))
+		{
+			Bounds playerBounds = collision.collider.bounds;
+			Bounds animalBounds = collision.otherCollider.bounds;
+			PlayerController playerController = player.GetComponent<PlayerController>();
+			if (playerController.CheckOverlaps(Vector2.down))
+			{
+				Vector2 normal = collision.GetContact(0).normal;
+				if (normal.y > 0)
+				{
+					player.TakeDamage();
+				}
+			}
+		}
+	}
+
+	private void OnPlayerDeath()
+	{
+		Respawn();
+	}
+
+	private void Respawn()
+	{
+		rb2d.position = originalPosition;
+		rb2d.velocity = Vector2.zero;
+		transform.rotation = Quaternion.identity;
+	}
+
 	public void Whip(GameObject player)
 	{
 		moveTimer = moveTimePeriod;
@@ -109,24 +127,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
 				transform.Rotate(Vector3.up, 180);
 			}
 			direction = Vector2.right;
-		}
-	}
-
-	private void OnCollisionStay2D(Collision2D collision)
-	{
-		if (rb2d.velocity.y < 0 && collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth player))
-		{
-			Bounds playerBounds = collision.collider.bounds;
-			Bounds animalBounds = collision.otherCollider.bounds;
-			PlayerController playerController = player.GetComponent<PlayerController>();
-			if (playerController.CheckOverlaps(Vector2.down))
-			{
-				Vector2 normal = collision.GetContact(0).normal;
-				if (normal.y > 0)
-				{
-					player.TakeDamage();
-				}
-			}
 		}
 	}
 }

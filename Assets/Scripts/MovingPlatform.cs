@@ -10,6 +10,10 @@ public class MovingPlatform : MonoBehaviour
 	public float moveSpeed = 5f;
 	public float tolerance = 1f;
 
+	private List<GameObject> children;
+
+	private float overlapDistance = 0.075f;
+
 	private int currentPositionInPath;
 	private bool isMovingForward;
 	private void OnDrawGizmos()
@@ -78,13 +82,25 @@ public class MovingPlatform : MonoBehaviour
 				}
 			}
 		}
+		Bounds bounds = platformCollider.bounds;
+		float y = bounds.max.y;
+		Vector2 position = new Vector2(bounds.center.x, y + overlapDistance * 0.5f);
+		Vector2 size = new Vector2(bounds.size.x, overlapDistance);
+		Collider2D[] colliders = Physics2D.OverlapBoxAll(position, size, 0);
+		for (int i = 0; i < colliders.Length; i++)
+		{
+			if (!children.Contains(colliders[i].gameObject.transform.parent.gameObject))
+			{
+				if (colliders[i].gameObject.transform.parent.GetComponent<Rigidbody2D>() != null && colliders[i].gameObject.transform.parent.gameObject != gameObject)
+				{
+					Debug.Log(colliders[i].gameObject.transform.parent.gameObject, colliders[i].gameObject.transform.parent.gameObject);
+					children.Add(colliders[i].gameObject.transform.parent.gameObject);
+				}
+			}
+		}
+		List<GameObject> remainingItems;
+		for (int i = 0; i <  colliders.Length; i++)
+		{
+		}
     }
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		collision.gameObject.transform.parent = transform;
-	}
-	private void OnCollisionExit2D(Collision2D collision)
-	{
-		collision.gameObject.transform.parent = null;
-	}
 }

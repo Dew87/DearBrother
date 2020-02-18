@@ -136,7 +136,7 @@ public class PlayerCamera : MonoBehaviour
 		}
 	}
 
-	private void SnapToTarget()
+	public void SnapToTarget()
 	{
 		Vector3 position = transform.position;
 		Vector3 followPosition = playerController.transform.position + followOffset;
@@ -147,6 +147,5 @@ public class PlayerCamera : MonoBehaviour
 
 	private void OnPlayerDeath()
 	{
-		SnapToTarget();
 	}
 }

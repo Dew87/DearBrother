@@ -9,16 +9,18 @@ public class PlayerWhipState : PlayerGrappleBaseState
 	{
 		base.Awake();
 	}
+
 	public override void Start()
 	{
 		base.Start();
 	}
+
 	public override void Enter()
 	{
 		base.Enter();
 		player.grappleDetection.grapplePointBehaviour.UseGrapple();
 		player.grappleDetection.ReleaseGrapplePoint();
-		if (player.previousState != player.whipState)
+		if (player.previousState != player.whipState && player.previousState != player.swingState)
 		{
 			player.TransitionState(player.previousState);
 		}
@@ -27,18 +29,22 @@ public class PlayerWhipState : PlayerGrappleBaseState
 			player.TransitionState(player.fallingState);
 		}
 	}
+
 	public override void Update()
 	{
 		base.Update();
 	}
+
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
 	}
+
 	public override void Exit()
 	{
 		base.Exit();
 	}
+
 	public override void OnValidate()
 	{
 		base.OnValidate();

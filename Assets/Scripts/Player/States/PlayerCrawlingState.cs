@@ -49,11 +49,11 @@ public class PlayerCrawlingState : PlayerState
 			return;
 		}
 
-        if (!player.CheckOverlaps(Vector2.down))
-        {
-            player.TransitionState(player.fallingState);
-            return;
-        }
+		if (!player.CheckOverlaps(Vector2.down))
+		{
+			player.TransitionState(player.fallingState);
+			return;
+		}
 
 		player.CheckForVolatilePlatforms();
 

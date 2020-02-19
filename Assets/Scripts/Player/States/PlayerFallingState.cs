@@ -51,13 +51,6 @@ public class PlayerFallingState : PlayerState
 
         if (ground)
         {   
-            if (ground.TryGetComponent<Bouncer>(out Bouncer bouncer))
-            {
-                bouncer.Bounce(player);
-                return;
-            }
-
-
             if (landingLagTimer > 0)
             {
                 if (player.velocity.x == 0)

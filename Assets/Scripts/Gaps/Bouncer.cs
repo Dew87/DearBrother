@@ -17,13 +17,20 @@ public class Bouncer : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.enabled && collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
+		if (collision.enabled)
 		{
-			Bounce(player);
+			if (collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
+			{
+				Bounce(player);
+			}
+			else if (collision.gameObject.TryGetComponent<AnimalWhipBehaviour>(out _))
+			{
+				Bounce(collision.rigidbody);
+			}
 		}
 	}
 
-	public virtual void Bounce(PlayerController player)
+	public void Bounce(PlayerController player)
 	{
 		player.TransitionState(player.jumpingState);
 		player.velocity = rotatedUp * speedGained;
@@ -32,6 +39,12 @@ public class Bouncer : MonoBehaviour
 			player.doesDoubleJumpRemain = true;
 		}
 		player.jumpingState.minimumDurationOverride = minimumJumpDuration;
+		onBounce.Invoke();
+	}
+
+	public void Bounce(Rigidbody2D rigidbody2D)
+	{
+		rigidbody2D.velocity = rotatedUp * speedGained;
 		onBounce.Invoke();
 	}
 

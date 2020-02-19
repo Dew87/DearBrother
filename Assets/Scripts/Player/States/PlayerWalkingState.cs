@@ -26,7 +26,13 @@ public class PlayerWalkingState : PlayerState
 	{
 		base.FixedUpdate();
 
-		player.MoveHorizontally(speed, acceleration, deceleration);
+		float maxSpeed = speed;
+		if (player.CheckForMovementSpeedModifier(out MovementSpeedModifier modifier))
+		{
+			maxSpeed = modifier.walkSpeed;
+		}
+
+		player.MoveHorizontally(maxSpeed, acceleration, deceleration);
 	}
 
 	public override void Start()

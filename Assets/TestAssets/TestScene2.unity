@@ -2060,7 +2060,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -2211,6 +2211,95 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &512714310
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8423659522629537987, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_Name
+      value: ExplodingShroom (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0000014603138
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537999, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.27772725
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537999, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.4445455
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: poisonCloudDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a3ac9109515fc747aede7f81a06b30c, type: 3}
 --- !u!1 &551774367 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5702585311898711817, guid: f8a66aa362b924144a5755f3944b43b5,
@@ -2332,7 +2421,7 @@ PrefabInstance:
     - target: {fileID: 1120768835443703555, guid: 4d8d0011f4a94544ab0a851eea4b3e3d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.93
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 1120768835443703555, guid: 4d8d0011f4a94544ab0a851eea4b3e3d,
         type: 3}
@@ -2835,12 +2924,12 @@ PrefabInstance:
     - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.41
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.47
+      value: -0.79
       objectReference: {fileID: 0}
     - target: {fileID: 8423659522629537997, guid: 5a3ac9109515fc747aede7f81a06b30c,
         type: 3}

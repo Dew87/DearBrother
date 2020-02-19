@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	[Tooltip("If jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
 	public float jumpGracePeriod = 0.2f;
 	public float grappleInputBuffer = 0.2f;
+
 	[Space()]
 	public Collider2D normalCollider;
 	public Collider2D crouchingCollider;
@@ -37,7 +38,6 @@ public class PlayerController : MonoBehaviour
 	public bool doesDoubleJumpRemain;
 	public Vector2 velocity;
 
-
 	public float horizontalInputAxis { get; private set; }
 	public float verticalInputAxis { get; private set; }
 	public bool isFacingRight { get; private set; }
@@ -49,11 +49,13 @@ public class PlayerController : MonoBehaviour
 	public Rigidbody2D rb2d { get; private set; }
 	public Collider2D currentCollider { get; private set; }
 
+	[HideInInspector] public bool isInWind = false;
+	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
+
 	public PlayerState previousState { get; private set; }
 	public PlayerState currentState { get; private set; }
 
 	private const float overlapDistance = 0.05f;
-
 	private const float overlapSizeOffset = 0.02f;
 
 	private int solidMask;
@@ -314,6 +316,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		verticalInputAxis = Input.GetAxisRaw("Vertical");
+		isCrouchInputHeld = verticalInputAxis < -inputThreshold;
 
 		isJumpInputHeld = Input.GetAxisRaw("Jump") > inputThreshold;
 		if (isJumpInputHeld && !jumpInputIsTriggered)
@@ -325,8 +328,6 @@ public class PlayerController : MonoBehaviour
 		{
 			jumpInputIsTriggered = false;
 		}
-
-		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < -inputThreshold;
 	}
 
 	private void OnPlayerDeath()

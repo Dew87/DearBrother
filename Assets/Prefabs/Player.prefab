@@ -499,21 +499,21 @@ MonoBehaviour:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
     maxFallSpeed: 10
+    maxFallSpeedInWind: 4
+    maxHorizontalSpeedInWind: 6
     landingLagDurationThreshold: 12
     gravity: 51
     acceleration: 18
     deceleration: 20
-    isInWind: 0
-    windSpeed: {x: 0, y: 0}
   glidingState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
     descendSpeed: 2
+    maxAscendSpeedInWind: 10
+    maxHorizontalSpeedInWind: 10
     verticalDeceleration: 20
     horizontalAcceleration: 8
     horizontalDeceleration: 5
-    isInWind: 0
-    windSpeed: {x: 0, y: 0}
   landingLagState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
@@ -542,6 +542,8 @@ MonoBehaviour:
   hasDoubleJump: 1
   doesDoubleJumpRemain: 1
   velocity: {x: 0, y: 0}
+  isInWind: 0
+  windSpeed: {x: 0, y: 0}
 --- !u!114 &5702585311898711820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,7 +666,7 @@ GameObject:
   - component: {fileID: 5702585312812218394}
   m_Layer: 0
   m_Name: NormalCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -721,7 +723,7 @@ GameObject:
   - component: {fileID: 5702585313168279593}
   m_Layer: 0
   m_Name: CrouchingCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

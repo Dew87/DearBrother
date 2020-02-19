@@ -8,8 +8,9 @@ public class VolatilePlatform : MonoBehaviour
 	[Tooltip("Time after having broken (= collider disabled) before platform respawns. If <= 0, never respawns")]
 	public float respawnDelay = 6f;
 
-	private bool isBreaking;
 	private SpriteRenderer spriteRenderer;
+
+	private bool isBreaking;
 	private Vector3 originalPosition;
 	private Color originalColor;
 	private Vector3 originalScale;

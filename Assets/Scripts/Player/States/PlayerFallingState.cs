@@ -6,48 +6,51 @@ using UnityEngine;
 public class PlayerFallingState : PlayerState
 {
 	public float maxFallSpeed = 10;
+	public float maxFallSpeedInWind = 4f;
+	public float maxHorizontalSpeedInWind = 40f;
 	[Tooltip("If the player has fallen for at least this manys seconds when landing, landing lag occurs")]
 	public float landingLagDurationThreshold = 12f;
 	public float gravity = 51;
 	public float acceleration = 18;
 	public float deceleration = 20;
-	[HideInInspector] public bool isInWind = false;
-	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
 
 	private float landingLagTimer;
 	
-    public override void Enter()
-    {
-        base.Enter();
+	public override void Enter()
+	{
+		base.Enter();
 
-        landingLagTimer = landingLagDurationThreshold;
-    }
+		landingLagTimer = landingLagDurationThreshold;
+	}
 
-    public override void Exit()
-    {
-        base.Exit();
+	public override void Exit()
+	{
+		base.Exit();
 
-        player.ResetJumpGraceTimer();
-    }
+		player.ResetJumpGraceTimer();
+	}
 
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
+	public override void FixedUpdate()
+	{
+		base.FixedUpdate();
 
-        player.MoveHorizontally(player.walkingState.speed, acceleration, deceleration);
+        player.MoveHorizontally(player.walkingState.speed, acceleration, player.isInWind ? deceleration / (Mathf.Abs(player.windSpeed.x) + 1) : deceleration);
 
-        player.velocity.y = Mathf.MoveTowards(player.velocity.y, -maxFallSpeed, gravity * Time.deltaTime);
-		if (isInWind)
+		if (player.isInWind)
 		{
-			player.velocity += windSpeed * Time.deltaTime;
+			player.velocity.y = Mathf.MoveTowards(player.velocity.y, -maxFallSpeedInWind, gravity * Time.deltaTime);
+			player.velocity.x = Mathf.MoveTowards(player.velocity.x, maxHorizontalSpeedInWind, player.windSpeed.x * Time.deltaTime);
 		}
-
+		else
+		{
+			player.velocity.y = Mathf.MoveTowards(player.velocity.y, -maxFallSpeed, gravity * Time.deltaTime);
+		}
 		if (landingLagTimer > 0)
 		{
 			landingLagTimer -= Time.deltaTime;
 		}
 
-        Collider2D ground = player.CheckOverlaps(Vector2.down);
+		Collider2D ground = player.CheckOverlaps(Vector2.down);
 
         if (ground)
         {   
@@ -69,42 +72,42 @@ public class PlayerFallingState : PlayerState
             return;
         }
 
-        if (player.jumpGraceTimer > 0 && player.isJumpInputPressedBuffered)
-        {
-            player.TransitionState(player.jumpingState);
-        }
-        else if (player.hasDoubleJump && player.doesDoubleJumpRemain && player.isJumpInputPressedBuffered)
-        {
-            player.TransitionState(player.doubleJumpingState);
-        }
-        else if (player.isJumpInputHeld)
-        {
-            player.TransitionState(player.glidingState);
-        }
-        else if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
-        {
-            if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
-            {
-                player.TransitionState(player.swingState);
-            }
-            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
-            {
-                player.TransitionState(player.pullState);
-            }
-            else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
-            {
-                player.TransitionState(player.whipState);
-            }
-        }
-    }
+		if (player.jumpGraceTimer > 0 && player.isJumpInputPressedBuffered)
+		{
+			player.TransitionState(player.jumpingState);
+		}
+		else if (player.hasDoubleJump && player.doesDoubleJumpRemain && player.isJumpInputPressedBuffered)
+		{
+			player.TransitionState(player.doubleJumpingState);
+		}
+		else if (player.isJumpInputHeld)
+		{
+			player.TransitionState(player.glidingState);
+		}
+		else if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
+		{
+			if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Swing)
+			{
+				player.TransitionState(player.swingState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Pull)
+			{
+				player.TransitionState(player.pullState);
+			}
+			else if (player.grappleDetection.grapplePointBehaviour.grappleType == GrapplePointBehaviour.GrappleType.Whip)
+			{
+				player.TransitionState(player.whipState);
+			}
+		}
+	}
 
-    public override void Start()
-    {
-        base.Start();
-    }
+	public override void Start()
+	{
+		base.Start();
+	}
 
-    public override void Update()
-    {
-        base.Update();
-    }
+	public override void Update()
+	{
+		base.Update();
+	}
 }

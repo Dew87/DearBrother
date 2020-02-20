@@ -12,8 +12,9 @@ public class PlayerController : MonoBehaviour
 	public float grappleInputBuffer = 0.2f;
 
 	[Space()]
-	public Collider2D normalCollider;
-	public Collider2D crouchingCollider;
+	public BoxCollider2D boxCollider2D;
+	public Bounds standingColliderBounds = new Bounds(new Vector3(0, -0.0184f, 0), new Vector3(0.53f, 0.9632f, 0));
+	public Bounds crouchingColliderBounds = new Bounds(new Vector3(0, -0.257f, 0), new Vector3(0.53f, 0.486f, 0));
 	public SpriteRenderer spriteRenderer;
 	public GrappleDetection grappleDetection;
 	public LineRenderer lineRenderer;
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
 	public bool isGrappleInputPressedBuffered => grappleInputBufferTimer > 0;
 	public float jumpGraceTimer { get; private set; }
 	public Rigidbody2D rb2d { get; private set; }
-	public Collider2D currentCollider { get; private set; }
+	public BoxCollider2D currentCollider { get; private set; }
 
 	[HideInInspector] public bool isInWind = false;
 	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
@@ -91,14 +92,13 @@ public class PlayerController : MonoBehaviour
 	private void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
+		currentCollider = boxCollider2D;
 		solidMask = LayerMask.GetMask("Solid", "SolidNoBlockGrapple");
 
 		isFacingRight = false;
 		jumpInputIsTriggered = false;
 		grappleInputIsTriggered = false;
-		normalCollider.enabled = false;
-		crouchingCollider.enabled = false;
-		SetCollider(normalCollider);
+		SetCollider(standingColliderBounds);
 
 		foreach (PlayerState state in IterateStates())
 		{
@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
 
 	public bool IsNormalColliderInWall()
 	{
-		Bounds bounds = normalCollider.bounds;
+		Bounds bounds = standingColliderBounds;
 		return Physics2D.OverlapBox(bounds.center, bounds.size, 0, solidMask);
 	}
 
@@ -280,14 +280,10 @@ public class PlayerController : MonoBehaviour
 		grappleInputBufferTimer = 0;
 	}
 
-	public void SetCollider(Collider2D collider)
+	public void SetCollider(Bounds colliderBounds)
 	{
-		if (currentCollider)
-		{
-			currentCollider.enabled = false;
-		}
-		collider.enabled = true;
-		currentCollider = collider;
+		currentCollider.size = colliderBounds.size;
+		currentCollider.offset = colliderBounds.center;
 	}
 
 	public void TransitionState(PlayerState newState)

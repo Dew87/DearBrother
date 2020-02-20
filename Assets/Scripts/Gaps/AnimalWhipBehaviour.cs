@@ -6,6 +6,8 @@ public class AnimalWhipBehaviour : MonoBehaviour
 {
 	public float moveTimePeriod = 0.5f;
 	public float moveSpeed = 5f;
+	public float acceleration = 20f;
+	public float deceleration = 20f;
 	public float gravity = 10f;
 	public float maxFallSpeed = 20f;
 
@@ -69,12 +71,15 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		{
 			moveTimer -= Time.deltaTime;
 			spriteRenderer.sprite = moveSprite;
-			velocity.x = direction.x * moveSpeed;
+			if (Mathf.Abs(velocity.x) < moveSpeed)
+			{
+				velocity.x = Mathf.MoveTowards(velocity.x, direction.x * moveSpeed, acceleration); 
+			}
 		}
 		else if (!isInWind)
 		{
 			spriteRenderer.sprite = idleSprite;
-			velocity.x = 0;
+			velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
 		}
 		if (isInWind)
 		{

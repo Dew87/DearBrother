@@ -78,6 +78,14 @@ public class PlayerCrawlingState : PlayerState
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
-		player.MoveHorizontally(speed, acceleration, deceleration);
+
+		float maxSpeed = speed;
+		if (player.CheckForMovementSpeedModifier(out MovementSpeedModifier modifier))
+		{
+			maxSpeed = modifier.crawlSpeed;
+		}
+
+
+		player.MoveHorizontally(maxSpeed, acceleration, deceleration);
 	}
 }

@@ -12,8 +12,8 @@ public class PlayerGlidingState : PlayerState
     public float horizontalAcceleration = 20f;
     public float horizontalDeceleration = 10f;
 	public override void FixedUpdate()
-    {
-        base.FixedUpdate();
+	{
+		base.FixedUpdate();
 
         player.MoveHorizontally(player.walkingState.speed, horizontalAcceleration, horizontalDeceleration);
 		if (player.isInWind)
@@ -34,15 +34,9 @@ public class PlayerGlidingState : PlayerState
 			player.velocity.y = 0;
 		}
 
-        Collider2D ground = player.CheckOverlaps(Vector2.down);
+		Collider2D ground = player.CheckOverlaps(Vector2.down);
 		if (ground)
         {
-            if (ground.TryGetComponent<Bouncer>(out Bouncer bouncer))
-            {
-                bouncer.Bounce(player);
-                return;
-            }
-
             if (player.velocity.x == 0)
             {
                 player.TransitionState(player.standingState);
@@ -55,14 +49,14 @@ public class PlayerGlidingState : PlayerState
         }
     }
 
-    public override void Update()
-    {
-        base.Update();
+	public override void Update()
+	{
+		base.Update();
 
-        if (!player.isJumpInputHeld)
-        {
-            player.TransitionState(player.fallingState);
-        }
+		if (!player.isJumpInputHeld)
+		{
+			player.TransitionState(player.fallingState);
+		}
 
 
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)

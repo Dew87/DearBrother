@@ -5,12 +5,16 @@ using UnityEngine;
 public class VolatilePlatform : MonoBehaviour
 {
 	public float timeBeforeFalling = 1f;
+	[Tooltip("Time after having broken (= collider disabled) before platform respawns. If <= 0, never respawns")]
+	public float respawnDelay = 6f;
+
+	private SpriteRenderer spriteRenderer;
 
 	private bool isBreaking;
-	private SpriteRenderer spriteRenderer;
 	private Vector3 originalPosition;
 	private Color originalColor;
 	private Vector3 originalScale;
+	private float respawnTimer;
 
 	private void Start()
 	{
@@ -34,7 +38,12 @@ public class VolatilePlatform : MonoBehaviour
 	private void OnPlayerDeath()
 	{
 		StopAllCoroutines();
-		Debug.Log("Player died");
+		respawnTimer = 0;
+		Respawn();
+	}
+
+	private void Respawn()
+	{
 		transform.position = originalPosition;
 		spriteRenderer.enabled = true;
 		spriteRenderer.color = originalColor;
@@ -54,6 +63,19 @@ public class VolatilePlatform : MonoBehaviour
 		}
 	}
 
+	private void Update()
+	{
+		if (respawnTimer > 0)
+		{
+			respawnTimer -= Time.deltaTime;
+			if (respawnTimer <= 0)
+			{
+				StopAllCoroutines();
+				Respawn();
+			}
+		}
+	}
+
 	private IEnumerator AnimateBreak()
 	{
 		const float flashPeriod = 0.15f;
@@ -66,6 +88,7 @@ public class VolatilePlatform : MonoBehaviour
 		}
 
 		spriteRenderer.color = originalColor;
+		respawnTimer = respawnDelay;
 
 		float scale = 1;
 		float duration = 2f;

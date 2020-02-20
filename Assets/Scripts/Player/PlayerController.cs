@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	[Tooltip("If jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
 	public float jumpGracePeriod = 0.2f;
 	public float grappleInputBuffer = 0.2f;
+
 	[Space()]
 	public Collider2D normalCollider;
 	public Collider2D crouchingCollider;
@@ -37,7 +38,6 @@ public class PlayerController : MonoBehaviour
 	public bool doesDoubleJumpRemain;
 	public Vector2 velocity;
 
-
 	public float horizontalInputAxis { get; private set; }
 	public float verticalInputAxis { get; private set; }
 	public bool isFacingRight { get; private set; }
@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
 	public PlayerState currentState { get; private set; }
 
 	private const float overlapDistance = 0.05f;
-
 	private const float overlapSizeOffset = 0.02f;
 
 	private int solidMask;
@@ -172,6 +171,20 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public bool CheckForMovementSpeedModifier(out MovementSpeedModifier modifier)
+	{
+		Collider2D[] allColliders = CheckOverlapsAll(Vector2.down);
+		foreach (Collider2D collider in allColliders)
+		{
+			if (collider.TryGetComponent<MovementSpeedModifier>(out modifier))
+			{
+				return true;
+			}
+		}
+		modifier = null;
+		return false;
+	}
+
 	public bool IsColliderOneWay(Collider2D collider)
 	{
 		if (collider.usedByEffector && collider.TryGetComponent<PlatformEffector2D>(out PlatformEffector2D platform))
@@ -213,6 +226,11 @@ public class PlayerController : MonoBehaviour
 
 	public Collider2D[] CheckOverlapsAll(Vector2 direction)
 	{
+		return CheckOverlapsAll(direction, solidMask);
+	}
+
+	public Collider2D[] CheckOverlapsAll(Vector2 direction, int mask)
+	{
 		Bounds bounds = currentCollider.bounds;
 
 		if (direction.x == 0)
@@ -220,14 +238,14 @@ public class PlayerController : MonoBehaviour
 			float y = direction.y < 0 ? bounds.min.y : bounds.max.y;
 			Vector2 position = new Vector2(bounds.center.x, y + direction.y * overlapDistance * 0.5f);
 			Vector2 size = new Vector2(bounds.size.x - overlapSizeOffset, overlapDistance);
-			return Physics2D.OverlapBoxAll(position, size, 0, solidMask);
+			return Physics2D.OverlapBoxAll(position, size, 0, mask);
 		}
 		else if (direction.y == 0)
 		{
 			float x = direction.x < 0 ? bounds.min.x : bounds.max.x;
 			Vector2 position = new Vector2(x + direction.x * overlapDistance * 0.5f, bounds.center.y);
 			Vector2 size = new Vector2(overlapDistance, bounds.size.y - overlapSizeOffset);
-			return Physics2D.OverlapBoxAll(position, size, 0, solidMask);
+			return Physics2D.OverlapBoxAll(position, size, 0, mask);
 		}
 		else
 		{
@@ -317,6 +335,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		verticalInputAxis = Input.GetAxisRaw("Vertical");
+		isCrouchInputHeld = verticalInputAxis < -inputThreshold;
 
 		isJumpInputHeld = Input.GetAxisRaw("Jump") > inputThreshold;
 		if (isJumpInputHeld && !jumpInputIsTriggered)
@@ -328,8 +347,6 @@ public class PlayerController : MonoBehaviour
 		{
 			jumpInputIsTriggered = false;
 		}
-
-		isCrouchInputHeld = Input.GetAxisRaw("Vertical") < -inputThreshold;
 	}
 
 	private void OnPlayerDeath()

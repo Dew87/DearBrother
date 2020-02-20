@@ -13,6 +13,7 @@ public class PendulumEnemy : MonoBehaviour
 	public float cycleOffset = 0;
 
 	private Rigidbody2D rb2d;
+
 	private float timer = 0;
 
 	private void Start()

@@ -47,7 +47,7 @@ public class EventManager : MonoBehaviour
 	{
 		if (instance == null)
 		{
-			// Removes Debug.LogError if EventManager is removed before the listener
+			// Removes Debug.LogError if EventManager is removed before a listener
 			return;
 		}
 		UnityEvent thisEvent;

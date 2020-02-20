@@ -6,6 +6,8 @@ public class AnimalWhipBehaviour : MonoBehaviour
 {
 	public float moveTimePeriod = 0.5f;
 	public float moveSpeed = 5f;
+	public float acceleration = 20f;
+	public float deceleration = 20f;
 	public float gravity = 10f;
 	public float maxFallSpeed = 20f;
 
@@ -29,7 +31,7 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	private int solidMask;
 	private Vector2 originalPosition;
 
-	void Start()
+	private void Start()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		rb2d = GetComponent<Rigidbody2D>();
@@ -47,18 +49,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	private void OnDisable()
 	{
 		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
-	}
-
-	private void OnPlayerDeath()
-	{
-		Respawn();
-	}
-
-	private void Respawn()
-	{
-		rb2d.position = originalPosition;
-		rb2d.velocity = Vector2.zero;
-		transform.rotation = Quaternion.identity;
 	}
 
 	private void FixedUpdate()
@@ -81,12 +71,15 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		{
 			moveTimer -= Time.deltaTime;
 			spriteRenderer.sprite = moveSprite;
-			velocity.x = direction.x * moveSpeed;
+			if (Mathf.Abs(velocity.x) < moveSpeed)
+			{
+				velocity.x = Mathf.MoveTowards(velocity.x, direction.x * moveSpeed, acceleration); 
+			}
 		}
 		else if (!isInWind)
 		{
 			spriteRenderer.sprite = idleSprite;
-			velocity.x = 0;
+			velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
 		}
 		if (isInWind)
 		{
@@ -99,6 +92,36 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		velocity.x = Mathf.Clamp(velocity.x, -maxHorizontalSpeed, maxHorizontalSpeed);
 
 		rb2d.velocity = velocity;
+	}
+
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		if (rb2d.velocity.y < 0 && collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth player))
+		{
+			Bounds playerBounds = collision.collider.bounds;
+			Bounds animalBounds = collision.otherCollider.bounds;
+			PlayerController playerController = player.GetComponent<PlayerController>();
+			if (playerController.CheckOverlaps(Vector2.down))
+			{
+				Vector2 normal = collision.GetContact(0).normal;
+				if (normal.y > 0)
+				{
+					player.TakeDamage();
+				}
+			}
+		}
+	}
+
+	private void OnPlayerDeath()
+	{
+		Respawn();
+	}
+
+	private void Respawn()
+	{
+		rb2d.position = originalPosition;
+		rb2d.velocity = Vector2.zero;
+		transform.rotation = Quaternion.identity;
 	}
 
 	public void Whip(GameObject player)
@@ -119,24 +142,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
 				transform.Rotate(Vector3.up, 180);
 			}
 			direction = Vector2.right;
-		}
-	}
-
-	private void OnCollisionStay2D(Collision2D collision)
-	{
-		if (rb2d.velocity.y < 0 && collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth player))
-		{
-			Bounds playerBounds = collision.collider.bounds;
-			Bounds animalBounds = collision.otherCollider.bounds;
-			PlayerController playerController = player.GetComponent<PlayerController>();
-			if (playerController.CheckOverlaps(Vector2.down))
-			{
-				Vector2 normal = collision.GetContact(0).normal;
-				if (normal.y > 0)
-				{
-					player.TakeDamage();
-				}
-			}
 		}
 	}
 }

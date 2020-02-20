@@ -30,6 +30,7 @@ public class Wind : MonoBehaviour
 			animal.isInWind = true;
 		}
 	}
+
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		if (collision.GetComponentInParent<PlayerController>() != null)

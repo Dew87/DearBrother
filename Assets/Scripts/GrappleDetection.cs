@@ -24,7 +24,7 @@ public class GrappleDetection : MonoBehaviour
 	private void OnDrawGizmos()
 	{
 		Handles.DrawWireArc(transform.position, Vector3.forward, playerController.isFacingRight ? Vector3.down : Vector3.up, 180f, detectionRadius);
-		Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - 5, transform.position.z), new Vector3(transform.position.x, transform.position.y + 5, transform.position.z));
+		Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - detectionRadius, transform.position.z), new Vector3(transform.position.x, transform.position.y + detectionRadius, transform.position.z));
 	}
 
 	private void Start()

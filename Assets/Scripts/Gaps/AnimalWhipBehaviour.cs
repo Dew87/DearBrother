@@ -6,6 +6,7 @@ public class AnimalWhipBehaviour : MonoBehaviour
 {
 	public float moveTimePeriod = 0.5f;
 	public float moveSpeed = 5f;
+	public float panicMoveSpeed = 10f;
 	public float acceleration = 20f;
 	public float deceleration = 20f;
 	public float gravity = 10f;
@@ -30,6 +31,7 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	private Vector2 direction;
 	private int solidMask;
 	private Vector2 originalPosition;
+	private bool isPanicking;
 
 	private void Start()
 	{
@@ -67,7 +69,17 @@ public class AnimalWhipBehaviour : MonoBehaviour
 			}
 		}
 
-		if (moveTimer > 0)
+		spriteRenderer.color = Color.white;
+		if (isPanicking)
+		{
+			spriteRenderer.sprite = moveSprite;
+			spriteRenderer.color = Color.red;
+			if (Mathf.Abs(velocity.x) < panicMoveSpeed)
+			{
+				velocity.x = Mathf.MoveTowards(velocity.x, direction.x * panicMoveSpeed, acceleration);
+			}
+		}
+		else if (moveTimer > 0)
 		{
 			moveTimer -= Time.deltaTime;
 			spriteRenderer.sprite = moveSprite;
@@ -92,6 +104,28 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		velocity.x = Mathf.Clamp(velocity.x, -maxHorizontalSpeed, maxHorizontalSpeed);
 
 		rb2d.velocity = velocity;
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (isPanicking)
+		{
+			if (collision.GetContact(0).normal.x != 0)
+			{
+				rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+				StartCoroutine(StopPanickingBeforeNextFrame());
+				if (collision.gameObject.TryGetComponent<BreakableWall>(out BreakableWall wall))
+				{
+					wall.Break();
+				}
+			}
+		}
+	}
+
+	private IEnumerator StopPanickingBeforeNextFrame()
+	{
+		yield return new WaitForFixedUpdate();
+		isPanicking = false;
 	}
 
 	private void OnCollisionStay2D(Collision2D collision)
@@ -144,5 +178,11 @@ public class AnimalWhipBehaviour : MonoBehaviour
 			}
 			direction = Vector2.right;
 		}
+	}
+
+	public void Frighten(Vector2 directionToRun)
+	{
+		isPanicking = true;
+		direction = directionToRun;
 	}
 }

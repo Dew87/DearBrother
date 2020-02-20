@@ -96,18 +96,19 @@ public class AnimalWhipBehaviour : MonoBehaviour
 
 	private void OnCollisionStay2D(Collision2D collision)
 	{
-		if (rb2d.velocity.y < 0 && collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth player))
+		if (collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth player))
 		{
 			Bounds playerBounds = collision.collider.bounds;
 			Bounds animalBounds = collision.otherCollider.bounds;
 			PlayerController playerController = player.GetComponent<PlayerController>();
-			if (playerController.CheckOverlaps(Vector2.down))
+			Vector2 normal = collision.GetContact(0).normal;
+			if (playerController.CheckOverlaps(Vector2.down) && rb2d.velocity.y < 0 && normal.y > 0)
 			{
-				Vector2 normal = collision.GetContact(0).normal;
-				if (normal.y > 0)
-				{
-					player.TakeDamage();
-				}
+				player.TakeDamage();
+			}
+			else if (playerController.CheckOverlaps(Vector2.up) && rb2d.velocity.y > 0 && normal.y < 0)
+			{
+				player.TakeDamage();
 			}
 		}
 	}

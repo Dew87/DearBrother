@@ -19,9 +19,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	public Sprite moveSprite;
 	public Collider2D solidCollider;
 
-	[HideInInspector] public bool isInWind;
-	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
-
 	private const float overlapDistance = 0.05f;
 
 	private SpriteRenderer spriteRenderer;
@@ -125,14 +122,7 @@ public class AnimalWhipBehaviour : MonoBehaviour
 			}
 		}
 
-		if (isInWind)
-		{
-			velocity += windSpeed * Time.deltaTime;
-		}
-		else
-		{
-			velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
-		}
+		velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
 
 		if (velocity.x > 0)
 		{

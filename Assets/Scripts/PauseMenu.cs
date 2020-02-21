@@ -1,25 +1,35 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 public class PauseMenu : MonoBehaviour
 {
+	public float inputThreshold = 0.1f;
+
+	public GameObject SelectedButton;
+
 	private Canvas canvas;
 
 	private bool isMenuOn;
+	private bool MenuInputIsTriggered;
 
 	private void Start()
 	{
 		canvas = GetComponent<Canvas>();
-		TriggerOff();
+		canvas.enabled = false;
+		isMenuOn = false;
+		MenuInputIsTriggered = false;
 	}
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
+		bool isMenuInputHeld = Input.GetAxisRaw("Menu") > inputThreshold;
+		if (isMenuInputHeld && !MenuInputIsTriggered)
 		{
+			MenuInputIsTriggered = true;
 			if (isMenuOn)
 			{
 				TriggerOff();
@@ -28,6 +38,10 @@ public class PauseMenu : MonoBehaviour
 			{
 				TriggerOn();
 			}
+		}
+		if (!isMenuInputHeld)
+		{
+			MenuInputIsTriggered = false;
 		}
 	}
 
@@ -49,12 +63,14 @@ public class PauseMenu : MonoBehaviour
 	public void RestartLevel()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		TriggerOff();
 	}
 
 	private void TriggerOn()
 	{
 		isMenuOn = true;
 		canvas.enabled = true;
+		EventSystem.current.SetSelectedGameObject(SelectedButton);
 		Time.timeScale = 0f;
 	}
 
@@ -62,6 +78,8 @@ public class PauseMenu : MonoBehaviour
 	{
 		isMenuOn = false;
 		canvas.enabled = false;
+		SelectedButton = EventSystem.current.currentSelectedGameObject;
+		EventSystem.current.SetSelectedGameObject(null);
 		Time.timeScale = 1f;
 	}
 }

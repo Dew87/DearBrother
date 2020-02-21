@@ -6,6 +6,10 @@ using UnityEditor;
 public class GrappleDetection : MonoBehaviour
 {
 	public float detectionRadius = 5f;
+	[Range(0f, 180f)]
+	public float detectionAngle = 90f;
+	[Range(-45f, 45f)]
+	public float detectionOffset = 0f;
 	public GameObject currentTargetCircle;
 	public GameObject nextTargetCircle;
 	public GameObject currentGrapplePoint;
@@ -23,8 +27,10 @@ public class GrappleDetection : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
-		Handles.DrawWireArc(transform.position, Vector3.forward, playerController.isFacingRight ? Vector3.down : Vector3.up, 180f, detectionRadius);
-		Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - detectionRadius, transform.position.z), new Vector3(transform.position.x, transform.position.y + detectionRadius, transform.position.z));
+		bool isFacingRight = playerController.isFacingRight;
+		Handles.DrawWireArc(transform.position, Vector3.forward, new Vector3((isFacingRight ? 1 : -1) * Mathf.Cos(((0.5f * detectionAngle) + detectionOffset) * Mathf.Deg2Rad) * detectionRadius, Mathf.Sin(((0.5f * detectionAngle) + detectionOffset) * Mathf.Deg2Rad) * detectionRadius, 0), (isFacingRight ? -1 : 1) * detectionAngle, detectionRadius);
+		Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + (isFacingRight ? 1 : -1) * Mathf.Cos(((0.5f * detectionAngle) + detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.y + Mathf.Sin(((0.5f * detectionAngle) + detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.z));
+		Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + (isFacingRight ? 1 : -1) * Mathf.Cos(((0.5f * detectionAngle) - detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.y - Mathf.Sin(((0.5f * detectionAngle) - detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.z));
 	}
 
 	private void Start()
@@ -42,25 +48,17 @@ public class GrappleDetection : MonoBehaviour
 
 		List<Collider2D> results = new List<Collider2D>(Physics2D.OverlapCircleAll(transform.position, detectionRadius, grappleMask));
 		List<Collider2D> colliders = new List<Collider2D>();
+		bool isFacingRight = playerController.isFacingRight;
 		int length = results.Count;
 		for (int i = 0; i < length; i++)
 		{
 			if (results[i].gameObject != currentGrapplePoint)
 			{
-				if (playerController.isFacingRight)
+				RaycastHit2D hit = Physics2D.Linecast(transform.position, results[i].transform.position, solidMask);
+				float angle = (isFacingRight ? 1 : -1) * Vector2.SignedAngle(isFacingRight ? Vector2.right : Vector2.left, (results[i].transform.position - transform.position).normalized);
+				if (angle <= (0.5f * detectionAngle) +  detectionOffset && angle >= (0.5f * -detectionAngle) + detectionOffset)
 				{
-					var hit = Physics2D.Linecast(transform.position, results[i].transform.position, solidMask);
-					if (results[i].transform.position.x >= transform.position.x && !Physics2D.Linecast(transform.position, results[i].transform.position, solidMask))
-					{
-						colliders.Add(results[i]);
-					}
-				}
-				else
-				{
-					if (results[i].transform.position.x <= transform.position.x && !Physics2D.Linecast(transform.position, results[i].transform.position, solidMask))
-					{
-						colliders.Add(results[i]);
-					}
+					colliders.Add(results[i]);
 				}
 			}
 		}

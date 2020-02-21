@@ -7,7 +7,7 @@ public class LightTrigger : MonoBehaviour
 {
 	public List<Light2D> lightsToTurnOff = new List<Light2D>();
 	public List<Light2D> lightsToTurnOn = new List<Light2D>();
-	public List<EdgeCollider2D> objectsToToggleLights =  new List<EdgeCollider2D>();
+	public List<GameObject> objectsToToggleLights = new List<GameObject>();
     void Update()
     {
 		if (ShouldTriggerLights())
@@ -26,7 +26,7 @@ public class LightTrigger : MonoBehaviour
 	{
 		for (int i = 0; i < objectsToToggleLights.Count; i++)
 		{
-			if (objectsToToggleLights[i].enabled == true)
+			if (objectsToToggleLights[i] == true)
 			{
 				return false;
 			}

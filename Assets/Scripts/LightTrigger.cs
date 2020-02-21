@@ -5,9 +5,11 @@ using UnityEngine.Experimental.Rendering.LWRP;
 
 public class LightTrigger : MonoBehaviour
 {
+	[Tooltip("If on, all components in 'components To Toggle Lights' need to be disabled to trigger the lights, else only one of the components need to become disabled to trigger lights")]
+	public bool doesAllComponentsNeedToBeDisabled = true;
 	public List<Light2D> lightsToTurnOff = new List<Light2D>();
 	public List<Light2D> lightsToTurnOn = new List<Light2D>();
-	public List<GameObject> objectsToToggleLights = new List<GameObject>();
+	public List<Behaviour> componentsToToggleLights = new List<Behaviour>();
     void Update()
     {
 		if (ShouldTriggerLights())
@@ -24,13 +26,38 @@ public class LightTrigger : MonoBehaviour
     }
 	private bool ShouldTriggerLights()
 	{
-		for (int i = 0; i < objectsToToggleLights.Count; i++)
+		if (doesAllComponentsNeedToBeDisabled)
 		{
-			if (objectsToToggleLights[i] == true)
+			for (int i = 0; i < componentsToToggleLights.Count; i++)
 			{
-				return false;
+				if (componentsToToggleLights[i].enabled)
+				{
+					return false;
+				}
 			}
 		}
+		else
+		{
+			for (int i = 0; i < componentsToToggleLights.Count; i++)
+			{
+				if (!componentsToToggleLights[i].enabled)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 		return true;
+	}
+	public void TriggerLights()
+	{
+		for (int i = 0; i < lightsToTurnOff.Count; i++)
+		{
+			lightsToTurnOff[i].enabled = false;
+		}
+		for (int i = 0; i < lightsToTurnOn.Count; i++)
+		{
+			lightsToTurnOn[i].enabled = true;
+		}
 	}
 }

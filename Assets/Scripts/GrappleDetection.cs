@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class GrappleDetection : MonoBehaviour
 {
@@ -28,7 +30,9 @@ public class GrappleDetection : MonoBehaviour
 	private void OnDrawGizmos()
 	{
 		bool isFacingRight = playerController.isFacingRight;
+		#if UNITY_EDITOR
 		Handles.DrawWireArc(transform.position, Vector3.forward, new Vector3((isFacingRight ? 1 : -1) * Mathf.Cos(((0.5f * detectionAngle) + detectionOffset) * Mathf.Deg2Rad) * detectionRadius, Mathf.Sin(((0.5f * detectionAngle) + detectionOffset) * Mathf.Deg2Rad) * detectionRadius, 0), (isFacingRight ? -1 : 1) * detectionAngle, detectionRadius);
+		#endif
 		Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + (isFacingRight ? 1 : -1) * Mathf.Cos(((0.5f * detectionAngle) + detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.y + Mathf.Sin(((0.5f * detectionAngle) + detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.z));
 		Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + (isFacingRight ? 1 : -1) * Mathf.Cos(((0.5f * detectionAngle) - detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.y - Mathf.Sin(((0.5f * detectionAngle) - detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.z));
 	}

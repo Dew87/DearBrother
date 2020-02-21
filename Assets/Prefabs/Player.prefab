@@ -456,7 +456,7 @@ MonoBehaviour:
     m_Extent: {x: 0.265, y: 0.4816, z: 0}
   crouchingColliderBounds:
     m_Center: {x: 0, y: -0.257, z: 0}
-    m_Extent: {x: 0.265, y: 0.243, z: 0}
+    m_Extent: {x: 0.265, y: 0.203, z: 0}
   spriteRenderer: {fileID: 5702585311279754982}
   grappleDetection: {fileID: 5702585311898711826}
   lineRenderer: {fileID: 5702585311898711821}

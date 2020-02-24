@@ -121,9 +121,9 @@ namespace Fungus
             {
                 type = TokenType.Exit;
             }
-            else if (tag == "cont")
+            else if (tag == "interrupt")
             {
-                type = TokenType.Continue;
+                type = TokenType.Interrupt;
             }
             else if (tag.StartsWith("m="))
             {
@@ -206,7 +206,7 @@ namespace Fungus
         public static string GetTagHelp()
         {
             return "" +
-                "\t{cont} Continue running the next command, but also keep writing this text.\n\n" +
+                "\t{interrupt} Continue running the next command, but also keep writing this text.\n\n" +
                 "\t{b} Bold Text {/b}\n" + 
                 "\t{i} Italic Text {/i}\n" +
                 "\t{color=red} Color Text (color){/color}\n" +

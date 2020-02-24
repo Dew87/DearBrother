@@ -11,16 +11,15 @@ public class CustomSay : Say
 
 	public override void OnEnter()
 	{
+		base.OnEnter();
+
 		if (overrideInterrupt)
 		{
-			InterruptSayDialog dialog = FindObjectOfType<InterruptSayDialog>();
-			if (dialog)
+			if (SayDialog.ActiveSayDialog)
 			{
-				dialog.canvas.sortingOrder = -1; 
+				SayDialog.ActiveSayDialog.GetComponent<Canvas>().sortingOrder = InterruptSay.GetNewTopSortingOrder(); 
 			}
 		}
-
-		base.OnEnter();
 	}
 
 	private void Reset()

@@ -7,13 +7,27 @@ using Fungus;
 [AddComponentMenu("")]
 public class InterruptSay : Say
 {
+	private static int topSortingOrder = 1;
+
+	public static int GetNewTopSortingOrder()
+	{
+		return ++topSortingOrder;
+	}
+
+	public static void ResetSortingOrder()
+	{
+		topSortingOrder = 1;
+	}
+
 	public override void OnEnter()
 	{
 		SayDialog dialog = Instantiate(character.SetSayDialog);
-		dialog.GetComponent<InterruptSayDialog>().isTemplate = false;
+		dialog.gameObject.SetActive(true);
 		setSayDialog = dialog;
-		Canvas dialogCanvas = dialog.GetComponent<Canvas>();
-		dialogCanvas.sortingOrder = 10;
+
+		InterruptSayDialog interruptDialog = dialog.GetComponent<InterruptSayDialog>();
+		interruptDialog.isTemplate = false;
+		interruptDialog.Appear();
 
 		base.OnEnter();
 	}

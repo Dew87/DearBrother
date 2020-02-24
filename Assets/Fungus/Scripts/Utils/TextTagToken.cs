@@ -69,7 +69,7 @@ namespace Fungus
         /// <summary> wvo </summary>
         WaitForVoiceOver,
         /// <summary> cont </summary>
-        Continue,
+        Interrupt,
     }
 
     /// <summary>

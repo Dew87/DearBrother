@@ -345,7 +345,7 @@ namespace Fungus
 						exitFlag = true;
 						break;
 
-					case TokenType.Continue:
+					case TokenType.Interrupt:
 						onComplete();
 						break;
 

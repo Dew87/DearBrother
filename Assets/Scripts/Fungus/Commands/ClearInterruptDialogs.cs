@@ -18,5 +18,14 @@ public class ClearInterruptDialogs : Command
 				Destroy(dialog.gameObject); 
 			}
 		}
+
+		foreach (SayDialog dialog in FindObjectsOfType<SayDialog>())
+		{
+			dialog.GetComponent<Canvas>().sortingOrder = 1;
+		}
+
+		InterruptSay.ResetSortingOrder();
+
+		Continue();
 	}
 }

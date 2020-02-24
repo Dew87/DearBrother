@@ -203,6 +203,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1103282552 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1732578785864634288, guid: 64c4bdba53308194e95547d1cbeb203d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1732578784794906312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1207494489 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1732578785832528273, guid: 64c4bdba53308194e95547d1cbeb203d,
@@ -250,6 +262,7 @@ GameObject:
   - component: {fileID: 1511555312}
   - component: {fileID: 1511555313}
   - component: {fileID: 1511555314}
+  - component: {fileID: 1511555315}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -270,20 +283,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 248.07948, y: 231.503}
+  scrollPos: {x: 310.81613, y: 252.24098}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 404
-  zoom: 0.9460004
+  zoom: 1
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands:
-  - {fileID: 1511555306}
+  selectedBlocks:
+  - {fileID: 1511555301}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -311,7 +324,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 243.55493
     y: 70.90576
-    width: 125.052826
+    width: 124
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -320,6 +333,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 0}
   commandList:
+  - {fileID: 1511555315}
   - {fileID: 1511555314}
   - {fileID: 1511555306}
   - {fileID: 1511555309}
@@ -521,7 +535,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &1511555311
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -548,7 +562,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1511555312
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -566,7 +580,7 @@ MonoBehaviour:
   durationOLD: 0
 --- !u!114 &1511555313
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -594,7 +608,7 @@ MonoBehaviour:
   overrideInterrupt: 1
 --- !u!114 &1511555314
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -609,6 +623,34 @@ MonoBehaviour:
   storyText: Hello, Sam.
   description: 
   character: {fileID: 1394349380}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+  overrideInterrupt: 1
+--- !u!114 &1511555315
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511555299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ecac9b1e8017449b62f1e01b8e0b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 25
+  indentLevel: 0
+  storyText: I played football once.... that was very fun.... now nothing is fun.....
+  description: 
+  character: {fileID: 1103282552}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1

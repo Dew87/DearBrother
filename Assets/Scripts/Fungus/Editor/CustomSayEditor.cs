@@ -75,6 +75,7 @@ public class CustomSayEditor : CommandEditor
 	protected SerializedProperty descriptionProp;
 	protected SerializedProperty voiceOverClipProp;
 	protected SerializedProperty overrideInterruptProp;
+	protected SerializedProperty disallowClickProp;
 	protected SerializedProperty showAlwaysProp;
 	protected SerializedProperty showCountProp;
 	protected SerializedProperty extendPreviousProp;
@@ -94,6 +95,7 @@ public class CustomSayEditor : CommandEditor
 		descriptionProp = serializedObject.FindProperty("description");
 		voiceOverClipProp = serializedObject.FindProperty("voiceOverClip");
 		overrideInterruptProp = serializedObject.FindProperty("overrideInterrupt");
+		disallowClickProp = serializedObject.FindProperty("disallowClick");
 		showAlwaysProp = serializedObject.FindProperty("showAlways");
 		showCountProp = serializedObject.FindProperty("showCount");
 		extendPreviousProp = serializedObject.FindProperty("extendPrevious");
@@ -178,6 +180,8 @@ public class CustomSayEditor : CommandEditor
 		EditorGUILayout.Separator();
 
 		EditorGUILayout.PropertyField(overrideInterruptProp);
+
+		EditorGUILayout.PropertyField(disallowClickProp);
 
 		EditorGUILayout.Separator();
 

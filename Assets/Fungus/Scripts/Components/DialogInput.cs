@@ -144,6 +144,12 @@ namespace Fungus
 
         #region Public members
 
+        public ClickMode ClickMode
+        {
+            get { return clickMode; }
+            set { clickMode = value; }
+        }
+
         /// <summary>
         /// Trigger next line input event from script.
         /// </summary>

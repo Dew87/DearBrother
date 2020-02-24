@@ -8,18 +8,22 @@ using Fungus;
 public class CustomSay : Say
 {
 	[SerializeField] protected bool overrideInterrupt = true;
+	[SerializeField] protected bool disallowClick = false;
 
 	public override void OnEnter()
 	{
 		base.OnEnter();
 
-		if (overrideInterrupt)
+		if (SayDialog.ActiveSayDialog)
 		{
-			if (SayDialog.ActiveSayDialog)
+			if (overrideInterrupt)
 			{
-				SayDialog.ActiveSayDialog.GetComponent<Canvas>().sortingOrder = InterruptSay.GetNewTopSortingOrder(); 
+				SayDialog.ActiveSayDialog.GetComponent<Canvas>().sortingOrder = InterruptSay.GetNewTopSortingOrder();
 			}
+			
+			SayDialog.ActiveSayDialog.GetComponent<DialogInput>().ClickMode = disallowClick ? ClickMode.Disabled : ClickMode.ClickAnywhere;
 		}
+
 	}
 
 	private void Reset()

@@ -294,8 +294,7 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1511555301}
+  selectedBlocks: []
   selectedCommands: []
   variables: []
   description: 
@@ -440,12 +439,13 @@ MonoBehaviour:
   showAlways: 1
   showCount: 1
   extendPrevious: 0
-  fadeWhenDone: 0
-  waitForClick: 0
+  fadeWhenDone: 1
+  waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
   overrideInterrupt: 1
+  disallowClick: 1
 --- !u!114 &1511555307
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -486,12 +486,13 @@ MonoBehaviour:
   showAlways: 1
   showCount: 1
   extendPrevious: 0
-  fadeWhenDone: 0
-  waitForClick: 0
+  fadeWhenDone: 1
+  waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
   overrideInterrupt: 1
+  disallowClick: 1
 --- !u!114 &1511555309
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -606,6 +607,7 @@ MonoBehaviour:
   waitForVO: 0
   setSayDialog: {fileID: 0}
   overrideInterrupt: 1
+  disallowClick: 0
 --- !u!114 &1511555314
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -634,6 +636,7 @@ MonoBehaviour:
   waitForVO: 0
   setSayDialog: {fileID: 0}
   overrideInterrupt: 1
+  disallowClick: 0
 --- !u!114 &1511555315
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -662,6 +665,7 @@ MonoBehaviour:
   waitForVO: 0
   setSayDialog: {fileID: 0}
   overrideInterrupt: 1
+  disallowClick: 0
 --- !u!114 &1988541717 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1732578785574958045, guid: 64c4bdba53308194e95547d1cbeb203d,

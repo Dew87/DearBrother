@@ -44,7 +44,9 @@ public class PendulumEnemy : MonoBehaviour
 			float distance = Vector2.Distance(transform.position, transform.GetChild(0).position);
 			float theta = (-90 + arcLength * 0.5f) * Mathf.Deg2Rad;
 			Vector2 down = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
+			#if UNITY_EDITOR
 			UnityEditor.Handles.DrawWireArc(transform.position, Vector3.back, down, arcLength, distance);
+			#endif
 		}
 	}
 

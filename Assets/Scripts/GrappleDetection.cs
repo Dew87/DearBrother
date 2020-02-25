@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class GrappleDetection : MonoBehaviour
 {
@@ -25,6 +27,8 @@ public class GrappleDetection : MonoBehaviour
 	private LayerMask grappleMask;
 	private LayerMask solidMask;
 
+
+#if UNITY_EDITOR
 	private void OnDrawGizmos()
 	{
 		bool isFacingRight = playerController.isFacingRight;
@@ -32,6 +36,7 @@ public class GrappleDetection : MonoBehaviour
 		Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + (isFacingRight ? 1 : -1) * Mathf.Cos(((0.5f * detectionAngle) + detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.y + Mathf.Sin(((0.5f * detectionAngle) + detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.z));
 		Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + (isFacingRight ? 1 : -1) * Mathf.Cos(((0.5f * detectionAngle) - detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.y - Mathf.Sin(((0.5f * detectionAngle) - detectionOffset) * Mathf.Deg2Rad) * detectionRadius, transform.position.z));
 	}
+#endif
 
 	private void Start()
 	{

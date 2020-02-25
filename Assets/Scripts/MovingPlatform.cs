@@ -12,6 +12,8 @@ public class MovingPlatform : MonoBehaviour
 	public float tolerance = 0.1f;
 	public float decelerationDistance = 1f;
 
+	[HideInInspector] public bool isMoving = false;
+
 	private List<Collider2D> childrenColliders = new List<Collider2D>();
 
 	private float overlapDistance = 0.075f;
@@ -62,7 +64,7 @@ public class MovingPlatform : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (waitTimer <= 0)
+		if (waitTimer <= 0 && isMoving)
 		{
 			transform.position = Vector2.MoveTowards(transform.position, pathPoints[currentPositionInPath].position, Time.deltaTime * currentMoveSpeed);
 		}
@@ -79,10 +81,14 @@ public class MovingPlatform : MonoBehaviour
 		{
 			if (!childrenColliders.Contains(colliders[i]))
 			{
-				if (colliders[i].gameObject.transform.parent.GetComponent<Rigidbody2D>() != null && colliders[i].gameObject.transform.parent.gameObject != gameObject)
+				if (colliders[i].gameObject.GetComponentInParent<Rigidbody2D>() != null && colliders[i].gameObject.transform.parent.gameObject != gameObject)
 				{
 					colliders[i].gameObject.transform.parent.parent = gameObject.transform;
 					childrenColliders.Add(colliders[i]);
+					if (colliders[i].gameObject.GetComponentInParent<PlayerController>() != null)
+					{
+						isMoving = true;
+					}
 				}
 			}
 		}
@@ -94,6 +100,7 @@ public class MovingPlatform : MonoBehaviour
 				childrenColliders.Remove(childrenColliders[i]);
 			}
 		}
+
 		float currentDistanceToNextPoint = Vector2.Distance(transform.position, pathPoints[currentPositionInPath].position);
 		currentMoveSpeed = moveSpeed;
 		if (isMovingOneDirection)

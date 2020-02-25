@@ -69,5 +69,6 @@ public class PlayerCrouchingState : PlayerState
 			}
 			return;
 		}
+
 	}
 }

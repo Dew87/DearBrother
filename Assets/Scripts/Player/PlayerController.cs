@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 	public float jumpGraceTimer { get; private set; }
 	public Rigidbody2D rb2d { get; private set; }
 	public BoxCollider2D currentCollider { get; private set; }
+	public int solidMask { get; private set; }
 
 	[HideInInspector] public bool isInWind = false;
 	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
@@ -59,9 +60,8 @@ public class PlayerController : MonoBehaviour
 	public PlayerState currentState { get; private set; }
 
 	private const float overlapDistance = 0.01f;
-	private const float overlapSizeOffset = 0.02f;
+	private const float overlapSizeOffset = 0.03f;
 
-	private int solidMask;
 	private float jumpInputBufferTimer;
 	private float grappleInputBufferTimer;
 	private bool jumpInputIsTriggered;
@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
 		return false;
 	}
 
-	public Collider2D CheckOverlaps(Vector2 direction)
+	public Collider2D CheckOverlaps(Vector2 direction, float distance = overlapDistance)
 	{
 		Bounds bounds = currentCollider.bounds;
 
@@ -215,14 +215,14 @@ public class PlayerController : MonoBehaviour
 		{
 			float y = direction.y < 0 ? bounds.min.y : bounds.max.y;
 			Vector2 position = new Vector2(bounds.center.x, y + direction.y * overlapDistance * 0.5f);
-			Vector2 size = new Vector2(bounds.size.x - overlapSizeOffset, overlapDistance);
+			Vector2 size = new Vector2(bounds.size.x - overlapSizeOffset, distance);
 			return Physics2D.OverlapBox(position, size, 0, solidMask);
 		}
 		else if (direction.y == 0)
 		{
 			float x = direction.x < 0 ? bounds.min.x : bounds.max.x;
 			Vector2 position = new Vector2(x + direction.x * overlapDistance * 0.5f, bounds.center.y);
-			Vector2 size = new Vector2(overlapDistance, bounds.size.y - overlapSizeOffset);
+			Vector2 size = new Vector2(overlapDistance, bounds.size.y - distance);
 			return Physics2D.OverlapBox(position, size, 0, solidMask);
 		}
 		else

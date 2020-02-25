@@ -5,32 +5,71 @@ using UnityEngine.Experimental.Rendering.LWRP;
 
 public class LightTrigger : MonoBehaviour
 {
-	public List<Light2D> lightsToTurnOff = new List<Light2D>();
-	public List<Light2D> lightsToTurnOn = new List<Light2D>();
-	public List<GameObject> objectsToToggleLights = new List<GameObject>();
-    void Update()
-    {
-		if (ShouldTriggerLights())
+	[Tooltip("If on, all components in 'components To Toggle Lights' need to be disabled to trigger the lights, else only one of the components need to become disabled to trigger lights")]
+	public bool doesAllComponentsNeedToBeDisabled = true;
+	//[Tooltip("If on, all lights when toggled will light up with a speed depending on their start intensity, if not all will light up at the same speed")]
+	//public bool doesLightUpEqually = true;
+	public float lightUpSpeed = 1f;
+	public List<Light2D> lightsToToggle = new List<Light2D>();
+	public List<Behaviour> componentsToToggleLights = new List<Behaviour>();
+
+	private Dictionary<Light2D, float> lightIntensities = new Dictionary<Light2D, float>();
+	private bool isTriggered = false;
+	private void Start()
+	{
+		for (int i = 0; i < lightsToToggle.Count; i++)
 		{
-			for (int i = 0; i < lightsToTurnOff.Count; i++)
+			lightIntensities.Add(lightsToToggle[i], lightsToToggle[i].intensity);
+		}
+	}
+	private void Update()
+    {
+		if (!isTriggered)
+		{
+			if (ShouldTriggerLights())
 			{
-				lightsToTurnOff[i].enabled = false;
+				TriggerLights();
 			}
-			for (int i = 0; i < lightsToTurnOn.Count; i++)
+		}
+		else
+		{ //get a check to see if all lights are lit up enough then disable this.
+			for (int i = 0; i < lightsToToggle.Count; i++)
 			{
-				lightsToTurnOn[i].enabled = true;
+				lightsToToggle[i].intensity = Mathf.MoveTowards(lightsToToggle[i].intensity, lightIntensities[lightsToToggle[i]], lightUpSpeed);
 			}
 		}
     }
 	private bool ShouldTriggerLights()
 	{
-		for (int i = 0; i < objectsToToggleLights.Count; i++)
+		if (doesAllComponentsNeedToBeDisabled)
 		{
-			if (objectsToToggleLights[i] == true)
+			for (int i = 0; i < componentsToToggleLights.Count; i++)
 			{
-				return false;
+				if (componentsToToggleLights[i].enabled)
+				{
+					return false;
+				}
 			}
 		}
+		else
+		{
+			for (int i = 0; i < componentsToToggleLights.Count; i++)
+			{
+				if (!componentsToToggleLights[i].enabled)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 		return true;
+	}
+	public void TriggerLights()
+	{
+		for (int i = 0; i < lightsToToggle.Count; i++)
+		{
+			lightsToToggle[i].enabled = !lightsToToggle[i].enabled;
+			isTriggered = true;
+		}
 	}
 }

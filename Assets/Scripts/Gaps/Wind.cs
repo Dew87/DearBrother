@@ -7,6 +7,32 @@ public class Wind : MonoBehaviour
 	public float playerAccelerationGliding = 60f;
 	public float playerAccelerationFalling = 20f;
 	public float animalWindSpeed = 50f;
+	public ParticleSystem particles;
+	public Vector2 offset;
+	public Vector2 size;
+
+	public bool isBlocked = false;
+	private ParticleSystem.EmissionModule emission;
+	private void OnDrawGizmos()
+	{
+		Gizmos.DrawWireCube(transform.position + (Vector3)offset, size);
+	}
+	private void Start()
+	{
+		emission = particles.emission;
+	}
+	private void Update()
+	{
+		isBlocked = CheckIfBlocked(Physics2D.OverlapBoxAll((Vector2)transform.position + offset, size, 0));
+		if (isBlocked)
+		{
+			emission.enabled = false;
+		}
+		else
+		{
+			emission.enabled = true;
+		}
+	}
 	private void OnTriggerStay2D(Collider2D collision)
 	{
 		if (collision.GetComponentInParent<PlayerController>() != null)
@@ -21,13 +47,7 @@ public class Wind : MonoBehaviour
 			{
 				playerController.windSpeed *= playerAccelerationFalling;
 			}
-			playerController.isInWind = true;
-		}
-		else if (collision.GetComponentInParent<AnimalWhipBehaviour>() != null)
-		{
-			AnimalWhipBehaviour animal = collision.GetComponentInParent<AnimalWhipBehaviour>();
-			animal.windSpeed = new Vector2(Mathf.Sin(Mathf.Deg2Rad * -transform.rotation.eulerAngles.z), Mathf.Cos(Mathf.Deg2Rad * -transform.rotation.eulerAngles.z)) * animalWindSpeed;
-			animal.isInWind = true;
+			playerController.isInWind = !isBlocked;
 		}
 	}
 
@@ -37,9 +57,16 @@ public class Wind : MonoBehaviour
 		{
 			collision.GetComponentInParent<PlayerController>().isInWind = false;
 		}
-		else if (collision.GetComponentInParent<AnimalWhipBehaviour>() != null)
+	}
+	private bool CheckIfBlocked(Collider2D[] collisions)
+	{
+		for (int i = 0; i < collisions.Length; i++)
 		{
-			collision.GetComponentInParent<AnimalWhipBehaviour>().isInWind = false;
+			if (collisions[i].GetComponentInParent<AnimalWhipBehaviour>() != null)
+			{
+				return true;
+			}
 		}
+		return false;
 	}
 }

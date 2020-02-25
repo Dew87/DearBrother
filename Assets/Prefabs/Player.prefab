@@ -427,7 +427,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9960a18a2ff6b447a177b020c8cd765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 5
+  detectionRadius: 4.5
+  detectionAngle: 90
+  detectionOffset: 0
   currentTargetCircle: {fileID: 5702585311617581628}
   nextTargetCircle: {fileID: 5702585311630747388}
   currentGrapplePoint: {fileID: 0}
@@ -456,7 +458,7 @@ MonoBehaviour:
     m_Extent: {x: 0.265, y: 0.4816, z: 0}
   crouchingColliderBounds:
     m_Center: {x: 0, y: -0.257, z: 0}
-    m_Extent: {x: 0.265, y: 0.203, z: 0}
+    m_Extent: {x: 0.265, y: 0.243, z: 0}
   spriteRenderer: {fileID: 5702585311279754982}
   grappleDetection: {fileID: 5702585311898711826}
   lineRenderer: {fileID: 5702585311898711821}
@@ -466,7 +468,7 @@ MonoBehaviour:
   walkingState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
-    speed: 4.4
+    speed: 5
     acceleration: 40
     deceleration: 30
   crouchingState:
@@ -528,7 +530,7 @@ MonoBehaviour:
     minGrappleLength: 1
     swingSpeed: 10
     climbSpeed: 5
-    mass: 10
+    mass: 15
     gravityMultiplier: 2
     doesResetDoubleJump: 1
   whipState:
@@ -543,7 +545,7 @@ MonoBehaviour:
     stretchTolerance: 10
     isStretchToleranceMultiplier: 0
     pullspeed: 10
-  hasDoubleJump: 1
+  hasDoubleJump: 0
   doesDoubleJumpRemain: 1
   velocity: {x: 0, y: 0}
   isInWind: 0

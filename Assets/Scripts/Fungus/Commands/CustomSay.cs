@@ -29,4 +29,13 @@ public class CustomSay : Say
 	private void Reset()
 	{
 	}
+
+	public override void OnValidate()
+	{
+		if (character != null && character.GetComponent<DearBrotherCharacter>().type != CharacterType.Regular)
+		{
+			character = null;
+			Debug.LogError("Can't use a *Quick or *Interrupt character with regular Say'");
+		}
+	}
 }

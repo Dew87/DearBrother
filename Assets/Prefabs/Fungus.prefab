@@ -938,6 +938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732578784660204009}
   - component: {fileID: 1732578784660204010}
+  - component: {fileID: 941139745}
   m_Layer: 0
   m_Name: SamQuick
   m_TagString: Untagged
@@ -978,6 +979,20 @@ MonoBehaviour:
   portraitsFace: 0
   setSayDialog: {fileID: 1732578784788459978}
   description: 
+--- !u!114 &941139745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732578784660204008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106c4d9a041eee46b9bf82f000ffe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  person: 0
 --- !u!1 &1732578784683971960
 GameObject:
   m_ObjectHideFlags: 0
@@ -4575,6 +4590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732578785574958046}
   - component: {fileID: 1732578785574958045}
+  - component: {fileID: 1988541718}
   m_Layer: 0
   m_Name: SamRegular
   m_TagString: Untagged
@@ -4615,6 +4631,20 @@ MonoBehaviour:
   portraitsFace: 0
   setSayDialog: {fileID: 1732578785623269756}
   description: 
+--- !u!114 &1988541718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732578785574958044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106c4d9a041eee46b9bf82f000ffe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  person: 0
 --- !u!1 &1732578785583144566
 GameObject:
   m_ObjectHideFlags: 0
@@ -4747,6 +4777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732578785603049276}
   - component: {fileID: 1732578785603049277}
+  - component: {fileID: 1881889268}
   m_Layer: 0
   m_Name: OwlQuick
   m_TagString: Untagged
@@ -4787,6 +4818,20 @@ MonoBehaviour:
   portraitsFace: 0
   setSayDialog: {fileID: 1732578785776880657}
   description: 
+--- !u!114 &1881889268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732578785603049275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106c4d9a041eee46b9bf82f000ffe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  person: 1
 --- !u!1 &1732578785623269735
 GameObject:
   m_ObjectHideFlags: 0
@@ -5563,6 +5608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732578785832528274}
   - component: {fileID: 1732578785832528273}
+  - component: {fileID: 1207494490}
   m_Layer: 0
   m_Name: TarManInterrupt
   m_TagString: Untagged
@@ -5603,6 +5649,20 @@ MonoBehaviour:
   portraitsFace: 0
   setSayDialog: {fileID: 1732578785166997823}
   description: 
+--- !u!114 &1207494490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732578785832528272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106c4d9a041eee46b9bf82f000ffe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  person: 2
 --- !u!1 &1732578785843488579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5613,6 +5673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732578785843488580}
   - component: {fileID: 1732578785843488581}
+  - component: {fileID: 1182804364}
   m_Layer: 0
   m_Name: OwlRegular
   m_TagString: Untagged
@@ -5653,6 +5714,20 @@ MonoBehaviour:
   portraitsFace: 0
   setSayDialog: {fileID: 1732578784683971966}
   description: 
+--- !u!114 &1182804364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732578785843488579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106c4d9a041eee46b9bf82f000ffe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  person: 1
 --- !u!1 &1732578785864634302
 GameObject:
   m_ObjectHideFlags: 0
@@ -5663,6 +5738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732578785864634303}
   - component: {fileID: 1732578785864634288}
+  - component: {fileID: 1103282551}
   m_Layer: 0
   m_Name: Memory
   m_TagString: Untagged
@@ -5703,6 +5779,20 @@ MonoBehaviour:
   portraitsFace: 0
   setSayDialog: {fileID: 1732578785126536647}
   description: 
+--- !u!114 &1103282551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732578785864634302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106c4d9a041eee46b9bf82f000ffe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  person: 3
 --- !u!1 &1732578785904620974
 GameObject:
   m_ObjectHideFlags: 0
@@ -6066,6 +6156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732578786153077643}
   - component: {fileID: 1732578786153077644}
+  - component: {fileID: 1394349379}
   m_Layer: 0
   m_Name: TarManRegular
   m_TagString: Untagged
@@ -6106,6 +6197,20 @@ MonoBehaviour:
   portraitsFace: 0
   setSayDialog: {fileID: 1732578785227409870}
   description: 
+--- !u!114 &1394349379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732578786153077642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106c4d9a041eee46b9bf82f000ffe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  person: 2
 --- !u!1 &1732578786183642636
 GameObject:
   m_ObjectHideFlags: 0
@@ -6116,6 +6221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732578786183642637}
   - component: {fileID: 1732578786183642638}
+  - component: {fileID: 1389260997}
   m_Layer: 0
   m_Name: TarManQuick
   m_TagString: Untagged
@@ -6156,6 +6262,20 @@ MonoBehaviour:
   portraitsFace: 0
   setSayDialog: {fileID: 1732578785247499341}
   description: 
+--- !u!114 &1389260997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732578786183642636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106c4d9a041eee46b9bf82f000ffe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  person: 2
 --- !u!1 &1732578786191327039
 GameObject:
   m_ObjectHideFlags: 0

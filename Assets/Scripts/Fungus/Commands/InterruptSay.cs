@@ -37,4 +37,13 @@ public class InterruptSay : Say
 		waitForClick = false;
 		fadeWhenDone = false;
 	}
+
+	public override void OnValidate()
+	{
+		if (character != null && character.GetComponent<DearBrotherCharacter>().type != CharacterType.Interrupt)
+		{
+			character = null;
+			Debug.LogError("You must use a *Interrupt character with Interrupt Say");
+		}
+	}
 }

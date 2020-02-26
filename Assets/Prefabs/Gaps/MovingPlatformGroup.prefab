@@ -109,7 +109,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,7 +218,10 @@ MonoBehaviour:
   - {fileID: 2781029630999794569}
   isMovingOneDirection: 1
   moveSpeed: 2
+  waitTime: 1
   tolerance: 0.1
+  decelerationDistance: 1
+  isMoving: 0
 --- !u!50 &2781029631580208725
 Rigidbody2D:
   serializedVersion: 4

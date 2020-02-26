@@ -26,6 +26,8 @@ public class PlayerWalkingState : PlayerState
 	{
 		base.FixedUpdate();
 
+		player.velocity.y = 0;
+
 		float maxSpeed = speed;
 		if (player.CheckForMovementSpeedModifier(out MovementSpeedModifier modifier))
 		{
@@ -73,8 +75,18 @@ public class PlayerWalkingState : PlayerState
 
 		if (!player.CheckOverlaps(Vector2.down))
 		{
-			player.TransitionState(player.fallingState);
-			return;
+			Bounds bounds = player.currentCollider.bounds;
+			float behindX = player.velocity.x > 0 ? bounds.min.x : bounds.max.x;
+			RaycastHit2D slopeBehind = Physics2D.Raycast(new Vector2(behindX, bounds.min.y), Vector2.down, 0.2f, player.solidMask);
+			if (slopeBehind)
+			{
+				player.rb2d.position += Vector2.down * slopeBehind.distance;
+			}
+			else
+			{
+				player.TransitionState(player.fallingState);
+				return;
+			}
 		}
 
 		player.CheckForVolatilePlatforms();

@@ -21,6 +21,8 @@ public class PlayerStandingState : PlayerState
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
+
+		player.velocity.y = 0;
 	}
 
 	public override void Start()

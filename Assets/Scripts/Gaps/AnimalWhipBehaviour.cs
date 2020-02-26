@@ -45,7 +45,7 @@ public class AnimalWhipBehaviour : MonoBehaviour
 
 		originalPosition = rb2d.position;
 
-		idleState = new State(null, IdleStateEnter);
+		idleState = new State(IdleStateUpdate, IdleStateEnter);
 		movingState = new State(MovingStateUpdate, MovingStateEnter);
 		panicState = new State(PanicStateUpdate, PanicStateEnter, PanicStateExit);
 
@@ -67,6 +67,11 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		spriteRenderer.sprite = idleSprite;
 	}
 
+	private void IdleStateUpdate()
+	{
+		velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+	}
+
 	private void MovingStateEnter()
 	{
 		moveTimer = moveTimePeriod;
@@ -76,7 +81,10 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	private void MovingStateUpdate()
 	{
 		moveTimer -= Time.deltaTime;
-		spriteRenderer.sprite = moveSprite;
+		if (moveTimer <= 0)
+		{
+			sm.Transition(idleState);
+		}
 		if (Mathf.Abs(velocity.x) < moveSpeed)
 		{
 			velocity.x = Mathf.MoveTowards(velocity.x, direction.x * moveSpeed, acceleration);
@@ -121,8 +129,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
 				platform.Break();
 			}
 		}
-
-		velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
 
 		if (velocity.x > 0)
 		{

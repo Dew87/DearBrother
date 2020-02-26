@@ -45,7 +45,7 @@ public class AnimalWhipBehaviour : MonoBehaviour
 
 		originalPosition = rb2d.position;
 
-		idleState = new State(null, IdleStateEnter);
+		idleState = new State(IdleStateUpdate, IdleStateEnter);
 		movingState = new State(MovingStateUpdate, MovingStateEnter);
 		panicState = new State(PanicStateUpdate, PanicStateEnter, PanicStateExit);
 
@@ -67,6 +67,11 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		spriteRenderer.sprite = idleSprite;
 	}
 
+	private void IdleStateUpdate()
+	{
+		velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+	}
+
 	private void MovingStateEnter()
 	{
 		moveTimer = moveTimePeriod;
@@ -76,7 +81,10 @@ public class AnimalWhipBehaviour : MonoBehaviour
 	private void MovingStateUpdate()
 	{
 		moveTimer -= Time.deltaTime;
-		spriteRenderer.sprite = moveSprite;
+		if (moveTimer <= 0)
+		{
+			sm.Transition(idleState);
+		}
 		if (Mathf.Abs(velocity.x) < moveSpeed)
 		{
 			velocity.x = Mathf.MoveTowards(velocity.x, direction.x * moveSpeed, acceleration);
@@ -110,19 +118,25 @@ public class AnimalWhipBehaviour : MonoBehaviour
 
 		sm.Update();
 
+		velocity.y -= gravity * Time.deltaTime;
+
 		Bounds bounds = solidCollider.bounds;
 		float y = bounds.min.y;
 		Vector2 position = new Vector2(bounds.center.x, y - overlapDistance * 0.5f);
 		Vector2 size = new Vector2(bounds.size.x, overlapDistance);
 		foreach (Collider2D collider in Physics2D.OverlapBoxAll(position, size, 0, solidMask))
 		{
+			velocity.y = 0;
 			if (collider.TryGetComponent<VolatilePlatform>(out VolatilePlatform platform))
 			{
 				platform.Break();
 			}
 		}
 
-		velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+		velocity.y = Mathf.Clamp(velocity.y, -maxFallSpeed, maxAscendSpeed);
+		velocity.x = Mathf.Clamp(velocity.x, -maxHorizontalSpeed, maxHorizontalSpeed);
+
+		rb2d.velocity = velocity;
 
 		if (velocity.x > 0)
 		{
@@ -132,13 +146,6 @@ public class AnimalWhipBehaviour : MonoBehaviour
 		{
 			transform.rotation = Quaternion.Euler(0, 0, 180);
 		}
-
-		velocity.y -= gravity * Time.deltaTime;
-
-		velocity.y = Mathf.Clamp(velocity.y, -maxFallSpeed, maxAscendSpeed);
-		velocity.x = Mathf.Clamp(velocity.x, -maxHorizontalSpeed, maxHorizontalSpeed);
-
-		rb2d.velocity = velocity;
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)

@@ -77,10 +77,11 @@ public class PlayerWalkingState : PlayerState
 		{
 			Bounds bounds = player.currentCollider.bounds;
 			float behindX = player.velocity.x > 0 ? bounds.min.x : bounds.max.x;
-			RaycastHit2D slopeBehind = Physics2D.Raycast(new Vector2(behindX, bounds.min.y), Vector2.down, 0.2f, player.solidMask);
+			RaycastHit2D slopeBehind = Physics2D.Raycast(new Vector2(behindX, bounds.min.y), Vector2.down, 0.5f, player.solidMask);
 			if (slopeBehind)
 			{
 				player.rb2d.position += Vector2.down * slopeBehind.distance;
+				//player.rb2d.MovePosition(player.rb2d.position + Vector2.down * slopeBehind.distance);
 			}
 			else
 			{

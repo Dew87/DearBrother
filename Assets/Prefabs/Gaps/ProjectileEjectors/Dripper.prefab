@@ -98,4 +98,5 @@ MonoBehaviour:
   spawnPosition: {x: -0.0271945, y: -0.6486676}
   projectilePrefab: {fileID: 6157554620944409969, guid: 48b4da0ce266d03439e1be2312096cf5,
     type: 3}
+  prewarmAmount: 7
   fireDirection: 270

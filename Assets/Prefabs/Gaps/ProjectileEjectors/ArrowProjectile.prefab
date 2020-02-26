@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 180
   speed: 3
+  boxCollider: {fileID: 8081551040009214384}
 --- !u!114 &4789682781648215121
 MonoBehaviour:
   m_ObjectHideFlags: 0

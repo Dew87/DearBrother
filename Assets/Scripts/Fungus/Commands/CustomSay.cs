@@ -21,7 +21,7 @@ public class CustomSay : Say
 				SayDialog.ActiveSayDialog.GetComponent<Canvas>().sortingOrder = InterruptSay.GetNewTopSortingOrder();
 			}
 			
-			SayDialog.ActiveSayDialog.GetComponent<DialogInput>().ClickMode = disallowClick ? ClickMode.Disabled : ClickMode.ClickAnywhere;
+			SayDialog.ActiveSayDialog.GetComponent<DearBrotherDialogInput>().ClickMode = disallowClick ? ContinueMode.Disabled : ContinueMode.Enabled;
 		}
 
 	}

@@ -47,10 +47,12 @@ public class DearBrotherDialogInput : MonoBehaviour
 	{
 		if (writer != null && writer.IsWriting)
 		{
-			if (Input.GetButtonDown("DialogContinue") ||
-				(cancelEnabled && Input.GetButton("DialogFastForward")))
+			if (clickMode == ContinueMode.Enabled)
 			{
-				SetNextLineFlag();
+				if (Input.GetButtonDown("DialogContinue") || (cancelEnabled && Input.GetButton("DialogFastForward")))
+				{
+					SetNextLineFlag();
+				}
 			}
 		}
 

@@ -18,9 +18,18 @@ public class PlayerCamera : MonoBehaviour
 	public float lookDownDistance = 6f;
 	public bool onlyLookWhenStill = true;
 
+	public static PlayerCamera get { get; private set; }
+
 	private Collider2D objectToFollowCollider;
 	private LayerMask solidMask;
 	private float lookDownTimer;
+	private new Camera camera;
+
+	private float baseSize;
+	private Vector3 playerFollowPosition;
+	private Vector3 cinematicPosition;
+	private float cinematicLerp;
+	private float currentZoom = 1;
 
 	[System.Serializable]
 	public struct Extents
@@ -45,9 +54,15 @@ public class PlayerCamera : MonoBehaviour
 		public Vector3 localCenter => new Vector3(0, (up - down) * .5f, 0);
 	}
 
+	private void Awake()
+	{
+		get = this;
+	}
 
 	private void Start()
 	{
+		camera = GetComponentInChildren<Camera>();
+		baseSize = camera.orthographicSize;
 		if (snapToPlayerOnStart)
 		{
 			SnapToTarget();
@@ -78,11 +93,38 @@ public class PlayerCamera : MonoBehaviour
 		{
 			LookDown(playerVelocity); 
 		}
+
+		transform.position = Vector3.Lerp(playerFollowPosition, cinematicPosition, cinematicLerp);
+		camera.orthographicSize = baseSize / currentZoom;
+	}
+
+	public void LookAtCinematically(Vector3 position, float transitionDuration, float factor = 1, float zoom = 1)
+	{
+		cinematicPosition = position;
+		if (zoom <= 0)
+		{
+			zoom = 0.0001f; // Avoid divide by zero
+		}
+		StartCoroutine(DoLookAtCinematically(transitionDuration, factor, zoom));
+	}
+
+	private IEnumerator DoLookAtCinematically(float duration, float lerp, float zoom)
+	{
+		float startLerp = cinematicLerp;
+		float startZoom = currentZoom;
+		float t = 0;
+		while (t <= 1)
+		{
+			cinematicLerp = Mathf.Lerp(startLerp, lerp, t);
+			currentZoom = Mathf.Lerp(startZoom, zoom, t);
+			t += Time.deltaTime / duration;
+			yield return null;
+		}
 	}
 
 	private void FollowPlayer(Vector2 playerVelocity)
 	{
-		Vector3 currentPosition = transform.position;
+		Vector3 currentPosition = playerFollowPosition;
 		Vector3 newCameraPosition = currentPosition;
 		Vector3 followPosition = playerController.transform.position + followOffset;
 		if (Mathf.Abs(playerVelocity.x) >= cameraSpeedWhenStill)
@@ -116,7 +158,8 @@ public class PlayerCamera : MonoBehaviour
 		{
 			newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y, cameraSpeedWhenStill * Time.deltaTime);
 		}
-		transform.position = newCameraPosition;
+
+		playerFollowPosition = newCameraPosition;
 	}
 
 	private void LookDown(Vector2 playerVelocity)
@@ -162,6 +205,7 @@ public class PlayerCamera : MonoBehaviour
 		Vector3 followPosition = playerController.transform.position + followOffset;
 		position.x = followPosition.x;
 		position.y = followPosition.y;
+		playerFollowPosition = position;
 		transform.position = position;
 	}
 

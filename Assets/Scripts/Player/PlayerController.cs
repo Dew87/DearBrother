@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
 	public bool hasDoubleJump = true;
+	public bool hasFloat = true;
 	public bool doesDoubleJumpRemain;
 	public Vector2 velocity;
 

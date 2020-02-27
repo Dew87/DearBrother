@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 2318204942742094270}
   - component: {fileID: 2318204942742094264}
   - component: {fileID: 2318204942742094265}
-  - component: {fileID: 3368562619387879130}
   - component: {fileID: 6407694824542935737}
+  - component: {fileID: 3732376004407363028}
   m_Layer: 0
   m_Name: FungusPlayerEnterTrigger
   m_TagString: Untagged
@@ -65,7 +65,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 2318204942742094264}
   selectedCommands:
-  - {fileID: 6407694824542935737}
+  - {fileID: 3732376004407363028}
   variables: []
   description: 
   stepPause: 0
@@ -146,7 +146,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2318204942742094210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -190,8 +190,8 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 2318204942742094265}
   commandList:
+  - {fileID: 3732376004407363028}
   - {fileID: 6407694824542935737}
-  - {fileID: 3368562619387879130}
 --- !u!114 &2318204942742094265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,27 +208,6 @@ MonoBehaviour:
   tagFilter:
   - Player
   FireOn: 1
---- !u!114 &3368562619387879130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2318204942742094210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 2
-  indentLevel: 0
-  _targetGameObject:
-    gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 2318204942742094210}
-  activeState:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  targetGameObjectOLD: {fileID: 0}
 --- !u!114 &6407694824542935737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,3 +224,19 @@ MonoBehaviour:
   indentLevel: 0
   commenterName: 
   commentText: Put say commands etc. here
+--- !u!114 &3732376004407363028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318204942742094210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1b05ca8d898274e80f27ec35eedc0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 4
+  indentLevel: 0
+  onlyTriggerOnce: 1
+  resetOnDeath: 1

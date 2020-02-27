@@ -11,7 +11,6 @@ public class InterruptSayDialog : MonoBehaviour
 
 	private void Awake()
 	{
-		Debug.Log("Interrupt awake");
 		canvas = GetComponent<Canvas>();
 		panel = transform.GetChild(0) as RectTransform;
 	}

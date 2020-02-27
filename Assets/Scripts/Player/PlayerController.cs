@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
 	public bool doesDoubleJumpRemain;
 	public Vector2 velocity;
 
+	public static PlayerController get { get; private set; }
+
 	public float horizontalInputAxis { get; private set; }
 	public float verticalInputAxis { get; private set; }
 	public bool isFacingRight { get; private set; }
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
 	public float jumpGraceTimer { get; private set; }
 	public Rigidbody2D rb2d { get; private set; }
 	public BoxCollider2D currentCollider { get; private set; }
+	public int solidMask { get; private set; }
 
 	[HideInInspector] public bool isInWind = false;
 	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
@@ -56,14 +59,14 @@ public class PlayerController : MonoBehaviour
 	public PlayerState previousState { get; private set; }
 	public PlayerState currentState { get; private set; }
 
-	private const float overlapDistance = 0.05f;
-	private const float overlapSizeOffset = 0.02f;
+	private const float overlapDistance = 0.01f;
+	private const float overlapSizeOffset = 0.03f;
 
-	private int solidMask;
 	private float jumpInputBufferTimer;
 	private float grappleInputBufferTimer;
 	private bool jumpInputIsTriggered;
 	private bool grappleInputIsTriggered;
+	private bool isFrozen;
 
 	private IEnumerable<PlayerState> IterateStates()
 	{
@@ -83,6 +86,8 @@ public class PlayerController : MonoBehaviour
 
 	private void Awake()
 	{
+		get = this;
+
 		foreach (PlayerState state in IterateStates())
 		{
 			state.Awake();
@@ -125,6 +130,8 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
+		if (isFrozen) return;
+
 		ReadInput();
 
 		currentState.Update();
@@ -137,6 +144,8 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		if (isFrozen) return;
+
 		currentState.FixedUpdate();
 
 		rb2d.velocity = velocity;
@@ -198,7 +207,7 @@ public class PlayerController : MonoBehaviour
 		return false;
 	}
 
-	public Collider2D CheckOverlaps(Vector2 direction)
+	public Collider2D CheckOverlaps(Vector2 direction, float distance = overlapDistance)
 	{
 		Bounds bounds = currentCollider.bounds;
 
@@ -206,14 +215,14 @@ public class PlayerController : MonoBehaviour
 		{
 			float y = direction.y < 0 ? bounds.min.y : bounds.max.y;
 			Vector2 position = new Vector2(bounds.center.x, y + direction.y * overlapDistance * 0.5f);
-			Vector2 size = new Vector2(bounds.size.x - overlapSizeOffset, overlapDistance);
+			Vector2 size = new Vector2(bounds.size.x - overlapSizeOffset, distance);
 			return Physics2D.OverlapBox(position, size, 0, solidMask);
 		}
 		else if (direction.y == 0)
 		{
 			float x = direction.x < 0 ? bounds.min.x : bounds.max.x;
 			Vector2 position = new Vector2(x + direction.x * overlapDistance * 0.5f, bounds.center.y);
-			Vector2 size = new Vector2(overlapDistance, bounds.size.y - overlapSizeOffset);
+			Vector2 size = new Vector2(overlapDistance, bounds.size.y - distance);
 			return Physics2D.OverlapBox(position, size, 0, solidMask);
 		}
 		else
@@ -278,6 +287,12 @@ public class PlayerController : MonoBehaviour
 	public void ResetGrappleInputBuffer()
 	{
 		grappleInputBufferTimer = 0;
+	}
+
+	public void Freeze(bool freeze)
+	{
+		rb2d.simulated = !freeze;
+		isFrozen = freeze;
 	}
 
 	public void SetCollider(Bounds colliderBounds)

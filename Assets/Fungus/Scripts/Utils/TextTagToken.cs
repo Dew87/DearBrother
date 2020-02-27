@@ -68,6 +68,8 @@ namespace Fungus
         AudioStop,
         /// <summary> wvo </summary>
         WaitForVoiceOver,
+        /// <summary> cont </summary>
+        Interrupt,
     }
 
     /// <summary>

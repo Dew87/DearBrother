@@ -49,12 +49,6 @@ public class PlayerCrawlingState : PlayerState
 			return;
 		}
 
-		if (!player.CheckOverlaps(Vector2.down))
-		{
-			player.TransitionState(player.fallingState);
-			return;
-		}
-
 		player.CheckForVolatilePlatforms();
 
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
@@ -85,7 +79,22 @@ public class PlayerCrawlingState : PlayerState
 			maxSpeed = modifier.crawlSpeed;
 		}
 
-
 		player.MoveHorizontally(maxSpeed, acceleration, deceleration);
+
+		if (!player.CheckOverlaps(Vector2.down))
+		{
+			Bounds bounds = player.currentCollider.bounds;
+			float behindX = player.velocity.x > 0 ? bounds.min.x : bounds.max.x;
+			RaycastHit2D slopeBehind = Physics2D.Raycast(new Vector2(behindX, bounds.min.y), Vector2.down, 0.2f, player.solidMask);
+			if (slopeBehind)
+			{
+				player.rb2d.position += Vector2.down * slopeBehind.distance;
+			}
+			else
+			{
+				player.TransitionState(player.fallingState);
+				return;
+			}
+		}
 	}
 }

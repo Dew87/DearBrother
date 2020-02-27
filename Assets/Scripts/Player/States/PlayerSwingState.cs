@@ -45,7 +45,8 @@ public class PlayerSwingState : PlayerGrappleBaseState
 		doesPlayerHaveParentAtStart = player.transform.parent != null;
 		if (player.grappleDetection.currentGrapplePoint.GetComponentInParent<MovingPlatform>() != null && !doesPlayerHaveParentAtStart)
 		{
-			player.transform.parent = player.grappleDetection.currentGrapplePoint.GetComponentInParent<MovingPlatform>().transform;     
+			player.transform.parent = player.grappleDetection.currentGrapplePoint.GetComponentInParent<MovingPlatform>().transform;
+			player.grappleDetection.currentGrapplePoint.GetComponentInParent<MovingPlatform>().isMoving = true;
 		}
 		
 		player.lineRenderer.enabled = true;

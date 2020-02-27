@@ -9,6 +9,8 @@ public class ProjectileEjector : MonoBehaviour
 	public float cycleOffset = 0f;
 	public Vector2 spawnPosition;
 	public Projectile projectilePrefab;
+	[Tooltip("Amount of projectiles to spawn immediately (at correct distance from each other)")]
+	public int prewarmAmount = 6;
 
 	[Space()]
 	[Tooltip("Degrees, 0 = right, 90 = up, etc")]
@@ -24,6 +26,7 @@ public class ProjectileEjector : MonoBehaviour
 	{
 		timer = Mathf.Repeat(cycleOffset, interval);
 		pool = new PrefabPool<Projectile>(projectilePrefab);
+		Prewarm();
 	}
 
 	private void OnEnable()
@@ -39,6 +42,7 @@ public class ProjectileEjector : MonoBehaviour
 	private void OnPlayerDeath()
 	{
 		timer = Mathf.Repeat(cycleOffset, interval);
+		Prewarm();
 	}
 
 	private void Update()
@@ -47,9 +51,28 @@ public class ProjectileEjector : MonoBehaviour
 		if (timer >= interval)
 		{
 			timer = Mathf.Repeat(timer, interval);
-			Projectile newProjectile = pool.Spawn();
-			newProjectile.transform.position = transform.TransformPoint(spawnPosition);
-			newProjectile.direction = fireDirection;
+			SpawnProjectile();
 		}
+	}
+
+	private void Prewarm()
+	{
+		for (int i = 0; i < prewarmAmount; i++)
+		{
+			float time = interval * i + cycleOffset;
+			Projectile newProjectile = SpawnProjectile();
+			if (!newProjectile.FastForward(time))
+			{
+				break;
+			}
+		}
+	}
+
+	private Projectile SpawnProjectile()
+	{
+		Projectile newProjectile = pool.Spawn();
+		newProjectile.transform.position = transform.TransformPoint(spawnPosition);
+		newProjectile.direction = fireDirection;
+		return newProjectile;
 	}
 }

@@ -3776,22 +3776,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 873104018891296590, guid: ec6db6db902849d4c8e962e828bfad0f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 873104018891296590, guid: ec6db6db902849d4c8e962e828bfad0f,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 873104018891296590, guid: ec6db6db902849d4c8e962e828bfad0f,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 31d7a986e8346ff4f8c7f421d34a757d,
-        type: 3}
     - target: {fileID: 873104018891296593, guid: ec6db6db902849d4c8e962e828bfad0f,
         type: 3}
       propertyPath: m_Enabled
@@ -3902,6 +3886,11 @@ PrefabInstance:
       propertyPath: commandList.Array.data[3]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2318204942742094270, guid: 3dbc0fd896976e54fa50d23740c47d0e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2318204942742094266, guid: 3dbc0fd896976e54fa50d23740c47d0e,
         type: 3}
       propertyPath: character
@@ -3911,11 +3900,6 @@ PrefabInstance:
         type: 3}
       propertyPath: storyText
       value: Wow, what a beautiful rulldjur!
-      objectReference: {fileID: 0}
-    - target: {fileID: 2318204942742094270, guid: 3dbc0fd896976e54fa50d23740c47d0e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3732376004407363028, guid: 3dbc0fd896976e54fa50d23740c47d0e, type: 3}

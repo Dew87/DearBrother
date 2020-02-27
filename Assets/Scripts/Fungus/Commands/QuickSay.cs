@@ -19,6 +19,11 @@ public class QuickSay : Say
 	private IEnumerator DoWait()
 	{
 		yield return new WaitForSeconds(duration);
+		Writer writer = character.SetSayDialog.Writer;
+		while (!writer.IsWaitingForInput)
+		{
+			yield return null;
+		}
 		character.SetSayDialog.Clear();
 		Continue();
 	}

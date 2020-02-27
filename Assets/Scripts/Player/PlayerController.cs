@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 	public Rigidbody2D rb2d { get; private set; }
 	public BoxCollider2D currentCollider { get; private set; }
 	public int solidMask { get; private set; }
+	public bool isFrozen { get; private set; }
 
 	[HideInInspector] public bool isInWind = false;
 	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
@@ -66,7 +67,6 @@ public class PlayerController : MonoBehaviour
 	private float grappleInputBufferTimer;
 	private bool jumpInputIsTriggered;
 	private bool grappleInputIsTriggered;
-	private bool isFrozen;
 
 	private IEnumerable<PlayerState> IterateStates()
 	{
@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Start()
 	{
+
 		rb2d = GetComponent<Rigidbody2D>();
 		currentCollider = boxCollider2D;
 		solidMask = LayerMask.GetMask("Solid", "SolidNoBlockGrapple");
@@ -291,6 +292,8 @@ public class PlayerController : MonoBehaviour
 
 	public void Freeze(bool freeze)
 	{
+		velocity = Vector2.zero;
+		rb2d.velocity = Vector2.zero;
 		rb2d.simulated = !freeze;
 		isFrozen = freeze;
 	}

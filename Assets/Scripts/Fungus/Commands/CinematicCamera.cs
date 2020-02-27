@@ -13,7 +13,7 @@ public class CinematicCamera : Command
 	public Transform targetPositionTransform;
 	[Tooltip("Position to look at. Only used if Target Position Transform is not set")]
 	public Vector3 targetPosition;
-	public float duration;
+	public float duration = 1;
 	[Range(0, 1)]
 	[Tooltip("Where between player and Target Position to look. Set to zero to only zoom without moving camera")]
 	public float lerpFactor = 1;
@@ -67,7 +67,7 @@ public class CinematicCamera : Command
 
 	private IEnumerator WaitAndContinue(float duration)
 	{
-		yield return new WaitForSeconds(duration);
+		yield return new WaitForSeconds(duration+0.1f);
 		Continue();
 	}
 

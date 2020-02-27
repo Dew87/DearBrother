@@ -203,7 +203,6 @@ public class PlayerCamera : MonoBehaviour
 		lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
 		if (lookDownTimer <= 0 && newLookOffset.y < 0 && grounded)
 		{
-			Debug.Log("Moving back");
 			newLookOffset.y = Mathf.MoveTowards(newLookOffset.y, 0, lookDownSpeed * Time.deltaTime);
 		}
 

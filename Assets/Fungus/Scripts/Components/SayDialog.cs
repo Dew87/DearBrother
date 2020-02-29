@@ -242,6 +242,8 @@ namespace Fungus
 
 		public Character SpeakingCharacter { get { return speakingCharacter; } }
 
+        public Writer Writer { get { return writer; } }
+
         /// <summary>
         /// Currently active Say Dialog used to display Say text
         /// </summary>

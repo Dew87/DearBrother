@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour, IKillable
 {
+	private PlayerController player;
+
 	private IEnumerator FadeOut()
 	{
 		float alpha = 0;
@@ -33,12 +35,16 @@ public class PlayerHealth : MonoBehaviour, IKillable
 
 	public void Start()
 	{
+		player = GetComponent<PlayerController>();
 		fadeOutSprite.color = new Color(fadeOutSprite.color.r, fadeOutSprite.color.g, fadeOutSprite.color.b, 0);
 	}
 
 	public void TakeDamage()
 	{
-		Time.timeScale = 0;
-		StartCoroutine(FadeOut());
+		if (!player.isFrozen)
+		{
+			Time.timeScale = 0;
+			StartCoroutine(FadeOut());
+		}
 	}
 }

@@ -17,4 +17,9 @@ public class FreezePlayer : Command
 
 		Continue();
 	}
+
+	public override string GetSummary()
+	{
+		return freezePlayer ? "Freeze" : "Unfreeze";
+	}
 }

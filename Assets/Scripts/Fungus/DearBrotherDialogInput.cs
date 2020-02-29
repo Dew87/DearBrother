@@ -28,6 +28,8 @@ public class DearBrotherDialogInput : MonoBehaviour
 	[Tooltip("Ignore input if a Menu dialog is currently active")]
 	[SerializeField] protected bool ignoreMenuClicks = true;
 
+	[SerializeField] protected GameObject continuePrompt;
+
 	protected bool dialogClickedFlag;
 
 	protected bool nextLineInputFlag;
@@ -47,10 +49,12 @@ public class DearBrotherDialogInput : MonoBehaviour
 	{
 		if (writer != null && writer.IsWriting)
 		{
-			if (Input.GetButtonDown("DialogContinue") ||
-				(cancelEnabled && Input.GetButton("DialogFastForward")))
+			if (clickMode == ContinueMode.Enabled)
 			{
-				SetNextLineFlag();
+				if (Input.GetButtonDown("DialogContinue") || (cancelEnabled && Input.GetButton("DialogFastForward")))
+				{
+					SetNextLineFlag();
+				}
 			}
 		}
 
@@ -81,6 +85,14 @@ public class DearBrotherDialogInput : MonoBehaviour
 				inputListener.OnNextLineEvent();
 			}
 			nextLineInputFlag = false;
+		}
+	}
+
+	private void LateUpdate()
+	{
+		if (continuePrompt != null)
+		{
+			continuePrompt.SetActive(writer.IsWaitingForInput && clickMode == ContinueMode.Enabled);
 		}
 	}
 

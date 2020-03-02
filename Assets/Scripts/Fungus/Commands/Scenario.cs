@@ -15,13 +15,11 @@ public class Scenario : Command
 	private void OnEnable()
 	{
 		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
-		Debug.Log("start listen");
 	}
 
 	private void OnDisable()
 	{
 		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
-		Debug.Log("stop listen");
 	}
 
 	public override void OnEnter()
@@ -30,7 +28,6 @@ public class Scenario : Command
 
 		if (onlyTriggerOnce)
 		{
-			Debug.Log("Disable");
 			GetComponent<Collider2D>().enabled = false;
 		}
 
@@ -41,7 +38,6 @@ public class Scenario : Command
 	{
 		if (resetOnDeath)
 		{
-			Debug.Log("Reenable");
 			GetComponent<Collider2D>().enabled = true;
 		}
 	}

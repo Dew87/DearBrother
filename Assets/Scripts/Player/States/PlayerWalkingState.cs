@@ -12,7 +12,8 @@ public class PlayerWalkingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
-
+		player.playerAnimator.SetBool("Moving", true);
+		player.playerAnimator.SetBool("Grounded", true);
 		player.velocity.y = 0;
 		player.doesDoubleJumpRemain = true;
 	}

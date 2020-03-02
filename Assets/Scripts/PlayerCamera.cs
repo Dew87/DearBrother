@@ -23,6 +23,8 @@ public class PlayerCamera : MonoBehaviour
 	public enum Mode { FollowPlayer, Cinematic }
 	public Mode mode { get; private set; }
 
+	[HideInInspector] public bool useUnscaledTime = false;
+
 	private Collider2D objectToFollowCollider;
 	private LayerMask solidMask;
 	private float lookDownTimer;
@@ -98,6 +100,11 @@ public class PlayerCamera : MonoBehaviour
 		}
 
 		camera.orthographicSize = baseSize / currentZoom;
+	}
+
+	public bool IsAtTarget()
+	{
+		return transform.position == playerController.transform.position + followOffset;
 	}
 
 	public void LookAtCinematically(Vector3 position, float transitionDuration, float factor = 1, float zoom = 1)
@@ -230,6 +237,22 @@ public class PlayerCamera : MonoBehaviour
 		position.x = followPosition.x;
 		position.y = followPosition.y;
 		transform.position = position;
+	}
+
+	public IEnumerator MoveToTarget(float duration)
+	{
+		Vector3 position = transform.position;
+		Vector3 startPosition = position;
+		Vector3 followPosition = playerController.transform.position + followOffset;
+		float t = 0;
+		while (t <= duration)
+		{
+			position.x = Mathf.SmoothStep(startPosition.x, followPosition.x, t / duration);
+			position.y = Mathf.SmoothStep(startPosition.y, followPosition.y, t / duration); ;
+			transform.position = position;
+			t += Time.unscaledDeltaTime;
+			yield return null;
+		}
 	}
 
 	private void OnPlayerDeath()

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerGlidingState : PlayerState
 {
     public float descendSpeed = 2;
+	public float windAcceleration = 40f;
 	public float maxAscendSpeedInWind = 4f;
 	public float maxHorizontalSpeedInWind = 20f;
 	public float verticalDeceleration = 20f;
@@ -16,17 +17,25 @@ public class PlayerGlidingState : PlayerState
 		base.FixedUpdate();
 
         player.MoveHorizontally(player.walkingState.speed, horizontalAcceleration, horizontalDeceleration);
+		float delta = player.velocity.y > -descendSpeed ? player.fallingState.gravity : verticalDeceleration;
+
 		if (player.isInWind)
 		{
-			player.velocity.x = Mathf.MoveTowards(player.velocity.x, maxHorizontalSpeedInWind, player.windSpeed.x * Time.deltaTime);
-			player.velocity.y = Mathf.MoveTowards(player.velocity.y, maxAscendSpeedInWind, player.windSpeed.y * Time.deltaTime);
+			delta = (player.windSpeed.y * windAcceleration) - player.fallingState.gravity;
+			if ((player.windSpeed.y * windAcceleration) - player.fallingState.gravity > 0)
+			{
+				player.velocity.y = Mathf.MoveTowards(player.velocity.y, maxAscendSpeedInWind, delta * Time.deltaTime);
+			}
+			else
+			{
+				player.velocity.y = Mathf.MoveTowards(player.velocity.y, -descendSpeed, delta * Time.deltaTime);
+			}
+			player.velocity.x = Mathf.MoveTowards(player.velocity.x, maxHorizontalSpeedInWind, player.windSpeed.x * Time.deltaTime * windAcceleration);
 		}
 		else
 		{
-			float delta = player.velocity.y > -descendSpeed ? player.fallingState.gravity : verticalDeceleration;
 			player.velocity.y = Mathf.MoveTowards(player.velocity.y, -descendSpeed, delta * Time.deltaTime);
 		}
-
 
 		Collider2D roof = player.CheckOverlaps(Vector2.up);
 		if (roof && player.velocity.y > 0)

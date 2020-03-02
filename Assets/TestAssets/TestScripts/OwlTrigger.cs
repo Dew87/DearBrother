@@ -11,6 +11,7 @@ public class OwlTrigger : MonoBehaviour
 		if (collision.GetComponentInParent<PlayerController>() != null)
 		{
 			owlAnimator.SetInteger("owl", triggerNumber);
+			gameObject.SetActive(false);
 		}
 	}
 }

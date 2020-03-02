@@ -51,7 +51,7 @@ public class DearBrotherDialogInput : MonoBehaviour
 		{
 			if (clickMode == ContinueMode.Enabled)
 			{
-				if (Input.GetButtonDown("DialogContinue") || (cancelEnabled && Input.GetButton("DialogFastForward")))
+				if (Input.GetButtonDown("DialogContinue"))
 				{
 					SetNextLineFlag();
 				}
@@ -60,7 +60,7 @@ public class DearBrotherDialogInput : MonoBehaviour
 
 		if (ignoreClickTimer > 0f)
 		{
-			ignoreClickTimer = Mathf.Max(ignoreClickTimer - Time.deltaTime, 0f);
+			ignoreClickTimer = Mathf.Max(ignoreClickTimer - Time.unscaledDeltaTime, 0f);
 		}
 
 		if (ignoreMenuClicks)

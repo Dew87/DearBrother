@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 	public Bounds standingColliderBounds = new Bounds(new Vector3(0, -0.0184f, 0), new Vector3(0.53f, 0.9632f, 0));
 	public Bounds crouchingColliderBounds = new Bounds(new Vector3(0, -0.257f, 0), new Vector3(0.53f, 0.486f, 0));
 	public SpriteRenderer spriteRenderer;
+	public Animator playerAnimator;
 	public GrappleDetection grappleDetection;
 	public LineRenderer lineRenderer;
 
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
 	public bool hasDoubleJump = true;
+	public bool hasFloat = true;
 	public bool doesDoubleJumpRemain;
 	public Vector2 velocity;
 
@@ -290,10 +292,13 @@ public class PlayerController : MonoBehaviour
 		grappleInputBufferTimer = 0;
 	}
 
-	public void Freeze(bool freeze)
+	public void Freeze(bool freeze, bool resetVelocity = true)
 	{
-		velocity = Vector2.zero;
-		rb2d.velocity = Vector2.zero;
+		if (resetVelocity)
+		{
+			velocity = Vector2.zero;
+			rb2d.velocity = Vector2.zero; 
+		}
 		rb2d.simulated = !freeze;
 		isFrozen = freeze;
 	}
@@ -346,6 +351,14 @@ public class PlayerController : MonoBehaviour
 		if (horizontalInputAxis != 0)
 		{
 			isFacingRight = horizontalInputAxis > 0 ? true : false;
+		}
+		if (isFacingRight && spriteRenderer.flipX)
+		{
+			spriteRenderer.flipX = false;
+		}
+		else if (!isFacingRight && !spriteRenderer.flipX)
+		{
+			spriteRenderer.flipX = true;
 		}
 
 		verticalInputAxis = Input.GetAxisRaw("Vertical");

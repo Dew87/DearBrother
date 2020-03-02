@@ -291,10 +291,13 @@ public class PlayerController : MonoBehaviour
 		grappleInputBufferTimer = 0;
 	}
 
-	public void Freeze(bool freeze)
+	public void Freeze(bool freeze, bool resetVelocity = true)
 	{
-		velocity = Vector2.zero;
-		rb2d.velocity = Vector2.zero;
+		if (resetVelocity)
+		{
+			velocity = Vector2.zero;
+			rb2d.velocity = Vector2.zero; 
+		}
 		rb2d.simulated = !freeze;
 		isFrozen = freeze;
 	}

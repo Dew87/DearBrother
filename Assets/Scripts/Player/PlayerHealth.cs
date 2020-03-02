@@ -9,11 +9,17 @@ public class PlayerHealth : MonoBehaviour, IKillable
 
 	private IEnumerator FadeOut()
 	{
+		ForegroundObject[] foregroundObjects = FindObjectsOfType<ForegroundObject>();
+
 		float alpha = 0;
 		while (alpha < 1)
 		{
 			alpha += 1 / respawnTime * Time.unscaledDeltaTime;
 			fadeOutSprite.color = new Color(fadeOutSprite.color.r, fadeOutSprite.color.g, fadeOutSprite.color.b, alpha);
+			foreach (var obj in foregroundObjects)
+			{
+				obj.SetFadeAlpha(1 - alpha);
+			}
 			yield return null;
 		}
 
@@ -25,6 +31,10 @@ public class PlayerHealth : MonoBehaviour, IKillable
 		{
 			alpha -= 1 / respawnTime * Time.unscaledDeltaTime;
 			fadeOutSprite.color = new Color(fadeOutSprite.color.r, fadeOutSprite.color.g, fadeOutSprite.color.b, alpha);
+			foreach (var obj in foregroundObjects)
+			{
+				obj.SetFadeAlpha(1 - alpha);
+			}
 			yield return null;
 		}
 

@@ -9,6 +9,10 @@ public class PlayerHealth : MonoBehaviour, IKillable
 
 	private IEnumerator FadeOut()
 	{
+		player.Freeze(true);
+
+		StartCoroutine(PlayerCamera.get.MoveToTarget(respawnTime));
+
 		ForegroundObject[] foregroundObjects = FindObjectsOfType<ForegroundObject>();
 
 		float alpha = 0;
@@ -23,8 +27,10 @@ public class PlayerHealth : MonoBehaviour, IKillable
 			yield return null;
 		}
 
+
 		EventManager.TriggerEvent("PlayerDeath");
 		Time.timeScale = 1;
+		player.Freeze(false);
 
 		alpha = 1;
 		while (alpha > 0)
@@ -37,6 +43,7 @@ public class PlayerHealth : MonoBehaviour, IKillable
 			}
 			yield return null;
 		}
+
 
 	}
 

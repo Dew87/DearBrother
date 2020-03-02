@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 	public Bounds standingColliderBounds = new Bounds(new Vector3(0, -0.0184f, 0), new Vector3(0.53f, 0.9632f, 0));
 	public Bounds crouchingColliderBounds = new Bounds(new Vector3(0, -0.257f, 0), new Vector3(0.53f, 0.486f, 0));
 	public SpriteRenderer spriteRenderer;
+	public Animator playerAnimator;
 	public GrappleDetection grappleDetection;
 	public LineRenderer lineRenderer;
 
@@ -350,6 +351,14 @@ public class PlayerController : MonoBehaviour
 		if (horizontalInputAxis != 0)
 		{
 			isFacingRight = horizontalInputAxis > 0 ? true : false;
+		}
+		if (isFacingRight && spriteRenderer.flipX)
+		{
+			spriteRenderer.flipX = false;
+		}
+		else if (!isFacingRight && !spriteRenderer.flipX)
+		{
+			spriteRenderer.flipX = true;
 		}
 
 		verticalInputAxis = Input.GetAxisRaw("Vertical");

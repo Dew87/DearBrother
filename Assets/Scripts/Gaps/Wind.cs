@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class Wind : MonoBehaviour
 {
-	public float playerAccelerationGliding = 60f;
-	public float playerAccelerationFalling = 20f;
-	public float animalWindSpeed = 50f;
 	public ParticleSystem particles;
-	public Vector2 offset;
-	public Vector2 size;
+	public Vector2 blockOffset;
+	public Vector2 blockSize;
 
 	public bool isBlocked = false;
+	public Vector2 windSpeed;
 	private ParticleSystem.EmissionModule emission;
 	private void OnDrawGizmos()
 	{
-		Gizmos.DrawWireCube(transform.position + (Vector3)offset, size);
+		Gizmos.DrawWireCube(transform.position + (Vector3)blockOffset, blockSize);
 	}
 	private void Start()
 	{
 		emission = particles.emission;
+		windSpeed = new Vector2(Mathf.Sin(Mathf.Deg2Rad * -transform.rotation.eulerAngles.z), Mathf.Cos(Mathf.Deg2Rad * -transform.rotation.eulerAngles.z));
 	}
 	private void Update()
 	{
-		isBlocked = CheckIfBlocked(Physics2D.OverlapBoxAll((Vector2)transform.position + offset, size, 0));
+		isBlocked = CheckIfBlocked(Physics2D.OverlapBoxAll((Vector2)transform.position + blockOffset, blockSize, 0));
 		if (isBlocked)
 		{
 			emission.enabled = false;
@@ -33,29 +32,24 @@ public class Wind : MonoBehaviour
 			emission.enabled = true;
 		}
 	}
-	private void OnTriggerStay2D(Collider2D collision)
+
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.GetComponentInParent<PlayerController>() != null)
+		PlayerController playerController = collision.GetComponentInParent<PlayerController>();
+		if (playerController != null)
 		{
-			PlayerController playerController = collision.GetComponentInParent<PlayerController>();
-			playerController.windSpeed = new Vector2(Mathf.Sin(Mathf.Deg2Rad * -transform.rotation.eulerAngles.z), Mathf.Cos(Mathf.Deg2Rad * -transform.rotation.eulerAngles.z));
-			if (playerController.currentState == playerController.glidingState)
-			{
-				playerController.windSpeed *= playerAccelerationGliding;
-			}
-			else if (playerController.currentState == playerController.fallingState)
-			{
-				playerController.windSpeed *= playerAccelerationFalling;
-			}
+			playerController.windSpeed += windSpeed;
 			playerController.isInWind = !isBlocked;
 		}
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if (collision.GetComponentInParent<PlayerController>() != null)
+		PlayerController playerController = collision.GetComponentInParent<PlayerController>();
+		if (playerController != null)
 		{
-			collision.GetComponentInParent<PlayerController>().isInWind = false;
+			playerController.windSpeed -= windSpeed;
+			playerController.isInWind = false;
 		}
 	}
 	private bool CheckIfBlocked(Collider2D[] collisions)

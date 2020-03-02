@@ -90,6 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5702585311279754983}
   - component: {fileID: 5702585311279754982}
+  - component: {fileID: 1650722900291099252}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -149,7 +150,7 @@ SpriteRenderer:
   m_SortingLayerID: 236966521
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c2d1b3f264d373c46a4309230a230282, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b05be025d8b2dfb46808184110001413, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -160,6 +161,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!95 &1650722900291099252
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5702585311279754976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d7e74fcf82a427408b44de52cb5742b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5702585311617581628
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,8 +448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRadius: 5
-  detectionAngle: 90
-  detectionOffset: 0
+  detectionAngle: 100
+  detectionOffset: 40
   currentTargetCircle: {fileID: 5702585311617581628}
   nextTargetCircle: {fileID: 5702585311630747388}
   currentGrapplePoint: {fileID: 0}
@@ -460,6 +480,7 @@ MonoBehaviour:
     m_Center: {x: 0, y: -0.257, z: 0}
     m_Extent: {x: 0.265, y: 0.243, z: 0}
   spriteRenderer: {fileID: 5702585311279754982}
+  playerAnimator: {fileID: 1650722900291099252}
   grappleDetection: {fileID: 5702585311898711826}
   lineRenderer: {fileID: 5702585311898711821}
   standingState:
@@ -505,7 +526,8 @@ MonoBehaviour:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
     maxFallSpeed: 10
-    maxFallSpeedInWind: 4
+    windAcceleration: 40
+    maxAscendSpeedInWind: 4
     maxHorizontalSpeedInWind: 6
     landingLagDurationThreshold: 12
     gravity: 51
@@ -515,6 +537,7 @@ MonoBehaviour:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
     descendSpeed: 2
+    windAcceleration: 40
     maxAscendSpeedInWind: 10
     maxHorizontalSpeedInWind: 10
     verticalDeceleration: 20

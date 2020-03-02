@@ -74,6 +74,11 @@ namespace Fungus
         [Tooltip("Close any other open Say Dialogs when this one is active")]
         [SerializeField] protected bool closeOtherDialogs;
 
+        [Tooltip("Use unscaled delta time")]
+        [SerializeField] protected bool useUnscaledTime = false;
+
+        protected float deltaTime => useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+
         protected float startStoryTextWidth; 
         protected float startStoryTextInset;
 
@@ -211,7 +216,7 @@ namespace Fungus
             {
                 // Add a short delay before we start fading in case there's another Say command in the next frame or two.
                 // This avoids a noticeable flicker between consecutive Say commands.
-                fadeCoolDownTimer = Mathf.Max(0f, fadeCoolDownTimer - Time.deltaTime);
+                fadeCoolDownTimer = Mathf.Max(0f, fadeCoolDownTimer - deltaTime);
             }
 
             CanvasGroup canvasGroup = GetCanvasGroup();
@@ -221,7 +226,7 @@ namespace Fungus
             }
             else
             {
-                float delta = (1f / fadeDuration) * Time.deltaTime;
+                float delta = (1f / fadeDuration) * deltaTime;
                 float alpha = Mathf.MoveTowards(canvasGroup.alpha, targetAlpha, delta);
                 canvasGroup.alpha = alpha;
 
@@ -241,6 +246,8 @@ namespace Fungus
         #region Public members
 
 		public Character SpeakingCharacter { get { return speakingCharacter; } }
+
+        public Writer Writer { get { return writer; } }
 
         /// <summary>
         /// Currently active Say Dialog used to display Say text

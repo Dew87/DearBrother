@@ -18,9 +18,18 @@ public class PlayerCamera : MonoBehaviour
 	public float lookDownDistance = 6f;
 	public bool onlyLookWhenStill = true;
 
+	public static PlayerCamera get { get; private set; }
+
+	public enum Mode { FollowPlayer, Cinematic }
+	public Mode mode { get; private set; }
+
 	private Collider2D objectToFollowCollider;
 	private LayerMask solidMask;
 	private float lookDownTimer;
+	private new Camera camera;
+
+	private float baseSize;
+	private float currentZoom = 1;
 
 	[System.Serializable]
 	public struct Extents
@@ -45,9 +54,15 @@ public class PlayerCamera : MonoBehaviour
 		public Vector3 localCenter => new Vector3(0, (up - down) * .5f, 0);
 	}
 
+	private void Awake()
+	{
+		get = this;
+	}
 
 	private void Start()
 	{
+		camera = GetComponentInChildren<Camera>();
+		baseSize = camera.orthographicSize;
 		if (snapToPlayerOnStart)
 		{
 			SnapToTarget();
@@ -72,12 +87,64 @@ public class PlayerCamera : MonoBehaviour
 
 	private void Update()
 	{
-		Vector2 playerVelocity = playerController.rb2d.velocity;
-		FollowPlayer(playerVelocity);
-		if (lookTransform)
+		if (mode == Mode.FollowPlayer)
 		{
-			LookDown(playerVelocity); 
+			Vector2 playerVelocity = playerController.rb2d.velocity;
+			FollowPlayer(playerVelocity);
+			if (lookTransform)
+			{
+				LookDown(playerVelocity);
+			}
 		}
+
+		camera.orthographicSize = baseSize / currentZoom;
+	}
+
+	public void LookAtCinematically(Vector3 position, float transitionDuration, float factor = 1, float zoom = 1)
+	{
+		mode = Mode.Cinematic;
+		if (zoom <= 0)
+		{
+			zoom = 0.0001f; // Avoid divide by zero
+		}
+		StartCoroutine(DoLookAtCinematically(transitionDuration, position, factor, zoom));
+	}
+
+	public void StopCinematic(float duration, bool resetZoom = true)
+	{
+		float zoom = resetZoom ? 1 : currentZoom;
+
+		IEnumerator Coroutine()
+		{
+			yield return StartCoroutine(DoLookAtCinematically(duration, playerController.transform.position + followOffset, 1, zoom));
+			mode = Mode.FollowPlayer;
+		}
+
+		StartCoroutine(Coroutine());
+	}
+
+	private IEnumerator DoLookAtCinematically(float duration, Vector3 targetPosition, float factor, float zoom)
+	{
+		Vector3 startPosition = transform.position;
+		float startZoom = currentZoom;
+
+		targetPosition.z = 0;
+		targetPosition = Vector3.Lerp(startPosition, targetPosition, factor);
+
+		float t = 0;
+		while (t <= 1)
+		{
+			if (mode != Mode.Cinematic) yield break;
+			transform.position = VectorSmoothstep(startPosition, targetPosition, t);
+			currentZoom = Mathf.Lerp(startZoom, zoom, t);
+			t += Time.deltaTime / duration;
+			yield return null;
+		}
+	}
+
+	static Vector3 VectorSmoothstep(Vector3 from, Vector3 to, float t)
+	{
+		return new Vector3(Mathf.SmoothStep(from.x, to.x, t), Mathf.SmoothStep(from.y, to.y, t), Mathf.SmoothStep(from.z, to.z, t));
 	}
 
 	private void FollowPlayer(Vector2 playerVelocity)
@@ -116,6 +183,7 @@ public class PlayerCamera : MonoBehaviour
 		{
 			newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y, cameraSpeedWhenStill * Time.deltaTime);
 		}
+
 		transform.position = newCameraPosition;
 	}
 
@@ -135,7 +203,6 @@ public class PlayerCamera : MonoBehaviour
 		lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
 		if (lookDownTimer <= 0 && newLookOffset.y < 0 && grounded)
 		{
-			Debug.Log("Moving back");
 			newLookOffset.y = Mathf.MoveTowards(newLookOffset.y, 0, lookDownSpeed * Time.deltaTime);
 		}
 

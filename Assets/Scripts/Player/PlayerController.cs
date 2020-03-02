@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
 	public bool hasDoubleJump = true;
+	public bool hasFloat = true;
 	public bool doesDoubleJumpRemain;
 	public Vector2 velocity;
 
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
 	public Rigidbody2D rb2d { get; private set; }
 	public BoxCollider2D currentCollider { get; private set; }
 	public int solidMask { get; private set; }
+	public bool isFrozen { get; private set; }
 
 	[HideInInspector] public bool isInWind = false;
 	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
@@ -66,7 +68,6 @@ public class PlayerController : MonoBehaviour
 	private float grappleInputBufferTimer;
 	private bool jumpInputIsTriggered;
 	private bool grappleInputIsTriggered;
-	private bool isFrozen;
 
 	private IEnumerable<PlayerState> IterateStates()
 	{
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Start()
 	{
+
 		rb2d = GetComponent<Rigidbody2D>();
 		currentCollider = boxCollider2D;
 		solidMask = LayerMask.GetMask("Solid", "SolidNoBlockGrapple");
@@ -289,8 +291,13 @@ public class PlayerController : MonoBehaviour
 		grappleInputBufferTimer = 0;
 	}
 
-	public void Freeze(bool freeze)
+	public void Freeze(bool freeze, bool resetVelocity = true)
 	{
+		if (resetVelocity)
+		{
+			velocity = Vector2.zero;
+			rb2d.velocity = Vector2.zero; 
+		}
 		rb2d.simulated = !freeze;
 		isFrozen = freeze;
 	}

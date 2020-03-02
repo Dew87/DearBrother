@@ -9,7 +9,6 @@ public class FrightenAnimal : MonoBehaviour
 		Transform parent = collision.transform.parent;
 		if (parent && parent.TryGetComponent<AnimalWhipBehaviour>(out AnimalWhipBehaviour animal))
 		{
-			Debug.Log("Frighten animal");
 			animal.Frighten(new Vector2(Mathf.Sign(animal.transform.position.x - transform.position.x), 0));
 		}
 	}

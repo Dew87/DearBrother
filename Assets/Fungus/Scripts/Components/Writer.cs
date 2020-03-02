@@ -57,6 +57,11 @@ namespace Fungus
 		[Tooltip("Click while text is writing to finish writing immediately")]
 		[SerializeField] protected bool instantComplete = true;
 
+		[Tooltip("Use unscaled delta time")]
+		[SerializeField] protected bool useUnscaledTime = false;
+
+		protected float deltaTime => useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+
 		// This property is true when the writer is waiting for user input to continue
 		protected bool isWaitingForInput;
 
@@ -498,7 +503,7 @@ namespace Fungus
 			UpdateOpenMarkup();
 			UpdateCloseMarkup();
 
-			float timeAccumulator = Time.deltaTime;
+			float timeAccumulator = deltaTime;
 
 			for (int i = 0; i < param.Length + 1; ++i)
 			{
@@ -543,7 +548,15 @@ namespace Fungus
 					}
 					else
 					{
-						yield return new WaitForSeconds(1f / currentWritingSpeed);
+						float seconds = 1f / currentWritingSpeed;
+						if (useUnscaledTime)
+						{
+							yield return new WaitForSecondsRealtime(seconds);
+						}
+						else
+						{
+							yield return new WaitForSeconds(seconds); 
+						}
 					}
 				}
 			}
@@ -655,7 +668,7 @@ namespace Fungus
 					break;
 				}
 
-				timeRemaining -= Time.deltaTime;
+				timeRemaining -= deltaTime;
 				yield return null;
 			}
 

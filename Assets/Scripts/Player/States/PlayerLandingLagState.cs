@@ -12,7 +12,7 @@ public class PlayerLandingLagState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
-
+		player.playerAnimator.SetBool("Grounded", true);
 		timer = duration;
 		player.velocity = Vector3.zero;
 		player.spriteRenderer.flipY = true;

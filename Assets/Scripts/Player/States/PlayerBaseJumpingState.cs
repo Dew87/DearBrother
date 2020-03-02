@@ -20,7 +20,7 @@ public abstract class PlayerBaseJumpingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
-
+		player.playerAnimator.SetTrigger("Jumping");
 		jumpTimer = 0;
 		player.velocity.y = initialSpeed;
 		player.ResetJumpInputBuffer();

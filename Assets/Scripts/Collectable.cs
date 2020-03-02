@@ -18,7 +18,7 @@ public class Collectable : MonoBehaviour
 	{
 		if (collision.CompareTag("Player"))
 		{
-			PlayerController.get.Freeze(true, false);
+			Time.timeScale = 0;
 			StartCoroutine(DoCollect());
 		}
 	}
@@ -34,8 +34,8 @@ public class Collectable : MonoBehaviour
 		}
 
 		yield return StartCoroutine(MemoryController.get.Close());
-		
-		PlayerController.get.Freeze(false, false);
+
+		Time.timeScale = 1;
 		gameObject.SetActive(false);
 	}
 }

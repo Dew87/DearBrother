@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationName: CollectibleCat
+  collected: 0
 --- !u!114 &4041239109168619779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +236,7 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
-  overrideInterrupt: 1
+  overrideInterrupt: 0
   disallowClick: 0
 --- !u!114 &4041239109168619778
 MonoBehaviour:
@@ -265,5 +266,5 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
-  overrideInterrupt: 1
+  overrideInterrupt: 0
   disallowClick: 0

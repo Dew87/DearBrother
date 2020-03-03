@@ -70,15 +70,19 @@ public class PauseMenu : MonoBehaviour
 	{
 		isMenuOn = true;
 		canvas.enabled = true;
-		EventSystem.current.SetSelectedGameObject(SelectedButton);
 		Time.timeScale = 0f;
+		foreach (SubMenu menu in GetComponentsInChildren<SubMenu>())
+		{
+			menu.rootMenu.SetActive(true);
+			menu.gameObject.SetActive(false);
+		}
+		EventSystem.current.SetSelectedGameObject(SelectedButton);
 	}
 
-	private void TriggerOff()
+	public void TriggerOff()
 	{
 		isMenuOn = false;
 		canvas.enabled = false;
-		SelectedButton = EventSystem.current.currentSelectedGameObject;
 		EventSystem.current.SetSelectedGameObject(null);
 		Time.timeScale = 1f;
 	}

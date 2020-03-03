@@ -21,6 +21,7 @@ public class MemoryController : MonoBehaviour
 	private Animator imageAnimator;
 	private Color overlayColor;
 	private Color imageColor;
+	private List<Collectible> collectedList = new List<Collectible>();
 
 	private void Awake()
 	{
@@ -33,6 +34,16 @@ public class MemoryController : MonoBehaviour
 		overlayColor = overlay.color;
 		imageColor = image.color;
 		gameObject.SetActive(false);
+	}
+
+	public List<Collectible> GetCollectedMemories()
+	{
+		return collectedList;
+	}
+
+	public void CollectMemory(Collectible memory)
+	{
+		collectedList.Add(memory);
 	}
 
 	public IEnumerator Open(string animation)

@@ -21,6 +21,7 @@ public class Collectible : MonoBehaviour
 		if (collision.CompareTag("Player"))
 		{
 			Time.timeScale = 0;
+			MemoryController.get.CollectMemory(this);
 			ShowMemory();
 		}
 	}

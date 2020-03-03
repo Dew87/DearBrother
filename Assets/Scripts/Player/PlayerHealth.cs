@@ -5,50 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour, IKillable
 {
-	private PlayerController player;
-
-	private IEnumerator FadeOut()
-	{
-		player.Freeze(true);
-
-		StartCoroutine(PlayerCamera.get.MoveToTarget(respawnTime));
-
-		ForegroundObject[] foregroundObjects = FindObjectsOfType<ForegroundObject>();
-
-		float alpha = 0;
-		while (alpha < 1)
-		{
-			alpha += 1 / respawnTime * Time.unscaledDeltaTime;
-			fadeOutSprite.color = new Color(fadeOutSprite.color.r, fadeOutSprite.color.g, fadeOutSprite.color.b, alpha);
-			foreach (var obj in foregroundObjects)
-			{
-				obj.SetFadeAlpha(1 - alpha);
-			}
-			yield return null;
-		}
-
-
-		EventManager.TriggerEvent("PlayerDeath");
-		Time.timeScale = 1;
-		player.Freeze(false);
-
-		alpha = 1;
-		while (alpha > 0)
-		{
-			alpha -= 1 / respawnTime * Time.unscaledDeltaTime;
-			fadeOutSprite.color = new Color(fadeOutSprite.color.r, fadeOutSprite.color.g, fadeOutSprite.color.b, alpha);
-			foreach (var obj in foregroundObjects)
-			{
-				obj.SetFadeAlpha(1 - alpha);
-			}
-			yield return null;
-		}
-
-
-	}
-
-	public float respawnTime = 0.5f;
+	public float fadeOutTime = 0.5f;
+	public float fadeInDelay = 0.2f;
+	public float fadeInTime = 0.5f;
 	public SpriteRenderer fadeOutSprite;
+
+	private PlayerController player;
 
 	public void Start()
 	{
@@ -62,6 +24,46 @@ public class PlayerHealth : MonoBehaviour, IKillable
 		{
 			Time.timeScale = 0;
 			StartCoroutine(FadeOut());
+		}
+	}
+
+	private IEnumerator FadeOut()
+	{
+		player.Freeze(true);
+
+		StartCoroutine(PlayerCamera.get.MoveToTarget(fadeInTime));
+
+		ForegroundObject[] foregroundObjects = FindObjectsOfType<ForegroundObject>();
+
+		float alpha = 0;
+		while (alpha < 1)
+		{
+			alpha += 1 / fadeInTime * Time.unscaledDeltaTime;
+			fadeOutSprite.color = new Color(fadeOutSprite.color.r, fadeOutSprite.color.g, fadeOutSprite.color.b, alpha);
+			foreach (var obj in foregroundObjects)
+			{
+				obj.SetFadeAlpha(1 - alpha);
+			}
+			yield return null;
+		}
+
+
+		yield return new WaitForSecondsRealtime(fadeInDelay);
+
+		EventManager.TriggerEvent("PlayerDeath");
+		Time.timeScale = 1;
+		player.Freeze(false);
+
+		alpha = 1;
+		while (alpha > 0)
+		{
+			alpha -= 1 / fadeOutTime * Time.unscaledDeltaTime;
+			fadeOutSprite.color = new Color(fadeOutSprite.color.r, fadeOutSprite.color.g, fadeOutSprite.color.b, alpha);
+			foreach (var obj in foregroundObjects)
+			{
+				obj.SetFadeAlpha(1 - alpha);
+			}
+			yield return null;
 		}
 	}
 }

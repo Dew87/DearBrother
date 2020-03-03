@@ -7,7 +7,7 @@ using Fungus;
 [AddComponentMenu("")]
 public class CustomSay : Say
 {
-	[SerializeField] protected bool overrideInterrupt = true;
+	[SerializeField] protected bool overrideInterrupt = false;
 	[SerializeField] protected bool disallowClick = false;
 
 	public override void OnEnter()

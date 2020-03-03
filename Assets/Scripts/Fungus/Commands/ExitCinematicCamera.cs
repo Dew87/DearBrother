@@ -35,4 +35,9 @@ public class ExitCinematicCamera : Command
 		yield return new WaitForSeconds(duration + 0.1f);
 		Continue();
 	}
+
+	public override Color GetButtonColor()
+	{
+		return new Color32(216, 228, 170, 255);
+	}
 }

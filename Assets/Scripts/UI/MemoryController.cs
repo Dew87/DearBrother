@@ -19,12 +19,20 @@ public class MemoryController : MonoBehaviour
 	public static MemoryController get { get; private set; }
 
 	private Animator imageAnimator;
+	private Color overlayColor;
+	private Color imageColor;
 
 	private void Awake()
 	{
 		get = this;
-		gameObject.SetActive(false);
 		imageAnimator = image.GetComponent<Animator>();
+	}
+
+	private void Start()
+	{
+		overlayColor = overlay.color;
+		imageColor = image.color;
+		gameObject.SetActive(false);
 	}
 
 	public IEnumerator Open(string animation)
@@ -35,9 +43,6 @@ public class MemoryController : MonoBehaviour
 
 		float t = 0;
 		float duration = Mathf.Max(overlayFadeInDuration, imageFadeInDelay + imageFadeInDuration);
-
-		Color overlayColor = overlay.color;
-		Color imageColor = image.color;
 
 		while (t <= duration)
 		{

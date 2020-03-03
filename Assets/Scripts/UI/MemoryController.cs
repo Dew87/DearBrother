@@ -60,9 +60,9 @@ public class MemoryController : MonoBehaviour
 			overlay.color = Color.Lerp(Color.clear, overlayColor, t / overlayFadeInDuration);
 			image.color = Color.Lerp(Color.clear, imageColor, (t - imageFadeInDelay) / imageFadeInDuration);
 			t += Time.unscaledDeltaTime;
-			if (t - imageFadeInDelay > imageFadeInDuration)
+			if (t - imageFadeInDelay >= imageFadeInDuration)
 			{
-				imageAnimator.speed = 1;
+				imageAnimator.speed = 1; 
 			}
 			yield return null;
 		}

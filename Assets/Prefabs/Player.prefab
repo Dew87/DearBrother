@@ -586,7 +586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a2eb49657589d4ab1b0ef83d93dcd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 0.5
+  fadeOutTime: 0.5
+  fadeInDelay: 0.2
+  fadeInTime: 0.5
   fadeOutSprite: {fileID: 987893759108272444}
 --- !u!120 &5702585311898711821
 LineRenderer:

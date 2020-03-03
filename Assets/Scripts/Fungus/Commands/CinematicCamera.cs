@@ -81,4 +81,9 @@ public class CinematicCamera : Command
 		Gizmos.color = Color.cyan;
 		GizmosExt.DrawArrow(transform.position, GetPosition() - transform.position);
 	}
+
+	public override Color GetButtonColor()
+	{
+		return new Color32(216, 228, 170, 255);
+	}
 }

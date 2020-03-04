@@ -6,20 +6,38 @@ public class MemoryList : MonoBehaviour
 {
 	public MemoryButton memoryPrefab;
 
-	private void OnEnable()
+	private List<MemoryButton> memories = new List<MemoryButton>();
+
+	private void Start()
 	{
 		foreach (Transform child in transform)
 		{
 			Destroy(child.gameObject);
 		}
 
-		if (MemoryController.get)
+		// Wait one frame before setting this up to let all Collectibles initialize
+		StartCoroutine(NextFrame());
+
+		IEnumerator NextFrame()
 		{
-			foreach (Collectible collectible in MemoryController.get.GetCollectedMemories())
+			yield return null;
+			List<Collectible> collectibleList = Collectible.list;
+			memories.Capacity = collectibleList.Count;
+			for (int i = 0; i < collectibleList.Count; i++)
 			{
-				MemoryButton button = Instantiate(memoryPrefab, transform);
-				button.collectible = collectible;
-			} 
+				MemoryButton memory = Instantiate(memoryPrefab, transform);
+				memory.collectible = collectibleList[i];
+				memories.Add(memory);
+			}
+		}
+
+	}
+
+	private void OnEnable()
+	{
+		foreach (MemoryButton memory in memories)
+		{
+			memory.Refresh();
 		}
 	}
 }

@@ -159,6 +159,7 @@ public class AnimalWhipBehaviour : MonoBehaviour
 				if (collision.gameObject.TryGetComponent<BreakableWall>(out BreakableWall wall))
 				{
 					wall.Break();
+					CameraShake.get.Shake(0.3f, 0.3f);
 				}
 			}
 		}

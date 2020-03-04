@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 31d7a986e8346ff4f8c7f421d34a757d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -569,6 +569,7 @@ MonoBehaviour:
     isStretchToleranceMultiplier: 0
     pullspeed: 10
   hasDoubleJump: 1
+  hasFloat: 1
   doesDoubleJumpRemain: 1
   velocity: {x: 0, y: 0}
   isInWind: 0
@@ -585,7 +586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a2eb49657589d4ab1b0ef83d93dcd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 0.5
+  fadeOutTime: 0.5
+  fadeInDelay: 0.2
+  fadeInTime: 0.5
   fadeOutSprite: {fileID: 987893759108272444}
 --- !u!120 &5702585311898711821
 LineRenderer:

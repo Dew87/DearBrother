@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fungus;
 
-public class Collectable : MonoBehaviour
+public class Collectible : MonoBehaviour
 {
 	public string animationName;
+	[Space()]
+	public bool collected = false;
 
 	Flowchart flowchart;
 
@@ -19,11 +21,17 @@ public class Collectable : MonoBehaviour
 		if (collision.CompareTag("Player"))
 		{
 			Time.timeScale = 0;
-			StartCoroutine(DoCollect());
+			MemoryController.get.CollectMemory(this);
+			ShowMemory();
 		}
 	}
 
-	private IEnumerator DoCollect()
+	public void ShowMemory()
+	{
+		StartCoroutine(DoShowMemory());
+	}
+
+	private IEnumerator DoShowMemory()
 	{
 		yield return StartCoroutine(MemoryController.get.Open(animationName));
 		
@@ -36,6 +44,8 @@ public class Collectable : MonoBehaviour
 		yield return StartCoroutine(MemoryController.get.Close());
 
 		Time.timeScale = 1;
-		gameObject.SetActive(false);
+		GetComponent<SpriteRenderer>().enabled = false;
+		GetComponent<Collider2D>().enabled = false;
+		collected = true;
 	}
 }

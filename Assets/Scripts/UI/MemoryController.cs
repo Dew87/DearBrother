@@ -19,12 +19,31 @@ public class MemoryController : MonoBehaviour
 	public static MemoryController get { get; private set; }
 
 	private Animator imageAnimator;
+	private Color overlayColor;
+	private Color imageColor;
+	private List<Collectible> collectedList = new List<Collectible>();
 
 	private void Awake()
 	{
 		get = this;
-		gameObject.SetActive(false);
 		imageAnimator = image.GetComponent<Animator>();
+	}
+
+	private void Start()
+	{
+		overlayColor = overlay.color;
+		imageColor = image.color;
+		gameObject.SetActive(false);
+	}
+
+	public List<Collectible> GetCollectedMemories()
+	{
+		return collectedList;
+	}
+
+	public void CollectMemory(Collectible memory)
+	{
+		collectedList.Add(memory);
 	}
 
 	public IEnumerator Open(string animation)
@@ -35,9 +54,6 @@ public class MemoryController : MonoBehaviour
 
 		float t = 0;
 		float duration = Mathf.Max(overlayFadeInDuration, imageFadeInDelay + imageFadeInDuration);
-
-		Color overlayColor = overlay.color;
-		Color imageColor = image.color;
 
 		while (t <= duration)
 		{

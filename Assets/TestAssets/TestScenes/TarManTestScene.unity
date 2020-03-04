@@ -1987,11 +1987,6 @@ PrefabInstance:
       propertyPath: respawnTime
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5702585311898711821, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f1ef99fa214f95b4abe88042dc0468fd, type: 2}
     - target: {fileID: 987893759108272444, guid: f8a66aa362b924144a5755f3944b43b5,
         type: 3}
       propertyPath: m_Color.a

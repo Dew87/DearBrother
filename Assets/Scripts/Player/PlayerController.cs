@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 	public bool isFrozen { get; private set; }
 
 	[HideInInspector] public bool isInWind = false;
-	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
+	/*[HideInInspector]*/ public Vector2 windSpeed = Vector2.zero;
 
 	public PlayerState previousState { get; private set; }
 	public PlayerState currentState { get; private set; }

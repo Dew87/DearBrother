@@ -217,8 +217,11 @@ MonoBehaviour:
   - {fileID: 2781029631272831630}
   - {fileID: 2781029630999794569}
   isMovingOneDirection: 1
-  moveSpeed: 1
+  moveSpeed: 2
+  waitTime: 1
   tolerance: 0.1
+  decelerationDistance: 1
+  isMoving: 0
 --- !u!50 &2781029631580208725
 Rigidbody2D:
   serializedVersion: 4

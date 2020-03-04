@@ -10,6 +10,7 @@ public class Bouncer : MonoBehaviour
 	public bool regainDoubleJump = true;
 	[Tooltip("Angle offset from rotation to use as bouncing direction (degrees, counter-clockwise). Leave at 0 to use local up direction.")]
 	public float directionOffset = 0;
+	public ShakeConfig screenShake;
 
 	public System.Action onBounce = delegate { };
 
@@ -40,6 +41,7 @@ public class Bouncer : MonoBehaviour
 		}
 		player.jumpingState.minimumDurationOverride = minimumJumpDuration;
 		onBounce.Invoke();
+		CameraShake.get.Shake(screenShake);
 	}
 
 	public void Bounce(Rigidbody2D rigidbody2D)

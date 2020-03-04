@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 31d7a986e8346ff4f8c7f421d34a757d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -447,9 +447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9960a18a2ff6b447a177b020c8cd765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 5
-  detectionAngle: 100
-  detectionOffset: 40
+  detectionRadius: 4.5
+  detectionAngle: 90
+  detectionOffset: 0
   currentTargetCircle: {fileID: 5702585311617581628}
   nextTargetCircle: {fileID: 5702585311630747388}
   currentGrapplePoint: {fileID: 0}
@@ -477,8 +477,8 @@ MonoBehaviour:
     m_Center: {x: 0, y: -0.0184, z: 0}
     m_Extent: {x: 0.265, y: 0.4816, z: 0}
   crouchingColliderBounds:
-    m_Center: {x: 0, y: -0.257, z: 0}
-    m_Extent: {x: 0.265, y: 0.243, z: 0}
+    m_Center: {x: 0, y: -0.3, z: 0}
+    m_Extent: {x: 0.265, y: 0.2, z: 0}
   spriteRenderer: {fileID: 5702585311279754982}
   playerAnimator: {fileID: 1650722900291099252}
   grappleDetection: {fileID: 5702585311898711826}
@@ -489,7 +489,7 @@ MonoBehaviour:
   walkingState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
-    speed: 4.3
+    speed: 5
     acceleration: 40
     deceleration: 30
   crouchingState:
@@ -526,9 +526,9 @@ MonoBehaviour:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
     maxFallSpeed: 10
-    windAcceleration: 40
-    maxAscendSpeedInWind: 4
-    maxHorizontalSpeedInWind: 6
+    windAcceleration: 60
+    maxAscendSpeedInWind: 8
+    maxHorizontalSpeedInWind: 10
     landingLagDurationThreshold: 12
     gravity: 51
     acceleration: 18
@@ -537,7 +537,7 @@ MonoBehaviour:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
     descendSpeed: 2
-    windAcceleration: 40
+    windAcceleration: 60
     maxAscendSpeedInWind: 10
     maxHorizontalSpeedInWind: 10
     verticalDeceleration: 20
@@ -553,7 +553,7 @@ MonoBehaviour:
     minGrappleLength: 1
     swingSpeed: 10
     climbSpeed: 5
-    mass: 10
+    mass: 15
     gravityMultiplier: 2
     doesResetDoubleJump: 1
   whipState:
@@ -569,6 +569,7 @@ MonoBehaviour:
     isStretchToleranceMultiplier: 0
     pullspeed: 10
   hasDoubleJump: 1
+  hasFloat: 1
   doesDoubleJumpRemain: 1
   velocity: {x: 0, y: 0}
   isInWind: 0
@@ -585,7 +586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a2eb49657589d4ab1b0ef83d93dcd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 0.5
+  fadeOutTime: 0.5
+  fadeInDelay: 0.2
+  fadeInTime: 0.5
   fadeOutSprite: {fileID: 987893759108272444}
 --- !u!120 &5702585311898711821
 LineRenderer:

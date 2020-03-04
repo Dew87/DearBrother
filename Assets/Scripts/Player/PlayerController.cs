@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		if (isFrozen) return;
+		if (isFrozen || Time.timeScale == 0) return;
 
 		ReadInput();
 
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (isFrozen) return;
+		if (isFrozen || Time.timeScale == 0) return;
 
 		currentState.FixedUpdate();
 
@@ -308,7 +308,7 @@ public class PlayerController : MonoBehaviour
 		if (resetVelocity)
 		{
 			velocity = Vector2.zero;
-			rb2d.velocity = Vector2.zero; 
+			rb2d.velocity = Vector2.zero;
 		}
 		rb2d.simulated = !freeze;
 		isFrozen = freeze;

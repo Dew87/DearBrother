@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		if (isFrozen) return;
+		if (isFrozen || Time.timeScale == 0) return;
 
 		ReadInput();
 
@@ -147,11 +147,22 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (isFrozen) return;
+		if (isFrozen || Time.timeScale == 0) return;
 
 		currentState.FixedUpdate();
 
 		rb2d.velocity = velocity;
+
+		// Dumb hack to prevent slightly sliding down slopes when landing on them
+		// It's really only noticeable when not moving horizontally, so I just freeze the X position then
+		if (velocity.x == 0)
+		{
+			rb2d.constraints |= RigidbodyConstraints2D.FreezePositionX;
+		}
+		else
+		{
+			rb2d.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+		}
 	}
 
 	public void MoveHorizontally(float speed, float acceleration, float deceleration)
@@ -297,7 +308,7 @@ public class PlayerController : MonoBehaviour
 		if (resetVelocity)
 		{
 			velocity = Vector2.zero;
-			rb2d.velocity = Vector2.zero; 
+			rb2d.velocity = Vector2.zero;
 		}
 		rb2d.simulated = !freeze;
 		isFrozen = freeze;

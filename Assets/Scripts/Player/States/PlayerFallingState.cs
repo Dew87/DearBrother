@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerFallingState : PlayerState
 {
 	public float maxFallSpeed = 10;
-	public float windAcceleration = 40f;
-	public float maxAscendSpeedInWind = 4f;
-	public float maxHorizontalSpeedInWind = 20f;
+	public float windAcceleration = 60f;
+	public float maxAscendSpeedInWind = 8f;
+	public float maxHorizontalSpeedInWind = 10f;
 	[Tooltip("If the player has fallen for at least this manys seconds when landing, landing lag occurs")]
 	public float landingLagDurationThreshold = 12f;
 	public float gravity = 51;
@@ -36,20 +36,20 @@ public class PlayerFallingState : PlayerState
 		base.FixedUpdate();
 
         player.MoveHorizontally(player.walkingState.speed, acceleration, player.isInWind ? deceleration / (Mathf.Abs(player.windSpeed.x) + 1) : deceleration);
-
 		if (player.isInWind)
 		{
-			if ((player.windSpeed.y * windAcceleration) - gravity > 0)
+			Vector2 currentWindSpeed = player.windSpeed * windAcceleration;
+			if (currentWindSpeed.y - gravity > 0)
 			{
-				float delta = (player.windSpeed.y * windAcceleration) - gravity;
-				player.velocity.y = Mathf.MoveTowards(player.velocity.y, maxAscendSpeedInWind, delta * Time.deltaTime);
+				float deltaY = currentWindSpeed.y;
+				player.velocity.y = Mathf.MoveTowards(player.velocity.y, maxAscendSpeedInWind, deltaY * Time.deltaTime);
 			}
 			else
 			{
-				float delta = -(player.windSpeed.y * windAcceleration) - gravity;
+				float delta = Mathf.Abs(currentWindSpeed.y) + gravity;
 				player.velocity.y = Mathf.MoveTowards(player.velocity.y, -maxFallSpeed, delta * Time.deltaTime);
 			}
-			player.velocity.x = Mathf.MoveTowards(player.velocity.x, maxHorizontalSpeedInWind, player.windSpeed.x * Time.deltaTime * windAcceleration);
+			player.velocity.x = Mathf.MoveTowards(player.velocity.x, currentWindSpeed.x > 0 ? maxHorizontalSpeedInWind : -maxHorizontalSpeedInWind, Mathf.Abs(currentWindSpeed.x) * Time.deltaTime );
 		}
 		else
 		{

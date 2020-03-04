@@ -13,7 +13,7 @@ public class PlayerCamera : MonoBehaviour
 
 	[Header("Look-down")]
 	public Transform lookTransform;
-	public float lookDownSpeed = 20f;
+	public float lookDownDuration = 0.3f;
 	public float lookDownDelay = 0.2f;
 	public float lookDownDistance = 6f;
 	public bool onlyLookWhenStill = true;
@@ -32,6 +32,7 @@ public class PlayerCamera : MonoBehaviour
 
 	private float baseSize;
 	private float currentZoom = 1;
+	private float lookDownFactor;
 
 	[System.Serializable]
 	public struct Extents
@@ -203,15 +204,17 @@ public class PlayerCamera : MonoBehaviour
 		bool isAbleToMove = onlyLookWhenStill ? Mathf.Approximately(playerVelocity.x, 0) : true;
 		if (lookDownTimer >= lookDownDelay)
 		{
-			newLookOffset.y = Mathf.MoveTowards(newLookOffset.y, -lookDownDistance, lookDownSpeed * Time.deltaTime);
+			lookDownFactor += Time.deltaTime / lookDownDuration;
 		}
 
 		bool doLookDownTimer = (playerController.currentState == playerController.crouchingState || playerController.currentState == playerController.crawlingState) && grounded && isAbleToMove;
 		lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
 		if (lookDownTimer <= 0 && newLookOffset.y < 0 && grounded)
 		{
-			newLookOffset.y = Mathf.MoveTowards(newLookOffset.y, 0, lookDownSpeed * Time.deltaTime);
+			lookDownFactor -= Time.deltaTime / lookDownDuration;
 		}
+
+		newLookOffset.y = Mathf.SmoothStep(0, -lookDownDistance, lookDownFactor);
 
 		lookTransform.localPosition = newLookOffset;
 	}

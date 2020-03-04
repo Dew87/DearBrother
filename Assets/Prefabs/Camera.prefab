@@ -198,7 +198,8 @@ MonoBehaviour:
     up: 2
     down: 0.5
   lookTransform: {fileID: 8179696980365648655}
-  lookDownSpeed: 20
+  lookDownDuration: 0.4
   lookDownDelay: 0.2
   lookDownDistance: 6
   onlyLookWhenStill: 1
+  useUnscaledTime: 0

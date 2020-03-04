@@ -207,7 +207,7 @@ public class PlayerCamera : MonoBehaviour
 			lookDownFactor += Time.deltaTime / lookDownDuration;
 		}
 
-		bool doLookDownTimer = (playerController.currentState == playerController.crouchingState || playerController.currentState == playerController.crawlingState) && grounded && isAbleToMove;
+		bool doLookDownTimer = playerController.isCrouchInputHeld && grounded && isAbleToMove;
 		lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
 		if (lookDownTimer <= 0 && newLookOffset.y < 0 && grounded)
 		{

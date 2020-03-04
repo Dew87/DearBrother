@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbd4144d0bc88646b131251fb82c458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedGained: 20
+  speedGained: 20.5
   minimumJumpDuration: 0.3
   regainDoubleJump: 1
   directionOffset: 0

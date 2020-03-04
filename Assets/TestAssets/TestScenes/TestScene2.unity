@@ -3084,6 +3084,16 @@ PrefabInstance:
       value: "Take it to the showers. Dicks get shoved in places you don\u2019t even
         remember. We win together we celebrate together. Football is back baby."
       objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619788, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: commandList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619788, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: commandList.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d383c6d6b29ba32408bc25cef3808cc2, type: 3}
 --- !u!4 &1086463148 stripped

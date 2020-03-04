@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8179696979881086280}
+  - component: {fileID: 3505563940005798079}
   m_Layer: 0
   m_Name: Shake
   m_TagString: Untagged
@@ -31,6 +32,25 @@ Transform:
   m_Father: {fileID: 8179696980365648655}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3505563940005798079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179696979881086283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffbe442901427194a822a108fab37619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traumaDecrease: 0.75
+  frequency: 10
+  maxAmplitude: 1
+  rotationalFrequency: 10
+  rotationalMaxAmplitude: 20
+  trauma: 0
+  rotationalTrauma: 0
 --- !u!1 &8179696980322465321
 GameObject:
   m_ObjectHideFlags: 0

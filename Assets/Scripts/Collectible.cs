@@ -48,8 +48,17 @@ public class Collectible : MonoBehaviour
 		{
 			Time.timeScale = 0;
 			MemoryController.get.CollectMemory(this);
-			ShowMemory();
+			StartCoroutine(DoCollect());
 		}
+	}
+
+	private IEnumerator DoCollect()
+	{
+		yield return StartCoroutine(DoShowMemory());
+		Time.timeScale = 1;
+		GetComponent<SpriteRenderer>().enabled = false;
+		GetComponent<Collider2D>().enabled = false;
+		isCollected = true;
 	}
 
 	public void ShowMemory()
@@ -68,10 +77,5 @@ public class Collectible : MonoBehaviour
 		}
 
 		yield return StartCoroutine(MemoryController.get.Close());
-
-		Time.timeScale = 1;
-		GetComponent<SpriteRenderer>().enabled = false;
-		GetComponent<Collider2D>().enabled = false;
-		isCollected = true;
 	}
 }

@@ -280,7 +280,9 @@ public class PlayerController : MonoBehaviour
 
 	public bool IsNormalColliderInWall()
 	{
-		return Physics2D.OverlapBox(standingColliderBounds.center, standingColliderBounds.size, 0, solidMask);
+		Vector3 size = standingColliderBounds.size;
+		size -= Vector3.one * overlapSizeOffset;
+		return Physics2D.OverlapBox(transform.position + standingColliderBounds.center, size, 0, solidMask);
 	}
 
 	public void ResetJumpInputBuffer()

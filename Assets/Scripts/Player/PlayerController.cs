@@ -152,6 +152,17 @@ public class PlayerController : MonoBehaviour
 		currentState.FixedUpdate();
 
 		rb2d.velocity = velocity;
+
+		// Dumb hack to prevent slightly sliding down slopes when landing on them
+		// It's really only noticeable when not moving horizontally, so I just freeze the X position then
+		if (velocity.x == 0)
+		{
+			rb2d.constraints |= RigidbodyConstraints2D.FreezePositionX;
+		}
+		else
+		{
+			rb2d.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+		}
 	}
 
 	public void MoveHorizontally(float speed, float acceleration, float deceleration)

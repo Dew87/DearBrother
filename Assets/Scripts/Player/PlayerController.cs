@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 	public float jumpGraceTimer { get; private set; }
 	public Rigidbody2D rb2d { get; private set; }
 	public BoxCollider2D currentCollider { get; private set; }
+	public Bounds bounds { get; private set; }
 	public int solidMask { get; private set; }
 	public bool isFrozen { get; private set; }
 
@@ -137,6 +138,8 @@ public class PlayerController : MonoBehaviour
 
 		ReadInput();
 
+		bounds = currentCollider.bounds;
+
 		currentState.Update();
 
 		if (jumpGraceTimer > 0)
@@ -148,6 +151,8 @@ public class PlayerController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		if (isFrozen || Time.timeScale == 0) return;
+
+		bounds = currentCollider.bounds;
 
 		currentState.FixedUpdate();
 
@@ -223,8 +228,6 @@ public class PlayerController : MonoBehaviour
 
 	public Collider2D CheckOverlaps(Vector2 direction, float distance = overlapDistance)
 	{
-		Bounds bounds = currentCollider.bounds;
-
 		if (direction.x == 0)
 		{
 			float y = direction.y < 0 ? bounds.min.y : bounds.max.y;
@@ -254,8 +257,6 @@ public class PlayerController : MonoBehaviour
 
 	public Collider2D[] CheckOverlapsAll(Vector2 direction, int mask)
 	{
-		Bounds bounds = currentCollider.bounds;
-
 		if (direction.x == 0)
 		{
 			float y = direction.y < 0 ? bounds.min.y : bounds.max.y;
@@ -279,8 +280,7 @@ public class PlayerController : MonoBehaviour
 
 	public bool IsNormalColliderInWall()
 	{
-		Bounds bounds = standingColliderBounds;
-		return Physics2D.OverlapBox(bounds.center, bounds.size, 0, solidMask);
+		return Physics2D.OverlapBox(standingColliderBounds.center, standingColliderBounds.size, 0, solidMask);
 	}
 
 	public void ResetJumpInputBuffer()
@@ -318,6 +318,7 @@ public class PlayerController : MonoBehaviour
 	{
 		currentCollider.size = colliderBounds.size;
 		currentCollider.offset = colliderBounds.center;
+		bounds = currentCollider.bounds;
 	}
 
 	public void TransitionState(PlayerState newState)
@@ -403,5 +404,14 @@ public class PlayerController : MonoBehaviour
 		{
 			state.OnValidate();
 		}
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.green;
+		Gizmos.DrawWireCube(transform.position + standingColliderBounds.center, standingColliderBounds.size);
+
+		Gizmos.color = Color.cyan;
+		Gizmos.DrawWireCube(transform.position + crouchingColliderBounds.center, crouchingColliderBounds.size);
 	}
 }

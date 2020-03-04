@@ -301,6 +301,9 @@ MonoBehaviour:
   minimumJumpDuration: 0.3
   regainDoubleJump: 1
   directionOffset: 0
+  screenShake:
+    shakeIntensity: 0.3
+    rotationalShakeIntensity: 0.3
 --- !u!251 &4947351005070407756
 PlatformEffector2D:
   m_ObjectHideFlags: 0

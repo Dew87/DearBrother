@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerGlidingState : PlayerState
 {
     public float descendSpeed = 2;
-	public float windAcceleration = 40f;
-	public float maxAscendSpeedInWind = 4f;
-	public float maxHorizontalSpeedInWind = 20f;
+	public float windAcceleration = 60f;
+	public float maxAscendSpeedInWind = 12f;
+	public float maxHorizontalSpeedInWind = 10f;
 	public float verticalDeceleration = 20f;
     public float horizontalAcceleration = 20f;
     public float horizontalDeceleration = 10f;
@@ -21,16 +21,18 @@ public class PlayerGlidingState : PlayerState
 
 		if (player.isInWind)
 		{
-			delta = (player.windSpeed.y * windAcceleration) - player.fallingState.gravity;
-			if ((player.windSpeed.y * windAcceleration) - player.fallingState.gravity > 0)
+			Vector2 currentWindSpeed = player.windSpeed.normalized * windAcceleration;
+			if (currentWindSpeed.y - verticalDeceleration > 0)
 			{
-				player.velocity.y = Mathf.MoveTowards(player.velocity.y, maxAscendSpeedInWind, delta * Time.deltaTime);
+				float deltaY = currentWindSpeed.y;
+				player.velocity.y = Mathf.MoveTowards(player.velocity.y, maxAscendSpeedInWind, deltaY * Time.deltaTime);
 			}
 			else
 			{
-				player.velocity.y = Mathf.MoveTowards(player.velocity.y, -descendSpeed, delta * Time.deltaTime);
+				float deltaY = Mathf.Abs(currentWindSpeed.y) + verticalDeceleration;
+				player.velocity.y = Mathf.MoveTowards(player.velocity.y, -descendSpeed, deltaY * Time.deltaTime);
 			}
-			player.velocity.x = Mathf.MoveTowards(player.velocity.x, maxHorizontalSpeedInWind, player.windSpeed.x * Time.deltaTime * windAcceleration);
+			player.velocity.x = Mathf.MoveTowards(player.velocity.x, currentWindSpeed.x > 0 ? maxHorizontalSpeedInWind : -maxHorizontalSpeedInWind, Mathf.Abs(currentWindSpeed.x) * Time.deltaTime);
 		}
 		else
 		{

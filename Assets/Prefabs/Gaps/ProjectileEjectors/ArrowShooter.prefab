@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b18546a3bd6444c9df39f57e7d6393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 1.5
+  interval: 2
   cycleOffset: 0
   spawnPosition: {x: -0.5762768, y: -0.05077672}
   projectilePrefab: {fileID: 6157554620944409969, guid: 1819ab7d03b81384980efe7bfbe42e36,

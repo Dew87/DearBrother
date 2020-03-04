@@ -21,6 +21,7 @@ public abstract class PlayerBaseJumpingState : PlayerState
 	{
 		base.Enter();
 		player.playerAnimator.SetTrigger("Jumping");
+		player.playerAnimator.SetBool("Grounded", false);
 		jumpTimer = 0;
 		player.velocity.y = initialSpeed;
 		player.ResetJumpInputBuffer();

@@ -42,6 +42,14 @@ public class Wind : MonoBehaviour
 			playerController.isInWind = !isBlocked;
 		}
 	}
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		PlayerController playerController = collision.GetComponentInParent<PlayerController>();
+		if (playerController != null)
+		{
+			playerController.isInWind = !isBlocked;
+		}
+	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{

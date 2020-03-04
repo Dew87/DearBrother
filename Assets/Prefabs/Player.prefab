@@ -526,9 +526,9 @@ MonoBehaviour:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
     maxFallSpeed: 10
-    windAcceleration: 40
-    maxAscendSpeedInWind: 4
-    maxHorizontalSpeedInWind: 6
+    windAcceleration: 60
+    maxAscendSpeedInWind: 8
+    maxHorizontalSpeedInWind: 10
     landingLagDurationThreshold: 12
     gravity: 51
     acceleration: 18
@@ -537,7 +537,7 @@ MonoBehaviour:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
     descendSpeed: 2
-    windAcceleration: 40
+    windAcceleration: 60
     maxAscendSpeedInWind: 10
     maxHorizontalSpeedInWind: 10
     verticalDeceleration: 20

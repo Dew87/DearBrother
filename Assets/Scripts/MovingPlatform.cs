@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MovingPlatform : MonoBehaviour
 {
@@ -81,7 +82,7 @@ public class MovingPlatform : MonoBehaviour
 		{
 			if (!childrenColliders.Contains(colliders[i]))
 			{
-				if (colliders[i].gameObject.GetComponentInParent<Rigidbody2D>() != null && colliders[i].gameObject.transform.parent.gameObject != gameObject)
+				if (colliders[i].gameObject.GetComponentInParent<Rigidbody2D>() != null && colliders[i].gameObject.GetComponentInParent<TilemapCollider2D>() == null && colliders[i].gameObject.transform.parent.gameObject != gameObject)
 				{
 					colliders[i].gameObject.transform.parent.parent = gameObject.transform;
 					childrenColliders.Add(colliders[i]);

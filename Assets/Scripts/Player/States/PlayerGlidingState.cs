@@ -12,6 +12,11 @@ public class PlayerGlidingState : PlayerState
 	public float verticalDeceleration = 20f;
     public float horizontalAcceleration = 20f;
     public float horizontalDeceleration = 10f;
+	public override void Enter()
+	{
+		base.Enter();
+		player.playerAnimator.SetBool("Gliding", true);
+	}
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
@@ -85,5 +90,10 @@ public class PlayerGlidingState : PlayerState
 				player.TransitionState(player.whipState);
 			}
 		}
+	}
+	public override void Exit()
+	{
+		base.Exit();
+		player.playerAnimator.SetBool("Gliding", false);
 	}
 }

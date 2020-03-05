@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 	public bool isFrozen { get; private set; }
 
 	[HideInInspector] public bool isInWind = false;
-	/*[HideInInspector]*/ public Vector2 windSpeed = Vector2.zero;
+	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
 
 	public PlayerState previousState { get; private set; }
 	public PlayerState currentState { get; private set; }
@@ -278,7 +278,9 @@ public class PlayerController : MonoBehaviour
 
 	public bool IsNormalColliderInWall()
 	{
-		return Physics2D.OverlapBox(standingColliderBounds.center, standingColliderBounds.size, 0, solidMask);
+		Vector3 size = standingColliderBounds.size;
+		size -= Vector3.one * overlapSizeOffset;
+		return Physics2D.OverlapBox(transform.position + standingColliderBounds.center, size, 0, solidMask);
 	}
 
 	public void ResetJumpInputBuffer()
@@ -389,6 +391,7 @@ public class PlayerController : MonoBehaviour
 	private void OnPlayerDeath()
 	{
 		rb2d.position = CheckPoint.GetActiveCheckPointPosition();
+		grappleDetection.ReleaseGrapplePoint();
 		transform.position = rb2d.position; // Need to force-sync transform for camera snapping to work properly
 		rb2d.velocity = Vector2.zero;
 		velocity = Vector2.zero;

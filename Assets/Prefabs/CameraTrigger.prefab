@@ -51,7 +51,7 @@ MonoBehaviour:
   changeZoom: 1
   newOffset: {x: 0, y: -2, z: 0}
   zoom: 1
-  duration: 0.5
+  duration: 2
 --- !u!212 &2819150118086207637
 SpriteRenderer:
   m_ObjectHideFlags: 0

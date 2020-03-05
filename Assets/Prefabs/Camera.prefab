@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6314464047243695806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 1.5, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8179696980365648655}
@@ -244,10 +244,12 @@ MonoBehaviour:
   snapToPlayerOnStart: 1
   playerController: {fileID: 0}
   cameraSpeedWhenStill: 2
+  cameraSpeedWhenGliding: 8
   bufferArea:
     x: 1
     up: 2
     down: 0.5
+  glidingOffset: 2
   lookTransform: {fileID: 8179696980365648655}
   lookDownDuration: 0.4
   lookDownDelay: 0.2

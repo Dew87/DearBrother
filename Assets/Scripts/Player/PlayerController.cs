@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	public float inputThreshold = 0.1f;
 	[Tooltip("If jump is pressed within this duration before touching the ground, the player will jump immediately after touching the ground")]
 	public float jumpInputBuffer = 0.2f;
 	[Tooltip("If jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
@@ -99,7 +98,6 @@ public class PlayerController : MonoBehaviour
 
 	private void Start()
 	{
-
 		rb2d = GetComponent<Rigidbody2D>();
 		currentCollider = boxCollider2D;
 		solidMask = LayerMask.GetMask("Solid", "SolidNoBlockGrapple");
@@ -346,7 +344,7 @@ public class PlayerController : MonoBehaviour
 			jumpInputBufferTimer -= Time.deltaTime;
 		}
 
-		bool isGrappleInputHeld = Input.GetAxisRaw("Grapple") > inputThreshold;
+		bool isGrappleInputHeld = Input.GetAxisRaw("Grapple") > 0;
 		if (grappleInputBufferTimer > 0)
 		{
 			grappleInputBufferTimer -= Time.deltaTime;
@@ -376,9 +374,9 @@ public class PlayerController : MonoBehaviour
 		}
 
 		verticalInputAxis = Input.GetAxisRaw("Vertical");
-		isCrouchInputHeld = verticalInputAxis < -inputThreshold;
+		isCrouchInputHeld = verticalInputAxis < 0f;
 
-		isJumpInputHeld = Input.GetAxisRaw("Jump") > inputThreshold;
+		isJumpInputHeld = Input.GetAxisRaw("Jump") > 0f;
 		if (isJumpInputHeld && !jumpInputIsTriggered)
 		{
 			jumpInputIsTriggered = true;

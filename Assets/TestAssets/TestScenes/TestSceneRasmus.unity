@@ -520,6 +520,16 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1742529982}
+    - target: {fileID: 8179696981043089571, guid: 0c60002485b01d54b96958182947cfbf,
+        type: 3}
+      propertyPath: glidingOffset
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179696981043089571, guid: 0c60002485b01d54b96958182947cfbf,
+        type: 3}
+      propertyPath: cameraSpeedWhenStill
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8179696980322465327, guid: 0c60002485b01d54b96958182947cfbf,
         type: 3}
       propertyPath: orthographic size
@@ -30784,12 +30794,12 @@ PrefabInstance:
     - target: {fileID: 5702585311898711822, guid: f8a66aa362b924144a5755f3944b43b5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.48
+      value: 118.3
       objectReference: {fileID: 0}
     - target: {fileID: 5702585311898711822, guid: f8a66aa362b924144a5755f3944b43b5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.71
+      value: 22.5
       objectReference: {fileID: 0}
     - target: {fileID: 5702585311898711822, guid: f8a66aa362b924144a5755f3944b43b5,
         type: 3}
@@ -45556,7 +45566,7 @@ PrefabInstance:
     - target: {fileID: 1120768835443703557, guid: 4d8d0011f4a94544ab0a851eea4b3e3d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1120768835443703555, guid: 4d8d0011f4a94544ab0a851eea4b3e3d,
         type: 3}

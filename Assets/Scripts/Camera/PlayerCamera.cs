@@ -9,7 +9,10 @@ public class PlayerCamera : MonoBehaviour
 	public bool snapToPlayerOnStart = true;
 	public PlayerController playerController;
 	public float cameraSpeedWhenStill = 2f;
+	public float cameraSpeedWhenGliding = 8f;
 	public Extents bufferArea = new Extents(1, 2, 0.5f);
+	[Tooltip("How far down the camera will be while gliding")]
+	public float glidingOffset = 2f;
 
 	[Header("Look-down")]
 	public Transform lookTransform;
@@ -227,7 +230,15 @@ public class PlayerCamera : MonoBehaviour
 		}
 		else
 		{
-			newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y, cameraSpeedWhenStill * Time.deltaTime);
+			if (playerController.currentState == playerController.glidingState)
+			{
+				followPosition.y -= glidingOffset;
+				newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y, cameraSpeedWhenGliding * Time.deltaTime);
+			}
+			else
+			{
+				newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y, cameraSpeedWhenStill * Time.deltaTime);
+			}
 		}
 
 		transform.position = newCameraPosition;

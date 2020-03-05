@@ -10,7 +10,7 @@ public class SubMenu : MonoBehaviour
 
 	private GameObject selectedButtonWhenReturning = null;
 
-	public void Open()
+	public virtual void Open()
 	{
 		gameObject.SetActive(true);
 		rootMenu.gameObject.SetActive(false);
@@ -18,7 +18,7 @@ public class SubMenu : MonoBehaviour
 		EventSystem.current.SetSelectedGameObject(selectedButton);
 	}
 
-	public void Close()
+	public virtual void Close()
 	{
 		gameObject.SetActive(false);
 		rootMenu.gameObject.SetActive(true);

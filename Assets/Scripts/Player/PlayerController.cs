@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	public float inputThreshold = 0.1f;
 	[Tooltip("If jump is pressed within this duration before touching the ground, the player will jump immediately after touching the ground")]
 	public float jumpInputBuffer = 0.2f;
 	[Tooltip("If jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
@@ -53,6 +52,7 @@ public class PlayerController : MonoBehaviour
 	public float jumpGraceTimer { get; private set; }
 	public Rigidbody2D rb2d { get; private set; }
 	public BoxCollider2D currentCollider { get; private set; }
+	public Bounds bounds { get; private set; }
 	public int solidMask { get; private set; }
 	public bool isFrozen { get; private set; }
 
@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour
 
 	private void Start()
 	{
-
 		rb2d = GetComponent<Rigidbody2D>();
 		currentCollider = boxCollider2D;
 		solidMask = LayerMask.GetMask("Solid", "SolidNoBlockGrapple");
@@ -137,6 +136,8 @@ public class PlayerController : MonoBehaviour
 
 		ReadInput();
 
+		bounds = currentCollider.bounds;
+
 		currentState.Update();
 
 		if (jumpGraceTimer > 0)
@@ -148,6 +149,8 @@ public class PlayerController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		if (isFrozen || Time.timeScale == 0) return;
+
+		bounds = currentCollider.bounds;
 
 		currentState.FixedUpdate();
 
@@ -223,8 +226,6 @@ public class PlayerController : MonoBehaviour
 
 	public Collider2D CheckOverlaps(Vector2 direction, float distance = overlapDistance)
 	{
-		Bounds bounds = currentCollider.bounds;
-
 		if (direction.x == 0)
 		{
 			float y = direction.y < 0 ? bounds.min.y : bounds.max.y;
@@ -254,8 +255,6 @@ public class PlayerController : MonoBehaviour
 
 	public Collider2D[] CheckOverlapsAll(Vector2 direction, int mask)
 	{
-		Bounds bounds = currentCollider.bounds;
-
 		if (direction.x == 0)
 		{
 			float y = direction.y < 0 ? bounds.min.y : bounds.max.y;
@@ -279,8 +278,9 @@ public class PlayerController : MonoBehaviour
 
 	public bool IsNormalColliderInWall()
 	{
-		Bounds bounds = standingColliderBounds;
-		return Physics2D.OverlapBox(bounds.center, bounds.size, 0, solidMask);
+		Vector3 size = standingColliderBounds.size;
+		size -= Vector3.one * overlapSizeOffset;
+		return Physics2D.OverlapBox(transform.position + standingColliderBounds.center, size, 0, solidMask);
 	}
 
 	public void ResetJumpInputBuffer()
@@ -318,6 +318,7 @@ public class PlayerController : MonoBehaviour
 	{
 		currentCollider.size = colliderBounds.size;
 		currentCollider.offset = colliderBounds.center;
+		bounds = currentCollider.bounds;
 	}
 
 	public void TransitionState(PlayerState newState)
@@ -343,7 +344,7 @@ public class PlayerController : MonoBehaviour
 			jumpInputBufferTimer -= Time.deltaTime;
 		}
 
-		bool isGrappleInputHeld = Input.GetAxisRaw("Grapple") > inputThreshold;
+		bool isGrappleInputHeld = Input.GetAxisRaw("Grapple") > 0;
 		if (grappleInputBufferTimer > 0)
 		{
 			grappleInputBufferTimer -= Time.deltaTime;
@@ -373,9 +374,9 @@ public class PlayerController : MonoBehaviour
 		}
 
 		verticalInputAxis = Input.GetAxisRaw("Vertical");
-		isCrouchInputHeld = verticalInputAxis < -inputThreshold;
+		isCrouchInputHeld = verticalInputAxis < 0f;
 
-		isJumpInputHeld = Input.GetAxisRaw("Jump") > inputThreshold;
+		isJumpInputHeld = Input.GetAxisRaw("Jump") > 0f;
 		if (isJumpInputHeld && !jumpInputIsTriggered)
 		{
 			jumpInputIsTriggered = true;
@@ -403,5 +404,14 @@ public class PlayerController : MonoBehaviour
 		{
 			state.OnValidate();
 		}
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.green;
+		Gizmos.DrawWireCube(transform.position + standingColliderBounds.center, standingColliderBounds.size);
+
+		Gizmos.color = Color.cyan;
+		Gizmos.DrawWireCube(transform.position + crouchingColliderBounds.center, crouchingColliderBounds.size);
 	}
 }

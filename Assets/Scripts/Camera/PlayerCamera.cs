@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
 	[Header("Follow player")]
+	public Transform followOffsetTransform;
 	public bool snapToPlayerOnStart = true;
 	public PlayerController playerController;
-	public Vector3 followOffset;
 	public float cameraSpeedWhenStill = 2f;
 	public Extents bufferArea = new Extents(1, 2, 0.5f);
 
@@ -24,6 +24,7 @@ public class PlayerCamera : MonoBehaviour
 	public Mode mode { get; private set; }
 
 	[HideInInspector] public bool useUnscaledTime = false;
+	public Vector3 defaultFollowOffset { get; private set; }
 
 	private Collider2D objectToFollowCollider;
 	private LayerMask solidMask;
@@ -31,8 +32,9 @@ public class PlayerCamera : MonoBehaviour
 	private new Camera camera;
 
 	private float baseSize;
-	private float currentZoom = 1;
 	private float lookDownFactor;
+	private float currentZoom = 1;
+
 
 	[System.Serializable]
 	public struct Extents
@@ -60,6 +62,7 @@ public class PlayerCamera : MonoBehaviour
 	private void Awake()
 	{
 		get = this;
+		defaultFollowOffset = followOffsetTransform.localPosition;
 	}
 
 	private void Start()
@@ -105,7 +108,42 @@ public class PlayerCamera : MonoBehaviour
 
 	public bool IsAtTarget()
 	{
-		return transform.position == playerController.transform.position + followOffset;
+		return transform.position == playerController.transform.position;
+	}
+
+	public void SetZoom(float zoom, float duration)
+	{
+		IEnumerator Coroutine()
+		{
+			float t = 0;
+			float startZoom = currentZoom;
+			while (t <= 1)
+			{
+				currentZoom = Mathf.SmoothStep(startZoom, zoom, t);
+				t += Time.deltaTime / duration;
+				yield return null;
+			}
+		}
+
+		StartCoroutine(Coroutine());
+	}
+
+	public void SetOffset(Vector3 offset, float duration)
+	{
+		IEnumerator Coroutine()
+		{
+			float t = 0;
+			Vector3 startOffset = followOffsetTransform.localPosition;
+			Vector3 step = (offset - startOffset) / duration;
+			while (t <= 1)
+			{
+				followOffsetTransform.localPosition = VectorSmoothstep(startOffset, offset, t);
+				t += Time.deltaTime / duration;
+				yield return null;
+			}
+		}
+
+		StartCoroutine(Coroutine());
 	}
 
 	public void LookAtCinematically(Vector3 position, float transitionDuration, float factor = 1, float zoom = 1)
@@ -124,7 +162,7 @@ public class PlayerCamera : MonoBehaviour
 
 		IEnumerator Coroutine()
 		{
-			yield return StartCoroutine(DoLookAtCinematically(duration, playerController.transform.position + followOffset, 1, zoom));
+			yield return StartCoroutine(DoLookAtCinematically(duration, playerController.transform.position, 1, zoom));
 			mode = Mode.FollowPlayer;
 		}
 
@@ -159,7 +197,7 @@ public class PlayerCamera : MonoBehaviour
 	{
 		Vector3 currentPosition = transform.position;
 		Vector3 newCameraPosition = currentPosition;
-		Vector3 followPosition = playerController.transform.position + followOffset;
+		Vector3 followPosition = playerController.transform.position;
 		if (Mathf.Abs(playerVelocity.x) >= cameraSpeedWhenStill)
 		{
 			if (followPosition.x > currentPosition.x + bufferArea.x)
@@ -225,18 +263,21 @@ public class PlayerCamera : MonoBehaviour
 		{
 			Vector3 position = transform.position;
 			position.z = 0;
-			Gizmos.DrawWireCube(position + bufferArea.localCenter - followOffset, bufferArea.size);
+			Gizmos.DrawWireCube(position + bufferArea.localCenter, bufferArea.size);
 		}
 		else
 		{
-			Gizmos.DrawWireCube(playerController.transform.position + bufferArea.localCenter, bufferArea.size);
+			if (playerController)
+			{
+				Gizmos.DrawWireCube(playerController.transform.position + bufferArea.localCenter, bufferArea.size); 
+			}
 		}
 	}
 
 	public void SnapToTarget()
 	{
 		Vector3 position = transform.position;
-		Vector3 followPosition = playerController.transform.position + followOffset;
+		Vector3 followPosition = playerController.transform.position;
 		position.x = followPosition.x;
 		position.y = followPosition.y;
 		transform.position = position;
@@ -246,7 +287,7 @@ public class PlayerCamera : MonoBehaviour
 	{
 		Vector3 position = transform.position;
 		Vector3 startPosition = position;
-		Vector3 followPosition = playerController.transform.position + followOffset;
+		Vector3 followPosition = playerController.transform.position;
 		float t = 0;
 		while (t <= duration)
 		{

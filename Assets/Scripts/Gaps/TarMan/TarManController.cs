@@ -1,0 +1,113 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TarManController : MonoBehaviour
+{
+	public List<Transform> pathPoints;
+	public GameObject screamHitbox;
+
+	public TarManState currentState { get; private set; }
+	public Rigidbody2D rb2d { get; private set; }
+	public int currentPositionInPath { get; set; }
+
+	public TarManIdleState idleState;
+	public TarManWalkingState walkingState;
+
+	private int ClosestPathIndex
+	{
+		get
+		{
+			int closestIndex = 0;
+			for (int i = 0; i < pathPoints.Count; i++)
+			{
+				if (Vector2.Distance(transform.position, pathPoints[i].position) < Vector2.Distance(transform.position, pathPoints[closestIndex].position))
+				{
+					closestIndex = i;
+				}
+			}
+			return closestIndex;
+		}
+	}
+
+	private IEnumerable<TarManState> IterateStates()
+	{
+		yield return idleState;
+		yield return walkingState;
+	}
+
+	private void OnDrawGizmos()
+	{
+		for (int i = 0; i < pathPoints.Count; i++)
+		{
+			Gizmos.DrawWireSphere(pathPoints[i].position, 0.05f);
+			if (i < pathPoints.Count - 1)
+			{
+				Gizmos.DrawLine(pathPoints[i].position, pathPoints[i + 1].position);
+			}
+		}
+	}
+
+	private void Awake()
+	{
+		foreach (TarManState state in IterateStates())
+		{
+			state.Awake();
+		}
+	}
+
+	private void Start()
+	{
+		rb2d = GetComponent<Rigidbody2D>();
+
+		foreach (TarManState state in IterateStates())
+		{
+			state.tarMan = this;
+		}
+
+		TransitionState(idleState);
+
+		foreach (TarManState state in IterateStates())
+		{
+			currentState.Start();
+		}
+
+		currentPositionInPath = ClosestPathIndex;
+	}
+
+	private void Update()
+	{
+		currentState.Update();
+	}
+
+	private void FixedUpdate()
+	{
+		currentState.FixedUpdate();
+	}
+
+	public void TransitionState(TarManState newState)
+	{
+		if (newState != currentState)
+		{
+			if (currentState != null)
+			{
+				currentState.isCurrentState = false;
+				currentState.Exit();
+			}
+			currentState = newState;
+			if (currentState != null)
+			{
+				currentState.Enter();
+				currentState.isCurrentState = true;
+			}
+		}
+	}
+
+	private void OnValidate()
+	{
+		foreach (TarManState state in IterateStates())
+		{
+			state.OnValidate();
+		}
+	}
+}

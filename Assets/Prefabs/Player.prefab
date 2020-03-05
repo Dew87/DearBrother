@@ -468,7 +468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b11b14fd9eed01468a47e51caaf4e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputThreshold: 0.1
   jumpInputBuffer: 0.2
   jumpGracePeriod: 0.2
   grappleInputBuffer: 0.2

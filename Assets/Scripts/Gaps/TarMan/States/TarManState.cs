@@ -6,7 +6,7 @@ using UnityEngine;
 public class TarManState
 {
 	public bool isCurrentState;
-	[HideInInspector] public TarMan tarMan;
+	[HideInInspector] public TarManController tarMan;
 
 	public virtual void Awake() { }
 
@@ -40,8 +40,4 @@ public class TarManState
 			isCurrentState = false;
 		}
 	}
-
-	public virtual void OnDrawGizmos() { }
-
-	public virtual void Reset() { }
 }

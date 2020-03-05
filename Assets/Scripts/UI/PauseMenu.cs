@@ -7,8 +7,6 @@ using UnityEditor;
 
 public class PauseMenu : MonoBehaviour
 {
-	public float inputThreshold = 0.1f;
-
 	public GameObject SelectedButton;
 
 	private Canvas canvas;
@@ -26,7 +24,7 @@ public class PauseMenu : MonoBehaviour
 
 	private void Update()
 	{
-		bool isMenuInputHeld = Input.GetAxisRaw("Menu") > inputThreshold;
+		bool isMenuInputHeld = Input.GetAxisRaw("Menu") > 0f;
 		if (isMenuInputHeld && !MenuInputIsTriggered)
 		{
 			MenuInputIsTriggered = true;

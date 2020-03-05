@@ -38,6 +38,7 @@ public class MemoryMenu : SubMenu
 	public override void Open()
 	{
 		base.Open();
+
 		foreach (MemoryButton memory in memoryButtons)
 		{
 			memory.Refresh();

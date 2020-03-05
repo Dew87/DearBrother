@@ -105,7 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootMenu: {fileID: 1638475312650538300}
-  selectedButton: {fileID: 0}
+  pauseMenu: {fileID: 1638475313770990273}
+  selectedButton: {fileID: 2065963191489226215}
   memoryPrefab: {fileID: 5420828235259981835, guid: 90a43b5b93a3dcd459af7300f01db0d0,
     type: 3}
   memoryList: {fileID: 2401742482701228962}
@@ -396,6 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedButton: {fileID: 1638475312248158211}
+  isInSubMenu: 0
 --- !u!1 &3087900226525788362
 GameObject:
   m_ObjectHideFlags: 0

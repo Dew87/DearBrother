@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6462031719988464824}
   - component: {fileID: 5667109298463797729}
   - component: {fileID: 6316776323083508971}
-  - component: {fileID: 8134172042469352147}
+  - component: {fileID: 6879213342820647023}
   m_Layer: 5
   m_Name: Memories
   m_TagString: Untagged
@@ -92,7 +92,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &8134172042469352147
+--- !u!114 &6879213342820647023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,11 +101,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1383235673383471448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ab8ae949a1fae4c9ab2f1d90102ac2, type: 3}
+  m_Script: {fileID: 11500000, guid: f264369bf63c5bd44b2c5ed86228a495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rootMenu: {fileID: 1638475312650538300}
+  pauseMenu: {fileID: 1638475313770990273}
   selectedButton: {fileID: 2065963191489226215}
+  memoryPrefab: {fileID: 5420828235259981835, guid: 90a43b5b93a3dcd459af7300f01db0d0,
+    type: 3}
+  memoryList: {fileID: 2401742482701228962}
+  returnButton: {fileID: 2065963191489226215}
 --- !u!1 &1638475312650538300
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedButton: {fileID: 1638475312248158211}
+  isInSubMenu: 0
 --- !u!1 &3087900226525788362
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +487,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2401742482701228962}
   - component: {fileID: 1151836835683722245}
-  - component: {fileID: 240497714733392914}
   m_Layer: 5
   m_Name: MemoryList
   m_TagString: Untagged
@@ -532,20 +537,6 @@ MonoBehaviour:
   m_Spacing: {x: -50, y: -50}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &240497714733392914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8144051440893455634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f264369bf63c5bd44b2c5ed86228a495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  memoryPrefab: {fileID: 5420828235259981835, guid: 90a43b5b93a3dcd459af7300f01db0d0,
-    type: 3}
 --- !u!1001 &2278727136090106260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1088,7 +1079,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8134172042469352147}
+      objectReference: {fileID: 6879213342820647023}
     - target: {fileID: 6330715455457539272, guid: a627e193cc57a9d4e917e5d19a1013cf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1117,7 +1108,7 @@ PrefabInstance:
     - target: {fileID: 6330715455457539270, guid: a627e193cc57a9d4e917e5d19a1013cf,
         type: 3}
       propertyPath: m_Name
-      value: Button
+      value: ReturnButton
       objectReference: {fileID: 0}
     - target: {fileID: 6330715455457539271, guid: a627e193cc57a9d4e917e5d19a1013cf,
         type: 3}
@@ -1228,7 +1219,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8134172042469352147}
+      objectReference: {fileID: 6879213342820647023}
     - target: {fileID: 6330715455457539272, guid: a627e193cc57a9d4e917e5d19a1013cf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName

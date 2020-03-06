@@ -33,7 +33,7 @@ public class MemoryButton : MonoBehaviour
 		}
 		else
 		{
-			animator.Play("Empty");
+			animator.Play("CollectibleEmpty");
 			button.interactable = false;
 		}
 	}

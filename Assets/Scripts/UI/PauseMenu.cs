@@ -9,47 +9,45 @@ public class PauseMenu : MonoBehaviour
 {
 	public GameObject SelectedButton;
 
+	[HideInInspector] public bool isInSubMenu;
+
 	private Canvas canvas;
 
 	private bool isMenuOn;
-	private bool MenuInputIsTriggered;
 
 	private void Start()
 	{
 		canvas = GetComponent<Canvas>();
 		canvas.enabled = false;
 		isMenuOn = false;
-		MenuInputIsTriggered = false;
 	}
 
 	private void Update()
 	{
-		bool isMenuInputHeld = Input.GetAxisRaw("Menu") > 0f;
-		if (isMenuInputHeld && !MenuInputIsTriggered)
+		if (isMenuOn)
 		{
-			MenuInputIsTriggered = true;
-			if (isMenuOn)
+			bool isCancelPressed = Input.GetButtonDown("Cancel");
+			if ((Input.GetButtonDown("Menu") && !(isCancelPressed && isInSubMenu)) || (isCancelPressed && !isInSubMenu))
 			{
 				TriggerOff();
 			}
-			else
-			{
-				TriggerOn();
-			}
 		}
-		if (!isMenuInputHeld)
+		else
 		{
-			MenuInputIsTriggered = false;
+			if (Input.GetButtonDown("Menu"))
+			{
+				TriggerOn(); 
+			}
 		}
 	}
 
 	public void Quit()
 	{
-		#if UNITY_EDITOR
+#if UNITY_EDITOR
 		EditorApplication.isPlaying = false;
-		#else
+#else
 		Application.Quit();
-		#endif
+#endif
 	}
 
 	public void RestartCheckpoint()
@@ -71,7 +69,7 @@ public class PauseMenu : MonoBehaviour
 		Time.timeScale = 0f;
 		foreach (SubMenu menu in GetComponentsInChildren<SubMenu>())
 		{
-			menu.rootMenu.SetActive(true);
+			menu.rootMenu.gameObject.SetActive(true);
 			menu.gameObject.SetActive(false);
 		}
 		EventSystem.current.SetSelectedGameObject(SelectedButton);

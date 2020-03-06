@@ -5,22 +5,40 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
 	public bool isActive;
+	public TarManController currentTarMan;
+	public Transform tarManCheckPoint;
 
 	private static List<CheckPoint> CheckPointList = new List<CheckPoint>();
 
-	public static Vector2 GetActiveCheckPointPosition()
+	public static CheckPoint GetActiveCheckPoint
 	{
-		if (CheckPointList != null)
+		get
 		{
-			foreach (CheckPoint checkPoint in CheckPointList)
+			if (CheckPointList != null)
 			{
-				if (checkPoint.isActive)
+				foreach (CheckPoint checkPoint in CheckPointList)
 				{
-					return checkPoint.transform.position;
+					if (checkPoint.isActive)
+					{
+						return checkPoint;
+					}
 				}
 			}
+			return null;
 		}
-		return Vector2.zero;
+	}
+
+	public static Vector2 GetActiveCheckPointPosition
+	{
+		get
+		{
+			CheckPoint activeCheckPoint = GetActiveCheckPoint;
+			if (activeCheckPoint != null)
+			{
+				return activeCheckPoint.transform.position;
+			}
+			return Vector2.zero;
+		}
 	}
 
 	private void OnEnable()

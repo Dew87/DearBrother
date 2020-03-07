@@ -12,6 +12,7 @@ public class PlayerGrappleBaseState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
+		player.soundManager.PlayOneShot(player.soundManager.grapple);
 		maxGrappleLength = player.grappleDetection.detectionRadius;
 		grappleLength = Vector2.Distance(player.transform.position, player.grappleDetection.currentGrapplePoint.transform.position);
 		if (grappleLength > maxGrappleLength)

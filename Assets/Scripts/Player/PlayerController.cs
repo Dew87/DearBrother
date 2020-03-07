@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 	public Animator playerAnimator;
 	public GrappleDetection grappleDetection;
 	public LineRenderer lineRenderer;
+	public SoundManager soundManager;
 
 	[Header("States")]
 	public PlayerStandingState standingState;

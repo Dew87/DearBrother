@@ -12,6 +12,11 @@ public class PlayerWalkingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
+		if (player.previousState == player.fallingState)
+		{
+			player.soundManager.PlayOneShot(player.soundManager.land);
+		}
+		player.soundManager.PlayRepeat(player.soundManager.run);
 		player.playerAnimator.SetBool("Moving", true);
 		player.playerAnimator.SetBool("Grounded", true);
 		player.velocity.y = 0;
@@ -21,6 +26,7 @@ public class PlayerWalkingState : PlayerState
 	public override void Exit()
 	{
 		base.Exit();
+		player.soundManager.StopSound();
 	}
 
 	public override void FixedUpdate()

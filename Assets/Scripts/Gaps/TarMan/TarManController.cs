@@ -8,7 +8,7 @@ public class TarManController : MonoBehaviour
 	public GameObject screamHitbox;
 
 	public TarManState currentState { get; private set; }
-	public Rigidbody2D rb2d { get; private set; }
+	public TarManState previousState { get; private set; }
 	public int currentPositionInPath { get; set; }
 
 	public TarManIdleState idleState;
@@ -58,8 +58,6 @@ public class TarManController : MonoBehaviour
 
 	private void Start()
 	{
-		rb2d = GetComponent<Rigidbody2D>();
-
 		foreach (TarManState state in IterateStates())
 		{
 			state.tarMan = this;
@@ -75,6 +73,16 @@ public class TarManController : MonoBehaviour
 		currentPositionInPath = ClosestPathIndex;
 	}
 
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
+	}
+
 	private void Update()
 	{
 		currentState.Update();
@@ -87,19 +95,32 @@ public class TarManController : MonoBehaviour
 
 	public void TransitionState(TarManState newState)
 	{
-		if (newState != currentState)
+		if (currentState != null)
 		{
-			if (currentState != null)
-			{
-				currentState.isCurrentState = false;
-				currentState.Exit();
-			}
-			currentState = newState;
-			if (currentState != null)
-			{
-				currentState.Enter();
-				currentState.isCurrentState = true;
-			}
+			currentState.isCurrentState = false;
+			currentState.Exit();
+		}
+		previousState = currentState;
+		currentState = newState;
+		if (currentState != null)
+		{
+			currentState.Enter();
+			currentState.isCurrentState = true;
+		}
+	}
+
+	private void OnPlayerDeath()
+	{
+		CheckPoint checkPoint = CheckPoint.GetActiveCheckPoint;
+		if (checkPoint != null && checkPoint.currentTarMan == this && checkPoint.tarManCheckPoint != null)
+		{
+			transform.position = checkPoint.tarManCheckPoint.transform.position;
+			currentPositionInPath = ClosestPathIndex;
+			TransitionState(walkingState);
+		}
+		else
+		{
+			gameObject.SetActive(false);
 		}
 	}
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-	public GameObject camera;
+	public GameObject cam;
 	public float parallaxStrength;
 	public bool doParallax;
 
@@ -26,8 +26,8 @@ public class Parallax : MonoBehaviour
     {
 		if (doParallax)
 		{
-			float temp = camera.transform.position.x * (1 - parallaxStrength);
-			float distance = camera.transform.position.x * parallaxStrength;
+			float temp = cam.transform.position.x * (1 - parallaxStrength);
+			float distance = cam.transform.position.x * parallaxStrength;
 
 			if (temp > startpos + length)
 			{

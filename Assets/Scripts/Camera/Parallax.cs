@@ -6,6 +6,8 @@ public class Parallax : MonoBehaviour
 {
 	public GameObject cam;
 	public float parallaxStrength;
+	[Range(0, 1)]
+	public float zoomInfluence = 0;
 	public bool doParallax;
 
 	private float length, startpos;
@@ -38,6 +40,9 @@ public class Parallax : MonoBehaviour
 				startpos -= length;
 			}
 			transform.position = new Vector3(startpos + distance, transform.position.y, transform.position.z);
+
+			float zoomRevert = Mathf.Lerp(1f / PlayerCamera.get.currentZoom, 1, zoomInfluence);
+			transform.localScale = Vector2.one * zoomRevert;
 		}
     }
 }

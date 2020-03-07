@@ -339,6 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 8179696981043089597}
   parallaxStrength: 0.1
+  zoomModifier: 0
   doParallax: 1
 --- !u!1 &3806905657984598137
 GameObject:
@@ -710,6 +711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 8179696981043089597}
   parallaxStrength: 0.3
+  zoomModifier: 0
   doParallax: 1
 --- !u!1 &7628495222825866106
 GameObject:

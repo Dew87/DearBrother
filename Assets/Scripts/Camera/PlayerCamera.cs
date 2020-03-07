@@ -38,7 +38,6 @@ public class PlayerCamera : MonoBehaviour
 	private float lookDownFactor;
 	private float currentZoom = 1;
 
-
 	[System.Serializable]
 	public struct Extents
 	{

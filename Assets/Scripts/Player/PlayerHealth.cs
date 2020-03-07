@@ -22,6 +22,8 @@ public class PlayerHealth : MonoBehaviour, IKillable
 	{
 		if (!player.isFrozen)
 		{
+			player.soundManager.StopSound();
+			player.soundManager.PlayOneShot(player.soundManager.hurt);
 			Time.timeScale = 0;
 			StartCoroutine(FadeOut());
 		}

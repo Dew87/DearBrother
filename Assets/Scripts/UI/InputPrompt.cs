@@ -27,7 +27,7 @@ public class InputPrompt : MonoBehaviour
 		basePos = transform.position;
 	}
 
-	public static void Show(string text, Sprite image)
+	public static void Show(string text, Sprite gamepadIcon, Sprite keyboardIcon)
 	{
 		if (!instance)
 		{
@@ -36,7 +36,11 @@ public class InputPrompt : MonoBehaviour
 		}
 
 		instance.textObj.text = text;
-		instance.imageObj.sprite = image;
+		switch (InputManager.CurrentMethod)
+		{
+			case InputMethod.Gamepad: instance.imageObj.sprite = gamepadIcon; break;
+			case InputMethod.Keyboard: instance.imageObj.sprite = keyboardIcon; break;
+		}
 		instance.StartCoroutine(instance.FadeIn());
 	}
 
@@ -76,6 +80,11 @@ public class InputPrompt : MonoBehaviour
 
 	private IEnumerator FadeOut()
 	{
+		if (canvasGroup.alpha == 0)
+		{
+			yield break;
+		}
+
 		float t = 0;
 
 		Vector3 startPos = transform.position + Vector3.down * transitionMoveDistance;

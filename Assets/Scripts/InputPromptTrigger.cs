@@ -5,7 +5,8 @@ using UnityEngine;
 public class InputPromptTrigger : MonoBehaviour
 {
 	public bool hide = false;
-	public Sprite sprite;
+	public Sprite gamepadSprite;
+	public Sprite keyboardSprite;
 	public string text;
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -18,7 +19,7 @@ public class InputPromptTrigger : MonoBehaviour
 			}
 			else
 			{
-				InputPrompt.Show(text, sprite); 
+				InputPrompt.Show(text, gamepadSprite, keyboardSprite);
 			}
 			gameObject.SetActive(false);
 		}

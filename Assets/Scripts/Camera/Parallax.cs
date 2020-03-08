@@ -31,11 +31,11 @@ public class Parallax : MonoBehaviour
 			float temp = cam.transform.position.x * (1 - parallaxStrength);
 			float distance = cam.transform.position.x * parallaxStrength;
 
-			if (temp > startpos + length)
+			while (temp > startpos + length)
 			{
 				startpos += length;
 			}
-			else if (temp < startpos - length)
+			while (temp < startpos - length)
 			{
 				startpos -= length;
 			}

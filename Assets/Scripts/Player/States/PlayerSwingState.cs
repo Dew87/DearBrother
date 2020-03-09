@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerSwingState : PlayerGrappleBaseState
 {
+	public float time = 0;
 	public float minGrappleLength = 1f;
 	public float swingSpeed = 10f;
 	public float climbSpeed = 1f;
@@ -25,6 +26,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 	public override void Enter()
 	{
 		base.Enter();
+		player.playerAnimator.SetBool("Grappling", true);
 		if (grappleLength < minGrappleLength)
 		{
 			grappleLength = minGrappleLength;
@@ -55,6 +57,23 @@ public class PlayerSwingState : PlayerGrappleBaseState
 	public override void Update()
 	{
 		base.Update();
+
+		if (player.grappleDetection.currentGrapplePoint != null)
+		{
+			float angle = Vector2.SignedAngle(player.transform.position - player.grappleDetection.currentGrapplePoint.transform.position, gravity);
+
+			if (!player.isFacingRight)
+			{
+				float animationTime = Mathf.Clamp((angle + 90) / 180, 0, 1);
+				player.playerAnimator.Play("Grapple", 0, animationTime);
+			}
+			else
+			{
+				float animationTime = Mathf.Clamp((-angle + 90) / 180, 0, 1);
+				player.playerAnimator.Play("Grapple", 0, animationTime);
+			}
+		}
+
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.nextGrapplePoint != null)
 		{
 			player.ResetGrappleInputBuffer();
@@ -170,6 +189,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 	public override void Exit()
 	{
 		base.Exit();
+		player.playerAnimator.SetBool("Grappling", false);
 		if (!doesPlayerHaveParentAtStart)
 		{
 			player.transform.parent = null;

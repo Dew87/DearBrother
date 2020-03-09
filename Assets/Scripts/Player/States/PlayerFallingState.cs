@@ -51,6 +51,7 @@ public class PlayerFallingState : PlayerState
 			}
 			player.velocity.x = Mathf.MoveTowards(player.velocity.x, currentWindSpeed.x > 0 ? maxHorizontalSpeedInWind : -maxHorizontalSpeedInWind, Mathf.Abs(currentWindSpeed.x) * Time.deltaTime );
 		}
+
 		else
 		{
 			player.velocity.y = Mathf.MoveTowards(player.velocity.y, -maxFallSpeed, gravity * Time.deltaTime);
@@ -69,17 +70,20 @@ public class PlayerFallingState : PlayerState
                 if (player.velocity.x == 0)
                 {
                     player.TransitionState(player.standingState);
+					player.FindCorrectGroundDistance();
                 }
                 else
                 {
                     player.TransitionState(player.walkingState);
-                }
-            }
+					player.FindCorrectGroundDistance();
+				}
+			}
             else
             {
                 player.TransitionState(player.landingLagState);
-            }
-            return;
+				player.FindCorrectGroundDistance();
+			}
+			return;
         }
 
 		if (player.jumpGraceTimer > 0 && player.isJumpInputPressedBuffered)

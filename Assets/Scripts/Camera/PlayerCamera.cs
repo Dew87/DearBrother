@@ -28,6 +28,7 @@ public class PlayerCamera : MonoBehaviour
 
 	[HideInInspector] public bool useUnscaledTime = false;
 	public Vector3 defaultFollowOffset { get; private set; }
+	public float currentZoom { get; private set; } = 1;
 
 	private Collider2D objectToFollowCollider;
 	private LayerMask solidMask;
@@ -36,7 +37,6 @@ public class PlayerCamera : MonoBehaviour
 
 	private float baseSize;
 	private float lookDownFactor;
-	private float currentZoom = 1;
 
 	[System.Serializable]
 	public struct Extents

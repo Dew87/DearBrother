@@ -8,37 +8,49 @@ public class TarManWalkingState : TarManState
 	public float speed = 2f;
 	public float acceleration = 20f;
 	public float deceleration = 10f;
-	public float tolerance = 0.2f;
+	public float tolerance = 0.1f;
+
+	private Vector2 velocity;
 
 	public override void Enter()
 	{
 		base.Enter();
+
+		velocity = Vector2.zero;
 	}
 
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
 
-		Vector2 position = tarMan.rb2d.position;
+		Vector2 position = tarMan.transform.position;
 		Vector2 target = tarMan.pathPoints[tarMan.currentPositionInPath].position;
+		Vector2 direction = target - position;
 
-		float distance = Vector2.Distance(position, target);
-		if (distance < tolerance)
+		if (direction.magnitude < tolerance)
 		{
-			tarMan.currentPositionInPath++;
-			if (tarMan.currentPositionInPath == tarMan.pathPoints.Count)
+			if (tarMan.currentPositionInPath == tarMan.pathPoints.Count - 1)
 			{
-				tarMan.currentPositionInPath = 0;
 				tarMan.TransitionState(tarMan.idleState);
+			}
+			else
+			{
+				tarMan.currentPositionInPath++;
 			}
 		}
 		else
 		{
-			Vector2 direction = target - position;
-			Vector2 velocity = tarMan.rb2d.velocity;
 
-			velocity.x = Mathf.MoveTowards(velocity.x, speed * Mathf.Sign(direction.x), acceleration * Time.deltaTime);
-			tarMan.rb2d.velocity = velocity;
+			velocity = Vector2.Lerp(velocity, speed * direction.normalized, acceleration * Time.deltaTime);
+			position += velocity * Time.deltaTime;
+			tarMan.transform.position = position;
 		}
+	}
+
+	public override void Exit()
+	{
+		base.Exit();
+
+		velocity = Vector2.zero;
 	}
 }

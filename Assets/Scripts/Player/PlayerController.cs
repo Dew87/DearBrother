@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 	public Animator playerAnimator;
 	public GrappleDetection grappleDetection;
 	public LineRenderer lineRenderer;
+	public SoundManager soundManager;
 
 	[Header("States")]
 	public PlayerStandingState standingState;
@@ -390,7 +391,7 @@ public class PlayerController : MonoBehaviour
 
 	private void OnPlayerDeath()
 	{
-		rb2d.position = CheckPoint.GetActiveCheckPointPosition();
+		rb2d.position = CheckPoint.GetActiveCheckPointPosition;
 		grappleDetection.ReleaseGrapplePoint();
 		transform.position = rb2d.position; // Need to force-sync transform for camera snapping to work properly
 		rb2d.velocity = Vector2.zero;

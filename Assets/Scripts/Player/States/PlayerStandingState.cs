@@ -8,6 +8,10 @@ public class PlayerStandingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
+		if (player.previousState == player.fallingState)
+		{
+			player.soundManager.PlayOneShot(player.soundManager.land);
+		}
 		player.playerAnimator.SetBool("Moving", false);
 		player.playerAnimator.SetBool("Grounded", true);
 		player.velocity.y = 0;

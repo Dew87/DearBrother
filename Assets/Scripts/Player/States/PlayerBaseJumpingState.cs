@@ -20,6 +20,7 @@ public abstract class PlayerBaseJumpingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
+		player.soundManager.PlayOneShot(player.soundManager.jump);
 		player.playerAnimator.SetTrigger("Jumping");
 		player.playerAnimator.SetBool("Grounded", false);
 		jumpTimer = 0;

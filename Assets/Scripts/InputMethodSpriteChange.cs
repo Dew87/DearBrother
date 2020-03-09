@@ -8,7 +8,6 @@ public class InputMethodSpriteChange : MonoBehaviour
 	public Sprite gamepadSprite;
 	public Sprite keyboardSprite;
 
-
 	private InputMethod lastInputMethod;
 
 	void Start()

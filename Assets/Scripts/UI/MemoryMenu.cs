@@ -35,6 +35,12 @@ public class MemoryMenu : SubMenu
 		}
 	}
 
+	protected override void Update()
+	{
+		base.Update();
+		canvasGroup.interactable = !MemoryController.isOpen;
+	}
+
 	public override void Open()
 	{
 		base.Open();

@@ -24,20 +24,23 @@ public class PauseMenu : MonoBehaviour
 
 	private void Update()
 	{
-		if (isMenuOn)
+		if (!MemoryController.isOpen)
 		{
-			bool isCancelPressed = Input.GetButtonDown("Cancel");
-			if ((Input.GetButtonDown("Menu") && !(isCancelPressed && isInSubMenu)) || (isCancelPressed && !isInSubMenu))
+			if (isMenuOn)
 			{
-				TriggerOff();
+				bool isCancelPressed = Input.GetButtonDown("Cancel");
+				if ((Input.GetButtonDown("Menu") && !(isCancelPressed && isInSubMenu)) || (isCancelPressed && !isInSubMenu))
+				{
+					TriggerOff();
+				}
 			}
-		}
-		else
-		{
-			if (Input.GetButtonDown("Menu"))
+			else
 			{
-				TriggerOn(); 
-			}
+				if (Input.GetButtonDown("Menu"))
+				{
+					TriggerOn();
+				}
+			} 
 		}
 	}
 

@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 9032089851411276785}
   - component: {fileID: 518462940750540343}
   m_Layer: 5
-  m_Name: SamQuickDialog
+  m_Name: QuickDialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1600, y: 1200}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
@@ -139,6 +139,7 @@ MonoBehaviour:
   characterImage: {fileID: 0}
   fitTextWithImage: 1
   closeOtherDialogs: 0
+  useUnscaledTime: 0
 --- !u!114 &518462940750540745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +160,7 @@ MonoBehaviour:
   writeWholeWords: 0
   forceRichText: 1
   instantComplete: 0
+  useUnscaledTime: 0
 --- !u!114 &518462940750540744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +199,7 @@ MonoBehaviour:
   nextClickDelay: 0
   cancelEnabled: 0
   ignoreMenuClicks: 1
+  continuePrompt: {fileID: 0}
 --- !u!82 &518462940750540343
 AudioSource:
   m_ObjectHideFlags: 0

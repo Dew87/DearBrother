@@ -9,7 +9,14 @@ public class SubMenu : MonoBehaviour
 	public PauseMenu pauseMenu;
 	public GameObject selectedButton;
 
-	private GameObject selectedButtonWhenReturning = null;
+	protected CanvasGroup canvasGroup;
+
+	protected GameObject selectedButtonWhenReturning = null;
+
+	protected virtual void Awake()
+	{
+		canvasGroup = GetComponent<CanvasGroup>();
+	}
 
 	public virtual void Open()
 	{
@@ -29,9 +36,9 @@ public class SubMenu : MonoBehaviour
 		pauseMenu.isInSubMenu = false;
 	}
 
-	private void Update()
+	protected virtual void Update()
 	{
-		if (Input.GetButtonDown("Cancel"))
+		if (!MemoryController.isOpen && Input.GetButtonDown("Cancel"))
 		{
 			Close();
 		}

@@ -277,6 +277,30 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void FindCorrectGroundDistance()
+	{
+		const int numRays = 3;
+		float smallestDistance = -1;
+		float raySpacing = (bounds.size.x - overlapSizeOffset * 2f) / numRays;
+		for (int i = 0; i < numRays; i++)
+		{
+			float x = bounds.min.x + overlapSizeOffset + raySpacing * i;
+			var hit = Physics2D.Raycast(new Vector2(x, bounds.min.y), Vector2.down, overlapDistance);
+			if (smallestDistance < 0)
+			{
+				smallestDistance = hit.distance;
+			}
+			else
+			{
+				smallestDistance = Mathf.Min(smallestDistance, hit.distance);
+			}
+		}
+
+		float y = rb2d.position.y;
+		y = y - smallestDistance + overlapDistance;
+		rb2d.position = new Vector2(rb2d.position.x, y);
+	}
+
 	public bool IsNormalColliderInWall()
 	{
 		Vector3 size = standingColliderBounds.size;

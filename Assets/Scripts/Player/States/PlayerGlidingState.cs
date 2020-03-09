@@ -56,12 +56,14 @@ public class PlayerGlidingState : PlayerState
             if (player.velocity.x == 0)
             {
                 player.TransitionState(player.standingState);
-            }
-            else
+				player.FindCorrectGroundDistance();
+			}
+			else
             {
                 player.TransitionState(player.walkingState);
-            }
-            return;
+				player.FindCorrectGroundDistance();
+			}
+			return;
         }
     }
 

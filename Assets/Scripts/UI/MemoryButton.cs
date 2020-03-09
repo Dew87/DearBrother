@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MemoryButton : MonoBehaviour
 {
 	public Collectible collectible;
+	public MemoryMenu menu;
 
 	private Image image;
 	private Animator animator;

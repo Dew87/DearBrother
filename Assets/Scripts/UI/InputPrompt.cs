@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InputPrompt : MonoBehaviour
 {
-	public Image imageObj;
+	public InputMethodSpriteChange imageObj;
 	public Text textObj;
 	public float fadeInDuration = 0.5f;
 	public float fadeOutDuration = 0.5f;
@@ -36,11 +36,9 @@ public class InputPrompt : MonoBehaviour
 		}
 
 		instance.textObj.text = text;
-		switch (InputManager.CurrentMethod)
-		{
-			case InputMethod.Gamepad: instance.imageObj.sprite = gamepadIcon; break;
-			case InputMethod.Keyboard: instance.imageObj.sprite = keyboardIcon; break;
-		}
+		instance.imageObj.gamepadSprite = gamepadIcon;
+		instance.imageObj.keyboardSprite = keyboardIcon;
+		instance.imageObj.UpdateSprites();
 		instance.StartCoroutine(instance.FadeIn());
 	}
 
@@ -87,13 +85,14 @@ public class InputPrompt : MonoBehaviour
 
 		float t = 0;
 
-		Vector3 startPos = transform.position + Vector3.down * transitionMoveDistance;
+		Vector3 startPos = transform.position;
+		Vector3 targetPos = transform.position + Vector3.up * transitionMoveDistance;
 
 		while (t <= 1)
 		{
 			t += Time.deltaTime / fadeOutDuration;
 			canvasGroup.alpha = 1 - t;
-			transform.position = Vector3.Lerp(basePos, startPos, t);
+			transform.position = Vector3.Lerp(startPos, targetPos, t);
 			yield return null;
 		}
 	}

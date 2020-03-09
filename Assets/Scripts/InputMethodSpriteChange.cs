@@ -26,7 +26,7 @@ public class InputMethodSpriteChange : MonoBehaviour
 		lastInputMethod = InputManager.CurrentMethod;
 	}
 
-	private void UpdateSprites()
+	public void UpdateSprites()
 	{
 		if (TryGetComponent(out SpriteRenderer spriteRenderer))
 		{

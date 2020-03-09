@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6075003328043085710}
   - component: {fileID: 6075003328043085696}
   - component: {fileID: 6075003328043085711}
+  - component: {fileID: 939474889}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -76,6 +77,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &939474889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6075003328043085709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686871b0e009c7349afe2707beeeb0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamepadSprite: {fileID: 0}
+  keyboardSprite: {fileID: 0}
 --- !u!1 &6075003328045810637
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a1f27a22a7ed945b9908ffc7e48e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageObj: {fileID: 6075003328043085711}
+  imageObj: {fileID: 939474889}
   textObj: {fileID: 6075003328045810639}
   fadeInDuration: 0.5
   fadeOutDuration: 0.5

@@ -3214,6 +3214,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &939474885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6075003328043085709, guid: c7f2b8d60d254e44098ba29c8f8d7c7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6075003328964792152}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &939474886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939474885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686871b0e009c7349afe2707beeeb0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamepadSprite: {fileID: 0}
+  keyboardSprite: {fileID: 0}
 --- !u!1 &1014698368
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,6 +3354,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: selectedCommands.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619790, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: animationName
+      value: CollectibleBall
+      objectReference: {fileID: 0}
     - target: {fileID: 4041239109168619785, guid: d383c6d6b29ba32408bc25cef3808cc2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3389,31 +3424,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619790, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: animationName
-      value: CollectibleBall
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: selectedCommands.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: selectedBlocks.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619788, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: commandList.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619788, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: commandList.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4041239109168619789, guid: d383c6d6b29ba32408bc25cef3808cc2,
         type: 3}
       propertyPath: character
@@ -3437,6 +3447,16 @@ PrefabInstance:
       propertyPath: storyText
       value: "Take it to the showers. Dicks get shoved in places you don\u2019t even
         remember. We win together we celebrate together. Football is back baby."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619788, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: commandList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619788, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: commandList.Array.data[2]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d383c6d6b29ba32408bc25cef3808cc2, type: 3}
@@ -4046,6 +4066,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Badge
       objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: selectedCommands.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619790, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: animationName
+      value: CollectibleBadge
+      objectReference: {fileID: 0}
     - target: {fileID: 4041239109168619785, guid: d383c6d6b29ba32408bc25cef3808cc2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4101,31 +4136,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619790, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: animationName
-      value: CollectibleBadge
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: selectedCommands.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: selectedBlocks.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619788, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: commandList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619788, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: commandList.Array.data[2]
-      value: 
-      objectReference: {fileID: 1970585299}
     - target: {fileID: 4041239109168619789, guid: d383c6d6b29ba32408bc25cef3808cc2,
         type: 3}
       propertyPath: character
@@ -4146,6 +4156,16 @@ PrefabInstance:
       propertyPath: storyText
       value: Reach for the sky!
       objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619788, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: commandList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619788, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: commandList.Array.data[2]
+      value: 
+      objectReference: {fileID: 1970585299}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d383c6d6b29ba32408bc25cef3808cc2, type: 3}
 --- !u!4 &1970585296 stripped
@@ -5409,6 +5429,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cat
       objectReference: {fileID: 0}
+    - target: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
+        type: 3}
+      propertyPath: selectedCommands.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4041239109168619785, guid: d383c6d6b29ba32408bc25cef3808cc2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5462,11 +5487,6 @@ PrefabInstance:
     - target: {fileID: 4041239109168619785, guid: d383c6d6b29ba32408bc25cef3808cc2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
-        type: 3}
-      propertyPath: selectedCommands.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4041239109168619789, guid: d383c6d6b29ba32408bc25cef3808cc2,
@@ -5673,6 +5693,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6075003328620625597, guid: c7f2b8d60d254e44098ba29c8f8d7c7e,
+        type: 3}
+      propertyPath: imageObj
+      value: 
+      objectReference: {fileID: 939474886}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f2b8d60d254e44098ba29c8f8d7c7e, type: 3}
 --- !u!1001 &8179696980475150610

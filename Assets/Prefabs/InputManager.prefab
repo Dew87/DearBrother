@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc336b98ef93eae42942b46f5e9fc48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  axisThreshold: 0.5
   currentMethod: 0

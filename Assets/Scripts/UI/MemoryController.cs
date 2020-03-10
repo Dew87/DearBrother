@@ -17,6 +17,7 @@ public class MemoryController : MonoBehaviour
 	public float overlayFadeOutDelay = 0.5f;
 
 	public static MemoryController get { get; private set; }
+	public static bool isOpen => get != null && get.gameObject.activeInHierarchy;
 
 	private Animator imageAnimator;
 	private Color overlayColor;

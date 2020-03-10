@@ -5,33 +5,94 @@ using UnityEngine.EventSystems;
 
 public class SubMenu : MonoBehaviour
 {
-	public GameObject rootMenu;
+	public float openDuration = 0.5f;
+	public float closeDuration = 0.5f;
+
+	[Space()]
+	public SubMenu rootMenu;
 	public PauseMenu pauseMenu;
 	public GameObject selectedButton;
 
-	private GameObject selectedButtonWhenReturning = null;
+	public event System.Action onOpen = delegate { };
 
-	public virtual void Open()
+	protected CanvasGroup canvasGroup;
+
+	protected GameObject selectedButtonWhenReturning = null;
+
+	protected virtual void Awake()
+	{
+		canvasGroup = GetComponent<CanvasGroup>();
+	}
+
+	public void OpenMenu()
+	{
+		Open();
+	}
+
+	public void CloseMenu()
+	{
+		Close();
+	}
+
+	public virtual Coroutine Open()
 	{
 		gameObject.SetActive(true);
-		rootMenu.gameObject.SetActive(false);
+		canvasGroup.alpha = 0;
+		canvasGroup.interactable = false;
 		selectedButtonWhenReturning = EventSystem.current.currentSelectedGameObject;
 		EventSystem.current.SetSelectedGameObject(selectedButton);
-		pauseMenu.isInSubMenu = true;
+		return StartCoroutine(Transition());
+
+		IEnumerator Transition()
+		{
+			if (rootMenu)
+			{
+				yield return rootMenu.Close();
+			}
+
+			float t = 0;
+			while (t <= 1)
+			{
+				t += Time.unscaledDeltaTime / openDuration;
+				canvasGroup.alpha = t;
+				yield return null;
+			}
+
+			canvasGroup.interactable = true;
+			pauseMenu.currentMenu = this;
+			onOpen();
+		}
+
 	}
 
-	public virtual void Close()
+	public virtual Coroutine Close()
 	{
-		Debug.Log("close sub");
-		gameObject.SetActive(false);
-		rootMenu.gameObject.SetActive(true);
-		EventSystem.current.SetSelectedGameObject(selectedButtonWhenReturning);
-		pauseMenu.isInSubMenu = false;
+		return StartCoroutine(Transition());
+
+		IEnumerator Transition()
+		{
+			float t = 0;
+			while (t <= 1)
+			{
+				t += Time.unscaledDeltaTime / closeDuration;
+				canvasGroup.alpha = 1 - t;
+				yield return null;
+			}
+
+			EventSystem.current.SetSelectedGameObject(null);
+			gameObject.SetActive(false);
+			if (rootMenu)
+			{
+				rootMenu.Open();
+			}
+			EventSystem.current.SetSelectedGameObject(selectedButtonWhenReturning);
+		}
+
 	}
 
-	private void Update()
+	protected virtual void Update()
 	{
-		if (Input.GetButtonDown("Cancel"))
+		if (!MemoryController.isOpen && Input.GetButtonDown("Cancel"))
 		{
 			Close();
 		}

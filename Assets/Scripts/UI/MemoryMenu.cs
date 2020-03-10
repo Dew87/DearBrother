@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MemoryMenu : SubMenu
+public class MemoryMenu : MonoBehaviour
 {
 	public MemoryButton memoryPrefab;
 	public Transform memoryList;
 	public GameObject returnButton;
 
 	private List<MemoryButton> memoryButtons = new List<MemoryButton>();
+	private CanvasGroup canvasGroup;
 
 	private void Start()
 	{
+		canvasGroup = GetComponent<CanvasGroup>();
+
 		foreach (Transform child in memoryList)
 		{
 			Destroy(child.gameObject);
@@ -35,10 +38,23 @@ public class MemoryMenu : SubMenu
 		}
 	}
 
-	public override void Open()
+	private void OnEnable()
 	{
-		base.Open();
+		GetComponent<SubMenu>().onOpen += OnOpen;
+	}
 
+	private void OnDisable()
+	{
+		GetComponent<SubMenu>().onOpen -= OnOpen;
+	}
+
+	protected void Update()
+	{
+		canvasGroup.interactable = !MemoryController.isOpen;
+	}
+
+	protected void OnOpen()
+	{
 		foreach (MemoryButton memory in memoryButtons)
 		{
 			memory.Refresh();

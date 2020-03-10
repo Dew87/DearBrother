@@ -29,6 +29,21 @@ TextureImporter:
   - first:
       213: 90817114163867741
     second: treeTileSet_8
+  - first:
+      213: 8119507819484642772
+    second: treeTileSet_9
+  - first:
+      213: 5305415639550617766
+    second: treeTileSet_10
+  - first:
+      213: -7314825650981645729
+    second: treeTileSet_11
+  - first:
+      213: -1280904766901123189
+    second: treeTileSet_12
+  - first:
+      213: -1652171108421366770
+    second: treeTileSet_13
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -321,6 +336,119 @@ TextureImporter:
       bones: []
       spriteID: 22bf6cf9e4621ba449b15c19bcf2f918
       internalID: 90817114163867741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: treeTileSet_9
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -32, y: 14}
+        - {x: -32, y: 13}
+        - {x: 32, y: 13}
+        - {x: 32, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42f33860f85026040bfe2ef14d6cf67f
+      internalID: 8119507819484642772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: treeTileSet_10
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -32, y: 14}
+        - {x: -32, y: 13}
+        - {x: 32, y: 13}
+        - {x: 32, y: 14}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b53443d3fcb0fc2498ce8dacb285aac7
+      internalID: 5305415639550617766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: treeTileSet_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a76c50efe8fd4c4d9b9b8e1d8615082
+      internalID: -7314825650981645729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: treeTileSet_12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edd1157c740d1754aad5b6d23da6e166
+      internalID: -1280904766901123189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: treeTileSet_13
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4774c2e81e4dca442b64906bc52267f7
+      internalID: -1652171108421366770
       vertices: []
       indices: 
       edges: []

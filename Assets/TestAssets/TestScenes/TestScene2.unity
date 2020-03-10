@@ -222,6 +222,7 @@ MonoBehaviour:
   period: 2
   amplitude: 0.1
   timeOffset: 0.66
+  useUnscaledTime: 0
 --- !u!212 &48735468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2631,6 +2632,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4454588901847443351, guid: 1927792af41fcfc4a8e515b8f8fd7f34,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454588901847443351, guid: 1927792af41fcfc4a8e515b8f8fd7f34,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454588901847443351, guid: 1927792af41fcfc4a8e515b8f8fd7f34,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454588901847443351, guid: 1927792af41fcfc4a8e515b8f8fd7f34,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1927792af41fcfc4a8e515b8f8fd7f34, type: 3}
 --- !u!1 &405795678
@@ -2946,6 +2967,7 @@ MonoBehaviour:
   period: 2
   amplitude: 0.1
   timeOffset: 0
+  useUnscaledTime: 0
 --- !u!1 &642813199
 GameObject:
   m_ObjectHideFlags: 0
@@ -4557,6 +4579,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320160407430868753, guid: 64c4bdba53308194e95547d1cbeb203d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -112.19922
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64c4bdba53308194e95547d1cbeb203d, type: 3}

@@ -38,6 +38,11 @@ public class PlayerCamera : MonoBehaviour
 	private float baseSize;
 	private float lookDownFactor;
 
+	private float startZoom = 1;
+	private float targetZoom = 1;
+	private float zoomTimer = 0;
+	private float zoomDuration;
+
 	[System.Serializable]
 	public struct Extents
 	{
@@ -105,6 +110,12 @@ public class PlayerCamera : MonoBehaviour
 			}
 		}
 
+		if (currentZoom != targetZoom)
+		{
+			currentZoom = Mathf.SmoothStep(startZoom, targetZoom, zoomTimer / zoomDuration);
+			zoomTimer += Time.deltaTime;
+		}
+
 		camera.orthographicSize = baseSize / currentZoom;
 	}
 
@@ -115,19 +126,13 @@ public class PlayerCamera : MonoBehaviour
 
 	public void SetZoom(float zoom, float duration)
 	{
-		IEnumerator Coroutine()
+		if (targetZoom != zoom)
 		{
-			float t = 0;
-			float startZoom = currentZoom;
-			while (t <= 1)
-			{
-				currentZoom = Mathf.SmoothStep(startZoom, zoom, t);
-				t += Time.deltaTime / duration;
-				yield return null;
-			}
+			targetZoom = zoom;
+			zoomTimer = 0;
+			zoomDuration = duration;
+			startZoom = currentZoom;
 		}
-
-		StartCoroutine(Coroutine());
 	}
 
 	public void SetOffset(Vector3 offset, float duration)
@@ -274,7 +279,7 @@ public class PlayerCamera : MonoBehaviour
 		{
 			if (playerController)
 			{
-				Gizmos.DrawWireCube(playerController.transform.position + bufferArea.localCenter, bufferArea.size); 
+				Gizmos.DrawWireCube(playerController.transform.position + bufferArea.localCenter, bufferArea.size);
 			}
 		}
 	}

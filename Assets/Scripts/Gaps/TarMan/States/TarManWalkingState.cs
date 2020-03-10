@@ -5,10 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class TarManWalkingState : TarManState
 {
+	public bool singleBlock;
+
 	public float speed = 2f;
 	public float acceleration = 20f;
 	public float deceleration = 10f;
-	public float tolerance = 0.1f;
+	public float distanceThreshold = 0.1f;
 
 	private Vector2 velocity;
 
@@ -17,6 +19,7 @@ public class TarManWalkingState : TarManState
 		base.Enter();
 
 		velocity = Vector2.zero;
+		tarMan.soundManager.PlayRepeat(tarMan.soundManager.walk);
 	}
 
 	public override void FixedUpdate()
@@ -27,7 +30,7 @@ public class TarManWalkingState : TarManState
 		Vector2 target = tarMan.pathPoints[tarMan.currentPositionInPath].position;
 		Vector2 direction = target - position;
 
-		if (direction.magnitude < tolerance)
+		if (direction.magnitude < distanceThreshold)
 		{
 			if (tarMan.currentPositionInPath == tarMan.pathPoints.Count - 1)
 			{
@@ -36,11 +39,14 @@ public class TarManWalkingState : TarManState
 			else
 			{
 				tarMan.currentPositionInPath++;
+				if (singleBlock)
+				{
+					tarMan.TransitionState(tarMan.idleState);
+				}
 			}
 		}
 		else
 		{
-
 			velocity = Vector2.Lerp(velocity, speed * direction.normalized, acceleration * Time.deltaTime);
 			position += velocity * Time.deltaTime;
 			tarMan.transform.position = position;
@@ -52,5 +58,17 @@ public class TarManWalkingState : TarManState
 		base.Exit();
 
 		velocity = Vector2.zero;
+		tarMan.soundManager.StopSound();
+	}
+
+	public override void OnTriggerEnter2D(Collider2D collision)
+	{
+		base.OnTriggerEnter2D(collision);
+
+		IKillable killable = collision.GetComponentInParent<IKillable>();
+		if (killable != null)
+		{
+			tarMan.TransitionState(tarMan.attackState);
+		}
 	}
 }

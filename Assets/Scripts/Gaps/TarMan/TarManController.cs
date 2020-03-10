@@ -5,14 +5,16 @@ using UnityEngine;
 public class TarManController : MonoBehaviour
 {
 	public List<Transform> pathPoints;
-	public GameObject screamHitbox;
+	public TarManSoundManager soundManager;
+
+	[Header("States")]
+	public TarManAttackState attackState;
+	public TarManIdleState idleState;
+	public TarManWalkingState walkingState;
 
 	public TarManState currentState { get; private set; }
 	public TarManState previousState { get; private set; }
 	public int currentPositionInPath { get; set; }
-
-	public TarManIdleState idleState;
-	public TarManWalkingState walkingState;
 
 	private int ClosestPathIndex
 	{
@@ -32,6 +34,7 @@ public class TarManController : MonoBehaviour
 
 	private IEnumerable<TarManState> IterateStates()
 	{
+		yield return attackState;
 		yield return idleState;
 		yield return walkingState;
 	}
@@ -91,6 +94,11 @@ public class TarManController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		currentState.FixedUpdate();
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		currentState.OnTriggerEnter2D(collision);
 	}
 
 	public void TransitionState(TarManState newState)

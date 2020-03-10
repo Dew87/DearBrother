@@ -22,10 +22,20 @@ public class PlayerSwingState : PlayerGrappleBaseState
 	private Vector2 pendulumSideDirection;
 	private Vector2 tangentDirection;
 	private bool doesPlayerHaveParentAtStart = false;
+	private bool isFacingRight;
 
 	public override void Enter()
 	{
 		base.Enter();
+		isFacingRight = player.isFacingRight;
+		if (isFacingRight && player.spriteRenderer.flipX)
+		{
+			player.spriteRenderer.flipX = false;
+		}
+		else if (!isFacingRight && !player.spriteRenderer.flipX)
+		{
+			player.spriteRenderer.flipX = true;
+		}
 		player.playerAnimator.SetBool("Grappling", true);
 		if (grappleLength < minGrappleLength)
 		{
@@ -62,7 +72,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 		{
 			float angle = Vector2.SignedAngle(player.transform.position - player.grappleDetection.currentGrapplePoint.transform.position, gravity);
 
-			if (!player.isFacingRight)
+			if (!isFacingRight)
 			{
 				float animationTime = Mathf.Clamp((angle + 90) / 180, 0, 1);
 				player.playerAnimator.Play("Grapple", 0, animationTime);

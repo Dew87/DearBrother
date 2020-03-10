@@ -389,13 +389,16 @@ public class PlayerController : MonoBehaviour
 		{
 			isFacingRight = horizontalInputAxis > 0 ? true : false;
 		}
-		if (isFacingRight && spriteRenderer.flipX)
+		if (currentState != swingState)
 		{
-			spriteRenderer.flipX = false;
-		}
-		else if (!isFacingRight && !spriteRenderer.flipX)
-		{
-			spriteRenderer.flipX = true;
+			if (isFacingRight && spriteRenderer.flipX)
+			{
+				spriteRenderer.flipX = false;
+			}
+			else if (!isFacingRight && !spriteRenderer.flipX)
+			{
+				spriteRenderer.flipX = true;
+			}
 		}
 
 		verticalInputAxis = Input.GetAxisRaw("Vertical");

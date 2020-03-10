@@ -10,7 +10,7 @@ public enum InputMethod
 
 public class InputManager : MonoBehaviour
 {
-	private const float axisThreshold = 0.2f;
+	public float axisThreshold = 0.2f;
 
 	private static InputManager instance;
 	private static InputManager Instance

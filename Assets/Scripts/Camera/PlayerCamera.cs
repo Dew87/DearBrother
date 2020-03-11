@@ -99,10 +99,6 @@ public class PlayerCamera : MonoBehaviour
 		{
 			Vector2 playerVelocity = playerController.rb2d.velocity;
 			FollowPlayer(playerVelocity);
-			if (lookTransform)
-			{
-				LookDown(playerVelocity);
-			}
 		}
 
 		camera.orthographicSize = baseSize / currentZoom;
@@ -139,7 +135,7 @@ public class PlayerCamera : MonoBehaviour
 			Vector3 step = (offset - startOffset) / duration;
 			while (t <= 1)
 			{
-				followOffsetTransform.localPosition = VectorSmoothstep(startOffset, offset, t);
+				followOffsetTransform.localPosition = Util.VectorSmoothstep(startOffset, offset, t);
 				t += Time.deltaTime / duration;
 				yield return null;
 			}
@@ -183,16 +179,11 @@ public class PlayerCamera : MonoBehaviour
 		while (t <= 1)
 		{
 			if (mode != Mode.Cinematic) yield break;
-			transform.position = VectorSmoothstep(startPosition, targetPosition, t);
+			transform.position = Util.VectorSmoothstep(startPosition, targetPosition, t);
 			currentZoom = Mathf.Lerp(startZoom, zoom, t);
 			t += Time.deltaTime / duration;
 			yield return null;
 		}
-	}
-
-	static Vector3 VectorSmoothstep(Vector3 from, Vector3 to, float t)
-	{
-		return new Vector3(Mathf.SmoothStep(from.x, to.x, t), Mathf.SmoothStep(from.y, to.y, t), Mathf.SmoothStep(from.z, to.z, t));
 	}
 
 	private void FollowPlayer(Vector2 playerVelocity)

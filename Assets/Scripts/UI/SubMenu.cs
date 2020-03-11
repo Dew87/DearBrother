@@ -7,17 +7,24 @@ public class SubMenu : MonoBehaviour
 {
 	public float openDuration = 0.5f;
 	public float closeDuration = 0.5f;
+	public float changeSelectDuration = 0.1f;
 
 	[Space()]
 	public SubMenu rootMenu;
 	public PauseMenu pauseMenu;
-	public GameObject selectedButton;
+	public GameObject defaultSelectedButton;
+	public RectTransform selectIndicator;
 
 	public event System.Action onOpen = delegate { };
 
 	protected CanvasGroup canvasGroup;
 
 	protected GameObject selectedButtonWhenReturning = null;
+	private GameObject selectedButton;
+	private GameObject previousSelectedButton;
+	private float selectIndicatorMove;
+
+	private bool isOpening;
 
 	protected virtual void Awake()
 	{
@@ -34,13 +41,16 @@ public class SubMenu : MonoBehaviour
 		Close();
 	}
 
-	public virtual Coroutine Open()
+	public virtual Coroutine Open(GameObject selectedButton = null)
 	{
+		isOpening = true;
 		gameObject.SetActive(true);
 		canvasGroup.alpha = 0;
 		canvasGroup.interactable = false;
 		selectedButtonWhenReturning = EventSystem.current.currentSelectedGameObject;
-		EventSystem.current.SetSelectedGameObject(selectedButton);
+		previousSelectedButton = null;
+		EventSystem.current.SetSelectedGameObject(selectedButton != null ? selectedButton : defaultSelectedButton);
+
 		return StartCoroutine(Transition());
 
 		IEnumerator Transition()
@@ -60,6 +70,7 @@ public class SubMenu : MonoBehaviour
 
 			canvasGroup.interactable = true;
 			pauseMenu.currentMenu = this;
+			isOpening = false;
 			onOpen();
 		}
 
@@ -67,10 +78,20 @@ public class SubMenu : MonoBehaviour
 
 	public virtual Coroutine Close()
 	{
+		if (!gameObject.activeInHierarchy)
+		{
+			return null;
+		}
+
 		return StartCoroutine(Transition());
 
 		IEnumerator Transition()
 		{
+			while (isOpening)
+			{
+				yield return null;
+			}
+
 			float t = 0;
 			while (t <= 1)
 			{
@@ -83,11 +104,24 @@ public class SubMenu : MonoBehaviour
 			gameObject.SetActive(false);
 			if (rootMenu)
 			{
-				rootMenu.Open();
+				rootMenu.Open(selectedButtonWhenReturning);
 			}
-			EventSystem.current.SetSelectedGameObject(selectedButtonWhenReturning);
 		}
+	}
 
+	public void SetSelected(GameObject newSelectedButton)
+	{
+		selectIndicatorMove = 0;
+		if (selectedButton != null)
+		{
+			previousSelectedButton = selectedButton;
+		}
+		selectedButton = newSelectedButton;
+
+		if (previousSelectedButton == null && selectedButton != null)
+		{
+			selectIndicator.position = selectedButton.transform.position;
+		}
 	}
 
 	protected virtual void Update()
@@ -95,6 +129,12 @@ public class SubMenu : MonoBehaviour
 		if (!MemoryController.isOpen && Input.GetButtonDown("Cancel"))
 		{
 			Close();
+		}
+
+		if (selectIndicatorMove <= 1 && previousSelectedButton != null && selectedButton != null)
+		{
+			selectIndicatorMove += Time.unscaledDeltaTime / changeSelectDuration;
+			selectIndicator.position = Util.VectorSmoothstep(previousSelectedButton.transform.position, selectedButton.transform.position, selectIndicatorMove);
 		}
 	}
 }

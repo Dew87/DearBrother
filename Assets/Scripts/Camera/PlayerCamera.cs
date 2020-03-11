@@ -29,6 +29,7 @@ public class PlayerCamera : MonoBehaviour
 	[HideInInspector] public bool useUnscaledTime = false;
 	public Vector3 defaultFollowOffset { get; private set; }
 	public float currentZoom { get; private set; } = 1;
+	public float zoom2 { get; set; } = 1;
 
 	private Collider2D objectToFollowCollider;
 	private LayerMask solidMask;
@@ -110,13 +111,13 @@ public class PlayerCamera : MonoBehaviour
 			}
 		}
 
-		if (currentZoom != targetZoom)
+		if (currentZoom != targetZoom && Time.deltaTime > 0 && zoomDuration > 0)
 		{
 			currentZoom = Mathf.SmoothStep(startZoom, targetZoom, zoomTimer / zoomDuration);
 			zoomTimer += Time.deltaTime;
 		}
 
-		camera.orthographicSize = baseSize / currentZoom;
+		camera.orthographicSize = baseSize / (currentZoom * zoom2);
 	}
 
 	public bool IsAtTarget()
@@ -126,7 +127,7 @@ public class PlayerCamera : MonoBehaviour
 
 	public void SetZoom(float zoom, float duration)
 	{
-		if (targetZoom != zoom)
+		if (targetZoom != zoom || zoomTimer > zoomDuration)
 		{
 			targetZoom = zoom;
 			zoomTimer = 0;

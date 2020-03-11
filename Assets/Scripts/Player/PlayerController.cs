@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
 	public Bounds bounds { get; private set; }
 	public int solidMask { get; private set; }
 	public bool isFrozen { get; private set; }
+	public bool isInputDisabled { get; private set; }
 
 	[HideInInspector] public bool isInWind = false;
 	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
@@ -156,17 +157,6 @@ public class PlayerController : MonoBehaviour
 		currentState.FixedUpdate();
 
 		rb2d.velocity = velocity;
-
-		// Dumb hack to prevent slightly sliding down slopes when landing on them
-		// It's really only noticeable when not moving horizontally, so I just freeze the X position then
-		if (velocity.x == 0)
-		{
-			rb2d.constraints |= RigidbodyConstraints2D.FreezePositionX;
-		}
-		else
-		{
-			rb2d.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-		}
 	}
 
 	public void MoveHorizontally(float speed, float acceleration, float deceleration)
@@ -183,6 +173,14 @@ public class PlayerController : MonoBehaviour
 				effectiveAcceleration += deceleration;
 			}
 			velocity.x = Mathf.MoveTowards(velocity.x, speed * Mathf.Sign(horizontalInputAxis), effectiveAcceleration * Time.deltaTime);
+			Collider2D[] allColliders = CheckOverlapsAll(new Vector2(Mathf.Sign(velocity.x), 0));
+			foreach (Collider2D collider in allColliders)
+			{
+				if (!IsColliderOneWay(collider))
+				{
+					velocity.x = 0;
+				}
+			}
 		}
 	}
 
@@ -279,14 +277,16 @@ public class PlayerController : MonoBehaviour
 
 	public void FindCorrectGroundDistance()
 	{
+		bounds = currentCollider.bounds;
+
 		const int numRays = 3;
-		float smallestDistance = -1;
-		float raySpacing = (bounds.size.x - overlapSizeOffset * 2f) / numRays;
+		float smallestDistance = 0;
+		float raySpacing = (bounds.size.x - overlapSizeOffset * 2f) / (numRays - 1);
 		for (int i = 0; i < numRays; i++)
 		{
 			float x = bounds.min.x + overlapSizeOffset + raySpacing * i;
-			var hit = Physics2D.Raycast(new Vector2(x, bounds.min.y), Vector2.down, overlapDistance);
-			if (smallestDistance < 0)
+			var hit = Physics2D.Raycast(new Vector2(x, bounds.min.y), Vector2.down, overlapDistance, solidMask);
+			if (smallestDistance <= 0)
 			{
 				smallestDistance = hit.distance;
 			}
@@ -297,8 +297,10 @@ public class PlayerController : MonoBehaviour
 		}
 
 		float y = rb2d.position.y;
-		y = y - smallestDistance + overlapDistance;
+		y = y + overlapDistance + smallestDistance;
 		rb2d.position = new Vector2(rb2d.position.x, y);
+
+		bounds = currentCollider.bounds;
 	}
 
 	public bool IsNormalColliderInWall()
@@ -328,16 +330,37 @@ public class PlayerController : MonoBehaviour
 		grappleInputBufferTimer = 0;
 	}
 
-	public void Freeze(bool freeze, bool resetVelocity = true)
+	public void Freeze(bool freeze, bool resetVelocity = true, bool waitUntilGrounded = false)
 	{
+		isInputDisabled = freeze;
 		if (resetVelocity)
 		{
 			velocity = Vector2.zero;
 			rb2d.velocity = Vector2.zero;
 		}
-		rb2d.simulated = !freeze;
-		isFrozen = freeze;
+		if (waitUntilGrounded && freeze)
+		{
+			StartCoroutine(FreezeWhenGrounded());
+		}
+		else
+		{
+			rb2d.simulated = !freeze;
+			isFrozen = freeze;
+		}
 	}
+
+	private IEnumerator FreezeWhenGrounded()
+	{
+		WaitForFixedUpdate wait = new WaitForFixedUpdate();
+		while (!CheckOverlaps(Vector2.down))
+		{
+			yield return wait;
+		}
+
+		rb2d.simulated = false;
+		isFrozen = true;
+	}
+
 
 	public void SetCollider(Bounds colliderBounds)
 	{
@@ -364,6 +387,19 @@ public class PlayerController : MonoBehaviour
 
 	private void ReadInput()
 	{
+		if (isInputDisabled)
+		{
+			jumpInputBufferTimer = 0;
+			grappleInputBufferTimer = 0;
+			grappleInputIsTriggered = false;
+			horizontalInputAxis = 0;
+			verticalInputAxis = 0;
+			isCrouchInputHeld = false;
+			isJumpInputHeld = false;
+			jumpInputIsTriggered = false;
+			return;
+		}
+
 		if (jumpInputBufferTimer > 0)
 		{
 			jumpInputBufferTimer -= Time.deltaTime;
@@ -418,13 +454,14 @@ public class PlayerController : MonoBehaviour
 
 	private void OnPlayerDeath()
 	{
-		rb2d.position = CheckPoint.GetActiveCheckPointPosition;
+		rb2d.position = CheckPoint.GetActiveCheckPointPosition + overlapDistance * Vector2.up * 2;
 		grappleDetection.ReleaseGrapplePoint();
 		transform.position = rb2d.position; // Need to force-sync transform for camera snapping to work properly
 		rb2d.velocity = Vector2.zero;
 		velocity = Vector2.zero;
 		TransitionState(standingState);
 		FindObjectOfType<PlayerCamera>().SnapToTarget();
+		//FindCorrectGroundDistance();
 	}
 
 	private void OnValidate()

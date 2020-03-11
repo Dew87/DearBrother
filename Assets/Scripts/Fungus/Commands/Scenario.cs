@@ -42,6 +42,16 @@ public class Scenario : Command
 		}
 	}
 
+	private void Start()
+	{
+		GetComponent<Collider2D>().enabled = true;
+	}
+
+	private void Reset()
+	{
+		GetComponent<Collider2D>().enabled = true;
+	}
+
 	public override string GetSummary()
 	{
 		string txt = "";

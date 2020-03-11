@@ -8,6 +8,7 @@ public class PlayerCrouchingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
+		player.velocity.x = 0;
 		player.SetCollider(player.crouchingColliderBounds);
 		player.spriteRenderer.transform.localScale = new Vector3(1, 0.5f);
 	}

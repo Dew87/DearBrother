@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: 3082429825107396723
     second: MiscTiles_1
+  - first:
+      213: -9082196501153028186
+    second: MiscTiles_2
+  - first:
+      213: -4437110117332481542
+    second: MiscTiles_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -133,6 +139,52 @@ TextureImporter:
       bones: []
       spriteID: 42ba84925c42e1a439291f426df9d305
       internalID: 3082429825107396723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiscTiles_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f1fbadf28a963b46a5e395ad1ff3eb2
+      internalID: -9082196501153028186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiscTiles_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -32, y: 0}
+        - {x: -32, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cc0e6fd36bfe4441829347fe902bca4
+      internalID: -4437110117332481542
       vertices: []
       indices: 
       edges: []

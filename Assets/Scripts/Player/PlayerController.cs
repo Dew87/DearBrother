@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
 	public Bounds bounds { get; private set; }
 	public int solidMask { get; private set; }
 	public bool isFrozen { get; private set; }
+	public bool isInputDisabled { get; private set; }
 
 	[HideInInspector] public bool isInWind = false;
 	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
@@ -329,16 +330,37 @@ public class PlayerController : MonoBehaviour
 		grappleInputBufferTimer = 0;
 	}
 
-	public void Freeze(bool freeze, bool resetVelocity = true)
+	public void Freeze(bool freeze, bool resetVelocity = true, bool waitUntilGrounded = false)
 	{
+		isInputDisabled = freeze;
 		if (resetVelocity)
 		{
 			velocity = Vector2.zero;
 			rb2d.velocity = Vector2.zero;
 		}
-		rb2d.simulated = !freeze;
-		isFrozen = freeze;
+		if (waitUntilGrounded && freeze)
+		{
+			StartCoroutine(FreezeWhenGrounded());
+		}
+		else
+		{
+			rb2d.simulated = !freeze;
+			isFrozen = freeze;
+		}
 	}
+
+	private IEnumerator FreezeWhenGrounded()
+	{
+		WaitForFixedUpdate wait = new WaitForFixedUpdate();
+		while (!CheckOverlaps(Vector2.down))
+		{
+			yield return wait;
+		}
+
+		rb2d.simulated = false;
+		isFrozen = true;
+	}
+
 
 	public void SetCollider(Bounds colliderBounds)
 	{
@@ -365,6 +387,19 @@ public class PlayerController : MonoBehaviour
 
 	private void ReadInput()
 	{
+		if (isInputDisabled)
+		{
+			jumpInputBufferTimer = 0;
+			grappleInputBufferTimer = 0;
+			grappleInputIsTriggered = false;
+			horizontalInputAxis = 0;
+			verticalInputAxis = 0;
+			isCrouchInputHeld = false;
+			isJumpInputHeld = false;
+			jumpInputIsTriggered = false;
+			return;
+		}
+
 		if (jumpInputBufferTimer > 0)
 		{
 			jumpInputBufferTimer -= Time.deltaTime;

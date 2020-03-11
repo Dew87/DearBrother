@@ -12,12 +12,19 @@ public class MemoryButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 	private Image image;
 	private Animator animator;
 	private Button button;
+	private CustomButton customButton;
 
 	private void Awake()
 	{
 		image = GetComponent<Image>();
 		animator = GetComponent<Animator>();
 		button = GetComponent<Button>();
+		customButton = GetComponent<CustomButton>();
+	}
+
+	private void Start()
+	{
+		gameObject.SetActive(false);
 	}
 
 	public void View()
@@ -46,7 +53,11 @@ public class MemoryButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 
 	private void Update()
 	{
-		//Debug.Log("Speed" + animator.speed);
+		// If this is not done, then the first time the menu is opened, the indicator is not moved correctly for some reason
+		if (EventSystem.current.currentSelectedGameObject == gameObject)
+		{
+			customButton.menu.SetSelected(customButton.selectIndicatorPosition);
+		}
 	}
 
 	public void OnSelect(BaseEventData eventData)

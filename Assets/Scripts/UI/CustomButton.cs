@@ -9,7 +9,7 @@ public class CustomButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDese
 	public Text text;
 	public GameObject selectIndicatorPosition;
 
-	private SubMenu menu;
+	[HideInInspector] public SubMenu menu;
 
 	private Color normalColor;
 

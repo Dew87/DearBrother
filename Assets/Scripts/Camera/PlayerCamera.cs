@@ -105,10 +105,6 @@ public class PlayerCamera : MonoBehaviour
 		{
 			Vector2 playerVelocity = playerController.rb2d.velocity;
 			FollowPlayer(playerVelocity);
-			if (lookTransform)
-			{
-				LookDown(playerVelocity);
-			}
 		}
 
 		if (currentZoom != targetZoom && Time.deltaTime > 0 && zoomDuration > 0)

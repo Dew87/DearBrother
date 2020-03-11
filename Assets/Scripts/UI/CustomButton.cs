@@ -15,7 +15,10 @@ public class CustomButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDese
 
 	private void Start()
 	{
-		normalColor = text.color;
+		if (text)
+		{
+			normalColor = text.color; 
+		}
 		SubMenu[] menus = GetComponentsInParent<SubMenu>(true);
 		menu = menus.Length > 0 ? menus[0] : null;
 		OnDeselect(null);
@@ -27,7 +30,10 @@ public class CustomButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDese
 		{
 			menu.SetSelected(null); 
 		}
-		text.color = normalColor;
+		if (text)
+		{
+			text.color = normalColor; 
+		}
 	}
 
 	public void OnSelect(BaseEventData eventData)
@@ -36,7 +42,10 @@ public class CustomButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDese
 		{
 			menu.SetSelected(selectIndicatorPosition); 
 		}
-		text.color = normalColor;
+		if (text)
+		{
+			text.color = normalColor; 
+		}
 	}
 
 	public void OnSubmit(BaseEventData eventData)

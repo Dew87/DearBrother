@@ -33,6 +33,7 @@ public class MemoryMenu : MonoBehaviour
 			{
 				MemoryButton memory = Instantiate(memoryPrefab, memoryList);
 				memory.collectible = collectibleList[i];
+				memory.name = memory.collectible.name;
 				memoryButtons.Add(memory);
 			}
 		}
@@ -60,7 +61,6 @@ public class MemoryMenu : MonoBehaviour
 			memory.Refresh();
 		}
 
-		EventSystem.current.SetSelectedGameObject(returnButton);
 		foreach (MemoryButton memory in memoryButtons)
 		{
 			if (memory.collectible.isCollected)

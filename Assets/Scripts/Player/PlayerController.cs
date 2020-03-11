@@ -172,9 +172,13 @@ public class PlayerController : MonoBehaviour
 				effectiveAcceleration += deceleration;
 			}
 			velocity.x = Mathf.MoveTowards(velocity.x, speed * Mathf.Sign(horizontalInputAxis), effectiveAcceleration * Time.deltaTime);
-			if (CheckOverlaps(new Vector2(Mathf.Sign(velocity.x), 0)))
+			Collider2D[] allColliders = CheckOverlapsAll(new Vector2(Mathf.Sign(velocity.x), 0));
+			foreach (Collider2D collider in allColliders)
 			{
-				velocity.x = 0;
+				if (!IsColliderOneWay(collider))
+				{
+					velocity.x = 0;
+				}
 			}
 		}
 	}
@@ -272,14 +276,16 @@ public class PlayerController : MonoBehaviour
 
 	public void FindCorrectGroundDistance()
 	{
+		bounds = currentCollider.bounds;
+
 		const int numRays = 3;
-		float smallestDistance = -1;
-		float raySpacing = (bounds.size.x - overlapSizeOffset * 2f) / numRays;
+		float smallestDistance = 0;
+		float raySpacing = (bounds.size.x - overlapSizeOffset * 2f) / (numRays - 1);
 		for (int i = 0; i < numRays; i++)
 		{
 			float x = bounds.min.x + overlapSizeOffset + raySpacing * i;
-			var hit = Physics2D.Raycast(new Vector2(x, bounds.min.y), Vector2.down, overlapDistance);
-			if (smallestDistance < 0)
+			var hit = Physics2D.Raycast(new Vector2(x, bounds.min.y), Vector2.down, overlapDistance, solidMask);
+			if (smallestDistance <= 0)
 			{
 				smallestDistance = hit.distance;
 			}
@@ -290,8 +296,10 @@ public class PlayerController : MonoBehaviour
 		}
 
 		float y = rb2d.position.y;
-		y = y - smallestDistance + overlapDistance;
+		y = y + overlapDistance + smallestDistance;
 		rb2d.position = new Vector2(rb2d.position.x, y);
+
+		bounds = currentCollider.bounds;
 	}
 
 	public bool IsNormalColliderInWall()
@@ -418,7 +426,7 @@ public class PlayerController : MonoBehaviour
 		velocity = Vector2.zero;
 		TransitionState(standingState);
 		FindObjectOfType<PlayerCamera>().SnapToTarget();
-		FindCorrectGroundDistance();
+		//FindCorrectGroundDistance();
 	}
 
 	private void OnValidate()

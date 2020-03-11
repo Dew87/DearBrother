@@ -99,10 +99,6 @@ public class PlayerCamera : MonoBehaviour
 		{
 			Vector2 playerVelocity = playerController.rb2d.velocity;
 			FollowPlayer(playerVelocity);
-			if (lookTransform)
-			{
-				LookDown(playerVelocity);
-			}
 		}
 
 		camera.orthographicSize = baseSize / currentZoom;

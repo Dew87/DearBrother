@@ -8,8 +8,10 @@ public class PlayerCamera : MonoBehaviour
 	public Transform followOffsetTransform;
 	public bool snapToPlayerOnStart = true;
 	public PlayerController playerController;
-	public float cameraSpeedWhenStill = 2f;
-	public float cameraSpeedWhenGliding = 8f;
+	public float dampX = 0.95f;
+	public float dampXInBuffer = 0.7f;
+	public float dampY = 0.95f;
+	public float dampYInBuffer = 0.7f;
 	public Extents bufferArea = new Extents(1, 2, 0.5f);
 	[Tooltip("How far down the camera will be while gliding")]
 	public float glidingOffset = 2f;
@@ -200,116 +202,100 @@ public class PlayerCamera : MonoBehaviour
 		Vector3 currentPosition = transform.position;
 		Vector3 newCameraPosition = currentPosition;
 		Vector3 followPosition = playerController.transform.position;
-		if (Mathf.Abs(playerVelocity.x) >= cameraSpeedWhenStill)
+
+		if (playerController.currentState == playerController.glidingState)
 		{
-			if (followPosition.x > currentPosition.x + bufferArea.x)
-			{
-				newCameraPosition.x = followPosition.x - bufferArea.x;
-			}
-			else if (followPosition.x < currentPosition.x - bufferArea.x)
-			{
-				newCameraPosition.x = followPosition.x + bufferArea.x;
-			}
-		}
-		else
-		{
-			newCameraPosition.x = Mathf.MoveTowards(newCameraPosition.x, followPosition.x, cameraSpeedWhenStill * Time.deltaTime);
+			followPosition.y -= glidingOffset;
 		}
 
-		if (Mathf.Abs(playerVelocity.y) > cameraSpeedWhenStill)
+		if (followPosition.x < currentPosition.x + bufferArea.x && followPosition.x > currentPosition.x - bufferArea.x)
 		{
-			if (followPosition.y > currentPosition.y + bufferArea.up)
-			{
-				newCameraPosition.y = followPosition.y - bufferArea.up;
-			}
-			else if (followPosition.y < currentPosition.y - bufferArea.down)
-			{
-				newCameraPosition.y = followPosition.y + bufferArea.down;
-			}
+			newCameraPosition.x = Util.DeltaTimedDamp(newCameraPosition.x, followPosition.x, dampXInBuffer, Time.deltaTime);
 		}
 		else
 		{
-			if (playerController.currentState == playerController.glidingState)
-			{
-				followPosition.y -= glidingOffset;
-				newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y, cameraSpeedWhenGliding * Time.deltaTime);
-			}
-			else
-			{
-				newCameraPosition.y = Mathf.MoveTowards(newCameraPosition.y, followPosition.y, cameraSpeedWhenStill * Time.deltaTime);
-			}
+			newCameraPosition.x = Util.DeltaTimedDamp(newCameraPosition.x, followPosition.x, dampX, Time.deltaTime);
+		}
+
+		if (followPosition.y < currentPosition.y + bufferArea.up && followPosition.y > currentPosition.y - bufferArea.down)
+		{
+			newCameraPosition.y = Util.DeltaTimedDamp(newCameraPosition.y, followPosition.y, dampYInBuffer, Time.deltaTime);
+		}
+		else
+		{
+			newCameraPosition.y = Util.DeltaTimedDamp(newCameraPosition.y, followPosition.y, dampY, Time.deltaTime);
 		}
 
 		transform.position = newCameraPosition;
 	}
 
 	private void LookDown(Vector2 playerVelocity)
+{
+	Vector3 newLookOffset = lookTransform.localPosition;
+
+	bool grounded = playerController.CheckOverlaps(Vector2.down);
+
+	bool isAbleToMove = onlyLookWhenStill ? Mathf.Approximately(playerVelocity.x, 0) : true;
+	if (lookDownTimer >= lookDownDelay)
 	{
-		Vector3 newLookOffset = lookTransform.localPosition;
-
-		bool grounded = playerController.CheckOverlaps(Vector2.down);
-
-		bool isAbleToMove = onlyLookWhenStill ? Mathf.Approximately(playerVelocity.x, 0) : true;
-		if (lookDownTimer >= lookDownDelay)
-		{
-			lookDownFactor += Time.deltaTime / lookDownDuration;
-		}
-
-		bool doLookDownTimer = playerController.isCrouchInputHeld && grounded && isAbleToMove;
-		lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
-		if (lookDownTimer <= 0 && newLookOffset.y < 0 && grounded)
-		{
-			lookDownFactor -= Time.deltaTime / lookDownDuration;
-		}
-
-		newLookOffset.y = Mathf.SmoothStep(0, -lookDownDistance, lookDownFactor);
-
-		lookTransform.localPosition = newLookOffset;
+		lookDownFactor += Time.deltaTime / lookDownDuration;
 	}
 
-	private void OnDrawGizmos()
+	bool doLookDownTimer = playerController.isCrouchInputHeld && grounded && isAbleToMove;
+	lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
+	if (lookDownTimer <= 0 && newLookOffset.y < 0 && grounded)
 	{
-		if (Application.isPlaying)
-		{
-			Vector3 position = transform.position;
-			position.z = 0;
-			Gizmos.DrawWireCube(position + bufferArea.localCenter, bufferArea.size);
-		}
-		else
-		{
-			if (playerController)
-			{
-				Gizmos.DrawWireCube(playerController.transform.position + bufferArea.localCenter, bufferArea.size);
-			}
-		}
+		lookDownFactor -= Time.deltaTime / lookDownDuration;
 	}
 
-	public void SnapToTarget()
+	newLookOffset.y = Mathf.SmoothStep(0, -lookDownDistance, lookDownFactor);
+
+	lookTransform.localPosition = newLookOffset;
+}
+
+private void OnDrawGizmos()
+{
+	if (Application.isPlaying)
 	{
 		Vector3 position = transform.position;
-		Vector3 followPosition = playerController.transform.position;
-		position.x = followPosition.x;
-		position.y = followPosition.y;
+		position.z = 0;
+		Gizmos.DrawWireCube(position + bufferArea.localCenter, bufferArea.size);
+	}
+	else
+	{
+		if (playerController)
+		{
+			Gizmos.DrawWireCube(playerController.transform.position + bufferArea.localCenter, bufferArea.size);
+		}
+	}
+}
+
+public void SnapToTarget()
+{
+	Vector3 position = transform.position;
+	Vector3 followPosition = playerController.transform.position;
+	position.x = followPosition.x;
+	position.y = followPosition.y;
+	transform.position = position;
+}
+
+public IEnumerator MoveToTarget(float duration)
+{
+	Vector3 position = transform.position;
+	Vector3 startPosition = position;
+	Vector3 followPosition = playerController.transform.position;
+	float t = 0;
+	while (t <= duration)
+	{
+		position.x = Mathf.SmoothStep(startPosition.x, followPosition.x, t / duration);
+		position.y = Mathf.SmoothStep(startPosition.y, followPosition.y, t / duration); ;
 		transform.position = position;
+		t += Time.unscaledDeltaTime;
+		yield return null;
 	}
+}
 
-	public IEnumerator MoveToTarget(float duration)
-	{
-		Vector3 position = transform.position;
-		Vector3 startPosition = position;
-		Vector3 followPosition = playerController.transform.position;
-		float t = 0;
-		while (t <= duration)
-		{
-			position.x = Mathf.SmoothStep(startPosition.x, followPosition.x, t / duration);
-			position.y = Mathf.SmoothStep(startPosition.y, followPosition.y, t / duration); ;
-			transform.position = position;
-			t += Time.unscaledDeltaTime;
-			yield return null;
-		}
-	}
-
-	private void OnPlayerDeath()
-	{
-	}
+private void OnPlayerDeath()
+{
+}
 }

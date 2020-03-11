@@ -39,10 +39,15 @@ public class PlayerCamera : MonoBehaviour
 	private float baseSize;
 	private float lookDownFactor;
 
-	private float startZoom = 1;
-	private float targetZoom = 1;
 	private float zoomTimer = 0;
 	private float zoomDuration;
+	private float startZoom = 1;
+	private float targetZoom = 1;
+
+	private float offsetTimer = 0;
+	private float offsetDuration;
+	private Vector3 startOffset;
+	private Vector3 targetOffset;
 
 	[System.Serializable]
 	public struct Extents
@@ -112,8 +117,13 @@ public class PlayerCamera : MonoBehaviour
 			currentZoom = Mathf.SmoothStep(startZoom, targetZoom, zoomTimer / zoomDuration);
 			zoomTimer += Time.deltaTime;
 		}
-
 		camera.orthographicSize = baseSize / (currentZoom * zoom2);
+
+		if (followOffsetTransform.localPosition != targetOffset && Time.deltaTime > 0 && offsetDuration > 0)
+		{
+			followOffsetTransform.localPosition = Util.VectorSmoothstep(startOffset, targetOffset, offsetTimer / offsetDuration);
+			offsetTimer += Time.deltaTime;
+		}
 	}
 
 	public bool IsAtTarget()
@@ -134,20 +144,13 @@ public class PlayerCamera : MonoBehaviour
 
 	public void SetOffset(Vector3 offset, float duration)
 	{
-		IEnumerator Coroutine()
+		if (targetOffset != offset || offsetTimer > offsetDuration)
 		{
-			float t = 0;
-			Vector3 startOffset = followOffsetTransform.localPosition;
-			Vector3 step = (offset - startOffset) / duration;
-			while (t <= 1)
-			{
-				followOffsetTransform.localPosition = Util.VectorSmoothstep(startOffset, offset, t);
-				t += Time.deltaTime / duration;
-				yield return null;
-			}
+			targetOffset = offset;
+			offsetTimer = 0;
+			offsetDuration = duration;
+			startOffset = followOffsetTransform.localPosition;
 		}
-
-		StartCoroutine(Coroutine());
 	}
 
 	public void LookAtCinematically(Vector3 position, float transitionDuration, float factor = 1, float zoom = 1)

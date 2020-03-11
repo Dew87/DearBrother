@@ -59,8 +59,8 @@ public class Collectible : MonoBehaviour
 
 	private IEnumerator DoCollect()
 	{
-		float cameraNormalZoom = PlayerCamera.get.currentZoom;
 		Vector3 cameraNormalOffset = PlayerCamera.get.followOffsetTransform.transform.localPosition;
+		float targetZoom = collectZoom / PlayerCamera.get.currentZoom;
 		Vector3 targetOffset = transform.position - PlayerCamera.get.transform.position;
 		targetOffset.z = 0;
 		Color targetColor = new Color(1, 1, 1, 0);
@@ -71,15 +71,25 @@ public class Collectible : MonoBehaviour
 			t += Time.unscaledDeltaTime / collectAnimationDuration;
 			transform.localScale = Vector3.one * Mathf.Lerp(1, collectAnimationGrowScale, t);
 			spriteRenderer.color = Color.Lerp(Color.white, targetColor, t);
-			PlayerCamera.get.zoom2 = Mathf.SmoothStep(cameraNormalZoom, collectZoom, t);
+			PlayerCamera.get.zoom2 = Mathf.SmoothStep(1, targetZoom, t);
 			PlayerCamera.get.followOffsetTransform.localPosition = Util.VectorSmoothstep(cameraNormalOffset, targetOffset, t);
 			yield return null;
 		}
 
 		yield return StartCoroutine(DoShowMemory());
+
 		Time.timeScale = 1;
-		PlayerCamera.get.SetZoom(cameraNormalZoom, collectAnimationDuration);
-		PlayerCamera.get.SetOffset(cameraNormalOffset, collectAnimationDuration);
+
+		t = 0;
+		while (t < 1)
+		{
+			t += Time.unscaledDeltaTime / collectAnimationDuration;
+			PlayerCamera.get.zoom2 = Mathf.SmoothStep(targetZoom, 1, t);
+			PlayerCamera.get.followOffsetTransform.localPosition = Util.VectorSmoothstep(targetOffset, cameraNormalOffset, t);
+			yield return null;
+		}
+
+
 		GetComponent<SpriteRenderer>().enabled = false;
 		GetComponent<Collider2D>().enabled = false;
 		MemoryController.get.CollectMemory(this);

@@ -696,6 +696,7 @@ MonoBehaviour:
   swingState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
+    time: 0
     minGrappleLength: 1
     swingSpeed: 10
     climbSpeed: 5
@@ -887,5 +888,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.53, y: 0.9632}
+  m_Size: {x: 0.5, y: 0.9632}
   m_EdgeRadius: 0

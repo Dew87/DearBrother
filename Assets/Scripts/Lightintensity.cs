@@ -8,17 +8,19 @@ public class Lightintensity : MonoBehaviour
 	public float alphaLow;
 	[Range(0, 1)]
 	public float alphaHigh;
-	public float intensitySpeed;
+	public float alternationTime;
 	public SpriteRenderer spriteRenderer;
 
 	private Color startColor;
 	private bool isIncreasing;
+	private float increaseSpeed;
     void Start()
     {
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		startColor = spriteRenderer.color;
 		spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, alphaLow);
 		isIncreasing = true;
+		increaseSpeed = (alphaHigh - alphaLow) / alternationTime;
     }
 
     void Update()
@@ -27,7 +29,7 @@ public class Lightintensity : MonoBehaviour
 		{
 			if (spriteRenderer.color.a < alphaHigh)
 			{
-				spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, spriteRenderer.color.a + (Time.deltaTime * intensitySpeed));
+				spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, spriteRenderer.color.a + (Time.deltaTime * increaseSpeed));
 			}
 			else
 			{
@@ -39,7 +41,7 @@ public class Lightintensity : MonoBehaviour
 		{
 			if (spriteRenderer.color.a > alphaLow)
 			{
-				spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, spriteRenderer.color.a - (Time.deltaTime * intensitySpeed));
+				spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, spriteRenderer.color.a - (Time.deltaTime * increaseSpeed));
 			}
 			else
 			{

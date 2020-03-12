@@ -12,16 +12,10 @@ public class PlayerCamera : MonoBehaviour
 	public float dampXInBuffer = 0.7f;
 	public float dampY = 0.95f;
 	public float dampYInBuffer = 0.7f;
+	public float dieRestoreCameraDuration = 0.5f;
 	public Extents bufferArea = new Extents(1, 2, 0.5f);
 	[Tooltip("How far down the camera will be while gliding")]
 	public float glidingOffset = 2f;
-
-	[Header("Look-down")]
-	public Transform lookTransform;
-	public float lookDownDuration = 0.3f;
-	public float lookDownDelay = 0.2f;
-	public float lookDownDistance = 6f;
-	public bool onlyLookWhenStill = true;
 
 	public static PlayerCamera get { get; private set; }
 
@@ -32,6 +26,8 @@ public class PlayerCamera : MonoBehaviour
 	public Vector3 defaultFollowOffset { get; private set; }
 	public float currentZoom { get; private set; } = 1;
 	public float zoom2 { get; set; } = 1;
+
+	private float deltaTime => useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 
 	private Collider2D objectToFollowCollider;
 	private LayerMask solidMask;
@@ -50,6 +46,9 @@ public class PlayerCamera : MonoBehaviour
 	private float offsetDuration;
 	private Vector3 startOffset;
 	private Vector3 targetOffset;
+
+	private float savedZoom;
+	private Vector3 savedOffset;
 
 	[System.Serializable]
 	public struct Extents
@@ -78,6 +77,8 @@ public class PlayerCamera : MonoBehaviour
 	{
 		get = this;
 		defaultFollowOffset = followOffsetTransform.localPosition;
+		savedOffset = defaultFollowOffset;
+		savedZoom = 1;
 	}
 
 	private void Start()
@@ -89,21 +90,18 @@ public class PlayerCamera : MonoBehaviour
 			SnapToTarget();
 		}
 		solidMask = LayerMask.GetMask("Solid");
-
-		if (lookTransform == null)
-		{
-			Debug.LogError("Camera's Look Transform is not assigned. Are you using the camera prefab?");
-		}
 	}
 
 	private void OnEnable()
 	{
 		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+		EventManager.StartListening("Checkpoint", OnCheckpoint);
 	}
 
 	private void OnDisable()
 	{
 		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
+		EventManager.StopListening("Checkpoint", OnCheckpoint);
 	}
 
 	private void Update()
@@ -114,17 +112,17 @@ public class PlayerCamera : MonoBehaviour
 			FollowPlayer(playerVelocity);
 		}
 
-		if (currentZoom != targetZoom && Time.deltaTime > 0 && zoomDuration > 0)
+		if (currentZoom != targetZoom && deltaTime > 0 && zoomDuration > 0)
 		{
 			currentZoom = Mathf.SmoothStep(startZoom, targetZoom, zoomTimer / zoomDuration);
-			zoomTimer += Time.deltaTime;
+			zoomTimer += deltaTime;
 		}
 		camera.orthographicSize = baseSize / (currentZoom * zoom2);
 
-		if (followOffsetTransform.localPosition != targetOffset && Time.deltaTime > 0 && offsetDuration > 0)
+		if (followOffsetTransform.localPosition != targetOffset && deltaTime > 0 && offsetDuration > 0)
 		{
 			followOffsetTransform.localPosition = Util.VectorSmoothstep(startOffset, targetOffset, offsetTimer / offsetDuration);
-			offsetTimer += Time.deltaTime;
+			offsetTimer += deltaTime;
 		}
 	}
 
@@ -192,7 +190,7 @@ public class PlayerCamera : MonoBehaviour
 			if (mode != Mode.Cinematic) yield break;
 			transform.position = Util.VectorSmoothstep(startPosition, targetPosition, t);
 			currentZoom = Mathf.Lerp(startZoom, zoom, t);
-			t += Time.deltaTime / duration;
+			t += deltaTime / duration;
 			yield return null;
 		}
 	}
@@ -210,92 +208,68 @@ public class PlayerCamera : MonoBehaviour
 
 		if (followPosition.x < currentPosition.x + bufferArea.x && followPosition.x > currentPosition.x - bufferArea.x)
 		{
-			newCameraPosition.x = Util.DeltaTimedDamp(newCameraPosition.x, followPosition.x, dampXInBuffer, Time.deltaTime);
+			newCameraPosition.x = Util.DeltaTimedDamp(newCameraPosition.x, followPosition.x, dampXInBuffer, deltaTime);
 		}
 		else
 		{
-			newCameraPosition.x = Util.DeltaTimedDamp(newCameraPosition.x, followPosition.x, dampX, Time.deltaTime);
+			newCameraPosition.x = Util.DeltaTimedDamp(newCameraPosition.x, followPosition.x, dampX, deltaTime);
 		}
 
 		if (followPosition.y < currentPosition.y + bufferArea.up && followPosition.y > currentPosition.y - bufferArea.down)
 		{
-			newCameraPosition.y = Util.DeltaTimedDamp(newCameraPosition.y, followPosition.y, dampYInBuffer, Time.deltaTime);
+			newCameraPosition.y = Util.DeltaTimedDamp(newCameraPosition.y, followPosition.y, dampYInBuffer, deltaTime);
 		}
 		else
 		{
-			newCameraPosition.y = Util.DeltaTimedDamp(newCameraPosition.y, followPosition.y, dampY, Time.deltaTime);
+			newCameraPosition.y = Util.DeltaTimedDamp(newCameraPosition.y, followPosition.y, dampY, deltaTime);
 		}
 
 		transform.position = newCameraPosition;
 	}
 
-	private void LookDown(Vector2 playerVelocity)
-{
-	Vector3 newLookOffset = lookTransform.localPosition;
-
-	bool grounded = playerController.CheckOverlaps(Vector2.down);
-
-	bool isAbleToMove = onlyLookWhenStill ? Mathf.Approximately(playerVelocity.x, 0) : true;
-	if (lookDownTimer >= lookDownDelay)
+	private void OnDrawGizmos()
 	{
-		lookDownFactor += Time.deltaTime / lookDownDuration;
-	}
-
-	bool doLookDownTimer = playerController.isCrouchInputHeld && grounded && isAbleToMove;
-	lookDownTimer = doLookDownTimer ? lookDownTimer + Time.deltaTime : 0;
-	if (lookDownTimer <= 0 && newLookOffset.y < 0 && grounded)
-	{
-		lookDownFactor -= Time.deltaTime / lookDownDuration;
-	}
-
-	newLookOffset.y = Mathf.SmoothStep(0, -lookDownDistance, lookDownFactor);
-
-	lookTransform.localPosition = newLookOffset;
-}
-
-private void OnDrawGizmos()
-{
-	if (Application.isPlaying)
-	{
-		Vector3 position = transform.position;
-		position.z = 0;
-		Gizmos.DrawWireCube(position + bufferArea.localCenter, bufferArea.size);
-	}
-	else
-	{
-		if (playerController)
+		if (Application.isPlaying)
 		{
-			Gizmos.DrawWireCube(playerController.transform.position + bufferArea.localCenter, bufferArea.size);
+			Vector3 position = transform.position;
+			position.z = 0;
+			Gizmos.DrawWireCube(position + bufferArea.localCenter, bufferArea.size);
+		}
+		else
+		{
+			if (playerController)
+			{
+				Gizmos.DrawWireCube(playerController.transform.position + bufferArea.localCenter, bufferArea.size);
+			}
 		}
 	}
-}
 
-public void SnapToTarget()
-{
-	Vector3 position = transform.position;
-	Vector3 followPosition = playerController.transform.position;
-	position.x = followPosition.x;
-	position.y = followPosition.y;
-	transform.position = position;
-}
-
-public IEnumerator MoveToTarget(float duration)
-{
-	Vector3 position = transform.position;
-	Vector3 startPosition = position;
-	Vector3 followPosition = playerController.transform.position;
-	float t = 0;
-	while (t <= duration)
+	public void SnapToTarget()
 	{
-		position.x = Mathf.SmoothStep(startPosition.x, followPosition.x, t / duration);
-		position.y = Mathf.SmoothStep(startPosition.y, followPosition.y, t / duration); ;
+		Vector3 position = transform.position;
+		Vector3 followPosition = playerController.transform.position;
+		position.x = followPosition.x;
+		position.y = followPosition.y;
 		transform.position = position;
-		t += Time.unscaledDeltaTime;
-		yield return null;
 	}
-}
 
-private void OnPlayerDeath()
-{
-}
+	private void OnPlayerDeath()
+	{
+		followOffsetTransform.localPosition = targetOffset = savedOffset;
+		currentZoom = targetZoom = savedZoom;
+		zoom2 = 1;
+	}
+
+	private void OnCheckpoint()
+	{
+		Debug.Log("Save camera vars");
+		if (offsetDuration > 0)
+		{
+			savedOffset = targetOffset; 
+		}
+		if (zoomDuration > 0)
+		{
+			savedZoom = targetZoom; 
+		}
+	}
 }

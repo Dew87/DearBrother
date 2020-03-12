@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour, IKillable
 			player.soundManager.StopSound();
 			player.soundManager.PlayOneShot(player.soundManager.hurt);
 			Time.timeScale = 0;
+			PlayerCamera.get.useUnscaledTime = true;
 			StartCoroutine(FadeOut());
 		}
 	}
@@ -32,8 +33,6 @@ public class PlayerHealth : MonoBehaviour, IKillable
 	private IEnumerator FadeOut()
 	{
 		player.Freeze(true);
-
-		StartCoroutine(PlayerCamera.get.MoveToTarget(fadeInTime));
 
 		ForegroundObject[] foregroundObjects = FindObjectsOfType<ForegroundObject>();
 
@@ -52,7 +51,13 @@ public class PlayerHealth : MonoBehaviour, IKillable
 
 		yield return new WaitForSecondsRealtime(fadeInDelay);
 
+		PlayerCamera.get.useUnscaledTime = false;
+		Vector3 cameraRelativePosition = PlayerCamera.get.followOffsetTransform.position - PlayerController.get.transform.position;
 		EventManager.TriggerEvent("PlayerDeath");
+		PlayerCamera.get.transform.position = PlayerController.get.transform.position + cameraRelativePosition - PlayerCamera.get.followOffsetTransform.localPosition;
+
+		yield return null;
+
 		Time.timeScale = 1;
 		player.Freeze(false);
 

@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 	public PlayerSwingState swingState;
 	public PlayerWhipState whipState;
 	public PlayerPullState pullState;
+	public PlayerDyingState dyingState;
 
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour
 		yield return swingState;
 		yield return whipState;
 		yield return pullState;
+		yield return dyingState;
 	}
 
 	private void Awake()

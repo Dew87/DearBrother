@@ -715,6 +715,13 @@ MonoBehaviour:
     stretchTolerance: 10
     isStretchToleranceMultiplier: 0
     pullspeed: 10
+  dyingState:
+    isCurrentState: 0
+    player: {fileID: 0}
+    fadeOutTime: 0.5
+    fadeInDelay: 0.2
+    fadeInTime: 0.5
+    fadeOutSprite: {fileID: 987893759108272444}
   hasDoubleJump: 1
   hasFloat: 1
   doesDoubleJumpRemain: 1
@@ -733,10 +740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a2eb49657589d4ab1b0ef83d93dcd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutTime: 0.5
-  fadeInDelay: 0.2
-  fadeInTime: 0.5
-  fadeOutSprite: {fileID: 987893759108272444}
 --- !u!120 &5702585311898711821
 LineRenderer:
   m_ObjectHideFlags: 0

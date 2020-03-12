@@ -41,8 +41,11 @@ public class Parallax : MonoBehaviour
 			}
 			transform.position = new Vector3(startpos + distance, transform.position.y, transform.position.z);
 
-			float zoomRevert = Mathf.Lerp(1f / PlayerCamera.get.currentZoom, 1, zoomInfluence);
-			transform.localScale = Vector2.one * zoomRevert;
+			if (PlayerCamera.get.currentZoom > 0)
+			{
+				float zoomRevert = Mathf.Lerp(1f / PlayerCamera.get.currentZoom, 1, zoomInfluence);
+				transform.localScale = Vector2.one * zoomRevert; 
+			}
 		}
     }
 }

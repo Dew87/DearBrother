@@ -66,7 +66,7 @@ public class TarManController : MonoBehaviour
 			state.tarMan = this;
 		}
 
-		TransitionState(idleState);
+		TransitionState(walkingState);
 
 		foreach (TarManState state in IterateStates())
 		{
@@ -115,6 +115,12 @@ public class TarManController : MonoBehaviour
 			currentState.Enter();
 			currentState.isCurrentState = true;
 		}
+	}
+
+	public void TransitionChase()
+	{
+		walkingState.singleBlock = false;
+		TransitionState(walkingState);
 	}
 
 	private void OnPlayerDeath()

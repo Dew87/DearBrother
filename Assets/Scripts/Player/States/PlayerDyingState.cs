@@ -5,9 +5,11 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerDyingState : PlayerState
 {
+	public float fadeOutDelay = 0.2f;
 	public float fadeOutTime = 0.5f;
 	public float fadeInDelay = 0.2f;
 	public float fadeInTime = 0.5f;
+	public ShakeConfig cameraShake;
 	public SpriteRenderer fadeOutSprite;
 
 	public override void Start()
@@ -22,8 +24,8 @@ public class PlayerDyingState : PlayerState
 
 		player.soundManager.StopSound();
 		player.soundManager.PlayOneShot(player.soundManager.hurt);
-		Time.timeScale = 0;
-		PlayerCamera.get.useUnscaledTime = true;
+		player.velocity = Vector3.zero;
+		CameraShake.get.Shake(cameraShake);
 
 		player.StartCoroutine(FadeOut());
 	}
@@ -36,6 +38,8 @@ public class PlayerDyingState : PlayerState
 	private IEnumerator FadeOut()
 	{
 		ForegroundObject[] foregroundObjects = GameObject.FindObjectsOfType<ForegroundObject>();
+
+		yield return new WaitForSecondsRealtime(fadeOutDelay);
 
 		float alpha = 0;
 		while (alpha < 1)

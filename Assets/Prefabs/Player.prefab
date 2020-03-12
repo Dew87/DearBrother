@@ -718,9 +718,13 @@ MonoBehaviour:
   dyingState:
     isCurrentState: 0
     player: {fileID: 0}
+    fadeOutDelay: 0.4
     fadeOutTime: 0.5
     fadeInDelay: 0.2
     fadeInTime: 0.5
+    cameraShake:
+      shakeIntensity: 0.5
+      rotationalShakeIntensity: 0.5
     fadeOutSprite: {fileID: 987893759108272444}
   hasDoubleJump: 1
   hasFloat: 1

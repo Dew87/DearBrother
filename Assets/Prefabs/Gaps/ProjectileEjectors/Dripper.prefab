@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1428598698629574226}
   - component: {fileID: 1428598698629574227}
   - component: {fileID: 1428598698629574225}
+  - component: {fileID: 1549509974}
   m_Layer: 0
   m_Name: Dripper
   m_TagString: Untagged
@@ -70,12 +71,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2f0aa16f395e1d24e99ccee6b3dab3fc, type: 3}
+  m_Sprite: {fileID: -8819152807020898597, guid: 2f0aa16f395e1d24e99ccee6b3dab3fc,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100,3 +102,24 @@ MonoBehaviour:
     type: 3}
   prewarmAmount: 7
   fireDirection: 270
+--- !u!114 &1549509974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428598698629574236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bfded7f11a510644bde7636cdac4e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 4004729925837322593, guid: 2f0aa16f395e1d24e99ccee6b3dab3fc, type: 3}
+  - {fileID: -4090614838345465848, guid: 2f0aa16f395e1d24e99ccee6b3dab3fc, type: 3}
+  - {fileID: -8819152807020898597, guid: 2f0aa16f395e1d24e99ccee6b3dab3fc, type: 3}
+  - {fileID: -2465783141858682877, guid: 2f0aa16f395e1d24e99ccee6b3dab3fc, type: 3}
+  - {fileID: -2641379829682020135, guid: 2f0aa16f395e1d24e99ccee6b3dab3fc, type: 3}
+  maxAngle: 30
+  rotateSpeed: 60
+  currentAngle: 0

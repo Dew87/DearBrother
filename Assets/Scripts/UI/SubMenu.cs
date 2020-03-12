@@ -60,6 +60,8 @@ public class SubMenu : MonoBehaviour
 				yield return rootMenu.Close();
 			}
 
+			onOpen();
+
 			float t = 0;
 			while (t <= 1)
 			{
@@ -71,7 +73,6 @@ public class SubMenu : MonoBehaviour
 			canvasGroup.interactable = true;
 			pauseMenu.currentMenu = this;
 			isOpening = false;
-			onOpen();
 		}
 
 	}

@@ -102,6 +102,7 @@ MonoBehaviour:
   period: 1.5
   amplitude: 0.1
   timeOffset: 0
+  useUnscaledTime: 0
 --- !u!61 &4041239109168619791
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,7 +142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationName: CollectibleCat
-  collected: 0
+  collectAnimationDuration: 0.4
+  collectAnimationGrowScale: 4
+  collectZoom: 1.7
+  isCollected: 0
 --- !u!114 &4041239109168619779
 MonoBehaviour:
   m_ObjectHideFlags: 0

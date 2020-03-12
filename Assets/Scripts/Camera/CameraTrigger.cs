@@ -18,8 +18,14 @@ public class CameraTrigger : MonoBehaviour
 		{
 			if (reset)
 			{
-				PlayerCamera.get.SetOffset(PlayerCamera.get.defaultFollowOffset, duration);
-				PlayerCamera.get.SetZoom(1, duration);
+				if (changeOffset)
+				{
+					PlayerCamera.get.SetOffset(PlayerCamera.get.defaultFollowOffset, duration); 
+				}
+				if (changeZoom)
+				{
+					PlayerCamera.get.SetZoom(1, duration); 
+				}
 			}
 			else
 			{

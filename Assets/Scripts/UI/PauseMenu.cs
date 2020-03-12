@@ -61,7 +61,8 @@ public class PauseMenu : MonoBehaviour
 
 	public void RestartCheckpoint()
 	{
-		EventManager.TriggerEvent("PlayerDeath");
+		//EventManager.TriggerEvent("PlayerDeath");
+		PlayerController.get.GetComponent<PlayerHealth>().TakeDamage();
 		TriggerOff();
 	}
 

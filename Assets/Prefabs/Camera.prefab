@@ -339,8 +339,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 8179696981043089597}
   parallaxStrength: 0.1
-  zoomModifier: 0
+  zoomInfluence: 0
   doParallax: 1
+  doRepeat: 1
 --- !u!1 &3806905657984598137
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,8 +712,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 8179696981043089597}
   parallaxStrength: 0.3
-  zoomModifier: 0
+  zoomInfluence: 0
   doParallax: 1
+  doRepeat: 1
 --- !u!1 &7628495222825866106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,18 +1070,17 @@ MonoBehaviour:
   followOffsetTransform: {fileID: 4418728012628078379}
   snapToPlayerOnStart: 1
   playerController: {fileID: 0}
-  cameraSpeedWhenStill: 2
-  cameraSpeedWhenGliding: 8
+  dampX: 0.95
+  dampXInBuffer: 0.7
+  dampY: 0.99
+  dampYInBuffer: 0.7
+  dieRestoreCameraDuration: 0.5
   bufferArea:
     x: 1
     up: 2
     down: 0.5
+  fallingOffset: 2
   glidingOffset: 2
-  lookTransform: {fileID: 8179696980365648655}
-  lookDownDuration: 0.4
-  lookDownDelay: 0.2
-  lookDownDistance: 6
-  onlyLookWhenStill: 1
   useUnscaledTime: 0
 --- !u!82 &4775174260457603963
 AudioSource:

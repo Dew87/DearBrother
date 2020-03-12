@@ -69,6 +69,8 @@ public class CheckPoint : MonoBehaviour
 		}
 
 		isActive = true;
+
+		EventManager.TriggerEvent("Checkpoint");
 	}
 
 	private void OnDrawGizmos()

@@ -47,16 +47,23 @@ public class Scenario : Command
 		GetComponent<Collider2D>().enabled = true;
 	}
 
-	private void Reset()
-	{
-		GetComponent<Collider2D>().enabled = true;
-	}
-
 	public override string GetSummary()
 	{
 		string txt = "";
 		if (onlyTriggerOnce) txt += " (Only Once) ";
 		if (resetOnDeath) txt += " (Reset On Death) ";
 		return txt;
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		// For some unknown reason, the box collider on the Fungus trigger object is constantly disabled in the prefab.
+		// So here's a hack to make sure it's reenabled.
+#if UNITY_EDITOR
+		if (!Application.isPlaying)
+		{
+			GetComponent<Collider2D>().enabled = true;
+		}
+#endif
 	}
 }

@@ -14,6 +14,8 @@ public class PlayerCamera : MonoBehaviour
 	public float dampYInBuffer = 0.7f;
 	public float dieRestoreCameraDuration = 0.5f;
 	public Extents bufferArea = new Extents(1, 2, 0.5f);
+	[Tooltip("How far down the camera will be while falling")]
+	public float fallingOffset = 2f;
 	[Tooltip("How far down the camera will be while gliding")]
 	public float glidingOffset = 2f;
 
@@ -200,6 +202,11 @@ public class PlayerCamera : MonoBehaviour
 		Vector3 currentPosition = transform.position;
 		Vector3 newCameraPosition = currentPosition;
 		Vector3 followPosition = playerController.transform.position;
+
+		if (playerController.currentState == playerController.fallingState)
+		{
+			followPosition.y -= fallingOffset;
+		}
 
 		if (playerController.currentState == playerController.glidingState)
 		{

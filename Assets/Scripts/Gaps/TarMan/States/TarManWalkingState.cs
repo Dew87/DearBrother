@@ -19,6 +19,7 @@ public class TarManWalkingState : TarManState
 		base.Enter();
 
 		velocity = Vector2.zero;
+		tarMan.animator.SetTrigger("Walk");
 		tarMan.soundManager.PlayRepeat(tarMan.soundManager.walk);
 	}
 

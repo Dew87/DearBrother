@@ -8,5 +8,7 @@ public class TarManIdleState : TarManState
 	public override void Enter()
 	{
 		base.Enter();
+
+		tarMan.animator.SetTrigger("Idle");
 	}
 }

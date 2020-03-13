@@ -5,6 +5,8 @@ using UnityEngine;
 public class TarManController : MonoBehaviour
 {
 	public List<Transform> pathPoints;
+	public Animator animator;
+	public SpriteRenderer spriteRenderer;
 	public TarManSoundManager soundManager;
 
 	[Header("States")]
@@ -66,7 +68,7 @@ public class TarManController : MonoBehaviour
 			state.tarMan = this;
 		}
 
-		TransitionState(walkingState);
+		TransitionState(idleState);
 
 		foreach (TarManState state in IterateStates())
 		{
@@ -120,6 +122,12 @@ public class TarManController : MonoBehaviour
 	public void TransitionChase()
 	{
 		walkingState.singleBlock = false;
+		TransitionState(walkingState);
+	}
+
+	public void TransitionWalkNext()
+	{
+		walkingState.singleBlock = true;
 		TransitionState(walkingState);
 	}
 

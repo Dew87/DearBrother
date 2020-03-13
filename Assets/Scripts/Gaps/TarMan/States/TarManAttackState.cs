@@ -17,6 +17,7 @@ public class TarManAttackState : TarManState
 		base.Enter();
 
 		timer = 0f;
+		tarMan.animator.SetTrigger("Attack");
 		tarMan.soundManager.PlayOneShot(tarMan.soundManager.attack);
 	}
 

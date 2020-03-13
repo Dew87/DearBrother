@@ -9,6 +9,7 @@ public class Parallax : MonoBehaviour
 	[Range(0, 1)]
 	public float zoomInfluence = 0;
 	public bool doParallax;
+	public bool doRepeat = true;
 
 	private float length, startpos;
     void Start()
@@ -31,13 +32,16 @@ public class Parallax : MonoBehaviour
 			float temp = cam.transform.position.x * (1 - parallaxStrength);
 			float distance = cam.transform.position.x * parallaxStrength;
 
-			while (temp > startpos + length)
+			if (doRepeat)
 			{
-				startpos += length;
-			}
-			while (temp < startpos - length)
-			{
-				startpos -= length;
+				while (temp > startpos + length)
+				{
+					startpos += length;
+				}
+				while (temp < startpos - length)
+				{
+					startpos -= length;
+				} 
 			}
 			transform.position = new Vector3(startpos + distance, transform.position.y, transform.position.z);
 

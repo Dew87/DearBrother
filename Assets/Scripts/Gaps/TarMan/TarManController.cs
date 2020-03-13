@@ -5,6 +5,8 @@ using UnityEngine;
 public class TarManController : MonoBehaviour
 {
 	public List<Transform> pathPoints;
+	public Animator animator;
+	public SpriteRenderer spriteRenderer;
 	public TarManSoundManager soundManager;
 
 	[Header("States")]
@@ -115,6 +117,18 @@ public class TarManController : MonoBehaviour
 			currentState.Enter();
 			currentState.isCurrentState = true;
 		}
+	}
+
+	public void TransitionChase()
+	{
+		walkingState.singleBlock = false;
+		TransitionState(walkingState);
+	}
+
+	public void TransitionWalkNext()
+	{
+		walkingState.singleBlock = true;
+		TransitionState(walkingState);
 	}
 
 	private void OnPlayerDeath()

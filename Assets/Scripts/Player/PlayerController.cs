@@ -348,6 +348,15 @@ public class PlayerController : MonoBehaviour
 		{
 			rb2d.simulated = !freeze;
 			isFrozen = freeze;
+			if (freeze)
+			{
+				soundManager.StopSound();
+				playerAnimator.speed = 0;
+			}
+			else
+			{
+				playerAnimator.speed = 1;
+			}
 		}
 	}
 
@@ -361,6 +370,8 @@ public class PlayerController : MonoBehaviour
 
 		rb2d.simulated = false;
 		isFrozen = true;
+		soundManager.StopSound();
+		playerAnimator.speed = 0;
 	}
 
 

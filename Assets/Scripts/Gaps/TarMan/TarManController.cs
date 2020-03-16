@@ -17,6 +17,8 @@ public class TarManController : MonoBehaviour
 	public TarManState currentState { get; private set; }
 	public TarManState previousState { get; private set; }
 	public int currentPositionInPath { get; set; }
+	public bool isFacingRight { get; private set; }
+
 
 	private int ClosestPathIndex
 	{
@@ -75,7 +77,8 @@ public class TarManController : MonoBehaviour
 			currentState.Start();
 		}
 
-		currentPositionInPath = ClosestPathIndex;
+		currentPositionInPath = 0;
+		isFacingRight = true;
 	}
 
 	private void OnEnable()
@@ -101,6 +104,23 @@ public class TarManController : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		currentState.OnTriggerEnter2D(collision);
+	}
+
+	public void FaceDirection(Vector2 direction)
+	{
+		if (direction.x != 0)
+		{
+			isFacingRight = direction.x > 0 ? true : false;
+			if (isFacingRight && spriteRenderer.flipX)
+			{
+				spriteRenderer.flipX = false;
+			}
+			else if (!isFacingRight && !spriteRenderer.flipX)
+			{
+				spriteRenderer.flipX = true;
+			}
+		}
+
 	}
 
 	public void TransitionState(TarManState newState)

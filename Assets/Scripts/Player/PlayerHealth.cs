@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour, IKillable
 
 	public void TakeDamage()
 	{
-		if (!player.isFrozen && player.currentState != player.dyingState)
+		if (!player.isFrozen && !player.IsInCutscene && player.currentState != player.dyingState)
 		{
 			player.TransitionState(player.dyingState);
 		}

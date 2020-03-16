@@ -62,6 +62,11 @@ public class CinematicCamera : Command
 
 		txt += " in " + duration + "s";
 
+		if (!waitUntilFinished)
+		{
+			txt += " (don't wait)";
+		}
+
 		return txt;
 	}
 

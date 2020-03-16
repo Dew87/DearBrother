@@ -159,7 +159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2128238511752859238
 Transform:
   m_ObjectHideFlags: 0
@@ -206,7 +206,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a37a8a12c2f77498d3175c6670467d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathPoints: []
+  pathPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   animator: {fileID: 2128238513004535913}
   spriteRenderer: {fileID: 2128238513004535914}
   soundManager: {fileID: 2128238511733217059}
@@ -357,13 +366,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2990850790896077357, guid: 2968d13ac7f640648ac44ec497672817,
+  m_Sprite: {fileID: 1613308578110145719, guid: 275e6d7ec804c214ca095cc7c1e9474f,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.14, y: 2.25}
+  m_Size: {x: 0.6666667, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

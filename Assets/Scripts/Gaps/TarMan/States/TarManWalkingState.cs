@@ -19,7 +19,7 @@ public class TarManWalkingState : TarManState
 		base.Enter();
 
 		velocity = Vector2.zero;
-		tarMan.animator.SetTrigger("Walk");
+		tarMan.animator.SetBool("Moving", true);
 		tarMan.soundManager.PlayRepeat(tarMan.soundManager.walk);
 	}
 
@@ -30,6 +30,8 @@ public class TarManWalkingState : TarManState
 		Vector2 position = tarMan.transform.position;
 		Vector2 target = tarMan.pathPoints[tarMan.currentPositionInPath].position;
 		Vector2 direction = target - position;
+
+		tarMan.FaceDirection(direction);
 
 		if (direction.magnitude < distanceThreshold)
 		{
@@ -59,6 +61,7 @@ public class TarManWalkingState : TarManState
 		base.Exit();
 
 		velocity = Vector2.zero;
+		tarMan.animator.SetBool("Moving", false);
 		tarMan.soundManager.StopSound();
 	}
 
@@ -69,6 +72,11 @@ public class TarManWalkingState : TarManState
 		IKillable killable = collision.GetComponentInParent<IKillable>();
 		if (killable != null)
 		{
+			Vector2 position = tarMan.transform.position;
+			Vector2 target = collision.transform.position;
+			Vector2 direction = target - position;
+
+			tarMan.FaceDirection(direction);
 			tarMan.TransitionState(tarMan.attackState);
 		}
 	}

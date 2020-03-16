@@ -9,15 +9,16 @@ public class PlayerCrouchingState : PlayerState
 	{
 		base.Enter();
 		player.velocity.x = 0;
+		player.playerAnimator.SetBool("Crouching", true);
+		player.playerAnimator.SetBool("Moving", false);
 		player.SetCollider(player.crouchingColliderBounds);
-		player.spriteRenderer.transform.localScale = new Vector3(1, 0.5f);
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
+		player.playerAnimator.SetBool("Crouching", false);
 		player.SetCollider(player.standingColliderBounds);
-		player.spriteRenderer.transform.localScale = Vector3.one;
 	}
 
 	public override void Update()

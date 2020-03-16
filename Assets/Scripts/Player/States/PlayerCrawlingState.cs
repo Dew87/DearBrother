@@ -12,15 +12,17 @@ public class PlayerCrawlingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
+		player.playerAnimator.SetBool("Crouching", true);
+		player.playerAnimator.SetBool("Moving", true);
 		player.SetCollider(player.crouchingColliderBounds);
-		player.spriteRenderer.transform.localScale = new Vector3(1, 0.5f);
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
+		player.playerAnimator.SetBool("Crouching", false);
+		player.playerAnimator.SetBool("Moving", false);
 		player.SetCollider(player.standingColliderBounds);
-		player.spriteRenderer.transform.localScale = Vector3.one;
 	}
 
 	public override void Update()

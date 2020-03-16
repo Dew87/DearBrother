@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 2968d13ac7f640648ac44ec497672817
+guid: b9faf0bef2964024fa4e3f745f90a12b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2990850790896077357
-    second: Tarman_Movement_0
+      213: -5462397246224120622
+    second: TarMan-Walk_0
   - first:
-      213: -1987870299444618728
-    second: Tarman_Movement_1
+      213: 6163555728378140103
+    second: TarMan-Walk_1
   - first:
-      213: 3198591498665459668
-    second: Tarman_Movement_2
+      213: 8075029168494083898
+    second: TarMan-Walk_2
   - first:
-      213: 8348766945294468202
-    second: Tarman_Movement_3
+      213: 3872439773019726281
+    second: TarMan-Walk_3
   - first:
-      213: -4703075625702679211
-    second: Tarman_Movement_4
+      213: 6432488657732135495
+    second: TarMan-Walk_4
   - first:
-      213: -1171260684225461484
-    second: Tarman_Movement_5
+      213: 5141802260211864685
+    second: TarMan-Walk_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tarman_Movement_0
+      name: TarMan-Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbcaaa1ea93767e49bca1db87ff91869
-      internalID: 2990850790896077357
+      spriteID: 56dd271e827b361439dc537c577c9989
+      internalID: -5462397246224120622
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tarman_Movement_1
+      name: TarMan-Walk_1
       rect:
         serializedVersion: 2
         x: 192
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fac66d3041016f4bbc055fbdb98601e
-      internalID: -1987870299444618728
+      spriteID: 671b9867f33b31141aea234a00d5df1f
+      internalID: 6163555728378140103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tarman_Movement_2
+      name: TarMan-Walk_2
       rect:
         serializedVersion: 2
         x: 384
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e11262fa0f52b3a4fb6b77c8be5a10e5
-      internalID: 3198591498665459668
+      spriteID: 4c85a256cde71c1488a8da960d0f761c
+      internalID: 8075029168494083898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tarman_Movement_3
+      name: TarMan-Walk_3
       rect:
         serializedVersion: 2
         x: 576
@@ -181,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d044bfd61a12ac4c86a3a8c888bb723
-      internalID: 8348766945294468202
+      spriteID: b79a1c8db7cdf7d498c3c8f7b350ce68
+      internalID: 3872439773019726281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tarman_Movement_4
+      name: TarMan-Walk_4
       rect:
         serializedVersion: 2
         x: 768
@@ -202,14 +202,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9354972f909655c4ca699f4fa4b4c958
-      internalID: -4703075625702679211
+      spriteID: 0d060178d8dc6dc4ca04ed32cc0cfca4
+      internalID: 6432488657732135495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tarman_Movement_5
+      name: TarMan-Walk_5
       rect:
         serializedVersion: 2
         x: 960
@@ -223,8 +223,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 489df3c83965fae43b6ebbc60b2a2783
-      internalID: -1171260684225461484
+      spriteID: 02290200c009d9d4aabedc6620d18322
+      internalID: 5141802260211864685
       vertices: []
       indices: 
       edges: []

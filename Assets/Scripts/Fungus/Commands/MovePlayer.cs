@@ -7,6 +7,7 @@ using UnityEngine;
 public class MovePlayer : Command
 {
 	public Transform targetPosition;
+	public bool glide = false;
 	[Tooltip("If false, uses the player's normal walking speed instead of the value below.")]
 	public bool overrideSpeed = false;
 	public float speed = 10;
@@ -21,11 +22,11 @@ public class MovePlayer : Command
 
 		if (overrideSpeed)
 		{
-			PlayerController.get.MoveInCutscene(targetPosition.position, speed, stopInstantly);
+			PlayerController.get.MoveInCutscene(targetPosition.position, speed, stopInstantly, glide);
 		}
 		else
 		{
-			PlayerController.get.MoveInCutscene(targetPosition.position, stopInstantly); 
+			PlayerController.get.MoveInCutscene(targetPosition.position, stopInstantly, glide); 
 		}
 
 		if (waitUntilFinished)
@@ -51,7 +52,10 @@ public class MovePlayer : Command
 	public override string GetSummary()
 	{
 		string txt = "";
-		txt += "--> " + targetPosition.name;
+		if (targetPosition != null)
+		{
+			txt += "--> " + targetPosition.name; 
+		}
 		if (overrideSpeed)
 		{
 			txt += " at speed " + speed;
@@ -60,7 +64,10 @@ public class MovePlayer : Command
 		{
 			txt += " (stopping instantly)";
 		}
-
+		if (glide)
+		{
+			txt += " (glide)";
+		}
 		if (!waitUntilFinished)
 		{
 			txt += " (don't wait)";
@@ -72,6 +79,11 @@ public class MovePlayer : Command
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.magenta;
-		GizmosExt.DrawArrow(new Vector2(transform.position.x, targetPosition.position.y), new Vector2(targetPosition.position.x - transform.position.x, 0));
+		Vector3 origin = transform.position;
+		if (!glide)
+		{
+			origin.y = targetPosition.position.y;
+		}
+		GizmosExt.DrawArrow(origin, targetPosition.position - origin);
 	}
 }

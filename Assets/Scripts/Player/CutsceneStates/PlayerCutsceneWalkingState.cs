@@ -8,6 +8,7 @@ public class PlayerCutsceneWalkingState : PlayerState
 	[HideInInspector] public float speed;
 	[HideInInspector] public Vector2 targetPosition;
 	[HideInInspector] public bool shouldStopInstantly = false;
+	[HideInInspector] public bool isGliding = false;
 
 	private bool hasReachedTarget = false;
 	private bool isMovingRight = false;
@@ -25,6 +26,23 @@ public class PlayerCutsceneWalkingState : PlayerState
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
+
+		bool grounded = player.CheckOverlaps(Vector2.down);
+
+		player.playerAnimator.SetBool("Grounded", grounded);
+
+		if (isGliding && !grounded)
+		{
+			player.playerAnimator.SetBool("Gliding", true);
+			float descendSpeed = player.glidingState.descendSpeed;
+			float acceleration = player.velocity.y > -descendSpeed ? player.fallingState.gravity : player.glidingState.verticalDeceleration;
+			player.velocity.y = Mathf.MoveTowards(player.velocity.y, -player.glidingState.descendSpeed, acceleration * Time.deltaTime);
+		}
+		else
+		{
+			player.playerAnimator.SetBool("Gliding", false);
+			player.velocity.y = 0;
+		}
 
 		if (hasReachedTarget)
 		{ 

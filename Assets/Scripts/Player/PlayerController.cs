@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
 	public PlayerDyingState dyingState;
 	public PlayerCutsceneStandingState cutsceneStandingState;
 	public PlayerCutsceneWalkingState cutsceneWalkingState;
-	public PlayerCutsceneGlidingState cutsceneGlidingState;
 
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
@@ -105,7 +104,6 @@ public class PlayerController : MonoBehaviour
 		yield return dyingState;
 		yield return cutsceneStandingState;
 		yield return cutsceneWalkingState;
-		yield return cutsceneGlidingState;
 	}
 
 	private void Awake()
@@ -365,16 +363,17 @@ public class PlayerController : MonoBehaviour
 		isFrozen = freeze;
 	}
 
-	public void MoveInCutscene(Vector3 targetPosition, bool stopInstantly = false)
+	public void MoveInCutscene(Vector3 targetPosition, bool stopInstantly = false, bool glide = false)
 	{
-		MoveInCutscene(targetPosition, walkingState.speed, stopInstantly);
+		MoveInCutscene(targetPosition, walkingState.speed, stopInstantly, glide);
 	}
 
-	public void MoveInCutscene(Vector3 targetPosition, float speed, bool stopInstantly = false)
+	public void MoveInCutscene(Vector3 targetPosition, float speed, bool stopInstantly = false, bool glide = false)
 	{
 		cutsceneWalkingState.targetPosition = targetPosition;
 		cutsceneWalkingState.shouldStopInstantly = stopInstantly;
 		cutsceneWalkingState.speed = speed;
+		cutsceneWalkingState.isGliding = glide;
 		TransitionState(cutsceneWalkingState);
 	}
 

@@ -10,6 +10,7 @@ public class PlayerDyingState : PlayerState
 	public float fadeOutTime = 0.5f;
 	public float fadeInDelay = 0.2f;
 	public float fadeInTime = 0.5f;
+	public float regainControlDelay = 0.5f;
 	public ShakeConfig cameraShake;
 	public SpriteRenderer fadeOutSprite;
 

@@ -40,6 +40,20 @@ public class Collectible : MonoBehaviour
 			// Sort collectibles by order in hierarchy (or rather sibling index -- so it assumes all collectibles have the same parent)
 			list.Sort((a, b) => a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex()));
 		}
+
+		GameObject memoryCharacterGO = GameObject.Find("/Fungus/Characters/Memory");
+		Character memoryCharacter = memoryCharacterGO == null ? null : memoryCharacterGO.GetComponent<Character>();
+
+		if (memoryCharacter == null)
+		{
+			Debug.LogError("No Memory character found. Note: It's searched for by its absolute path.");
+		}
+
+		CustomSay[] commands = GetComponents<CustomSay>();
+		foreach (CustomSay command in commands)
+		{
+			command.SetCharacter(memoryCharacter);
+		}
 	}
 
 	private void OnDestroy()

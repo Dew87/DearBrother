@@ -3250,6 +3250,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5702585311898711827, guid: f8a66aa362b924144a5755f3944b43b5,
+        type: 3}
+      propertyPath: dyingState.regainControlDelay
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5702585312812218394, guid: f8a66aa362b924144a5755f3944b43b5,
         type: 3}
       propertyPath: m_Size.x

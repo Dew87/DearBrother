@@ -93,13 +93,6 @@ public class PlayerDyingState : PlayerState
 			yield return null;
 		}
 
-		float t = 0;
-		while (t < regainControlDelay)
-		{
-			t += Time.deltaTime;
-			yield return null;
-		}
-
 		player.TransitionState(player.standingState);
 	}
 }

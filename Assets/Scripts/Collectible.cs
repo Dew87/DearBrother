@@ -53,6 +53,9 @@ public class Collectible : MonoBehaviour
 		if (collision.CompareTag("Player"))
 		{
 			Time.timeScale = 0;
+			PlayerController.get.Freeze(true, false);
+			GetComponent<SpriteRenderer>().enabled = false;
+			GetComponent<Collider2D>().enabled = false;
 			StartCoroutine(DoCollect());
 		}
 	}
@@ -78,6 +81,7 @@ public class Collectible : MonoBehaviour
 
 		yield return StartCoroutine(DoShowMemory());
 
+		PlayerController.get.Freeze(false, false);
 		Time.timeScale = 1;
 
 		t = 0;
@@ -89,9 +93,6 @@ public class Collectible : MonoBehaviour
 			yield return null;
 		}
 
-
-		GetComponent<SpriteRenderer>().enabled = false;
-		GetComponent<Collider2D>().enabled = false;
 		MemoryController.get.CollectMemory(this);
 		isCollected = true;
 	}

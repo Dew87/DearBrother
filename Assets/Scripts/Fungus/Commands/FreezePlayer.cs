@@ -14,15 +14,24 @@ public class FreezePlayer : Command
 	{
 		base.OnEnter();
 
-		PlayerController.get.Freeze(freezePlayer, true, waitUntilGrounded);
-
-		if (!waitUntilGrounded)
+		if (freezePlayer)
 		{
-			Continue();
+			PlayerController.get.TransitionState(PlayerController.get.cutsceneStandingState);
+
+			if (!waitUntilGrounded)
+			{
+				Continue();
+			}
+			else
+			{
+				StartCoroutine(WaitUntilGrounded());
+			} 
 		}
 		else
 		{
-			StartCoroutine(WaitUntilGrounded());
+			PlayerController.get.TransitionState(PlayerController.get.standingState);
+
+			Continue();
 		}
 	}
 

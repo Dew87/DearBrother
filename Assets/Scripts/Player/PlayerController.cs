@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 	public PlayerWhipState whipState;
 	public PlayerPullState pullState;
 	public PlayerDyingState dyingState;
+	public PlayerCutsceneStandingState cutsceneStandingState;
+	public PlayerCutsceneWalkingState cutsceneWalkingState;
 
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
@@ -46,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
 	public float horizontalInputAxis { get; private set; }
 	public float verticalInputAxis { get; private set; }
-	public bool isFacingRight { get; private set; }
+	public bool isFacingRight { get; set; }
 	public bool isJumpInputHeld { get; private set; }
 	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
 	public bool isCrouchInputHeld { get; private set; }
@@ -57,7 +59,19 @@ public class PlayerController : MonoBehaviour
 	public Bounds bounds { get; private set; }
 	public int solidMask { get; private set; }
 	public bool isFrozen { get; private set; }
-	public bool isInputDisabled { get; private set; }
+	private bool isInCutscene;
+	public bool IsInCutscene
+	{
+		get
+		{
+			return isInCutscene;
+		}
+		set
+		{
+			isInCutscene = value;
+			//currentCollider.enabled = !IsInCutscene;
+		}
+	}
 
 	[HideInInspector] public bool isInWind = false;
 	[HideInInspector] public Vector2 windSpeed = Vector2.zero;
@@ -88,6 +102,8 @@ public class PlayerController : MonoBehaviour
 		yield return whipState;
 		yield return pullState;
 		yield return dyingState;
+		yield return cutsceneStandingState;
+		yield return cutsceneWalkingState;
 	}
 
 	private void Awake()
@@ -138,7 +154,10 @@ public class PlayerController : MonoBehaviour
 	{
 		if (isFrozen || Time.timeScale == 0) return;
 
-		ReadInput();
+		if (!IsInCutscene)
+		{
+			ReadInput(); 
+		}
 
 		bounds = currentCollider.bounds;
 
@@ -332,37 +351,40 @@ public class PlayerController : MonoBehaviour
 		grappleInputBufferTimer = 0;
 	}
 
-	public void Freeze(bool freeze, bool resetVelocity = true, bool waitUntilGrounded = false)
+	public void Freeze(bool freeze, bool resetVelocity = true)
 	{
-		isInputDisabled = freeze;
 		if (resetVelocity)
 		{
 			velocity = Vector2.zero;
 			rb2d.velocity = Vector2.zero;
 		}
-		if (waitUntilGrounded && freeze)
+
+		rb2d.simulated = !freeze;
+		isFrozen = freeze;
+		if (freeze)
 		{
-			StartCoroutine(FreezeWhenGrounded());
+			soundManager.StopSound();
+			playerAnimator.speed = 0;
 		}
 		else
 		{
-			rb2d.simulated = !freeze;
-			isFrozen = freeze;
+			playerAnimator.speed = 1;
 		}
 	}
 
-	private IEnumerator FreezeWhenGrounded()
+	public void MoveInCutscene(Vector3 targetPosition, bool stopInstantly = false, bool glide = false)
 	{
-		WaitForFixedUpdate wait = new WaitForFixedUpdate();
-		while (!CheckOverlaps(Vector2.down))
-		{
-			yield return wait;
-		}
-
-		rb2d.simulated = false;
-		isFrozen = true;
+		MoveInCutscene(targetPosition, walkingState.speed, stopInstantly, glide);
 	}
 
+	public void MoveInCutscene(Vector3 targetPosition, float speed, bool stopInstantly = false, bool glide = false)
+	{
+		cutsceneWalkingState.targetPosition = targetPosition;
+		cutsceneWalkingState.shouldStopInstantly = stopInstantly;
+		cutsceneWalkingState.speed = speed;
+		cutsceneWalkingState.isGliding = glide;
+		TransitionState(cutsceneWalkingState);
+	}
 
 	public void SetCollider(Bounds colliderBounds)
 	{
@@ -389,19 +411,6 @@ public class PlayerController : MonoBehaviour
 
 	private void ReadInput()
 	{
-		if (isInputDisabled)
-		{
-			jumpInputBufferTimer = 0;
-			grappleInputBufferTimer = 0;
-			grappleInputIsTriggered = false;
-			horizontalInputAxis = 0;
-			verticalInputAxis = 0;
-			isCrouchInputHeld = false;
-			isJumpInputHeld = false;
-			jumpInputIsTriggered = false;
-			return;
-		}
-
 		if (jumpInputBufferTimer > 0)
 		{
 			jumpInputBufferTimer -= Time.deltaTime;

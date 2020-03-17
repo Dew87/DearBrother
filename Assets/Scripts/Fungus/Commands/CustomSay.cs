@@ -30,6 +30,11 @@ public class CustomSay : Say
 	{
 	}
 
+	public void SetCharacter(Character character)
+	{
+		this.character = character;
+	}
+
 	public override void OnValidate()
 	{
 		if (character != null && character.GetComponent<DearBrotherCharacter>().type != CharacterType.Regular)

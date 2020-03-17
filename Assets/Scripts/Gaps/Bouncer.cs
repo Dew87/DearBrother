@@ -33,15 +33,18 @@ public class Bouncer : MonoBehaviour
 
 	public void Bounce(PlayerController player)
 	{
-		player.TransitionState(player.jumpingState);
-		player.velocity = rotatedUp * speedGained;
-		if (regainDoubleJump)
+		if (!player.IsInCutscene && !player.isFrozen)
 		{
-			player.doesDoubleJumpRemain = true;
+			player.TransitionState(player.jumpingState);
+			player.velocity = rotatedUp * speedGained;
+			if (regainDoubleJump)
+			{
+				player.doesDoubleJumpRemain = true;
+			}
+			player.jumpingState.minimumDurationOverride = minimumJumpDuration;
+			onBounce.Invoke();
+			CameraShake.get.Shake(screenShake); 
 		}
-		player.jumpingState.minimumDurationOverride = minimumJumpDuration;
-		onBounce.Invoke();
-		CameraShake.get.Shake(screenShake);
 	}
 
 	public void Bounce(Rigidbody2D rigidbody2D)

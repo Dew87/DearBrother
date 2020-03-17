@@ -361,6 +361,15 @@ public class PlayerController : MonoBehaviour
 
 		rb2d.simulated = !freeze;
 		isFrozen = freeze;
+		if (freeze)
+		{
+			soundManager.StopSound();
+			playerAnimator.speed = 0;
+		}
+		else
+		{
+			playerAnimator.speed = 1;
+		}
 	}
 
 	public void MoveInCutscene(Vector3 targetPosition, bool stopInstantly = false, bool glide = false)

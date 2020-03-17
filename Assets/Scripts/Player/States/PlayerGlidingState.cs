@@ -74,8 +74,14 @@ public class PlayerGlidingState : PlayerState
 		if (!player.isFloatInputHeld)
 		{
 			player.TransitionState(player.fallingState);
+			return;
 		}
 
+		if (player.hasDoubleJump && player.doesDoubleJumpRemain && player.isJumpInputPressedBuffered)
+		{
+			player.TransitionState(player.doubleJumpingState);
+			return;
+		}
 
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
 		{

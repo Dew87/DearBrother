@@ -71,7 +71,7 @@ public class PlayerGlidingState : PlayerState
 	{
 		base.Update();
 
-		if (!player.isJumpInputHeld)
+		if (!player.isFloatInputHeld)
 		{
 			player.TransitionState(player.fallingState);
 		}

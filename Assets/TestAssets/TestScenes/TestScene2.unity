@@ -2782,7 +2782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1446487193}
+  selectedFlowchart: {fileID: 734977932}
 --- !u!4 &405795680
 Transform:
   m_ObjectHideFlags: 1
@@ -3447,6 +3447,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f54be7099af370458a98414798fbe97, type: 3}
+--- !u!114 &734977932 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4041239109168619779, guid: d383c6d6b29ba32408bc25cef3808cc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4041239107717700027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &769786584 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1732578785843488581, guid: 64c4bdba53308194e95547d1cbeb203d,
@@ -4410,18 +4422,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dbc0fd896976e54fa50d23740c47d0e, type: 3}
---- !u!114 &1446487193 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2318204942742094267, guid: 3dbc0fd896976e54fa50d23740c47d0e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1446487192}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446487194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1446487194 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2318204942742094210, guid: 3dbc0fd896976e54fa50d23740c47d0e,
@@ -5141,17 +5141,17 @@ PrefabInstance:
         type: 3}
       propertyPath: commandList.Array.data[2]
       value: 
-      objectReference: {fileID: 2119217536}
+      objectReference: {fileID: 2119217530}
     - target: {fileID: 2318204942742094264, guid: 3dbc0fd896976e54fa50d23740c47d0e,
         type: 3}
       propertyPath: commandList.Array.data[3]
       value: 
-      objectReference: {fileID: 2119217534}
+      objectReference: {fileID: 2119217536}
     - target: {fileID: 2318204942742094264, guid: 3dbc0fd896976e54fa50d23740c47d0e,
         type: 3}
       propertyPath: commandList.Array.data[4]
       value: 
-      objectReference: {fileID: 2119217530}
+      objectReference: {fileID: 2119217534}
     - target: {fileID: 2318204942742094264, guid: 3dbc0fd896976e54fa50d23740c47d0e,
         type: 3}
       propertyPath: commandList.Array.data[1]
@@ -5187,6 +5187,11 @@ PrefabInstance:
       propertyPath: commandList.Array.data[10]
       value: 
       objectReference: {fileID: 2119217535}
+    - target: {fileID: 2318204942742094264, guid: 3dbc0fd896976e54fa50d23740c47d0e,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: 2.887302
+      objectReference: {fileID: 0}
     - target: {fileID: 2318204942742094270, guid: 3dbc0fd896976e54fa50d23740c47d0e,
         type: 3}
       propertyPath: m_Enabled
@@ -5227,7 +5232,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 12
   indentLevel: 0
-  storyText: Hoot hoot!
+  storyText: Hoot hoot! Hoot hoot! Hoot hoot! Hoot hoot! Hoot hoot! Hoot hoot! Hoot
+    hoot! Hoot hoot! Hoot hoot! Hoot hoot! Hoot hoot! Hoot hoot! Hoot hoot! Hoot hoot!
+    Hoot hoot! Hoot hoot!
   description: 
   character: {fileID: 769786584}
   portrait: {fileID: 0}
@@ -6112,12 +6119,12 @@ PrefabInstance:
     - target: {fileID: 4041239109168619785, guid: d383c6d6b29ba32408bc25cef3808cc2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.13
+      value: 1.63
       objectReference: {fileID: 0}
     - target: {fileID: 4041239109168619785, guid: d383c6d6b29ba32408bc25cef3808cc2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.35
+      value: -3.38
       objectReference: {fileID: 0}
     - target: {fileID: 4041239109168619785, guid: d383c6d6b29ba32408bc25cef3808cc2,
         type: 3}

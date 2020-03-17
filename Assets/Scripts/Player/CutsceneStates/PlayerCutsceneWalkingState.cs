@@ -75,6 +75,7 @@ public class PlayerCutsceneWalkingState : PlayerState
 		player.velocity = Vector2.zero;
 		player.IsInCutscene = false;
 		player.playerAnimator.SetBool("Moving", false);
+		player.playerAnimator.SetBool("Gliding", false);
 		player.isFacingRight = isMovingRight;
 	}
 }

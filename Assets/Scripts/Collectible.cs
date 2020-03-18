@@ -64,7 +64,7 @@ public class Collectible : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("Player"))
+		if (collision.CompareTag("Player") && !PlayerController.get.IsInCutscene)
 		{
 			Time.timeScale = 0;
 			PlayerController.get.Freeze(true, false);

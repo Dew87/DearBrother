@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 	public PlayerDyingState dyingState;
 	public PlayerCutsceneStandingState cutsceneStandingState;
 	public PlayerCutsceneWalkingState cutsceneWalkingState;
+	public PlayerIntroState introState;
 
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
@@ -71,7 +72,6 @@ public class PlayerController : MonoBehaviour
 		set
 		{
 			isInCutscene = value;
-			//currentCollider.enabled = !IsInCutscene;
 		}
 	}
 
@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
 		yield return dyingState;
 		yield return cutsceneStandingState;
 		yield return cutsceneWalkingState;
+		yield return introState;
 	}
 
 	private void Awake()
@@ -134,7 +135,7 @@ public class PlayerController : MonoBehaviour
 			state.player = this;
 		}
 
-		TransitionState(standingState);
+		TransitionState(introState);
 
 		foreach (PlayerState state in IterateStates())
 		{

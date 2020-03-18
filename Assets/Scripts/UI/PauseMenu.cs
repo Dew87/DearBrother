@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour
 
 	private void Update()
 	{
-		if (!MemoryController.isOpen)
+		if (!MemoryController.isOpen && PlayerController.get.currentState != PlayerController.get.introState)
 		{
 			if (isMenuOn)
 			{

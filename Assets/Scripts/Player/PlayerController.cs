@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
 	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
 	public bool isCrouchInputHeld { get; private set; }
 	public bool isGrappleInputPressedBuffered => grappleInputBufferTimer > 0;
+	public bool isFloatInputHeld { get; private set; }
+
 	public float jumpGraceTimer { get; private set; }
 	public Rigidbody2D rb2d { get; private set; }
 	public BoxCollider2D currentCollider { get; private set; }
@@ -461,6 +463,8 @@ public class PlayerController : MonoBehaviour
 		{
 			jumpInputIsTriggered = false;
 		}
+
+		isFloatInputHeld = verticalInputAxis > 0;
 	}
 
 	private void OnPlayerDeath()
@@ -470,7 +474,6 @@ public class PlayerController : MonoBehaviour
 		transform.position = rb2d.position; // Need to force-sync transform for camera snapping to work properly
 		rb2d.velocity = Vector2.zero;
 		velocity = Vector2.zero;
-		TransitionState(standingState);
 		FindObjectOfType<PlayerCamera>().SnapToTarget();
 		//FindCorrectGroundDistance();
 	}

@@ -26,8 +26,6 @@ public class TarManState
 
 	public virtual void Exit() { }
 
-	public virtual void OnTriggerEnter2D(Collider2D collision) { }
-
 	public virtual void OnValidate()
 	{
 		if (Application.isPlaying)

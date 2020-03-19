@@ -339,6 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 8179696981043089597}
   parallaxStrength: 0.1
+  parallaxStrengthY: 1
   zoomInfluence: 0
   doParallax: 1
   doRepeat: 1
@@ -712,6 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 8179696981043089597}
   parallaxStrength: 0.3
+  parallaxStrengthY: 1
   zoomInfluence: 0
   doParallax: 1
   doRepeat: 1

@@ -139,6 +139,11 @@ public class TarManController : MonoBehaviour
 		}
 	}
 
+	public void TransitionAttack()
+	{
+		TransitionState(attackState);
+	}
+
 	public void TransitionChase()
 	{
 		walkingState.singleBlock = false;

@@ -135,7 +135,14 @@ public class PlayerController : MonoBehaviour
 			state.player = this;
 		}
 
-		TransitionState(introState);
+		if (FindObjectOfType<TitleScreen>() != null)
+		{
+			TransitionState(introState);
+		}
+		else
+		{
+			TransitionState(standingState);
+		}
 
 		foreach (PlayerState state in IterateStates())
 		{
@@ -159,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
 		if (!IsInCutscene)
 		{
-			ReadInput(); 
+			ReadInput();
 		}
 
 		bounds = currentCollider.bounds;

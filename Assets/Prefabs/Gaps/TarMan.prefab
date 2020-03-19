@@ -159,7 +159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2128238511752859238
 Transform:
   m_ObjectHideFlags: 0
@@ -206,16 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a37a8a12c2f77498d3175c6670467d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  pathPoints: []
   animator: {fileID: 2128238513004535913}
   spriteRenderer: {fileID: 2128238513004535914}
   soundManager: {fileID: 2128238511733217059}

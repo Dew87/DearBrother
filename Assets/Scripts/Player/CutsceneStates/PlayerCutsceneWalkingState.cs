@@ -56,7 +56,10 @@ public class PlayerCutsceneWalkingState : PlayerState
 			player.velocity.x = Mathf.MoveTowards(player.velocity.x, 0, player.walkingState.deceleration * Time.deltaTime);
 			if (player.velocity.x == 0)
 			{
-				player.TransitionState(player.cutsceneStandingState);
+				if (!isGliding || grounded)
+				{
+					player.TransitionState(player.cutsceneStandingState); 
+				}
 			}
 		}
 		else
@@ -70,7 +73,7 @@ public class PlayerCutsceneWalkingState : PlayerState
 				if (shouldStopInstantly)
 				{
 					player.velocity = Vector2.zero;
-					player.TransitionState(player.cutsceneStandingState);
+					hasReachedTarget = true;
 				}
 			}
 		}

@@ -18,6 +18,12 @@ public class TarManWalkingState : TarManState
 	{
 		base.Enter();
 
+		if (tarMan.pathPoints.Count == 0)
+		{
+			tarMan.TransitionState(tarMan.idleState);
+			return;
+		}
+
 		velocity = Vector2.zero;
 		tarMan.animator.SetBool("Moving", true);
 		tarMan.soundManager.PlayRepeat(tarMan.soundManager.walk);

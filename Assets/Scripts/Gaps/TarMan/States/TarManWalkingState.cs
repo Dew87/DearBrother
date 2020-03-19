@@ -70,20 +70,4 @@ public class TarManWalkingState : TarManState
 		tarMan.animator.SetBool("Moving", false);
 		tarMan.soundManager.StopSound();
 	}
-
-	public override void OnTriggerEnter2D(Collider2D collision)
-	{
-		base.OnTriggerEnter2D(collision);
-
-		IKillable killable = collision.GetComponentInParent<IKillable>();
-		if (killable != null)
-		{
-			Vector2 position = tarMan.transform.position;
-			Vector2 target = collision.transform.position;
-			Vector2 direction = target - position;
-
-			tarMan.FaceDirection(direction);
-			tarMan.TransitionState(tarMan.attackState);
-		}
-	}
 }

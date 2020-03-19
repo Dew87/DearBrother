@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour
 	[SerializeField] private InputMethod currentMethod;
 	//[SerializeField] private float anyAxis;
 
-	private KeyCode[] joystickButtons = new KeyCode[] {
+	public static readonly KeyCode[] joystickButtons = new KeyCode[] {
 		KeyCode.JoystickButton0,
 		KeyCode.JoystickButton1,
 		KeyCode.JoystickButton2,

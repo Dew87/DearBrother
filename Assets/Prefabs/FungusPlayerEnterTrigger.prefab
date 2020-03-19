@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2318204942742094271}
   - component: {fileID: 2318204942742094270}
   - component: {fileID: 2318204942742094264}
-  - component: {fileID: 2318204942742094265}
   - component: {fileID: 6407694824542935737}
   - component: {fileID: 3732376004407363028}
   m_Layer: 0
@@ -64,8 +63,7 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 2318204942742094264}
-  selectedCommands:
-  - {fileID: 3732376004407363028}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -188,26 +186,10 @@ MonoBehaviour:
   itemId: 0
   blockName: Entry
   description: 
-  eventHandler: {fileID: 2318204942742094265}
+  eventHandler: {fileID: 0}
   commandList:
   - {fileID: 3732376004407363028}
   - {fileID: 6407694824542935737}
---- !u!114 &2318204942742094265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2318204942742094210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78c1a9f24ac376a47838385391f83acc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 2318204942742094264}
-  tagFilter:
-  - Player
-  FireOn: 1
 --- !u!114 &6407694824542935737
 MonoBehaviour:
   m_ObjectHideFlags: 0

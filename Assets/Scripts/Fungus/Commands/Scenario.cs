@@ -12,6 +12,8 @@ public class Scenario : Command
 	[Tooltip("If true, the scenario will be reset (can be triggered again) after the player dies")]
 	public bool resetOnDeath = true;
 
+	private bool hasAlreadyBeenTriggered = false;
+
 	private void OnEnable()
 	{
 		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
@@ -22,10 +24,30 @@ public class Scenario : Command
 		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
 	}
 
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		if (collision.CompareTag("Player") && !PlayerController.get.IsInCutscene)
+		{
+			if (!hasAlreadyBeenTriggered)
+			{
+				GetFlowchart().ExecuteBlock("Entry");
+			} 
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if (collision.CompareTag("Player"))
+		{
+			hasAlreadyBeenTriggered = false;
+		}
+	}
+
 	public override void OnEnter()
 	{
 		base.OnEnter();
 
+		hasAlreadyBeenTriggered = true;
 		if (onlyTriggerOnce)
 		{
 			GetComponent<Collider2D>().enabled = false;
@@ -39,6 +61,7 @@ public class Scenario : Command
 		if (resetOnDeath)
 		{
 			GetComponent<Collider2D>().enabled = true;
+			hasAlreadyBeenTriggered = false;
 		}
 	}
 

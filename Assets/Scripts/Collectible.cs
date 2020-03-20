@@ -76,8 +76,9 @@ public class Collectible : MonoBehaviour
 		{
 			Time.timeScale = 0;
 			PlayerController.get.Freeze(true, false);
-			GetComponent<SpriteRenderer>().enabled = false;
 			GetComponent<Collider2D>().enabled = false;
+			MemoryController.get.CollectMemory(this);
+			isCollected = true;
 			StartCoroutine(DoCollect());
 		}
 	}
@@ -115,8 +116,7 @@ public class Collectible : MonoBehaviour
 			yield return null;
 		}
 
-		MemoryController.get.CollectMemory(this);
-		isCollected = true;
+		GetComponent<SpriteRenderer>().enabled = false;
 	}
 
 	public void ShowMemory()

@@ -1,0 +1,883 @@
+fileFormatVersion: 2
+guid: 4a6009a358709444781a8b492fcb1bee
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3370055879518673225
+    second: CollectibleCarMaria_0
+  - first:
+      213: -4466619666929074925
+    second: CollectibleCarMaria_1
+  - first:
+      213: -6292886835148601801
+    second: CollectibleCarMaria_2
+  - first:
+      213: 4335101717617382635
+    second: CollectibleCarMaria_3
+  - first:
+      213: -8496376287821836462
+    second: CollectibleCarMaria_4
+  - first:
+      213: -1629156772925797461
+    second: CollectibleCarMaria_5
+  - first:
+      213: 7824773139513667087
+    second: CollectibleCarMaria_6
+  - first:
+      213: -1466575111552074506
+    second: CollectibleCarMaria_7
+  - first:
+      213: -7506028234889038267
+    second: CollectibleCarMaria_8
+  - first:
+      213: 3010940964337572778
+    second: CollectibleCarMaria_9
+  - first:
+      213: -2597707121186647358
+    second: CollectibleCarMaria_10
+  - first:
+      213: -3923664791536037279
+    second: CollectibleCarMaria_11
+  - first:
+      213: -8800911152719251716
+    second: CollectibleCarMaria_12
+  - first:
+      213: -6510050117160163168
+    second: CollectibleCarMaria_13
+  - first:
+      213: 8221057666661508124
+    second: CollectibleCarMaria_14
+  - first:
+      213: -4584108726942645765
+    second: CollectibleCarMaria_15
+  - first:
+      213: -7254935130213108373
+    second: CollectibleCarMaria_16
+  - first:
+      213: 7748867643325285552
+    second: CollectibleCarMaria_17
+  - first:
+      213: 3243639202616701227
+    second: CollectibleCarMaria_18
+  - first:
+      213: -7742238494557558580
+    second: CollectibleCarMaria_19
+  - first:
+      213: 279582718057488306
+    second: CollectibleCarMaria_20
+  - first:
+      213: 5270656765121924749
+    second: CollectibleCarMaria_21
+  - first:
+      213: -838137817421352575
+    second: CollectibleCarMaria_22
+  - first:
+      213: -8391484784160858714
+    second: CollectibleCarMaria_23
+  - first:
+      213: 7654046249881668877
+    second: CollectibleCarMaria_24
+  - first:
+      213: 4832838029577134121
+    second: CollectibleCarMaria_25
+  - first:
+      213: 3869517238655421585
+    second: CollectibleCarMaria_26
+  - first:
+      213: 4664588908976952712
+    second: CollectibleCarMaria_27
+  - first:
+      213: 8108911952186805694
+    second: CollectibleCarMaria_28
+  - first:
+      213: 5375291671838245976
+    second: CollectibleCarMaria_29
+  - first:
+      213: -3035744689870421591
+    second: CollectibleCarMaria_30
+  - first:
+      213: 3320972815037526621
+    second: CollectibleCarMaria_31
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CollectibleCarMaria_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c4738d9694112c47ae9819f501fa901
+      internalID: 3370055879518673225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_1
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9221fe9200f2ee64780ff80c5b16ba30
+      internalID: -4466619666929074925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_2
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f87aa19d19e07b14ca550d3d1f31ff1e
+      internalID: -6292886835148601801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_3
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 046739a73a0b5f243a776a3b72274b27
+      internalID: 4335101717617382635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_4
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fdaab6bae340654bb249a81a6a88288
+      internalID: -8496376287821836462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_5
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4c6b96bcb9d44347bc1c0e91ef800b2
+      internalID: -1629156772925797461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_6
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61d46ec5c551dbb42a35d5f327d97a5e
+      internalID: 7824773139513667087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_7
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8a8d64f32b14e340bae1f461d3aa36c
+      internalID: -1466575111552074506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9624b536d6d24014d9c6c4e3df57456a
+      internalID: -7506028234889038267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_9
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1811c7142a27c5e46ab2df2dede76694
+      internalID: 3010940964337572778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_10
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfa26980821865b4abebf28db005c708
+      internalID: -2597707121186647358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_11
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3a4a43fcb751b344b75713a00f06110
+      internalID: -3923664791536037279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_12
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd3c035782113db4c8bd9353edcbb719
+      internalID: -8800911152719251716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_13
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69e110d9ce2530b43bdcb3df9fb79af7
+      internalID: -6510050117160163168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_14
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57e859357eecddb4eaaebd2a0b9407ba
+      internalID: 8221057666661508124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_15
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7686313db8bb8874ca5187a95717b8e3
+      internalID: -4584108726942645765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39141e68b350a934389401ab355803aa
+      internalID: -7254935130213108373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_17
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b0f41b0cd2d0454d8ec4bd6bff4cac9
+      internalID: 7748867643325285552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_18
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 634d22d2b183efd4ba654ddc8273fa7d
+      internalID: 3243639202616701227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_19
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ce0fca09f581ec449466af2b595fac0
+      internalID: -7742238494557558580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_20
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b24de099d230aac40b186f00599d4482
+      internalID: 279582718057488306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_21
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 115c98189baf9ac4fa63dcf70d6f14ff
+      internalID: 5270656765121924749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_22
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3a59b44f93c0f246ae901e935e02e2a
+      internalID: -838137817421352575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_23
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f91fa26a58330748b61e14327d3d55a
+      internalID: -8391484784160858714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb5ee68885689274f9a79d5e5a3ff13a
+      internalID: 7654046249881668877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_25
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 841fb8d4f2becec41acfb69884b4d263
+      internalID: 4832838029577134121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_26
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db188684438629b488020fb893d5edaa
+      internalID: 3869517238655421585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_27
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f144e936e6bb74498fcc0509dbf7b8a
+      internalID: 4664588908976952712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_28
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81954c8461108ae44b57c6891c8797e4
+      internalID: 8108911952186805694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_29
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7299c088b9a61847ae4fe18ae272bf4
+      internalID: 5375291671838245976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_30
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce6e18599a94fc440bb1d3f68e89974f
+      internalID: -3035744689870421591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarMaria_31
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e400f6ba41e6d384aafbc46c55ce6a0f
+      internalID: 3320972815037526621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

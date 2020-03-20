@@ -28,6 +28,11 @@ namespace Fungus
 
         #region Public members
 
+		public void SetAnimator(Animator animator)
+		{
+			this.animator = new AnimatorData(animator);
+		}
+
         public override void OnEnter()
         {
             if (animator.Value != null)

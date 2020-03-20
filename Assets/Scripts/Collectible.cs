@@ -16,8 +16,9 @@ public class Collectible : MonoBehaviour
 	public static List<Collectible> list { get; private set; }
 	private static bool isListDirty;
 
-	Flowchart flowchart;
-	SpriteRenderer spriteRenderer;
+	private Flowchart flowchart;
+	private SpriteRenderer spriteRenderer;
+	private Animator memoryAnimator;
 
 	private void Awake()
 	{
@@ -43,6 +44,7 @@ public class Collectible : MonoBehaviour
 
 		GameObject memoryCharacterGO = GameObject.Find("/Fungus/Characters/Memory");
 		Character memoryCharacter = memoryCharacterGO == null ? null : memoryCharacterGO.GetComponent<Character>();
+		memoryAnimator = GameObject.Find("/Fungus/Memory/NonDialogCanvas/Image").GetComponent<Animator>();
 
 		if (memoryCharacter == null)
 		{
@@ -53,6 +55,12 @@ public class Collectible : MonoBehaviour
 		foreach (CustomSay command in commands)
 		{
 			command.SetCharacter(memoryCharacter);
+		}
+
+		PlayAnimState[] animCommands = GetComponents<PlayAnimState>();
+		foreach (PlayAnimState command in animCommands)
+		{
+			command.SetAnimator(memoryAnimator);
 		}
 	}
 

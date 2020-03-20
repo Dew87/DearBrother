@@ -5,10 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerDyingState : PlayerState
 {
+	public float startAnimationDelay = 0.2f;
 	public float fadeOutDelay = 0.2f;
 	public float fadeOutTime = 0.5f;
 	public float fadeInDelay = 0.2f;
 	public float fadeInTime = 0.5f;
+	public float regainControlDelay = 0.5f;
 	public ShakeConfig cameraShake;
 	public SpriteRenderer fadeOutSprite;
 
@@ -28,11 +30,23 @@ public class PlayerDyingState : PlayerState
 		CameraShake.get.Shake(cameraShake);
 
 		player.StartCoroutine(FadeOut());
+		player.StartCoroutine(StartDeathAnimation());
 	}
 
 	public override void Update()
 	{
 		base.Update();
+	}
+
+	private IEnumerator StartDeathAnimation()
+	{
+		float t = 0;
+		while (t < startAnimationDelay)
+		{
+			t += Time.deltaTime;
+			yield return null;
+		}
+		player.playerAnimator.SetBool("Dead", true);
 	}
 
 	private IEnumerator FadeOut()
@@ -59,6 +73,7 @@ public class PlayerDyingState : PlayerState
 		PlayerCamera.get.useUnscaledTime = false;
 		Vector3 cameraRelativePosition = PlayerCamera.get.followOffsetTransform.position - PlayerController.get.transform.position;
 		EventManager.TriggerEvent("PlayerDeath");
+		player.playerAnimator.SetBool("Dead", false);
 		PlayerCamera.get.transform.position = PlayerController.get.transform.position + cameraRelativePosition - PlayerCamera.get.followOffsetTransform.localPosition;
 
 		yield return null;
@@ -77,5 +92,7 @@ public class PlayerDyingState : PlayerState
 			}
 			yield return null;
 		}
+
+		player.TransitionState(player.standingState);
 	}
 }

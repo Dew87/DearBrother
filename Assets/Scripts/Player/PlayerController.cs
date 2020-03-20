@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 	public PlayerDyingState dyingState;
 	public PlayerCutsceneStandingState cutsceneStandingState;
 	public PlayerCutsceneWalkingState cutsceneWalkingState;
+	public PlayerIntroState introState;
 
 	[Header("Debug")]
 	[Tooltip("Is the double jump powerup unlocked?")]
@@ -53,6 +54,8 @@ public class PlayerController : MonoBehaviour
 	public bool isJumpInputPressedBuffered => jumpInputBufferTimer > 0;
 	public bool isCrouchInputHeld { get; private set; }
 	public bool isGrappleInputPressedBuffered => grappleInputBufferTimer > 0;
+	public bool isFloatInputHeld { get; private set; }
+
 	public float jumpGraceTimer { get; private set; }
 	public Rigidbody2D rb2d { get; private set; }
 	public BoxCollider2D currentCollider { get; private set; }
@@ -69,7 +72,6 @@ public class PlayerController : MonoBehaviour
 		set
 		{
 			isInCutscene = value;
-			//currentCollider.enabled = !IsInCutscene;
 		}
 	}
 
@@ -104,6 +106,7 @@ public class PlayerController : MonoBehaviour
 		yield return dyingState;
 		yield return cutsceneStandingState;
 		yield return cutsceneWalkingState;
+		yield return introState;
 	}
 
 	private void Awake()
@@ -132,7 +135,14 @@ public class PlayerController : MonoBehaviour
 			state.player = this;
 		}
 
-		TransitionState(standingState);
+		if (FindObjectOfType<TitleScreen>() != null)
+		{
+			TransitionState(introState);
+		}
+		else
+		{
+			TransitionState(standingState);
+		}
 
 		foreach (PlayerState state in IterateStates())
 		{
@@ -156,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
 		if (!IsInCutscene)
 		{
-			ReadInput(); 
+			ReadInput();
 		}
 
 		bounds = currentCollider.bounds;
@@ -363,11 +373,12 @@ public class PlayerController : MonoBehaviour
 		isFrozen = freeze;
 		if (freeze)
 		{
-			soundManager.StopSound();
+			soundManager.MuteSound();
 			playerAnimator.speed = 0;
 		}
 		else
 		{
+			soundManager.UnmuteSound();
 			playerAnimator.speed = 1;
 		}
 	}
@@ -461,6 +472,8 @@ public class PlayerController : MonoBehaviour
 		{
 			jumpInputIsTriggered = false;
 		}
+
+		isFloatInputHeld = verticalInputAxis > 0;
 	}
 
 	private void OnPlayerDeath()
@@ -470,7 +483,6 @@ public class PlayerController : MonoBehaviour
 		transform.position = rb2d.position; // Need to force-sync transform for camera snapping to work properly
 		rb2d.velocity = Vector2.zero;
 		velocity = Vector2.zero;
-		TransitionState(standingState);
 		FindObjectOfType<PlayerCamera>().SnapToTarget();
 		//FindCorrectGroundDistance();
 	}

@@ -139,7 +139,14 @@ public class PlayerCamera : MonoBehaviour
 		{
 			targetZoom = zoom;
 			zoomTimer = 0;
-			zoomDuration = duration;
+			if (duration == 0)
+			{
+				currentZoom = zoom;
+			}
+			else
+			{
+				zoomDuration = duration; 
+			}
 			startZoom = currentZoom;
 		}
 	}

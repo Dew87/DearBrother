@@ -93,7 +93,7 @@ public class PlayerFallingState : PlayerState
 		{
 			player.TransitionState(player.doubleJumpingState);
 		}
-		else if (player.isJumpInputHeld && player.hasFloat)
+		else if (player.isFloatInputHeld && player.hasFloat)
 		{
 			player.TransitionState(player.glidingState);
 		}

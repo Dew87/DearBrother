@@ -49,11 +49,11 @@ public class CameraShake : MonoBehaviour
 		float sqrTrauma = trauma * trauma;
 
 		Vector3 position = transform.localPosition;
-		position.x = GetRandomFloat(0) * sqrTrauma * maxAmplitude;
-		position.y = GetRandomFloat(10) * sqrTrauma * maxAmplitude;
+		position.x = GetRandomFloat(0, frequency) * sqrTrauma * maxAmplitude;
+		position.y = GetRandomFloat(10, frequency) * sqrTrauma * maxAmplitude;
 		transform.localPosition = position;
 
-		transform.localRotation = Quaternion.Euler(0, 0, GetRandomFloat(20) * rotationalTrauma * rotationalTrauma * rotationalMaxAmplitude);
+		transform.localRotation = Quaternion.Euler(0, 0, GetRandomFloat(20, frequency) * rotationalTrauma * rotationalTrauma * rotationalMaxAmplitude);
 	}
 
 	/// <summary>
@@ -78,7 +78,7 @@ public class CameraShake : MonoBehaviour
 	/// Returns smooth random number between -1 and 1
 	/// </summary>
 	/// <param name="seed"></param>
-	private float GetRandomFloat(float seed)
+	public static float GetRandomFloat(float seed, float frequency)
 	{
 		return Mathf.PerlinNoise(seed, Time.time * frequency) * 2 - 1;
 	}

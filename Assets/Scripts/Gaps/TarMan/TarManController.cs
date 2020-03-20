@@ -19,6 +19,7 @@ public class TarManController : MonoBehaviour
 	public int currentPositionInPath { get; set; }
 	public bool isFacingRight { get; private set; }
 
+	private Vector2 startPosition;
 
 	private int ClosestPathIndex
 	{
@@ -79,6 +80,7 @@ public class TarManController : MonoBehaviour
 
 		currentPositionInPath = 0;
 		isFacingRight = true;
+		startPosition = transform.position;
 	}
 
 	private void OnEnable()
@@ -99,11 +101,6 @@ public class TarManController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		currentState.FixedUpdate();
-	}
-
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		currentState.OnTriggerEnter2D(collision);
 	}
 
 	public void FaceDirection(Vector2 direction)
@@ -139,7 +136,12 @@ public class TarManController : MonoBehaviour
 		}
 	}
 
-	public void TransitionChase()
+	public void TransitionAttack()
+	{
+		TransitionState(attackState);
+	}
+
+	public void TransitionWalk()
 	{
 		walkingState.singleBlock = false;
 		TransitionState(walkingState);
@@ -162,6 +164,10 @@ public class TarManController : MonoBehaviour
 		}
 		else
 		{
+			TransitionState(idleState);
+			currentPositionInPath = 0;
+			isFacingRight = true;
+			transform.position = startPosition;
 			gameObject.SetActive(false);
 		}
 	}

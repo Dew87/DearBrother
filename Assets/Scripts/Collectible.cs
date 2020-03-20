@@ -40,6 +40,20 @@ public class Collectible : MonoBehaviour
 			// Sort collectibles by order in hierarchy (or rather sibling index -- so it assumes all collectibles have the same parent)
 			list.Sort((a, b) => a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex()));
 		}
+
+		GameObject memoryCharacterGO = GameObject.Find("/Fungus/Characters/Memory");
+		Character memoryCharacter = memoryCharacterGO == null ? null : memoryCharacterGO.GetComponent<Character>();
+
+		if (memoryCharacter == null)
+		{
+			Debug.LogError("No Memory character found. Note: It's searched for by its absolute path.");
+		}
+
+		CustomSay[] commands = GetComponents<CustomSay>();
+		foreach (CustomSay command in commands)
+		{
+			command.SetCharacter(memoryCharacter);
+		}
 	}
 
 	private void OnDestroy()
@@ -50,9 +64,12 @@ public class Collectible : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("Player"))
+		if (collision.CompareTag("Player") && !PlayerController.get.IsInCutscene)
 		{
 			Time.timeScale = 0;
+			PlayerController.get.Freeze(true, false);
+			GetComponent<SpriteRenderer>().enabled = false;
+			GetComponent<Collider2D>().enabled = false;
 			StartCoroutine(DoCollect());
 		}
 	}
@@ -78,6 +95,7 @@ public class Collectible : MonoBehaviour
 
 		yield return StartCoroutine(DoShowMemory());
 
+		PlayerController.get.Freeze(false, false);
 		Time.timeScale = 1;
 
 		t = 0;
@@ -89,9 +107,6 @@ public class Collectible : MonoBehaviour
 			yield return null;
 		}
 
-
-		GetComponent<SpriteRenderer>().enabled = false;
-		GetComponent<Collider2D>().enabled = false;
 		MemoryController.get.CollectMemory(this);
 		isCollected = true;
 	}

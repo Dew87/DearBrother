@@ -18,6 +18,12 @@ public class TarManWalkingState : TarManState
 	{
 		base.Enter();
 
+		if (tarMan.pathPoints.Count == 0)
+		{
+			tarMan.TransitionState(tarMan.idleState);
+			return;
+		}
+
 		velocity = Vector2.zero;
 		tarMan.animator.SetBool("Moving", true);
 		tarMan.soundManager.PlayRepeat(tarMan.soundManager.walk);
@@ -63,21 +69,5 @@ public class TarManWalkingState : TarManState
 		velocity = Vector2.zero;
 		tarMan.animator.SetBool("Moving", false);
 		tarMan.soundManager.StopSound();
-	}
-
-	public override void OnTriggerEnter2D(Collider2D collision)
-	{
-		base.OnTriggerEnter2D(collision);
-
-		IKillable killable = collision.GetComponentInParent<IKillable>();
-		if (killable != null)
-		{
-			Vector2 position = tarMan.transform.position;
-			Vector2 target = collision.transform.position;
-			Vector2 direction = target - position;
-
-			tarMan.FaceDirection(direction);
-			tarMan.TransitionState(tarMan.attackState);
-		}
 	}
 }

@@ -300,7 +300,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.43, y: 0.64}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -594,8 +594,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRadius: 4.5
-  detectionAngle: 90
-  detectionOffset: 0
+  detectionAngle: 150
+  detectionOffset: 20
   currentTargetCircle: {fileID: 5702585311617581628}
   nextTargetCircle: {fileID: 5702585311630747388}
   currentGrapplePoint: {fileID: 0}
@@ -650,7 +650,7 @@ MonoBehaviour:
   jumpingState:
     isCurrentState: 0
     player: {fileID: 5702585311898711827}
-    initialSpeed: 14
+    initialSpeed: 15
     gravity: 45
     stopSpeed: 10
     horizontalAcceleration: 22
@@ -726,6 +726,16 @@ MonoBehaviour:
       shakeIntensity: 0.5
       rotationalShakeIntensity: 0.5
     fadeOutSprite: {fileID: 987893759108272444}
+  cutsceneStandingState:
+    isCurrentState: 0
+    player: {fileID: 0}
+  cutsceneWalkingState:
+    isCurrentState: 0
+    player: {fileID: 0}
+    speed: 0
+    targetPosition: {x: 0, y: 0}
+    shouldStopInstantly: 0
+    isGliding: 0
   hasDoubleJump: 1
   hasFloat: 1
   doesDoubleJumpRemain: 1

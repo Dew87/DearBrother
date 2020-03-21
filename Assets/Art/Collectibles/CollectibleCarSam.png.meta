@@ -1,0 +1,715 @@
+fileFormatVersion: 2
+guid: 29ee484b164828c4fb1dd54736081aba
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 624954893316794765
+    second: CollectibleCarSam_0
+  - first:
+      213: -7955658794867115777
+    second: CollectibleCarSam_1
+  - first:
+      213: -7578623711153582116
+    second: CollectibleCarSam_2
+  - first:
+      213: 281927323223973438
+    second: CollectibleCarSam_3
+  - first:
+      213: -4546037895235235888
+    second: CollectibleCarSam_4
+  - first:
+      213: -5815702989906059715
+    second: CollectibleCarSam_5
+  - first:
+      213: -4888880071858405788
+    second: CollectibleCarSam_6
+  - first:
+      213: 4979884256302772811
+    second: CollectibleCarSam_7
+  - first:
+      213: -3413890956158869064
+    second: CollectibleCarSam_8
+  - first:
+      213: 7932665368037030498
+    second: CollectibleCarSam_9
+  - first:
+      213: 2984265357613667668
+    second: CollectibleCarSam_10
+  - first:
+      213: 6990961276068479880
+    second: CollectibleCarSam_11
+  - first:
+      213: 9204059460639837511
+    second: CollectibleCarSam_12
+  - first:
+      213: -1233672147378272845
+    second: CollectibleCarSam_13
+  - first:
+      213: 4767116184614697777
+    second: CollectibleCarSam_14
+  - first:
+      213: -4027724992849232149
+    second: CollectibleCarSam_15
+  - first:
+      213: 4331461538293647010
+    second: CollectibleCarSam_16
+  - first:
+      213: -5295799743827193107
+    second: CollectibleCarSam_17
+  - first:
+      213: -5656538782795540481
+    second: CollectibleCarSam_18
+  - first:
+      213: 9206501643671791962
+    second: CollectibleCarSam_19
+  - first:
+      213: -4753222920711965023
+    second: CollectibleCarSam_20
+  - first:
+      213: -7090237976242420465
+    second: CollectibleCarSam_21
+  - first:
+      213: 8813508976413731327
+    second: CollectibleCarSam_22
+  - first:
+      213: -2586188224898691203
+    second: CollectibleCarSam_23
+  - first:
+      213: -1777801137598021810
+    second: CollectibleCarSam_24
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CollectibleCarSam_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12e4ec252819427418f7eb52b3cbc0dc
+      internalID: 624954893316794765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_1
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51f7e54d39826444799e78bd801f62e2
+      internalID: -7955658794867115777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_2
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e673ae5166f3d848a82ffe5436a8bd0
+      internalID: -7578623711153582116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_3
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fa44a12617745946916c793e6a25f75
+      internalID: 281927323223973438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_4
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25c5d627d3dfe7346839ac880933abb1
+      internalID: -4546037895235235888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_5
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff0ad7af2437de44db1a9970d47875e5
+      internalID: -5815702989906059715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_6
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 252a8698f392f954399c6e0446d689d5
+      internalID: -4888880071858405788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_7
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f2ee84b31f98a94cbc35d6026e91db1
+      internalID: 4979884256302772811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a38ae9b479c0ec441a30ee9444995be6
+      internalID: -3413890956158869064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_9
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8feaf0280f5eda459875cb07a8d5ddb
+      internalID: 7932665368037030498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_10
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d9f6096f77766545b901a1ed003deb7
+      internalID: 2984265357613667668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_11
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9027f083485c83d4c8895340d16d63a1
+      internalID: 6990961276068479880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_12
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b2ab546a3a63284b844195df8606ef7
+      internalID: 9204059460639837511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_13
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0647a1672a4a84d40b76d48af661d748
+      internalID: -1233672147378272845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_14
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3c1e6d4c7d9df947a36b00f5b6f266e
+      internalID: 4767116184614697777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_15
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e37873b09750934fbc38d2c4485e663
+      internalID: -4027724992849232149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 571cec9460e623b4d97e913942ce210f
+      internalID: 4331461538293647010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_17
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18433e3ffc49bce47b68d6cc32d1d720
+      internalID: -5295799743827193107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_18
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0158221ea2f2964cbcbd9de7c3d0194
+      internalID: -5656538782795540481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_19
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 776c6dbf897f8b74896ac7f32f32db07
+      internalID: 9206501643671791962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_20
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dbc0296f3d2d0b438a0b65164930267
+      internalID: -4753222920711965023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_21
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e287cf996a4de2458f0c237170efbd2
+      internalID: -7090237976242420465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_22
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 986891afa7b90b349b91e66a4308f015
+      internalID: 8813508976413731327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_23
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7f3d78b3b9efbb4e8513ed6c3156e9a
+      internalID: -2586188224898691203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarSam_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a5a15e1aab4fc1429eb55bbe499de74
+      internalID: -1777801137598021810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

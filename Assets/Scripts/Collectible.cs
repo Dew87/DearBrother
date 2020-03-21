@@ -16,8 +16,9 @@ public class Collectible : MonoBehaviour
 	public static List<Collectible> list { get; private set; }
 	private static bool isListDirty;
 
-	Flowchart flowchart;
-	SpriteRenderer spriteRenderer;
+	private Flowchart flowchart;
+	private SpriteRenderer spriteRenderer;
+	private Animator memoryAnimator;
 
 	private void Awake()
 	{
@@ -43,6 +44,7 @@ public class Collectible : MonoBehaviour
 
 		GameObject memoryCharacterGO = GameObject.Find("/Fungus/Characters/Memory");
 		Character memoryCharacter = memoryCharacterGO == null ? null : memoryCharacterGO.GetComponent<Character>();
+		memoryAnimator = GameObject.Find("/Fungus/Memory/NonDialogCanvas/Image").GetComponent<Animator>();
 
 		if (memoryCharacter == null)
 		{
@@ -54,6 +56,12 @@ public class Collectible : MonoBehaviour
 		{
 			command.SetCharacter(memoryCharacter);
 		}
+
+		PlayAnimState[] animCommands = GetComponents<PlayAnimState>();
+		foreach (PlayAnimState command in animCommands)
+		{
+			command.SetAnimator(memoryAnimator);
+		}
 	}
 
 	private void OnDestroy()
@@ -64,12 +72,13 @@ public class Collectible : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("Player") && !PlayerController.get.IsInCutscene)
+		if (collision.CompareTag("Player") && !PlayerController.get.IsInCutscene && !PlayerController.get.isFrozen)
 		{
 			Time.timeScale = 0;
 			PlayerController.get.Freeze(true, false);
-			GetComponent<SpriteRenderer>().enabled = false;
 			GetComponent<Collider2D>().enabled = false;
+			MemoryController.get.CollectMemory(this);
+			isCollected = true;
 			StartCoroutine(DoCollect());
 		}
 	}
@@ -107,8 +116,7 @@ public class Collectible : MonoBehaviour
 			yield return null;
 		}
 
-		MemoryController.get.CollectMemory(this);
-		isCollected = true;
+		GetComponent<SpriteRenderer>().enabled = false;
 	}
 
 	public void ShowMemory()

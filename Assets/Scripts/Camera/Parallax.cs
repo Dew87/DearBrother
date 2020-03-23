@@ -20,7 +20,6 @@ public class Parallax : MonoBehaviour
 		if (doParallax)
 		{
 			startpos = transform.position;
-			length = GetComponent<SpriteRenderer>().bounds.size.x;
 		}
 		else
 		{
@@ -32,6 +31,7 @@ public class Parallax : MonoBehaviour
     {
 		if (doParallax)
 		{
+			length = GetComponent<SpriteRenderer>().bounds.size.x;
 			float temp = cam.transform.position.x * (1 - parallaxStrength);
 			float distance = cam.transform.position.x * parallaxStrength;
 			float distanceY = cam.transform.position.y * parallaxStrengthY;

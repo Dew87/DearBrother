@@ -15,6 +15,7 @@ public class ExplodingShroom : MonoBehaviour
 	private SpriteRenderer spriteRenderer;
 	private Bouncer bouncer;
 	private Collider2D bounceCollider;
+	private Animator animator;
 
 	private StateMachine sm = new StateMachine();
 	private State regularState;
@@ -27,6 +28,7 @@ public class ExplodingShroom : MonoBehaviour
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		bouncer = GetComponent<Bouncer>();
 		bounceCollider = GetComponent<Collider2D>();
+		animator = GetComponent<Animator>();
 
 		regularState = new State(null, RegularStateEnter, RegularStateExit);
 		countdownState = new State(CountdownStateUpdate, CountdownStateEnter);
@@ -67,13 +69,15 @@ public class ExplodingShroom : MonoBehaviour
 	private void RegularStateEnter()
 	{
 		bounceCollider.enabled = true;
-		spriteRenderer.color = Color.white;
 		spriteRenderer.enabled = true;
+		animator.PlayInFixedTime("BloodGap", 0, 0);
+		animator.speed = 0;
 	}
 
 	private void RegularStateExit()
 	{
 		bounceCollider.enabled = false;
+		animator.speed = 1 / timerDuration;
 	}
 
 	private void CountdownStateEnter()
@@ -86,7 +90,6 @@ public class ExplodingShroom : MonoBehaviour
 		if (timer > 0)
 		{
 			timer -= Time.deltaTime;
-			spriteRenderer.color = Color.Lerp(Color.white, Color.black, 1 - timer / timerDuration);
 			if (timer <= 0)
 			{
 				sm.Transition(poisonState);

@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 8423659522629537993}
   - component: {fileID: 4947351005070407756}
   - component: {fileID: 8423659522629537998}
+  - component: {fileID: 7630347731343563812}
   m_Layer: 0
   m_Name: ExplodingShroom
   m_TagString: Untagged
@@ -344,6 +345,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &7630347731343563812
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8423659522629537987}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3fe3bb982280508459b7ed76a37e6a33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8423659524125840279
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +377,7 @@ GameObject:
   - component: {fileID: 8423659524125840274}
   - component: {fileID: 8423659524125840275}
   - component: {fileID: 8423659524125840284}
+  - component: {fileID: 879452776421486643}
   m_Layer: 0
   m_Name: PoisonCloud
   m_TagString: Untagged
@@ -373,7 +394,7 @@ Transform:
   m_GameObject: {fileID: 8423659524125840279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.411, y: 1.411, z: 1.411}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6535547281898142261}
   m_Father: {fileID: 8423659522629537997}
@@ -414,9 +435,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1994930375
+  m_SortingLayer: 2
+  m_SortingOrder: 29
   m_Sprite: {fileID: 21300000, guid: 31d7a986e8346ff4f8c7f421d34a757d, type: 3}
   m_Color: {r: 0.9056604, g: 0, b: 0, a: 0.5019608}
   m_FlipX: 0
@@ -452,7 +473,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.411, y: 1.411}
   m_EdgeRadius: 0
 --- !u!50 &8423659524125840275
 Rigidbody2D:
@@ -487,3 +508,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856f9666d1805ec4e8623dfd165329c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &879452776421486643
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8423659524125840279}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f52d9081dcfe794d9fe4e3aec0872f5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

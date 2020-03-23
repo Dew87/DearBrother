@@ -18,7 +18,6 @@ public class TitleScreen : MonoBehaviour
 	public float pressAnyKeyFadeDuration = 0.5f;
 
 	private bool hasStartedGame = false;
-	private float shakeMultiplier = 1;
 
 	private PostProcessVolume postProcess;
 	private Vignette vignette;

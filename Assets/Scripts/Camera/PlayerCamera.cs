@@ -26,7 +26,7 @@ public class PlayerCamera : MonoBehaviour
 
 	[HideInInspector] public bool useUnscaledTime = false;
 	public Vector3 defaultFollowOffset { get; private set; }
-	public float currentZoom { get; private set; } = 1;
+	public float currentZoom { get; set; } = 1;
 	public float zoom2 { get; set; } = 1;
 
 	private float deltaTime => useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
@@ -119,6 +119,7 @@ public class PlayerCamera : MonoBehaviour
 			currentZoom = Mathf.SmoothStep(startZoom, targetZoom, zoomTimer / zoomDuration);
 			zoomTimer += deltaTime;
 		}
+		//Debug.Log("Zoom: " + currentZoom);
 		camera.orthographicSize = baseSize / (currentZoom * zoom2);
 
 		if (followOffsetTransform.localPosition != targetOffset && deltaTime > 0 && offsetDuration > 0)
@@ -198,7 +199,7 @@ public class PlayerCamera : MonoBehaviour
 		{
 			if (mode != Mode.Cinematic) yield break;
 			transform.position = Util.VectorSmoothstep(startPosition, targetPosition, t);
-			currentZoom = Mathf.Lerp(startZoom, zoom, t);
+			SetZoom(Mathf.Lerp(startZoom, zoom, t), 0);
 			t += deltaTime / duration;
 			yield return null;
 		}

@@ -82,7 +82,7 @@ public class MovingPlatform : MonoBehaviour
 		{
 			if (!childrenColliders.Contains(colliders[i]))
 			{
-				if (colliders[i].gameObject.GetComponentInParent<Rigidbody2D>() != null && colliders[i].gameObject.GetComponentInParent<TilemapCollider2D>() == null && colliders[i].gameObject.transform.parent.gameObject != gameObject)
+				if (colliders[i].gameObject.GetComponentInParent<Rigidbody2D>() != null && colliders[i].gameObject.GetComponentInParent<TilemapCollider2D>() == null && colliders[i].gameObject.transform.parent.gameObject != gameObject && colliders[i].GetComponent<ExplodingShroom>() == null && colliders[i].GetComponent<VolatilePlatform>() == null)
 				{
 					colliders[i].gameObject.transform.parent.parent = gameObject.transform;
 					childrenColliders.Add(colliders[i]);

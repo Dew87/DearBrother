@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fungus;
 
-[CommandInfo("*DearBrother", "Quick Say", "Writes non-intrusive text.")]
+[CommandInfo("*DearBrother", "Timed Say", "Writes unskippable text with a timer")]
 [AddComponentMenu("")]
 public class QuickSay : Say
 {
@@ -24,7 +24,7 @@ public class QuickSay : Say
 		{
 			yield return null;
 		}
-		character.SetSayDialog.Clear();
+		character.SetSayDialog.GetComponent<DearBrotherDialogInput>().SetNextLineFlag();
 		Continue();
 	}
 

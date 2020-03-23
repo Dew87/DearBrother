@@ -270,7 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2128238512286392839}
   - component: {fileID: 2128238512286392837}
-  - component: {fileID: 2128238512286392838}
+  - component: {fileID: 1804364613755746422}
   m_Layer: 0
   m_Name: AttackKillzone
   m_TagString: Untagged
@@ -308,7 +308,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.5
---- !u!114 &2128238512286392838
+--- !u!114 &1804364613755746422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2128238512286392832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 856f9666d1805ec4e8623dfd165329c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a5f207e12cf2a24590e01a12099f2e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2128238513004535828
@@ -387,8 +387,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 236966521
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1613308578110145719, guid: 275e6d7ec804c214ca095cc7c1e9474f,
     type: 3}

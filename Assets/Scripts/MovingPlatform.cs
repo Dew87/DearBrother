@@ -50,6 +50,16 @@ public class MovingPlatform : MonoBehaviour
 		}
 	}
 
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
+	}
+
 	private void Start()
 	{
 		int closestIndex = 0;
@@ -145,5 +155,12 @@ public class MovingPlatform : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	private void OnPlayerDeath()
+	{
+		currentPositionInPath = 0;
+		isMoving = false;
+		transform.position = pathPoints[0].position;
 	}
 }

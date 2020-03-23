@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationName: CollectibleBurrow
-  collectAnimationDuration: 0.4
+  collectAnimationDuration: 0.6
   collectAnimationGrowScale: 4
   collectZoom: 1.7
   isCollected: 0

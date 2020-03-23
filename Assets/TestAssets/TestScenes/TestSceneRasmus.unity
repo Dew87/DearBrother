@@ -631,12 +631,12 @@ PrefabInstance:
     - target: {fileID: 8179696981043089570, guid: 0c60002485b01d54b96958182947cfbf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 22.34
       objectReference: {fileID: 0}
     - target: {fileID: 8179696981043089570, guid: 0c60002485b01d54b96958182947cfbf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 21.26
       objectReference: {fileID: 0}
     - target: {fileID: 8179696981043089570, guid: 0c60002485b01d54b96958182947cfbf,
         type: 3}
@@ -716,16 +716,6 @@ PrefabInstance:
     - target: {fileID: 4518780549310600224, guid: 0c60002485b01d54b96958182947cfbf,
         type: 3}
       propertyPath: parallaxStrengthDown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 247226209521867057, guid: 0c60002485b01d54b96958182947cfbf,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 247226209521867057, guid: 0c60002485b01d54b96958182947cfbf,
-        type: 3}
-      propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8179696980322465327, guid: 0c60002485b01d54b96958182947cfbf,

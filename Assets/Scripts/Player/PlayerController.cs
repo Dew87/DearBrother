@@ -396,6 +396,10 @@ public class PlayerController : MonoBehaviour
 		cutsceneWalkingState.isGliding = glide;
 		TransitionState(cutsceneWalkingState);
 	}
+	public void PlayEndAnimation()
+	{
+		playerAnimator.SetTrigger("Ending");
+	}
 
 	public void SetCollider(Bounds colliderBounds)
 	{

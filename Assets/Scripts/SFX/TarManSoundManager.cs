@@ -4,29 +4,14 @@ using UnityEngine;
 
 public class TarManSoundManager : MonoBehaviour
 {
-	public AudioClip attack, walk;
-
-	private AudioSource audioSource;
-
-	private void Awake()
+	public void TarManAttackSound()
 	{
-		audioSource = GetComponent<AudioSource>();
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Movement/TarMan/TarManAttack");
 	}
-
-	public void PlayOneShot(AudioClip clip)
+	public void TarManWalkSound()
 	{
-		audioSource.PlayOneShot(clip);
-	}
-
-	public void PlayRepeat(AudioClip clip)
-	{
-		audioSource.clip = clip;
-		audioSource.Play();
-	}
-
-	public void StopSound()
-	{
-		audioSource.Pause();
-		audioSource.clip = null;
+		FMOD.Studio.EventInstance walk = FMODUnity.RuntimeManager.CreateInstance("event:/Movement/TarMan/TarManWalk");
+		walk.start();
+		walk.release();
 	}
 }

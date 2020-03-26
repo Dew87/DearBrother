@@ -21,7 +21,6 @@ public class PlayerCutsceneWalkingState : PlayerState
 		player.playerAnimator.SetBool("Moving", true);
 		isMovingRight = targetPosition.x > player.rb2d.position.x;
 		player.spriteRenderer.flipX = !isMovingRight;
-		player.soundManager.PlayRepeat(player.soundManager.run);
 	}
 
 	public override void FixedUpdate()
@@ -38,15 +37,13 @@ public class PlayerCutsceneWalkingState : PlayerState
 			float descendSpeed = player.glidingState.descendSpeed;
 			float acceleration = player.velocity.y > -descendSpeed ? player.fallingState.gravity : player.glidingState.verticalDeceleration;
 			player.velocity.y = Mathf.MoveTowards(player.velocity.y, -player.glidingState.descendSpeed, acceleration * Time.deltaTime);
-			player.soundManager.StopSound();
 		}
 		else
 		{
 			player.playerAnimator.SetBool("Gliding", false);
 			if (player.velocity.y < 0)
 			{
-				player.soundManager.PlayOneShot(player.soundManager.land);
-				player.soundManager.PlayRepeat(player.soundManager.run);
+				player.soundManager.SamLandSound();
 			}
 			player.velocity.y = 0;
 		}
@@ -87,6 +84,5 @@ public class PlayerCutsceneWalkingState : PlayerState
 		player.playerAnimator.SetBool("Moving", false);
 		player.playerAnimator.SetBool("Gliding", false);
 		player.isFacingRight = isMovingRight;
-		player.soundManager.StopSound();
 	}
 }

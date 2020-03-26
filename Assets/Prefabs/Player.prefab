@@ -220,11 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebcd7e8dbd35c96428e5f160085f6fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hurt: {fileID: 8300000, guid: 4281349147c27564dad32e141adf1d22, type: 3}
-  grapple: {fileID: 8300000, guid: d88ebb85ef6243940b8b75b04a8ce434, type: 3}
-  jump: {fileID: 8300000, guid: 8dde8e6b8eb12974582af84415d17430, type: 3}
-  land: {fileID: 8300000, guid: 0db499b57f7a75b4692527b8638eda73, type: 3}
-  run: {fileID: 8300000, guid: 2aab9616e76f84f46809e27b2ba50ad6, type: 3}
 --- !u!1 &5702585311279754976
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +231,7 @@ GameObject:
   - component: {fileID: 5702585311279754983}
   - component: {fileID: 5702585311279754982}
   - component: {fileID: 1650722900291099252}
+  - component: {fileID: 8889050613479866080}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -325,6 +321,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8889050613479866080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5702585311279754976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febe8b330ef3e02469033f421520fe7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundManager: {fileID: 2315257149711262907}
 --- !u!1 &5702585311617581628
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,10 +727,12 @@ MonoBehaviour:
   dyingState:
     isCurrentState: 0
     player: {fileID: 0}
+    startAnimationDelay: 0.2
     fadeOutDelay: 0.4
     fadeOutTime: 0.5
     fadeInDelay: 0.2
     fadeInTime: 0.5
+    regainControlDelay: 0.5
     cameraShake:
       shakeIntensity: 0.5
       rotationalShakeIntensity: 0.5
@@ -736,6 +747,11 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0}
     shouldStopInstantly: 0
     isGliding: 0
+  introState:
+    isCurrentState: 0
+    player: {fileID: 0}
+    riseUpDuration: 0.2
+    riseUpAnimationSpeed: 0.5
   hasDoubleJump: 1
   hasFloat: 1
   doesDoubleJumpRemain: 1

@@ -4,38 +4,65 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-	public AudioClip hurt, grapple, jump, land, run;
-	private AudioSource audioSource;
-
-	private void Start()
+	public void SamRunSound()
 	{
-		audioSource = GetComponent<AudioSource>();
+		FMOD.Studio.EventInstance run = FMODUnity.RuntimeManager.CreateInstance("event:/Movement/Sam/SamRun");
+		run.start();
+		run.release();
 	}
-
-	public void PlayOneShot(AudioClip clip)
+	public void SamCrawlSound()
 	{
-		audioSource.PlayOneShot(clip);
+		FMOD.Studio.EventInstance crawl = FMODUnity.RuntimeManager.CreateInstance("event:/Movement/Sam/SamCrawl");
+		crawl.start();
+		crawl.release();
 	}
-
-	public void PlayRepeat(AudioClip clip)
+	public void SamLandSound()
 	{
-		audioSource.clip = clip;
-		audioSource.Play();
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Movement/Sam/SamLand", GetComponent<Transform>().position);
 	}
-
-	public void StopSound()
+	public void SamDieSound()
 	{
-		audioSource.Pause();
-		audioSource.clip = null;
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Movement/Sam/SamDie", GetComponent<Transform>().position);
 	}
-
+	public void SamGrappleSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Movement/Sam/SamGrappleHook", GetComponent<Transform>().position);
+	}
+	public void SamJumpSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Movement/Sam/SamJump", GetComponent<Transform>().position);
+	}
+	public void SamDoubleJumpSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Movement/Sam/SamDoubleJump", GetComponent<Transform>().position);
+	}
+	public void SamHappySound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Sam/SamHappy", GetComponent<Transform>().position);
+	}
+	public void SamNeutralSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Sam/SamNeutral", GetComponent<Transform>().position);
+	}
+	public void SamSadSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Sam/SamSad", GetComponent<Transform>().position);
+	}
+	public void SamScaredSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Sam/SamScared", GetComponent<Transform>().position);
+	}
+	public void SamAngrySound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Sam/SamAngry", GetComponent<Transform>().position);
+	}
 	public void MuteSound()
 	{
-		audioSource.volume = 0;
+		FMODUnity.RuntimeManager.MuteAllEvents(true);
 	}
 
 	public void UnmuteSound()
 	{
-		audioSource.volume = 1;
+		FMODUnity.RuntimeManager.MuteAllEvents(false);
 	}
 }

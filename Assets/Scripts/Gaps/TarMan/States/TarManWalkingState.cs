@@ -26,7 +26,6 @@ public class TarManWalkingState : TarManState
 
 		velocity = Vector2.zero;
 		tarMan.animator.SetBool("Moving", true);
-		tarMan.soundManager.PlayRepeat(tarMan.soundManager.walk);
 	}
 
 	public override void FixedUpdate()
@@ -68,6 +67,5 @@ public class TarManWalkingState : TarManState
 
 		velocity = Vector2.zero;
 		tarMan.animator.SetBool("Moving", false);
-		tarMan.soundManager.StopSound();
 	}
 }

@@ -10,7 +10,7 @@ public class PlayerStandingState : PlayerState
 		base.Enter();
 		if (player.previousState == player.fallingState)
 		{
-			player.soundManager.PlayOneShot(player.soundManager.land);
+			player.soundManager.SamLandSound();
 		}
 		player.playerAnimator.SetBool("Moving", false);
 		player.playerAnimator.SetBool("Grounded", true);

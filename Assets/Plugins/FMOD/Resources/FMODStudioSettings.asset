@@ -61,8 +61,6 @@ MonoBehaviour:
   BankDirectorySettings:
   - Platform: 2
     Value: Desktop
-  - Platform: 1
-    Value: Desktop
   VirtualChannelSettings:
   - Platform: 1
     Value: 1024

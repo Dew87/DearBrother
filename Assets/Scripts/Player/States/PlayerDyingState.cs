@@ -24,8 +24,7 @@ public class PlayerDyingState : PlayerState
 	{
 		base.Enter();
 
-		player.soundManager.StopSound();
-		player.soundManager.PlayOneShot(player.soundManager.hurt);
+		player.soundManager.SamDieSound();
 		player.velocity = Vector3.zero;
 		CameraShake.get.Shake(cameraShake);
 

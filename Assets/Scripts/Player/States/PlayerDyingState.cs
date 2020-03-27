@@ -71,6 +71,7 @@ public class PlayerDyingState : PlayerState
 
 		PlayerCamera.get.useUnscaledTime = false;
 		Vector3 cameraRelativePosition = PlayerCamera.get.followOffsetTransform.position - PlayerController.get.transform.position;
+
 		EventManager.TriggerEvent("PlayerDeath");
 		player.playerAnimator.SetBool("Dead", false);
 		PlayerCamera.get.transform.position = PlayerController.get.transform.position + cameraRelativePosition - PlayerCamera.get.followOffsetTransform.localPosition;

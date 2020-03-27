@@ -480,16 +480,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -45.000004
       objectReference: {fileID: 0}
-    - target: {fileID: 8423659522629537996, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: poisonCloudDuration
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
         type: 3}
       propertyPath: speedGained
@@ -504,6 +494,16 @@ PrefabInstance:
         type: 3}
       propertyPath: screenShake.rotationalShakeIntensity
       value: 0.091
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537996, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: poisonCloudDuration
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a3ac9109515fc747aede7f81a06b30c, type: 3}
@@ -578,7 +578,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetScene: LevelDesignScene
-  restartGame: 0
 --- !u!1001 &285666941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -651,16 +650,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5702585311279754982, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5702585311279754982, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 5702585311617581628, guid: f8a66aa362b924144a5755f3944b43b5,
         type: 3}
       propertyPath: m_Layer
@@ -671,6 +660,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 5702585311279754982, guid: f8a66aa362b924144a5755f3944b43b5,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702585311279754982, guid: f8a66aa362b924144a5755f3944b43b5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7706636861730251214, guid: f8a66aa362b924144a5755f3944b43b5,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706636861730251214, guid: f8a66aa362b924144a5755f3944b43b5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 3275449015901931223, guid: f8a66aa362b924144a5755f3944b43b5,
         type: 3}
       propertyPath: m_Layer
@@ -696,16 +705,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 7706636861730251214, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7706636861730251214, guid: f8a66aa362b924144a5755f3944b43b5,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents:
     - {fileID: 5702585311898711820, guid: f8a66aa362b924144a5755f3944b43b5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f8a66aa362b924144a5755f3944b43b5, type: 3}
@@ -4495,21 +4494,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -45.000004
       objectReference: {fileID: 0}
-    - target: {fileID: 8423659522629537996, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: poisonCloudDuration
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: respawnDelay
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
         type: 3}
       propertyPath: speedGained
@@ -4524,6 +4508,21 @@ PrefabInstance:
         type: 3}
       propertyPath: screenShake.rotationalShakeIntensity
       value: 0.091
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537996, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: poisonCloudDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a3ac9109515fc747aede7f81a06b30c, type: 3}
@@ -5101,21 +5100,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -285
       objectReference: {fileID: 0}
-    - target: {fileID: 8423659522629537996, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: poisonCloudDuration
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: respawnDelay
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
         type: 3}
       propertyPath: speedGained
@@ -5130,6 +5114,21 @@ PrefabInstance:
         type: 3}
       propertyPath: screenShake.rotationalShakeIntensity
       value: 0.091
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537996, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: poisonCloudDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537992, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a3ac9109515fc747aede7f81a06b30c, type: 3}
@@ -5289,6 +5288,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!1 &1658242869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1658242870}
+  - component: {fileID: 1658242871}
+  m_Layer: 0
+  m_Name: EasterEgg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1658242870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658242869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2011929, y: 2.5625632, z: -12.841895}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1658242871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658242869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390ed54a07812744f9fa8df68bbdbf5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rpa: {fileID: 11400000, guid: 321ec431badd9644d946863fb87832bc, type: 2}
 --- !u!1001 &1703221621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5356,6 +5399,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 60.000004
       objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: screenShake.shakeIntensity
+      value: 0.085
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: screenShake.rotationalShakeIntensity
+      value: 0.091
+      objectReference: {fileID: 0}
     - target: {fileID: 8423659522629537996, guid: 5a3ac9109515fc747aede7f81a06b30c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5370,16 +5423,6 @@ PrefabInstance:
         type: 3}
       propertyPath: respawnDelay
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: screenShake.shakeIntensity
-      value: 0.085
-      objectReference: {fileID: 0}
-    - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: screenShake.rotationalShakeIntensity
-      value: 0.091
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a3ac9109515fc747aede7f81a06b30c, type: 3}
@@ -5762,6 +5805,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 60.000004
       objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: screenShake.shakeIntensity
+      value: 0.085
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
+        type: 3}
+      propertyPath: screenShake.rotationalShakeIntensity
+      value: 0.091
+      objectReference: {fileID: 0}
     - target: {fileID: 8423659522629537996, guid: 5a3ac9109515fc747aede7f81a06b30c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5776,16 +5829,6 @@ PrefabInstance:
         type: 3}
       propertyPath: respawnDelay
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: screenShake.shakeIntensity
-      value: 0.085
-      objectReference: {fileID: 0}
-    - target: {fileID: 8423659522629537993, guid: 5a3ac9109515fc747aede7f81a06b30c,
-        type: 3}
-      propertyPath: screenShake.rotationalShakeIntensity
-      value: 0.091
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a3ac9109515fc747aede7f81a06b30c, type: 3}

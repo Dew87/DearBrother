@@ -1079,7 +1079,7 @@ MonoBehaviour:
   dampYInBuffer: 0.7
   dieRestoreCameraDuration: 0.5
   bufferArea:
-    x: 1
+    x: 1.5
     up: 2
     down: 0.5
   fallingOffset: 2

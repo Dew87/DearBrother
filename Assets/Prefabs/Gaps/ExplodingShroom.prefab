@@ -303,7 +303,7 @@ MonoBehaviour:
   regainDoubleJump: 1
   directionOffset: 0
   screenShake:
-    shakeIntensity: 0.44
+    shakeIntensity: 0
     rotationalShakeIntensity: 0
 --- !u!251 &4947351005070407756
 PlatformEffector2D:

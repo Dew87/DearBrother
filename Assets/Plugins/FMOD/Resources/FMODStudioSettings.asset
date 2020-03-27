@@ -15,7 +15,7 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets\dearBrotherFMod\dearBrotherFMod.fspro
+  sourceProjectPath: Assets/dearBrotherFMod/dearBrotherFMod.fspro
   sourceBankPath: Assets\dearBrotherFMod\Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
@@ -58,7 +58,11 @@ MonoBehaviour:
     Value: 0
   - Platform: 20
     Value: 0
-  BankDirectorySettings: []
+  BankDirectorySettings:
+  - Platform: 2
+    Value: Desktop
+  - Platform: 1
+    Value: Desktop
   VirtualChannelSettings:
   - Platform: 1
     Value: 1024
@@ -76,6 +80,7 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Master
-  Banks: []
+  Banks:
+  - SoundBank
   BanksToLoad: []
   LiveUpdatePort: 9264

@@ -86,7 +86,7 @@ public class VolatilePlatform : MonoBehaviour
 			spriteRenderer.color = Mathf.Repeat(timer, flashPeriod) > 0.5f * flashPeriod ? originalColor : Color.black;
 			yield return null;
 		}
-
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Misc/BranchBreak", GetComponent<Transform>().position);
 		spriteRenderer.color = originalColor;
 		respawnTimer = respawnDelay;
 

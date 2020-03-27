@@ -4,29 +4,38 @@ using UnityEngine;
 
 public class TarManSoundManager : MonoBehaviour
 {
-	public AudioClip attack, walk;
-
-	private AudioSource audioSource;
-
-	private void Awake()
+	public void TarManAttackSound()
 	{
-		audioSource = GetComponent<AudioSource>();
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Movement/TarMan/TarManAttack");
 	}
-
-	public void PlayOneShot(AudioClip clip)
+	public void TarManWalkSound()
 	{
-		audioSource.PlayOneShot(clip);
+		FMOD.Studio.EventInstance walk = FMODUnity.RuntimeManager.CreateInstance("event:/Movement/TarMan/TarManWalk");
+		walk.start();
+		walk.release();
 	}
-
-	public void PlayRepeat(AudioClip clip)
+	public void TarManSadSound()
 	{
-		audioSource.clip = clip;
-		audioSource.Play();
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/TarMan/TarManSad", GetComponent<Transform>().position);
 	}
-
-	public void StopSound()
+	public void TarManHappySound()
 	{
-		audioSource.Pause();
-		audioSource.clip = null;
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/TarMan/TarManHappy", GetComponent<Transform>().position);
+	}
+	public void TarManAngrySound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/TarMan/TarManAngry", GetComponent<Transform>().position);
+	}
+	public void TarManScaredSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/TarMan/TarManScared", GetComponent<Transform>().position);
+	}
+	public void TarManNeutralSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/TarMan/TarManNeutral", GetComponent<Transform>().position);
+	}
+	public void TarManGruntSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Misc/TarManGrunt", GetComponent<Transform>().position);
 	}
 }

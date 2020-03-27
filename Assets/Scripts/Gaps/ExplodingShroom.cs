@@ -53,6 +53,7 @@ public class ExplodingShroom : MonoBehaviour
 
 	private void OnBounce()
 	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Misc/MushroomPoof", GetComponent<Transform>().position);
 		sm.Transition(countdownState);
 	}
 

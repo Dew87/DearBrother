@@ -140,8 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5161a69b201f041b34ffeeec20d088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: 8300000, guid: c5fc0796f4f36a14f80ca57af08d81c6, type: 3}
-  walk: {fileID: 8300000, guid: 46229552219fc54409829cdcc44888a2, type: 3}
 --- !u!1 &2128238511752859233
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +329,7 @@ GameObject:
   - component: {fileID: 2128238513004535915}
   - component: {fileID: 2128238513004535914}
   - component: {fileID: 2128238513004535913}
+  - component: {fileID: 3133204629207462461}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -421,6 +420,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3133204629207462461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128238513004535828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4853211c8b33c9f4399b5d6cc9c79218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tarManSoundManager: {fileID: 2128238511733217059}
 --- !u!1 &2128238513087312544
 GameObject:
   m_ObjectHideFlags: 0

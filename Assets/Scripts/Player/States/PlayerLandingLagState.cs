@@ -12,7 +12,7 @@ public class PlayerLandingLagState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
-		player.soundManager.PlayOneShot(player.soundManager.land);
+		player.soundManager.SamLandSound();
 		player.playerAnimator.SetBool("Grounded", true);
 		timer = duration;
 		player.velocity = Vector3.zero;

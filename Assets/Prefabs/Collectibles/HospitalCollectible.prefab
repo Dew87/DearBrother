@@ -159,8 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f43d3738cf3f9b4a97d8b2ed124ea83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationName: CollectibleEmpty
-  collectAnimationDuration: 0.4
+  animationName: CollectibleHRM
+  collectAnimationDuration: 0.6
   collectAnimationGrowScale: 4
   collectZoom: 1.7
   isCollected: 0

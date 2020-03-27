@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
 		currentCollider = boxCollider2D;
 		solidMask = LayerMask.GetMask("Solid", "SolidNoBlockGrapple");
 
-		isFacingRight = false;
+		isFacingRight = true;
 		jumpInputIsTriggered = false;
 		grappleInputIsTriggered = false;
 		SetCollider(standingColliderBounds);
@@ -395,6 +395,10 @@ public class PlayerController : MonoBehaviour
 		cutsceneWalkingState.speed = speed;
 		cutsceneWalkingState.isGliding = glide;
 		TransitionState(cutsceneWalkingState);
+	}
+	public void PlayEndAnimation()
+	{
+		playerAnimator.SetTrigger("Ending");
 	}
 
 	public void SetCollider(Bounds colliderBounds)

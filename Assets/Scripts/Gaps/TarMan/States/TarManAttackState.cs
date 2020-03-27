@@ -18,7 +18,7 @@ public class TarManAttackState : TarManState
 
 		timer = 0f;
 		tarMan.animator.SetTrigger("Attack");
-		tarMan.soundManager.PlayOneShot(tarMan.soundManager.attack);
+		tarMan.soundManager.TarManAttackSound();
 	}
 
 	public override void FixedUpdate()

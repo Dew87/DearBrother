@@ -85,10 +85,17 @@ public class Collectible : MonoBehaviour
 
 	private IEnumerator DoCollect()
 	{
-		Vector3 cameraNormalOffset = PlayerCamera.get.followOffsetTransform.transform.localPosition;
-		float targetZoom = collectZoom / PlayerCamera.get.currentZoom;
-		Vector3 targetOffset = transform.position - PlayerCamera.get.transform.position;
-		targetOffset.z = 0;
+		Vector3 cameraNormalOffset = Vector3.zero;
+		Vector3 targetOffset = Vector3.zero;
+		float targetZoom = 0;
+
+		if (PlayerCamera.get)
+		{
+			cameraNormalOffset = PlayerCamera.get.followOffsetTransform.transform.localPosition;
+			targetZoom = collectZoom / PlayerCamera.get.currentZoom;
+			targetOffset = transform.position - PlayerCamera.get.transform.position;
+			targetOffset.z = 0; 
+		}
 		Color targetColor = new Color(1, 1, 1, 0);
 
 		float t = 0;
@@ -97,22 +104,28 @@ public class Collectible : MonoBehaviour
 			t += Time.unscaledDeltaTime / collectAnimationDuration;
 			transform.localScale = Vector3.one * Mathf.Lerp(1, collectAnimationGrowScale, t);
 			spriteRenderer.color = Color.Lerp(Color.white, targetColor, t);
-			PlayerCamera.get.zoom2 = Mathf.SmoothStep(1, targetZoom, t);
-			PlayerCamera.get.followOffsetTransform.localPosition = Util.VectorSmoothstep(cameraNormalOffset, targetOffset, t);
+			if (PlayerCamera.get)
+			{
+				PlayerCamera.get.zoom2 = Mathf.SmoothStep(1, targetZoom, t);
+				PlayerCamera.get.followOffsetTransform.localPosition = Util.VectorSmoothstep(cameraNormalOffset, targetOffset, t); 
+			}
 			yield return null;
 		}
 
 		yield return StartCoroutine(DoShowMemory());
-
-		PlayerController.get.Freeze(false, false);
+		
+		PlayerController.get.Freeze(false, false); 
 		Time.timeScale = 1;
 
 		t = 0;
 		while (t < 1)
 		{
 			t += Time.unscaledDeltaTime / collectAnimationDuration;
-			PlayerCamera.get.zoom2 = Mathf.SmoothStep(targetZoom, 1, t);
-			PlayerCamera.get.followOffsetTransform.localPosition = Util.VectorSmoothstep(targetOffset, cameraNormalOffset, t);
+			if (PlayerCamera.get)
+			{
+				PlayerCamera.get.zoom2 = Mathf.SmoothStep(targetZoom, 1, t);
+				PlayerCamera.get.followOffsetTransform.localPosition = Util.VectorSmoothstep(targetOffset, cameraNormalOffset, t); 
+			}
 			yield return null;
 		}
 

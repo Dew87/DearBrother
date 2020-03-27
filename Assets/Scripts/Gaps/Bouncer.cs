@@ -50,6 +50,7 @@ public class Bouncer : MonoBehaviour
 	public void Bounce(Rigidbody2D rigidbody2D)
 	{
 		rigidbody2D.velocity = rotatedUp * speedGained;
+		CameraShake.get.Shake(screenShake);
 		onBounce.Invoke();
 	}
 

@@ -110,12 +110,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_Font: {fileID: 12800000, guid: bde0b80f709a50347bcd40c23813b26e, type: 3}
+    m_FontSize: 50
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -242,6 +242,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 6330715455282070063}
   selectIndicatorPosition: {fileID: 189574096477208495}
-  submitEffectDuration: 0.05
-  submitColor: {r: 0, g: 1, b: 1, a: 1}
   menu: {fileID: 0}

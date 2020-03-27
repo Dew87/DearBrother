@@ -14,4 +14,28 @@ public class TarManSoundManager : MonoBehaviour
 		walk.start();
 		walk.release();
 	}
+	public void TarManSadSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/TarMan/TarManSad", GetComponent<Transform>().position);
+	}
+	public void TarManHappySound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/TarMan/TarManHappy", GetComponent<Transform>().position);
+	}
+	public void TarManAngrySound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/TarMan/TarManAngry", GetComponent<Transform>().position);
+	}
+	public void TarManScaredSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/TarMan/TarManScared", GetComponent<Transform>().position);
+	}
+	public void TarManNeutralSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/TarMan/TarManNeutral", GetComponent<Transform>().position);
+	}
+	public void TarManGruntSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Misc/TarManGrunt", GetComponent<Transform>().position);
+	}
 }

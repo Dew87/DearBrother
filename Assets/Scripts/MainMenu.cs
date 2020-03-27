@@ -10,7 +10,6 @@ public class MainMenu : MonoBehaviour
 	{
 		SceneManager.LoadScene(SceneToLoad);
 	}
-
 	public void Quit()
 	{
 		#if UNITY_EDITOR

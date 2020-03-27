@@ -67,7 +67,10 @@ public class PlayerSwingState : PlayerGrappleBaseState
 	public override void Update()
 	{
 		base.Update();
-
+		if (player.velocity.magnitude > 200)
+		{
+			player.velocity = Vector2.zero;
+		}
 		if (player.grappleDetection.currentGrapplePoint != null)
 		{
 			float angle = Vector2.SignedAngle(player.transform.position - player.grappleDetection.currentGrapplePoint.transform.position, gravity);
@@ -128,17 +131,19 @@ public class PlayerSwingState : PlayerGrappleBaseState
 		base.FixedUpdate();
 		Vector2 playerPos = player.transform.position;
 		Vector2 grapplePointPos = player.grappleDetection.currentGrapplePoint.transform.position;
-		if (Vector2.Distance(grapplePointPos, playerPos) > minGrappleLength && Vector2.Distance(grapplePointPos, playerPos) < maxGrappleLength)
+		float distance = Vector2.Distance(grapplePointPos, playerPos);
+		if ((distance < maxGrappleLength && player.verticalInputAxis < 0) || (distance > minGrappleLength && player.verticalInputAxis > 0))
 		{
-			if (Mathf.Abs(player.verticalInputAxis) > 0)
-			{
-				float lastLength = grappleLength;
-				grappleLength -= player.verticalInputAxis * climbSpeed * Time.deltaTime;
-				float grappleDiference = lastLength - grappleLength;
-				grappleLength = Mathf.Clamp(grappleLength, minGrappleLength, maxGrappleLength);
-				grappleDirection = (grapplePointPos - playerPos).normalized;
-				player.transform.position += grappleDiference * (Vector3)grappleDirection;
-			}
+			float lastLength = grappleLength;
+			grappleLength -= player.verticalInputAxis * climbSpeed * Time.deltaTime;
+			float grappleDiference = lastLength - grappleLength;
+			grappleLength = Mathf.Clamp(grappleLength, minGrappleLength, maxGrappleLength);
+			grappleDirection = (grapplePointPos - playerPos).normalized;
+			player.transform.position += grappleDiference * (Vector3)grappleDirection;
+		}
+		if (distance < (minGrappleLength < 0.5 ? minGrappleLength : 0.5))
+		{
+			player.velocity.x = 0.1f;
 		}
 		if (Vector2.Angle(playerPos - grapplePointPos, gravity) > 150)
 		{
@@ -147,7 +152,7 @@ public class PlayerSwingState : PlayerGrappleBaseState
 				player.velocity.y = 0;
 			}
 		}
-		if (Vector2.Distance(grapplePointPos, playerPos) + gravityMultiplierTolerance < grappleLength)
+		if (distance + gravityMultiplierTolerance < grappleLength)
 		{
 			player.velocity += gravity.normalized * (gravity.magnitude * mass) * gravityMultiplier * Time.deltaTime;
 		}
@@ -192,6 +197,10 @@ public class PlayerSwingState : PlayerGrappleBaseState
 				{
 					player.velocity += player.velocity.normalized * (player.velocity.x > 0 ? player.horizontalInputAxis : -player.horizontalInputAxis) * swingSpeed * Time.deltaTime;
 				}
+			}
+			if (distanceAfterGravity > grappleLength + 2)
+			{
+				player.TransitionState(player.fallingState);
 			}
 		}
 	}

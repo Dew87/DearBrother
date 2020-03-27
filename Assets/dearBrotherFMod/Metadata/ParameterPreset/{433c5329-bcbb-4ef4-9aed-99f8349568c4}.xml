@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{433c5329-bcbb-4ef4-9aed-99f8349568c4}">
+		<property name="name">
+			<value>Reverb Intensity</value>
+		</property>
+		<relationship name="folder">
+			<destination>{985965c5-61d0-458c-9c82-7ae5b0c20678}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e547742f-1339-4f2c-9c41-e2546731f388}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e547742f-1339-4f2c-9c41-e2546731f388}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.01</value>
+		</property>
+	</object>
+</objects>

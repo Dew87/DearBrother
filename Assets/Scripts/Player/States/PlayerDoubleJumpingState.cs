@@ -8,6 +8,7 @@ public class PlayerDoubleJumpingState : PlayerBaseJumpingState
 	public override void Enter()
 	{
 		base.Enter();
+		player.soundManager.SamDoubleJumpSound();
 		player.doesDoubleJumpRemain = false;
 	}
 

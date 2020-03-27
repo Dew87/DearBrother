@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerMood
+{
+	Neutral,
+	Scared,
+	Happy,
+	Sad,
+}
+
 public class PlayerController : MonoBehaviour
 {
 	[Tooltip("If jump is pressed within this duration before touching the ground, the player will jump immediately after touching the ground")]
@@ -19,6 +27,10 @@ public class PlayerController : MonoBehaviour
 	public GrappleDetection grappleDetection;
 	public LineRenderer lineRenderer;
 	public SoundManager soundManager;
+
+	[Space()]
+	public SpriteRenderer faceSpriteRenderer;
+	public Sprite[] moodFaceSprites;
 
 	[Header("States")]
 	public PlayerStandingState standingState;
@@ -117,6 +129,8 @@ public class PlayerController : MonoBehaviour
 		{
 			state.Awake();
 		}
+
+		SetMood(PlayerMood.Neutral);
 	}
 
 	private void Start()
@@ -177,6 +191,8 @@ public class PlayerController : MonoBehaviour
 		{
 			jumpGraceTimer -= Time.deltaTime;
 		}
+
+		faceSpriteRenderer.transform.rotation = Quaternion.Euler(0, spriteRenderer.flipX ? 180 : 0, 0);
 	}
 
 	private void FixedUpdate()
@@ -421,6 +437,15 @@ public class PlayerController : MonoBehaviour
 		{
 			currentState.Enter();
 			currentState.isCurrentState = true;
+		}
+	}
+
+	public void SetMood(PlayerMood mood)
+	{
+		int moodIndex = (int)mood;
+		if (moodIndex >= 0 && moodIndex < moodFaceSprites.Length)
+		{
+			faceSpriteRenderer.sprite = moodFaceSprites[moodIndex];
 		}
 	}
 

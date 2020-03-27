@@ -16,7 +16,7 @@ MonoBehaviour:
   HasSourceProject: 1
   HasPlatforms: 1
   sourceProjectPath: Assets/dearBrotherFMod/dearBrotherFMod.fspro
-  sourceBankPath: Assets\dearBrotherFMod\Build
+  sourceBankPath: Assets/dearBrotherFMod/Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0

@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
 	public SubMenu defaultMenu;
 	public Graphic darkness;
 	public float darknessFadeInDuration = 0.5f;
+	public FMODMusicManager cameraFMODMusicManager;
 
 	[HideInInspector] public SubMenu currentMenu;
 
@@ -69,6 +70,7 @@ public class PauseMenu : MonoBehaviour
 	public void RestartLevel()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		cameraFMODMusicManager.StopMusic();
 		Time.timeScale = 1;
 	}
 
@@ -82,7 +84,7 @@ public class PauseMenu : MonoBehaviour
 			menu.gameObject.SetActive(false);
 		}
 		defaultMenu.Open();
-
+		cameraFMODMusicManager.PauseOn();
 		StartCoroutine(Transition());
 		IEnumerator Transition()
 		{
@@ -101,7 +103,7 @@ public class PauseMenu : MonoBehaviour
 	public void TriggerOff()
 	{
 		defaultMenu.Close();
-
+		cameraFMODMusicManager.PauseOff();
 		StartCoroutine(Transition());
 		IEnumerator Transition()
 		{

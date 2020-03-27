@@ -154,9 +154,6 @@
 		<relationship name="markerTrack">
 			<destination>{cfae807f-9280-4a49-b0b7-f5ca9b89e55d}</destination>
 		</relationship>
-		<relationship name="triggerConditions">
-			<destination>{df5f7dd3-cf1c-4f9b-8f86-c316f46ba859}</destination>
-		</relationship>
 	</object>
 	<object class="ADSRModulator" id="{726752e9-daaf-4e18-9a4b-a1dc8428e4f5}">
 		<property name="nameOfPropertyBeingModulated">
@@ -197,17 +194,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{618efd53-14ef-4b4c-ab46-e4e4e7b7e919}" />
-	<object class="ParameterCondition" id="{df5f7dd3-cf1c-4f9b-8f86-c316f46ba859}">
-		<property name="minimum">
-			<value>0.42500004172325134</value>
-		</property>
-		<property name="maximum">
-			<value>1</value>
-		</property>
-		<relationship name="parameter">
-			<destination>{6c68b1ad-e07a-49e7-b4f7-51e93de80e64}</destination>
-		</relationship>
-	</object>
 	<object class="MixerBusFader" id="{5628ba0e-1541-4794-8179-ecdd9826e115}" />
 	<object class="AutomationCurve" id="{c55deddd-6469-4a49-b192-dde8f3a5bfb4}">
 		<relationship name="parameter">

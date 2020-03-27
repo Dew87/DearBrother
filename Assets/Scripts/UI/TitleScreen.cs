@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class TitleScreen : MonoBehaviour
 {
+	public FMODMusicManager cameraFMODMusicManager;
 	public Graphic title;
 	public Graphic pressAnyKey;
 	[Space()]
@@ -23,6 +24,17 @@ public class TitleScreen : MonoBehaviour
 	private Vignette vignette;
 	private float normalVignette;
 
+	//wait a few frames for all scripts to load in
+	private IEnumerator WaitStartMusic()
+	{
+		float timer = 0;
+		while (timer < 0.2f)
+		{
+			timer += Time.deltaTime;
+			yield return null;
+		}
+		cameraFMODMusicManager.MainMenuMusic();
+	}
 	private void Start()
 	{
 		postProcess = FindObjectOfType<PostProcessVolume>();
@@ -30,6 +42,7 @@ public class TitleScreen : MonoBehaviour
 		normalVignette = vignette.intensity;
 		vignette.intensity.value = vignetteIntensity;
 		PlayerCamera.get.SetZoom(zoom, 0);
+		StartCoroutine(WaitStartMusic());
 	}
 
 	private void Update()
@@ -61,6 +74,7 @@ public class TitleScreen : MonoBehaviour
 		StartCoroutine(TweenTitle());
 		StartCoroutine(TweenPressAnyKey());
 		PlayerCamera.get.SetZoom(1, zoomRestoreDuration);
+		cameraFMODMusicManager.EndMainMenuMusic();
 	}
 
 	private IEnumerator TweenVignette()

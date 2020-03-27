@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 8179696981043089597}
-  parallaxStrength: 0.1
+  parallaxStrength: 0.7
   parallaxStrengthY: 1
   zoomInfluence: 0
   doParallax: 1
@@ -712,7 +712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 8179696981043089597}
-  parallaxStrength: 0.3
+  parallaxStrength: 0.9
   parallaxStrengthY: 1
   zoomInfluence: 0
   doParallax: 1
@@ -1036,6 +1036,7 @@ GameObject:
   - component: {fileID: 8179696981043089571}
   - component: {fileID: 4775174260457603963}
   - component: {fileID: -6760992505110144143}
+  - component: {fileID: 1524348807583623969}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -1092,7 +1093,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8179696981043089597}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0a03ae301677fd843a4cd9c9857b03c3, type: 3}
@@ -1194,6 +1195,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListenerNumber: -1
+--- !u!114 &1524348807583623969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179696981043089597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e425c2962b4744b459437c1234640215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8303791586676277542
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class SetPlayerMood : Command
 	{
 		base.OnEnter();
 		PlayerController.get.SetMood(mood);
+		Continue();
 	}
 
 	public override string GetSummary()

@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
 		foreach (PlayerState state in IterateStates())
 		{
-			currentState.Start();
+			state.Start();
 		}
 	}
 

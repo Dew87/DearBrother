@@ -8,9 +8,24 @@ using Fungus;
 public class QuickSay : Say
 {
 	public float duration = 1f;
+	public bool overrideTextForGamepads = false;
+	[TextArea(5, 10)]
+	public string gamepadText;
+
+	private string keyboardText;
+
+	private void Awake()
+	{
+		keyboardText = storyText;
+	}
 
 	public override void OnEnter()
 	{
+		if (overrideTextForGamepads)
+		{
+			storyText = InputManager.CurrentMethod == InputMethod.Gamepad ? gamepadText : keyboardText;
+		}
+
 		base.OnEnter();
 
 		StartCoroutine(DoWait());

@@ -74,7 +74,7 @@ MonoBehaviour:
   guid: 77b1df0abccf1f4aa6797e068eb7a7e1
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -115,7 +115,7 @@ MonoBehaviour:
   guid: 30d759abc838eb47b7a2f85add741a73
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -139,7 +139,7 @@ MonoBehaviour:
   guid: 3b0549d407fe244090957278a7bc162c
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -147,6 +147,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 986
+--- !u!114 &-8821755063600261880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Chase/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-8807691525190957227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +221,7 @@ MonoBehaviour:
   guid: 845487cfcfc3d641b1bec63eaac8e9b0
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -227,6 +244,23 @@ MonoBehaviour:
   Name: Parameter 1
   Min: 0
   Max: 4
+  Default: 0
+  Exists: 0
+--- !u!114 &-8269795757796776270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Chase/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 0
 --- !u!114 &-8238530070983086453
@@ -267,15 +301,33 @@ MonoBehaviour:
   Path: event:/Main Menu
   guid: bcfd4960122b2942b1b8594e7cea87de
   Banks:
-  - {fileID: 4652113494830352722}
+  - {fileID: -7952799424087713577}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 437310115210912579}
+  - {fileID: 9197784974807019483}
   MinDistance: 0
   MaxDistance: 0
   Length: 117714
+--- !u!114 &-7952799424087713577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637209526308537467
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-7779122574137151457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +381,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-7279574895300042428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme 2/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-7184350774763068132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,6 +446,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 830
+--- !u!114 &-6930994530586509613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SoundBank.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/SoundBank.bank
+  SubDir: 
+  lastModified: 637209286928355559
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-6881198324579525969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,7 +498,7 @@ MonoBehaviour:
   guid: 7332364c1ad9a349b04adb818603043f
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -476,6 +563,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 986
+--- !u!114 &-6511359871727520278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637209226086728572
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-6316421731558381689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,6 +604,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2150
+--- !u!114 &-6296397879148082042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme 2/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-6259490130254380870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,15 +636,32 @@ MonoBehaviour:
   Path: event:/World Theme
   guid: 47ac755901547148b4179aeb3ef3df71
   Banks:
-  - {fileID: 4652113494830352722}
+  - {fileID: -7952799424087713577}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -9087528039411799813}
+  - {fileID: -2902788816085797653}
   MinDistance: 0
   MaxDistance: 0
   Length: 122500
+--- !u!114 &-6054443096570821396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme 2/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-5816947447966103064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,7 +678,7 @@ MonoBehaviour:
   guid: f1540c203382cf458990e53fe45d7334
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -605,7 +744,7 @@ MonoBehaviour:
   guid: b5a763e84e349e4482b4d18e56f6cb96
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -631,6 +770,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-5578388997677894655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SamRun/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 0
 --- !u!114 &-5344503182929735559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,6 +832,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 488
+--- !u!114 &-5194489764887836736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-5101008509847262432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,12 +944,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/dearBrotherFMod/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637209153100000000
+  lastModified: 637209526304016444
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 2478
   Exists: 1
+--- !u!114 &-4545938649508586308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637209284872392246
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-4471558817510011742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,12 +1068,12 @@ MonoBehaviour:
   Path: event:/Chase
   guid: df48e14d08183e4db6ea6e2e375eadd5
   Banks:
-  - {fileID: 4652113494830352722}
+  - {fileID: -7952799424087713577}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -4039126005461530439}
+  - {fileID: -3123329710159678872}
   MinDistance: 0
   MaxDistance: 0
   Length: 21995
@@ -945,7 +1136,7 @@ MonoBehaviour:
   guid: 2f293a11a80ced49be8cbbc9c243c950
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -953,6 +1144,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 451
+--- !u!114 &-3828566294252728544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Chase/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-3680343831112326876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,7 +1177,7 @@ MonoBehaviour:
   guid: 2abb972c1e1b0e4b92df0a6aad62a698
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1018,6 +1226,41 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 751
+--- !u!114 &-3505415257036696314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-3433181032657742798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SoundBank.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/SoundBank.bank
+  SubDir: 
+  lastModified: 637209284873569073
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-3347412374068184843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,6 +1302,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-3123329710159678872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Chase/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-3113041744362811772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1075,7 +1335,7 @@ MonoBehaviour:
   guid: 63ca0551202bac4ea7ec889ac5b7585a
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1117,7 +1377,7 @@ MonoBehaviour:
   guid: 6c9b4161db85ac45991792278e8427c6
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1125,6 +1385,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1010
+--- !u!114 &-2902788816085797653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-2815999249080441327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,7 +1418,7 @@ MonoBehaviour:
   guid: 77c0659d79cbf141a0944aaf2422dde5
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1201,12 +1478,12 @@ MonoBehaviour:
   guid: c46dcc2640b277479ebd9d5f417b4362
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 7595586915635037401}
+  - {fileID: 6292865232062910215}
   MinDistance: 0
   MaxDistance: 0
   Length: 830
@@ -1249,7 +1526,7 @@ MonoBehaviour:
   guid: 883c03c3b0671c4abf70bf36f8231a2a
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1272,6 +1549,24 @@ MonoBehaviour:
   Path: Assets/dearBrotherFMod/Build/Desktop/Master.bank
   SubDir: 
   lastModified: 637208358713878242
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &-1618698119582787236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SoundBank.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/SoundBank.bank
+  SubDir: 
+  lastModified: 637209137279896065
   LoadResult: 0
   FileSizes: []
   Exists: 0
@@ -1343,12 +1638,12 @@ MonoBehaviour:
   Path: event:/World Theme 2
   guid: 00e6d2330922f54abbf45269c0d3f6e0
   Banks:
-  - {fileID: 4652113494830352722}
+  - {fileID: -7952799424087713577}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -6681246665335759161}
+  - {fileID: 4074822761635518151}
   MinDistance: 0
   MaxDistance: 0
   Length: 143675
@@ -1414,7 +1709,7 @@ MonoBehaviour:
   guid: 9c7feabe08d0cf489736f0e91ffb2af7
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1422,6 +1717,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1683
+--- !u!114 &-576315265774567417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637209286927607574
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-518978752648452755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,7 +1751,7 @@ MonoBehaviour:
   guid: 9d0b2813269a08409f9a469830163b51
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1541,8 +1854,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -4820856872793943992}
-  - {fileID: 4652113494830352722}
-  - {fileID: -3105760862090101402}
+  - {fileID: -7952799424087713577}
+  - {fileID: 2100050913243851702}
   EditorEvents:
   - {fileID: 3782705961516577448}
   - {fileID: 4167183060060037526}
@@ -1583,10 +1896,10 @@ MonoBehaviour:
   - {fileID: -3976652072681818863}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 4652113494830352722}
+  - {fileID: -7952799424087713577}
   StringsBanks:
   - {fileID: -4820856872793943992}
-  stringsBankWriteTime: 637209153100000000
+  stringsBankWriteTime: 637209526304016444
   cacheVersion: 3
 --- !u!114 &81155785569363380
 MonoBehaviour:
@@ -1678,7 +1991,7 @@ MonoBehaviour:
   Path: event:/Credits
   guid: 6295ae9426a4bd47b710cda7f55c09da
   Banks:
-  - {fileID: 4652113494830352722}
+  - {fileID: -7952799424087713577}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1686,6 +1999,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 118000
+--- !u!114 &763774928777860855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Main Menu/Start Game
+  m_EditorClassIdentifier: 
+  Name: Start Game
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &871135784408527712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1701,6 +2031,40 @@ MonoBehaviour:
   Name: Parameter 1
   Min: 0
   Max: 4
+  Default: 0
+  Exists: 0
+--- !u!114 &1290709708452205148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme 2/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &1358212277212969153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 0
 --- !u!114 &1444863396973074864
@@ -1719,7 +2083,7 @@ MonoBehaviour:
   guid: c1ea06e6420a1341bc45b4fc87e11b4a
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1807,7 +2171,7 @@ MonoBehaviour:
   Path: event:/Easter Egg
   guid: cc8e0db649953e459af616c81b1f0568
   Banks:
-  - {fileID: 4652113494830352722}
+  - {fileID: -7952799424087713577}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -1815,6 +2179,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 31090
+--- !u!114 &1816280234029226026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SoundBank.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/SoundBank.bank
+  SubDir: 
+  lastModified: 637209226089117739
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &2064410906945554672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1831,7 +2213,7 @@ MonoBehaviour:
   guid: d96bc33d2ff4ca49a732ec9799caaf7f
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1839,6 +2221,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1161
+--- !u!114 &2100050913243851702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SoundBank.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/SoundBank.bank
+  SubDir: 
+  lastModified: 637209526305366743
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &2337876816484918216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1919,7 +2319,7 @@ MonoBehaviour:
   guid: 4cfaed73ba845b4bbc14e472b751796f
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1927,6 +2327,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1437
+--- !u!114 &3287806177468018494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Main Menu/Start Game
+  m_EditorClassIdentifier: 
+  Name: Start Game
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &3465586975733999977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2002,7 +2419,7 @@ MonoBehaviour:
   guid: 0b75382467a3194789e3cd9c0486dd76
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2026,7 +2443,7 @@ MonoBehaviour:
   guid: 8389260397179749a002e0e065a7f9a2
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2034,6 +2451,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1010
+--- !u!114 &3848088144601474535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SamRun/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 0
 --- !u!114 &3922220830538752784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2050,7 +2484,7 @@ MonoBehaviour:
   guid: c3414d780fcd4841916b156e72c64b4d
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2074,7 +2508,7 @@ MonoBehaviour:
   guid: 74273a750ec1aa44ad3a760946f5c4f1
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2082,6 +2516,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 899
+--- !u!114 &4074822761635518151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme 2/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &4167183060060037526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2098,7 +2549,7 @@ MonoBehaviour:
   guid: 12ccb67169ad5a4fbe983fade9c1767b
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2181,7 +2632,7 @@ MonoBehaviour:
   guid: 6cbe7947361a614580c94c5dfc6ddf27
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2224,6 +2675,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &5025840528212357435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &5137107150968974968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2260,7 +2728,7 @@ MonoBehaviour:
   guid: a6699270e697274f96ee28258203fd62
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2332,6 +2800,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 700
+--- !u!114 &6100359824045244729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SamRun/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 0
 --- !u!114 &6134270934307480659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2355,6 +2840,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 451
+--- !u!114 &6292865232062910215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SamRun/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 1
 --- !u!114 &6541925838644027304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2378,6 +2880,40 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &6542524541272224189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SamRun/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 0
+--- !u!114 &6616656960632627283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Main Menu/Start Game
+  m_EditorClassIdentifier: 
+  Name: Start Game
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &6781243724906438603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2394,7 +2930,7 @@ MonoBehaviour:
   guid: a6f7edc2ac4fce42ac4c89c1dabc2dc1
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2441,7 +2977,7 @@ MonoBehaviour:
   guid: d3d271c135be6e4fa3b6afd37942f313
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2465,7 +3001,7 @@ MonoBehaviour:
   guid: e21d14384beeba45b2bf9d0761de2187
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2544,6 +3080,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &7661267563666541966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Main Menu/Start Game
+  m_EditorClassIdentifier: 
+  Name: Start Game
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &7691219119043001243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2600,7 +3153,7 @@ MonoBehaviour:
   guid: 8e4b57a384bcfb42818eca3d9873ec5c
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2608,6 +3161,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 986
+--- !u!114 &7896517686703041597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Chase/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &7896591646046226577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2664,7 +3234,7 @@ MonoBehaviour:
   guid: cc5fbcfc5abc5045a5723212c718388f
   Banks:
   - {fileID: -5764563764936254568}
-  - {fileID: -3105760862090101402}
+  - {fileID: 2100050913243851702}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2759,3 +3329,38 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 488
+--- !u!114 &8956808920042291650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637209137280670904
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &9197784974807019483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Main Menu/Start Game
+  m_EditorClassIdentifier: 
+  Name: Start Game
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1

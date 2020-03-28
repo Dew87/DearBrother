@@ -246,7 +246,8 @@ MonoBehaviour:
     tarMan: {fileID: 0}
     attackDelay: 0.5
     attackDuration: 1
-    attackObject: {fileID: 2128238512286392832}
+    attackDetection: {fileID: 4953388635767623644}
+    attackKillZone: {fileID: 2128238512286392832}
   idleState:
     isCurrentState: 0
     tarMan: {fileID: 0}
@@ -388,7 +389,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1994930375
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 1613308578110145719, guid: 275e6d7ec804c214ca095cc7c1e9474f,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -83,6 +83,8 @@ public class QuickSayEditor : CommandEditor
 	protected SerializedProperty stopVoiceoverProp;
 	protected SerializedProperty setSayDialogProp;
 	protected SerializedProperty waitForVOProp;
+	protected SerializedProperty overrideTextForGamepadsProp;
+	protected SerializedProperty gamepadTextProp;
 
 	public override void OnEnable()
 	{
@@ -102,6 +104,8 @@ public class QuickSayEditor : CommandEditor
 		stopVoiceoverProp = serializedObject.FindProperty("stopVoiceover");
 		setSayDialogProp = serializedObject.FindProperty("setSayDialog");
 		waitForVOProp = serializedObject.FindProperty("waitForVO");
+		overrideTextForGamepadsProp = serializedObject.FindProperty("overrideTextForGamepads");
+		gamepadTextProp = serializedObject.FindProperty("gamepadText");
 
 		if (blackTex == null)
 		{
@@ -155,6 +159,13 @@ public class QuickSayEditor : CommandEditor
 		}
 
 		EditorGUILayout.PropertyField(storyTextProp);
+
+		EditorGUILayout.PropertyField(overrideTextForGamepadsProp);
+
+		if (overrideTextForGamepadsProp.boolValue)
+		{
+			EditorGUILayout.PropertyField(gamepadTextProp);
+		}
 
 		EditorGUILayout.PropertyField(descriptionProp);
 

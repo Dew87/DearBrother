@@ -7,6 +7,9 @@ public class TarManSFXTrigger : MonoBehaviour
 	public TarManSoundManager tarManSoundManager;
     public void Walk()
 	{
-		tarManSoundManager.TarManWalkSound();
+		if (tarManSoundManager != null)
+		{
+			tarManSoundManager.TarManWalkSound();
+		}
 	}
 }

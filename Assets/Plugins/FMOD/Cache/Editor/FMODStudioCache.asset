@@ -779,7 +779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/dearBrotherFMod/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637210274492976314
+  lastModified: 637209226845777995
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -1959,24 +1959,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
---- !u!114 &-300261177118593620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/dearBrotherFMod/Build/Desktop/Master.bank
-  SubDir: 
-  lastModified: 637210274492916112
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
 --- !u!114 &-36973768279861644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2010,7 +1992,7 @@ MonoBehaviour:
   - {fileID: -4820856872793943992}
   - {fileID: 8009250511416625760}
   - {fileID: -7066083880061726803}
-  - {fileID: -300261177118593620}
+  - {fileID: 6162773909050899939}
   EditorEvents:
   - {fileID: 1375580462368621797}
   - {fileID: -2908176490117842306}
@@ -2054,7 +2036,7 @@ MonoBehaviour:
   - {fileID: 8009250511416625760}
   StringsBanks:
   - {fileID: -4820856872793943992}
-  stringsBankWriteTime: 637210274492976314
+  stringsBankWriteTime: 637209226845777995
   cacheVersion: 3
 --- !u!114 &252135343559794943
 MonoBehaviour:
@@ -3098,6 +3080,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 700
+--- !u!114 &6162773909050899939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637210160698150640
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &6887761108441850161
 MonoBehaviour:
   m_ObjectHideFlags: 0

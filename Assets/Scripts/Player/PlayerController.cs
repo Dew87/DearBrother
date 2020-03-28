@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 	[Tooltip("If jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
 	public float jumpGracePeriod = 0.2f;
 	public float grappleInputBuffer = 0.2f;
+	public bool doesStartStandingState = true;
 
 	[Space()]
 	public BoxCollider2D boxCollider2D;
@@ -153,9 +154,13 @@ public class PlayerController : MonoBehaviour
 		{
 			TransitionState(introState);
 		}
-		else
+		else if (doesStartStandingState)
 		{
 			TransitionState(standingState);
+		}
+		else
+		{
+			TransitionState(fallingState);
 		}
 
 		foreach (PlayerState state in IterateStates())

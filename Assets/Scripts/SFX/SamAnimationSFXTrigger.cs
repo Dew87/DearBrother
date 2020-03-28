@@ -13,4 +13,8 @@ public class SamAnimationSFXTrigger : MonoBehaviour
 	{
 		soundManager.SamCrawlSound();
 	}
+	public void Grapple()
+	{
+		soundManager.SamGrappleSound();
+	}
 }

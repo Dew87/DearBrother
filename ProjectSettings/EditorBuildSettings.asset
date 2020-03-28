@@ -7,17 +7,17 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/TestAssets/TestScenes/MainMenu.unity
     guid: 2ab2493b53b276645921109b4a5e22fc
-  - enabled: 1
+  - enabled: 0
     path: Assets/TestAssets/Design Scenes/LevelDesignScene.unity
     guid: 36660c7637c720248bf5dabaa726b832
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
     guid: 43a486ddffb847c40b9fbbe9c78e359e
-  - enabled: 1
+  - enabled: 0
     path: Assets/TestAssets/TestScenes/PigBounceTest.unity
     guid: 5052ae5af31af234c9f978fbd1d6130f
   m_configObjects: {}

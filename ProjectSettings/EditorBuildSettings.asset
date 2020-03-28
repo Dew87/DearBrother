@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
     guid: 43a486ddffb847c40b9fbbe9c78e359e
-  - enabled: 0
+  - enabled: 1
     path: Assets/TestAssets/TestScenes/PigBounceTest.unity
     guid: 5052ae5af31af234c9f978fbd1d6130f
   m_configObjects: {}

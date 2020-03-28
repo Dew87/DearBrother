@@ -6,7 +6,6 @@ public class Parallax : MonoBehaviour
 {
 	public GameObject cam;
 	public float parallaxStrength;
-	public float parallaxStrengthY = 0;
 	[Range(0, 1)]
 	public float zoomInfluence = 0;
 	public bool doParallax;
@@ -34,7 +33,6 @@ public class Parallax : MonoBehaviour
 			length = GetComponent<SpriteRenderer>().bounds.size.x;
 			float temp = cam.transform.position.x * (1 - parallaxStrength);
 			float distance = cam.transform.position.x * parallaxStrength;
-			float distanceY = cam.transform.position.y * parallaxStrengthY;
 
 			if (doRepeat)
 			{
@@ -47,7 +45,7 @@ public class Parallax : MonoBehaviour
 					startpos.x -= length;
 				} 
 			}
-			transform.position = new Vector3(startpos.x + distance, startpos.y + distanceY, transform.position.z);
+			transform.position = new Vector3(startpos.x + distance, transform.position.y, transform.position.z);
 
 			if (PlayerCamera.get.currentZoom > 0)
 			{

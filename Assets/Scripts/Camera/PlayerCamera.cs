@@ -270,8 +270,10 @@ public class PlayerCamera : MonoBehaviour
 
 	private void OnPlayerDeath()
 	{
-		followOffsetTransform.localPosition = targetOffset = savedOffset;
-		currentZoom = targetZoom = savedZoom;
+		SetZoom(savedZoom, dieRestoreCameraDuration);
+		SetOffset(savedOffset, dieRestoreCameraDuration);
+		//followOffsetTransform.localPosition = targetOffset = savedOffset;
+		//currentZoom = targetZoom = savedZoom;
 		zoom2 = 1;
 	}
 

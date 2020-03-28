@@ -1078,7 +1078,7 @@ MonoBehaviour:
   dampXInBuffer: 0.7
   dampY: 0.99
   dampYInBuffer: 0.7
-  dieRestoreCameraDuration: 0.5
+  dieRestoreCameraDuration: 1
   bufferArea:
     x: 1.5
     up: 2

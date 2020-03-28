@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 	[Tooltip("If jump is pressed within this duration after falling off a ledge, the player will jump in the air (coyote time)")]
 	public float jumpGracePeriod = 0.2f;
 	public float grappleInputBuffer = 0.2f;
+	public float floatThreshold = 0.8f;
 	public bool doesStartStandingState = true;
 
 	[Space()]
@@ -507,7 +508,7 @@ public class PlayerController : MonoBehaviour
 			jumpInputIsTriggered = false;
 		}
 
-		isFloatInputHeld = verticalInputAxis > 0;
+		isFloatInputHeld = verticalInputAxis > floatThreshold;
 	}
 
 	private void OnPlayerDeath()

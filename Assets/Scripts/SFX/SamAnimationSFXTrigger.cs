@@ -7,10 +7,23 @@ public class SamAnimationSFXTrigger : MonoBehaviour
 	public SoundManager soundManager;
 	public void Run()
 	{
-		soundManager.SamRunSound();
+		if (soundManager != null)
+		{
+			soundManager.SamRunSound();
+		}
 	}
 	public void Crawl()
 	{
-		soundManager.SamCrawlSound();
+		if (soundManager != null)
+		{
+			soundManager.SamCrawlSound();
+		}
+	}
+	public void Grapple()
+	{
+		if (soundManager != null)
+		{
+			soundManager.SamGrappleSound();
+		}
 	}
 }

@@ -4,32 +4,41 @@ using UnityEngine;
 
 public class OwlSFX : MonoBehaviour
 {
-    public void OwlSadSound()
+	private Transform owlTransform;
+	public void Start()
 	{
-		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Owl/OwlSad", GetComponent<Transform>().position);
+		owlTransform = GetComponent<Transform>();
+		if (owlTransform == null)
+		{
+			Debug.LogError("Cannot find owl transform");
+		}
+	}
+	public void OwlSadSound()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Owl/OwlSad", owlTransform.position);
 	}
 	public void OwlHappySound()
 	{
-		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Owl/OwlHappy", GetComponent<Transform>().position);
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Owl/OwlHappy", owlTransform.position);
 	}
 	public void OwlAngrySound()
 	{
-		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Owl/OwlAngry", GetComponent<Transform>().position);
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Owl/OwlAngry", owlTransform.position);
 	}
 	public void OwlScaredSound()
 	{
-		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Owl/OwlScared", GetComponent<Transform>().position);
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Owl/OwlScared", owlTransform.position);
 	}
 	public void OwlNeutralSound()
 	{
-		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Owl/OwlNeutral", GetComponent<Transform>().position);
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Dialogue/Owl/OwlNeutral", owlTransform.position);
 	}
 	public void OwlWingSound()
 	{
-		FMODUnity.RuntimeManager.PlayOneShot("event:/Movement/Owl/OwlWing", GetComponent<Transform>().position);
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Movement/Owl/OwlWing", owlTransform.position);
 	}
 	public void OwlDeathSound()
 	{
-		FMODUnity.RuntimeManager.PlayOneShot("event:/Misc/OwlDeath", GetComponent<Transform>().position);
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Misc/OwlDeath", owlTransform.position);
 	}
 }

@@ -43,11 +43,11 @@ PlayerSettings:
   - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2
   - logo: {fileID: 21300000, guid: 649fe8cda26ac184589bc59ea8e3d245, type: 3}
-    duration: 2
+    duration: 4
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
-  defaultScreenWidth: 1024
-  defaultScreenHeight: 768
+  defaultScreenWidth: 1920
+  defaultScreenHeight: 1080
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
@@ -56,7 +56,7 @@ PlayerSettings:
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
-  displayResolutionDialog: 0
+  displayResolutionDialog: 1
   iosUseCustomAppBackgroundBehavior: 0
   iosAllowHTTPDownload: 1
   allowedAutorotateToPortrait: 1
@@ -71,7 +71,7 @@ PlayerSettings:
   androidRenderOutsideSafeArea: 1
   androidUseSwappy: 0
   androidBlitType: 1
-  defaultIsNativeResolution: 1
+  defaultIsNativeResolution: 0
   macRetinaSupport: 1
   runInBackground: 1
   captureSingleScreen: 0

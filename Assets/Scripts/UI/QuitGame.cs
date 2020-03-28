@@ -11,7 +11,7 @@ public class QuitGame : MonoBehaviour
 	public Text quitText;
 
 	private float timer = 0;
-	private float timeToQuit = 66;
+	private float timeToQuit = 28;
 	private float timeToEscape = 5;
 	private void Update()
     {

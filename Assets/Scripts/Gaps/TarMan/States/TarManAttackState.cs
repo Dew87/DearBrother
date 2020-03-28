@@ -8,14 +8,18 @@ public class TarManAttackState : TarManState
 	public float attackDelay = 0.5f;
 	public float attackDuration = 1.0f;
 
-	public GameObject attackObject;
+	public GameObject attackDetection;
+	public GameObject attackKillZone;
 
+	private bool attackDetectionActive;
 	private float timer;
 
 	public override void Enter()
 	{
 		base.Enter();
 
+		attackDetectionActive = attackDetection.activeSelf;
+		attackDetection.SetActive(false);
 		timer = 0f;
 		tarMan.animator.SetTrigger("Attack");
 		tarMan.soundManager.TarManAttackSound();
@@ -30,7 +34,7 @@ public class TarManAttackState : TarManState
 		}
 		else if (timer > attackDelay)
 		{
-			attackObject.SetActive(true);
+			attackKillZone.SetActive(true);
 		}
 	}
 
@@ -38,6 +42,7 @@ public class TarManAttackState : TarManState
 	{
 		base.Exit();
 
-		attackObject.SetActive(false);
+		attackDetection.SetActive(attackDetectionActive);
+		attackKillZone.SetActive(false);
 	}
 }

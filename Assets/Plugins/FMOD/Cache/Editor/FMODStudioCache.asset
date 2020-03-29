@@ -3202,7 +3202,7 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
---- !u!114 &6887761108441850161
+--- !u!114 &6100359824045244729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3212,10 +3212,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Dialogue/TarMan/TarManSad
+  m_Name: event:/Misc/MushroomPoof
   m_EditorClassIdentifier: 
-  Path: event:/Dialogue/TarMan/TarManSad
-  guid: 4cfaed73ba845b4bbc14e472b751796f
+  Path: event:/Misc/MushroomPoof
+  guid: 63ca0551202bac4ea7ec889ac5b7585a
   Banks:
   - {fileID: 0}
   - {fileID: -7066083880061726803}

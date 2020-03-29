@@ -18,6 +18,11 @@ public class EasterEgg : MonoBehaviour
 		StartCoroutine(Fade(1, 0));
 	}
 
+	private void Update()
+	{
+		FMODUnity.RuntimeManager.MuteAllEvents(false);
+	}
+
 	private void OnDestroy()
 	{
 		GraphicsSettings.renderPipelineAsset = null;

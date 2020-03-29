@@ -15,6 +15,17 @@ public class PlayerNormalJumpingState : PlayerBaseJumpingState
 	{
 		base.Enter();
 
+		player.soundManager.SamJumpSound();
+		if (player.CheckForMovementSpeedModifier(out MovementSpeedModifier modifier))
+		{
+			if (modifier.jumpSpeed == 0)
+			{
+				player.TransitionState(player.previousState);
+				return;
+			}
+			player.velocity.y = modifier.jumpSpeed;
+		}
+
 		doubleJumpTimer = doubleJumpCooldown;
 	}
 

@@ -12,15 +12,17 @@ public class PlayerCrawlingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
-		player.SetCollider(player.crouchingCollider);
-		player.spriteRenderer.transform.localScale = new Vector3(1, 0.5f);
+		player.playerAnimator.SetBool("Crouching", true);
+		player.playerAnimator.SetBool("Moving", true);
+		player.SetCollider(player.crouchingColliderBounds);
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
-		player.SetCollider(player.normalCollider);
-		player.spriteRenderer.transform.localScale = Vector3.one;
+		player.playerAnimator.SetBool("Crouching", false);
+		player.playerAnimator.SetBool("Moving", false);
+		player.SetCollider(player.standingColliderBounds);
 	}
 
 	public override void Update()
@@ -29,7 +31,9 @@ public class PlayerCrawlingState : PlayerState
 
 		player.ResetJumpGraceTimer();
 
-		if (!player.isCrouchInputHeld)
+		bool canStand = !player.IsNormalColliderInWall();
+
+		if (!player.isCrouchInputHeld && canStand)
 		{
 			player.TransitionState(player.walkingState);
 			return;
@@ -41,17 +45,13 @@ public class PlayerCrawlingState : PlayerState
 			return;
 		}
 
-		if (player.isJumpInputPressedBuffered)
+		if (player.isJumpInputPressedBuffered && canStand)
 		{
 			player.TransitionState(player.jumpingState);
 			return;
 		}
 
-        if (!player.CheckOverlaps(Vector2.down))
-        {
-            player.TransitionState(player.fallingState);
-            return;
-        }
+		player.CheckForVolatilePlatforms();
 
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
 		{
@@ -74,6 +74,19 @@ public class PlayerCrawlingState : PlayerState
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
-		player.MoveHorizontally(speed, acceleration, deceleration);
+
+		float maxSpeed = speed;
+		if (player.CheckForMovementSpeedModifier(out MovementSpeedModifier modifier))
+		{
+			maxSpeed = modifier.crawlSpeed;
+		}
+
+		player.MoveHorizontally(maxSpeed, acceleration, deceleration);
+
+		if (!player.CheckOverlaps(Vector2.down))
+		{
+			player.TransitionState(player.fallingState);
+			return;
+		}
 	}
 }

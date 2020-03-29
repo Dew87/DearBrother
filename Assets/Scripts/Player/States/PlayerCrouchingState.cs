@@ -8,15 +8,17 @@ public class PlayerCrouchingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
-		player.SetCollider(player.crouchingCollider);
-		player.spriteRenderer.transform.localScale = new Vector3(1, 0.5f);
+		player.velocity.x = 0;
+		player.playerAnimator.SetBool("Crouching", true);
+		player.playerAnimator.SetBool("Moving", false);
+		player.SetCollider(player.crouchingColliderBounds);
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
-		player.SetCollider(player.normalCollider);
-		player.spriteRenderer.transform.localScale = Vector3.one;
+		player.playerAnimator.SetBool("Crouching", false);
+		player.SetCollider(player.standingColliderBounds);
 	}
 
 	public override void Update()
@@ -25,9 +27,11 @@ public class PlayerCrouchingState : PlayerState
 
 		player.ResetJumpGraceTimer();
 
-		if (!player.isCrouchInputHeld)
+		bool canStand = !player.IsNormalColliderInWall();
+
+		if (!player.isCrouchInputHeld && canStand)
 		{
-			player.TransitionState(player.walkingState);
+			player.TransitionState(player.standingState);
 			return;
 		}
 
@@ -37,17 +41,19 @@ public class PlayerCrouchingState : PlayerState
 			return;
 		}
 
-		if (player.isJumpInputPressedBuffered)
+		if (player.isJumpInputPressedBuffered && canStand)
 		{
 			player.TransitionState(player.jumpingState);
 			return;
 		}
 
-        if (!player.CheckOverlaps(Vector2.down))
-        {
-            player.TransitionState(player.fallingState);
-            return;
-        }
+		if (!player.CheckOverlaps(Vector2.down))
+		{
+			player.TransitionState(player.fallingState);
+			return;
+		}
+
+		player.CheckForVolatilePlatforms();
 
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
 		{
@@ -65,5 +71,6 @@ public class PlayerCrouchingState : PlayerState
 			}
 			return;
 		}
+
 	}
 }

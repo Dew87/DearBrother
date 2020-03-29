@@ -12,7 +12,12 @@ public class PlayerWalkingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
-
+		if (player.previousState == player.fallingState)
+		{
+			player.soundManager.SamLandSound();
+		}
+		player.playerAnimator.SetBool("Moving", true);
+		player.playerAnimator.SetBool("Grounded", true);
 		player.velocity.y = 0;
 		player.doesDoubleJumpRemain = true;
 	}
@@ -26,7 +31,15 @@ public class PlayerWalkingState : PlayerState
 	{
 		base.FixedUpdate();
 
-		player.MoveHorizontally(speed, acceleration, deceleration);
+		player.velocity.y = 0;
+
+		float maxSpeed = speed;
+		if (player.CheckForMovementSpeedModifier(out MovementSpeedModifier modifier))
+		{
+			maxSpeed = modifier.walkSpeed;
+		}
+
+		player.MoveHorizontally(maxSpeed, acceleration, deceleration);
 	}
 
 	public override void Start()
@@ -70,6 +83,8 @@ public class PlayerWalkingState : PlayerState
 			player.TransitionState(player.fallingState);
 			return;
 		}
+
+		player.CheckForVolatilePlatforms();
 
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
 		{

@@ -58,5 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-
-ProjectSettings/Physics2DSettings.asset
+FMODStudioCache.asset
+FMODStudioCache.asset.meta
+fmod.log
+fmod_editor.log

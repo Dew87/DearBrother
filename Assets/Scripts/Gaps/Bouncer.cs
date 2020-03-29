@@ -4,21 +4,71 @@ using UnityEngine;
 
 public class Bouncer : MonoBehaviour
 {
-	public float upwardsSpeedGained = 20;
+	[UnityEngine.Serialization.FormerlySerializedAs("upwardsSpeedGained")]
+	public float speedGained = 20;
 	public float minimumJumpDuration = 0.3f;
 	public bool regainDoubleJump = true;
+	[Tooltip("Angle offset from rotation to use as bouncing direction (degrees, counter-clockwise). Leave at 0 to use local up direction.")]
+	public float directionOffset = 0;
+	public ShakeConfig screenShake;
 
 	public System.Action onBounce = delegate { };
 
-	public virtual void Bounce(PlayerController player)
+	private Vector3 rotatedUp => Quaternion.Euler(0, 0, directionOffset) * transform.up;
+
+	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		player.TransitionState(player.jumpingState);
-		player.velocity.y = upwardsSpeedGained;
-		if (regainDoubleJump)
+		if (collision.enabled)
 		{
-			player.doesDoubleJumpRemain = true;
+			if (collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
+			{
+				Bounce(player);
+			}
+			else if (collision.gameObject.TryGetComponent<AnimalWhipBehaviour>(out _))
+			{
+				Bounce(collision.rigidbody);
+			}
 		}
-		player.jumpingState.minimumDurationOverride = minimumJumpDuration;
+	}
+
+	public void Bounce(PlayerController player)
+	{
+		if (!player.IsInCutscene && !player.isFrozen)
+		{
+			player.TransitionState(player.jumpingState);
+			player.velocity = rotatedUp * speedGained;
+			if (regainDoubleJump)
+			{
+				player.doesDoubleJumpRemain = true;
+			}
+			player.jumpingState.minimumDurationOverride = minimumJumpDuration;
+			onBounce.Invoke();
+			CameraShake.get.Shake(screenShake); 
+		}
+	}
+
+	public void Bounce(Rigidbody2D rigidbody2D)
+	{
+		rigidbody2D.velocity = rotatedUp * speedGained;
+		CameraShake.get.Shake(screenShake);
 		onBounce.Invoke();
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.magenta;
+		GizmosExt.DrawArrow(transform.position, rotatedUp);
+	}
+
+	private void OnValidate()
+	{
+		if (TryGetComponent<PlatformEffector2D>(out PlatformEffector2D effector))
+		{
+			effector.rotationalOffset = directionOffset;
+		}
+		else
+		{
+			Debug.LogWarning("Bouncer should probably have a PlatformEffector");
+		}
 	}
 }

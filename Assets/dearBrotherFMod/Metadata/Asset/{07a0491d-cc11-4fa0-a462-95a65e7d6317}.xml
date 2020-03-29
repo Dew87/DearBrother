@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="EncodableAsset" id="{07a0491d-cc11-4fa0-a462-95a65e7d6317}">
+		<property name="assetPath">
+			<value>Owl/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7d5bbc83-a407-4b58-b490-5bfce71b9c91}</destination>
+		</relationship>
+	</object>
+</objects>

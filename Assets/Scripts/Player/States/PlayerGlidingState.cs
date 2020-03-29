@@ -6,50 +6,82 @@ using UnityEngine;
 public class PlayerGlidingState : PlayerState
 {
     public float descendSpeed = 2;
-    public float verticalDeceleration = 20f;
+	public float windAcceleration = 60f;
+	public float maxAscendSpeedInWind = 12f;
+	public float maxHorizontalSpeedInWind = 10f;
+	public float verticalDeceleration = 20f;
     public float horizontalAcceleration = 20f;
     public float horizontalDeceleration = 10f;
-
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
+	public override void Enter()
+	{
+		base.Enter();
+		player.playerAnimator.SetBool("Gliding", true);
+	}
+	public override void FixedUpdate()
+	{
+		base.FixedUpdate();
 
         player.MoveHorizontally(player.walkingState.speed, horizontalAcceleration, horizontalDeceleration);
+		float delta = player.velocity.y > -descendSpeed ? player.fallingState.gravity : verticalDeceleration;
 
-        float delta = player.velocity.y > -descendSpeed ? player.fallingState.gravity : verticalDeceleration;
-        player.velocity.y = Mathf.MoveTowards(player.velocity.y, -descendSpeed, delta * Time.deltaTime);
+		if (player.isInWind)
+		{
+			Vector2 currentWindSpeed = player.windSpeed.normalized * windAcceleration;
+			if (currentWindSpeed.y - verticalDeceleration > 0)
+			{
+				float deltaY = currentWindSpeed.y;
+				player.velocity.y = Mathf.MoveTowards(player.velocity.y, maxAscendSpeedInWind, deltaY * Time.deltaTime);
+			}
+			else
+			{
+				float deltaY = Mathf.Abs(currentWindSpeed.y) + verticalDeceleration;
+				player.velocity.y = Mathf.MoveTowards(player.velocity.y, -descendSpeed, deltaY * Time.deltaTime);
+			}
+			player.velocity.x = Mathf.MoveTowards(player.velocity.x, currentWindSpeed.x > 0 ? maxHorizontalSpeedInWind : -maxHorizontalSpeedInWind, Mathf.Abs(currentWindSpeed.x) * Time.deltaTime);
+		}
+		else
+		{
+			player.velocity.y = Mathf.MoveTowards(player.velocity.y, -descendSpeed, delta * Time.deltaTime);
+		}
 
-        Collider2D ground = player.CheckOverlaps(Vector2.down);
+		Collider2D roof = player.CheckOverlaps(Vector2.up);
+		if (roof && player.velocity.y > 0)
+		{
+			player.velocity.y = 0;
+		}
 
-        if (ground)
+		Collider2D ground = player.CheckOverlaps(Vector2.down);
+		if (ground)
         {
-            if (ground.TryGetComponent<Bouncer>(out Bouncer bouncer))
-            {
-                bouncer.Bounce(player);
-                return;
-            }
-
             if (player.velocity.x == 0)
             {
                 player.TransitionState(player.standingState);
-            }
-            else
+				player.FindCorrectGroundDistance();
+			}
+			else
             {
                 player.TransitionState(player.walkingState);
-            }
-            return;
+				player.FindCorrectGroundDistance();
+			}
+			return;
         }
     }
 
-    public override void Update()
-    {
-        base.Update();
+	public override void Update()
+	{
+		base.Update();
 
-        if (!player.isJumpInputHeld)
-        {
-            player.TransitionState(player.fallingState);
-        }
+		if (!player.isFloatInputHeld)
+		{
+			player.TransitionState(player.fallingState);
+			return;
+		}
 
+		if (player.hasDoubleJump && player.doesDoubleJumpRemain && player.isJumpInputPressedBuffered)
+		{
+			player.TransitionState(player.doubleJumpingState);
+			return;
+		}
 
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
 		{
@@ -66,5 +98,10 @@ public class PlayerGlidingState : PlayerState
 				player.TransitionState(player.whipState);
 			}
 		}
+	}
+	public override void Exit()
+	{
+		base.Exit();
+		player.playerAnimator.SetBool("Gliding", false);
 	}
 }

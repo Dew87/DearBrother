@@ -15,6 +15,7 @@ public class ExplodingShroom : MonoBehaviour
 	private SpriteRenderer spriteRenderer;
 	private Bouncer bouncer;
 	private Collider2D bounceCollider;
+	private Animator animator;
 
 	private StateMachine sm = new StateMachine();
 	private State regularState;
@@ -27,10 +28,11 @@ public class ExplodingShroom : MonoBehaviour
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		bouncer = GetComponent<Bouncer>();
 		bounceCollider = GetComponent<Collider2D>();
+		animator = GetComponent<Animator>();
 
 		regularState = new State(null, RegularStateEnter, RegularStateExit);
 		countdownState = new State(CountdownStateUpdate, CountdownStateEnter);
-		poisonState = new State(PoisonStateUpdate, PoisonStateEnter);
+		poisonState = new State(PoisonStateUpdate, PoisonStateEnter, PoisonStateExit);
 		respawningState = new State(RespawningStateUpdate, RespawningStateEnter);
 
 		poisonCloud.SetActive(false);
@@ -40,16 +42,24 @@ public class ExplodingShroom : MonoBehaviour
 	private void OnEnable()
 	{
 		bouncer.onBounce += OnBounce;
+		EventManager.StartListening("PlayerDeath", OnPlayerDeath);
 	}
 
 	private void OnDisable()
 	{
 		bouncer.onBounce -= OnBounce;
+		EventManager.StopListening("PlayerDeath", OnPlayerDeath);
 	}
 
 	private void OnBounce()
 	{
+		FMODUnity.RuntimeManager.PlayOneShot("event:/Misc/MushroomPoof", GetComponent<Transform>().position);
 		sm.Transition(countdownState);
+	}
+
+	private void OnPlayerDeath()
+	{
+		sm.Transition(regularState);
 	}
 
 	private void Update()
@@ -57,15 +67,18 @@ public class ExplodingShroom : MonoBehaviour
 		sm.Update();
 	}
 
-    private void RegularStateEnter()
-    {
-        bounceCollider.enabled = true;
-        spriteRenderer.color = Color.white;
-    }
+	private void RegularStateEnter()
+	{
+		bounceCollider.enabled = true;
+		spriteRenderer.enabled = true;
+		animator.PlayInFixedTime("BloodGap", 0, 0);
+		animator.speed = 0;
+	}
 
 	private void RegularStateExit()
 	{
 		bounceCollider.enabled = false;
+		animator.speed = 1 / timerDuration;
 	}
 
 	private void CountdownStateEnter()
@@ -78,7 +91,6 @@ public class ExplodingShroom : MonoBehaviour
 		if (timer > 0)
 		{
 			timer -= Time.deltaTime;
-			spriteRenderer.color = Color.Lerp(Color.white, Color.black, 1 - timer / timerDuration);
 			if (timer <= 0)
 			{
 				sm.Transition(poisonState);
@@ -100,10 +112,14 @@ public class ExplodingShroom : MonoBehaviour
 			timer -= Time.deltaTime;
 			if (timer <= 0)
 			{
-				poisonCloud.SetActive(false);
 				sm.Transition(respawningState);
 			}
 		}
+	}
+
+	private void PoisonStateExit()
+	{
+		poisonCloud.SetActive(false);
 	}
 
 	private void RespawningStateEnter()

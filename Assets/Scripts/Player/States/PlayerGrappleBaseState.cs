@@ -5,11 +5,20 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerGrappleBaseState : PlayerState
 {
-	public float grappleLength { get; private set; }
+	public float grappleLength { get; protected set; }
+
+	protected float maxGrappleLength;
+
 	public override void Enter()
 	{
 		base.Enter();
+		player.soundManager.SamGrappleSound();
+		maxGrappleLength = player.grappleDetection.detectionRadius;
 		grappleLength = Vector2.Distance(player.transform.position, player.grappleDetection.currentGrapplePoint.transform.position);
+		if (grappleLength > maxGrappleLength)
+		{
+			grappleLength = maxGrappleLength;
+		}
 	}
 
 	public override void Exit()
@@ -47,6 +56,7 @@ public class PlayerGrappleBaseState : PlayerState
 		}
 
 	}
+
 	public override void OnValidate()
 	{
 		base.OnValidate();

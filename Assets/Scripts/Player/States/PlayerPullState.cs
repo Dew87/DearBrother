@@ -12,6 +12,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 	public float stretchTolerance = 1f;
 	public bool isStretchToleranceMultiplier = false;
 	public float pullspeed = 1f;
+
 	public override void Enter()
 	{
 		base.Enter();
@@ -23,6 +24,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 		}
 		player.lineRenderer.enabled = true;
 	}
+
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
@@ -51,6 +53,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 			player.lineRenderer.SetPosition(1, player.grappleDetection.currentGrapplePoint.transform.position);
 		}
 	}
+
 	public override void Update()
 	{
 		base.Update();
@@ -58,6 +61,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 		{
 			if (player.isGrappleInputPressedBuffered)
 			{
+				player.ResetGrappleInputBuffer();
 				if (player.grappleDetection.nextGrapplePoint != null)
 				{
 					player.grappleDetection.ReleaseGrapplePoint();
@@ -107,6 +111,7 @@ public class PlayerPullState : PlayerGrappleBaseState
 			}
 		}
 	}
+
 	public override void Exit()
 	{
 		base.Exit();

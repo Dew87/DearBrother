@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,13 +8,12 @@ public class PlayerDoubleJumpingState : PlayerBaseJumpingState
 	public override void Enter()
 	{
 		base.Enter();
+		player.soundManager.SamDoubleJumpSound();
 		player.doesDoubleJumpRemain = false;
-		player.spriteRenderer.flipY = true;
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
-		player.spriteRenderer.flipY = false;
 	}
 }

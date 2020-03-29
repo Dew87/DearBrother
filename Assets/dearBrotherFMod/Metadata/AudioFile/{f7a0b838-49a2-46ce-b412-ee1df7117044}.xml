@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{f7a0b838-49a2-46ce-b412-ee1df7117044}">
+		<property name="assetPath">
+			<value>Sam/Sam Landa.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.8088435374149661</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7d5bbc83-a407-4b58-b490-5bfce71b9c91}</destination>
+		</relationship>
+	</object>
+</objects>

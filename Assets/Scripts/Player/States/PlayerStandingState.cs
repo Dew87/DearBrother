@@ -8,7 +8,12 @@ public class PlayerStandingState : PlayerState
 	public override void Enter()
 	{
 		base.Enter();
-
+		if (player.previousState == player.fallingState)
+		{
+			player.soundManager.SamLandSound();
+		}
+		player.playerAnimator.SetBool("Moving", false);
+		player.playerAnimator.SetBool("Grounded", true);
 		player.velocity.y = 0;
 		player.doesDoubleJumpRemain = true;
 	}
@@ -21,6 +26,8 @@ public class PlayerStandingState : PlayerState
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
+
+		player.velocity.y = 0;
 	}
 
 	public override void Start()
@@ -64,6 +71,8 @@ public class PlayerStandingState : PlayerState
 			player.TransitionState(player.fallingState);
 			return;
 		}
+
+		player.CheckForVolatilePlatforms();
 
 		if (player.isGrappleInputPressedBuffered && player.grappleDetection.currentGrapplePoint != null)
 		{

@@ -1,0 +1,811 @@
+fileFormatVersion: 2
+guid: 10d913d55c8c6d94c896d1ed593dc9e2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3488824865978689189
+    second: CollectibleCarLucy_0
+  - first:
+      213: -4560765216537674949
+    second: CollectibleCarLucy_1
+  - first:
+      213: 5316049000764897081
+    second: CollectibleCarLucy_2
+  - first:
+      213: 5329829227463812129
+    second: CollectibleCarLucy_3
+  - first:
+      213: 3886613649118630358
+    second: CollectibleCarLucy_4
+  - first:
+      213: -116420188574874496
+    second: CollectibleCarLucy_5
+  - first:
+      213: -4960918626604058585
+    second: CollectibleCarLucy_6
+  - first:
+      213: -4668177567418789140
+    second: CollectibleCarLucy_7
+  - first:
+      213: -7046812872814112977
+    second: CollectibleCarLucy_8
+  - first:
+      213: -8618487434780713907
+    second: CollectibleCarLucy_9
+  - first:
+      213: -5756241045914638685
+    second: CollectibleCarLucy_10
+  - first:
+      213: -7159512295094415663
+    second: CollectibleCarLucy_11
+  - first:
+      213: -9178045341045263386
+    second: CollectibleCarLucy_12
+  - first:
+      213: 3353012791683573247
+    second: CollectibleCarLucy_13
+  - first:
+      213: -5383791886924521808
+    second: CollectibleCarLucy_14
+  - first:
+      213: -4804338962346990015
+    second: CollectibleCarLucy_15
+  - first:
+      213: 2604867374348032190
+    second: CollectibleCarLucy_16
+  - first:
+      213: -6141984238431442135
+    second: CollectibleCarLucy_17
+  - first:
+      213: -3680408355632564539
+    second: CollectibleCarLucy_18
+  - first:
+      213: 1586076209338819707
+    second: CollectibleCarLucy_19
+  - first:
+      213: -1267649284214918792
+    second: CollectibleCarLucy_20
+  - first:
+      213: 7291706053015643745
+    second: CollectibleCarLucy_21
+  - first:
+      213: 8606642211876741753
+    second: CollectibleCarLucy_22
+  - first:
+      213: -2790078638243006558
+    second: CollectibleCarLucy_23
+  - first:
+      213: -7124731759154368066
+    second: CollectibleCarLucy_24
+  - first:
+      213: -8340532788725681397
+    second: CollectibleCarLucy_25
+  - first:
+      213: -4130138774204591449
+    second: CollectibleCarLucy_26
+  - first:
+      213: -846351765475805942
+    second: CollectibleCarLucy_27
+  - first:
+      213: -6935781024117140856
+    second: CollectibleCarLucy_28
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CollectibleCarLucy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c085e378d1ca764ab6a14071626ebbd
+      internalID: -3488824865978689189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_1
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eb1affbfc032df4e860f238fc9933b5
+      internalID: -4560765216537674949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_2
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e72c10fc49822e845aa21e6cf27b1c22
+      internalID: 5316049000764897081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_3
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99bad74c5f4b73442ad5eb7c61e053f8
+      internalID: 5329829227463812129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_4
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b01a7eb2fa35c84e97061503f0d13a8
+      internalID: 3886613649118630358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_5
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adf059a5dfa5e4f42afb654157dd8753
+      internalID: -116420188574874496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_6
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 584c92c834632fa44bdd3708520e76e6
+      internalID: -4960918626604058585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_7
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 840
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 448d0710a0fa3d44cbec69d5bfec2277
+      internalID: -4668177567418789140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e251dc3778084743b0448c9ebbf7cae
+      internalID: -7046812872814112977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_9
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95ac7c1b51ff79249a9a9935869d95b1
+      internalID: -8618487434780713907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_10
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1396f0ce3ea0e2b4cafd353e6c9af6ad
+      internalID: -5756241045914638685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_11
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b988b1227a7c114382afcb3af9109c8
+      internalID: -7159512295094415663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_12
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ce41a301cd0c5c42bc84424ba1e3a3a
+      internalID: -9178045341045263386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_13
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5954c86820e02cb4d8195fccfaee26e1
+      internalID: 3353012791683573247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_14
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca4cd1b3581464747ac49d0b943ebe83
+      internalID: -5383791886924521808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_15
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 560
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d35e6822eb02e428d2c6462cdad295
+      internalID: -4804338962346990015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92a500ae53f59364798ce1b64440f161
+      internalID: 2604867374348032190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_17
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391ab042321f7274f8a8fbdf0f423190
+      internalID: -6141984238431442135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_18
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b426671a6b88e846b197dbb606f110e
+      internalID: -3680408355632564539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_19
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a139e78945609ea4bb27d069e97dfd61
+      internalID: 1586076209338819707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_20
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31180c36e8eea884c96ab39974ecb57a
+      internalID: -1267649284214918792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_21
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33007211083b75049902acd926e832db
+      internalID: 7291706053015643745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_22
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4165f758b74a3341991a93b82c29a9e
+      internalID: 8606642211876741753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_23
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 280
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31de9ddcc38c490499c4469102b6891f
+      internalID: -2790078638243006558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6ee4ab00cff4894dadbea0dd21ef49b
+      internalID: -7124731759154368066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_25
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0588fbdc3565f134db9e2b2a0ce47fbd
+      internalID: -8340532788725681397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_26
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a97725f87c9a2cd4281d5459a16b26e0
+      internalID: -4130138774204591449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_27
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 372b88570c5b7c34c9f1ff3fac9cd51c
+      internalID: -846351765475805942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollectibleCarLucy_28
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 0
+        width: 714
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b826868e67f069b4a87dff0919be61ee
+      internalID: -6935781024117140856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

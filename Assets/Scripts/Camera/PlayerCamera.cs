@@ -18,6 +18,7 @@ public class PlayerCamera : MonoBehaviour
 	public float fallingOffset = 2f;
 	[Tooltip("How far down the camera will be while gliding")]
 	public float glidingOffset = 2f;
+	public float fallingOffsetThreshold = 1f;
 
 	public static PlayerCamera get { get; private set; }
 
@@ -146,7 +147,7 @@ public class PlayerCamera : MonoBehaviour
 			}
 			else
 			{
-				zoomDuration = duration; 
+				zoomDuration = duration;
 			}
 			startZoom = currentZoom;
 		}
@@ -213,7 +214,7 @@ public class PlayerCamera : MonoBehaviour
 
 		if (playerController.currentState == playerController.fallingState)
 		{
-			followPosition.y -= fallingOffset;
+			followPosition.y -= Mathf.Lerp(0, fallingOffset, Mathf.Abs((followPosition.y - currentPosition.y) / fallingOffsetThreshold));
 		}
 
 		if (playerController.currentState == playerController.glidingState)
@@ -221,23 +222,23 @@ public class PlayerCamera : MonoBehaviour
 			followPosition.y -= glidingOffset;
 		}
 
-		if (followPosition.x < currentPosition.x + bufferArea.x && followPosition.x > currentPosition.x - bufferArea.x)
-		{
-			newCameraPosition.x = Util.DeltaTimedDamp(newCameraPosition.x, followPosition.x, dampXInBuffer, deltaTime);
-		}
-		else
-		{
-			newCameraPosition.x = Util.DeltaTimedDamp(newCameraPosition.x, followPosition.x, dampX, deltaTime);
-		}
+		float featheredDampX = Mathf.Lerp(dampXInBuffer, dampX, Mathf.Abs((currentPosition.x - followPosition.x) / bufferArea.x));
+		newCameraPosition.x = Util.DeltaTimedDamp(newCameraPosition.x, followPosition.x, featheredDampX, deltaTime);
 
-		if (followPosition.y < currentPosition.y + bufferArea.up && followPosition.y > currentPosition.y - bufferArea.down)
+		float featheredDampY;
+		if (playerController.velocity.y < 0)
 		{
-			newCameraPosition.y = Util.DeltaTimedDamp(newCameraPosition.y, followPosition.y, dampYInBuffer, deltaTime);
+			featheredDampY = Mathf.Lerp(dampYInBuffer, dampY, Mathf.Abs((currentPosition.y - followPosition.y) / bufferArea.down));
+		}
+		else if (playerController.velocity.y > 0)
+		{
+			featheredDampY = Mathf.Lerp(dampYInBuffer, dampY, Mathf.Abs((currentPosition.y - followPosition.y) / bufferArea.up));
 		}
 		else
 		{
-			newCameraPosition.y = Util.DeltaTimedDamp(newCameraPosition.y, followPosition.y, dampY, deltaTime);
+			featheredDampY = dampYInBuffer;
 		}
+		newCameraPosition.y = Util.DeltaTimedDamp(newCameraPosition.y, followPosition.y, featheredDampY, deltaTime);
 
 		transform.position = newCameraPosition;
 	}
@@ -282,11 +283,11 @@ public class PlayerCamera : MonoBehaviour
 		Debug.Log("Save camera vars");
 		if (offsetDuration > 0)
 		{
-			savedOffset = targetOffset; 
+			savedOffset = targetOffset;
 		}
 		if (zoomDuration > 0)
 		{
-			savedZoom = targetZoom; 
+			savedZoom = targetZoom;
 		}
 	}
 }

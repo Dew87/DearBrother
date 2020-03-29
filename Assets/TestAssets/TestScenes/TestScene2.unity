@@ -2873,12 +2873,12 @@ PrefabInstance:
     - target: {fileID: 1248156483334159282, guid: d8f6297260814a9499a962e9c21616c1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.5
+      value: -7.05
       objectReference: {fileID: 0}
     - target: {fileID: 1248156483334159282, guid: d8f6297260814a9499a962e9c21616c1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.41
+      value: -6.61
       objectReference: {fileID: 0}
     - target: {fileID: 1248156483334159282, guid: d8f6297260814a9499a962e9c21616c1,
         type: 3}
@@ -3280,7 +3280,7 @@ PrefabInstance:
     - target: {fileID: 2819150118086207636, guid: 2f54be7099af370458a98414798fbe97,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.595
+      value: -7.22
       objectReference: {fileID: 0}
     - target: {fileID: 2819150118086207636, guid: 2f54be7099af370458a98414798fbe97,
         type: 3}
@@ -3381,7 +3381,7 @@ PrefabInstance:
     - target: {fileID: 2819150118086207636, guid: 9c7cc5add41592042a4b03c101abd27a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.51
+      value: -7.51
       objectReference: {fileID: 0}
     - target: {fileID: 2819150118086207636, guid: 9c7cc5add41592042a4b03c101abd27a,
         type: 3}
@@ -4311,7 +4311,7 @@ PrefabInstance:
     - target: {fileID: 2318204942742094268, guid: 3dbc0fd896976e54fa50d23740c47d0e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.495
+      value: -17.74
       objectReference: {fileID: 0}
     - target: {fileID: 2318204942742094268, guid: 3dbc0fd896976e54fa50d23740c47d0e,
         type: 3}
@@ -4467,7 +4467,7 @@ PrefabInstance:
     - target: {fileID: 6298519800455502042, guid: b5858be47e1ac9b44a0ade53dd18a80e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.52
+      value: -7.51
       objectReference: {fileID: 0}
     - target: {fileID: 6298519800455502042, guid: b5858be47e1ac9b44a0ade53dd18a80e,
         type: 3}
@@ -6613,6 +6613,11 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 663926180}
+    - target: {fileID: 8179696981043089571, guid: 0c60002485b01d54b96958182947cfbf,
+        type: 3}
+      propertyPath: bufferArea.down
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4418728012628078379, guid: 0c60002485b01d54b96958182947cfbf,
         type: 3}
       propertyPath: m_LocalPosition.y

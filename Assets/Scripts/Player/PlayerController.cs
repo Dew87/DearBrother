@@ -395,12 +395,10 @@ public class PlayerController : MonoBehaviour
 		isFrozen = freeze;
 		if (freeze)
 		{
-			soundManager.MuteSound();
 			playerAnimator.speed = 0;
 		}
 		else
 		{
-			soundManager.UnmuteSound();
 			playerAnimator.speed = 1;
 		}
 	}

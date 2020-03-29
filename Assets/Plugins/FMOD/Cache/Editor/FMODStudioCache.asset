@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: event:/Main Menu
   guid: bcfd4960122b2942b1b8594e7cea87de
   Banks:
-  - {fileID: -358999383972464299}
+  - {fileID: 0}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -187,6 +187,30 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3500
+--- !u!114 &-8206152545970944802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/World Theme 2
+  m_EditorClassIdentifier: 
+  Path: event:/World Theme 2
+  guid: 00e6d2330922f54abbf45269c0d3f6e0
+  Banks:
+  - {fileID: -854925369128547262}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 5525169142610989036}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 123104
 --- !u!114 &-8138553935037946398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +229,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-8110357679308535178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/TarMan/TarManHappy
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/TarMan/TarManHappy
+  guid: 9c7feabe08d0cf489736f0e91ffb2af7
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1683
 --- !u!114 &-7952799424087713577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +423,29 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-7187600510738492741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/Sam/SamGrappleHook
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/Sam/SamGrappleHook
+  guid: 30d759abc838eb47b7a2f85add741a73
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
 --- !u!114 &-7184350774763068132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +488,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-7038345035552367179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/Owl/OwlWing
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/Owl/OwlWing
+  guid: 2f293a11a80ced49be8cbbc9c243c950
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 451
 --- !u!114 &-6939916484400224555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,6 +616,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 122500
+--- !u!114 &-6068737764802828037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/Owl/OwlScared
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/Owl/OwlScared
+  guid: 9d0b2813269a08409f9a469830163b51
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1010
 --- !u!114 &-6054443096570821396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,6 +794,29 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-5189529002016357239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/Sam/SamLand
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/Sam/SamLand
+  guid: e21d14384beeba45b2bf9d0761de2187
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
 --- !u!114 &-5101008509847262432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,6 +875,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2351
+--- !u!114 &-4992239953790550899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/Sam/SamDie
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/Sam/SamDie
+  guid: 7332364c1ad9a349b04adb818603043f
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 840
 --- !u!114 &-4966270223184382513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,7 +976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/dearBrotherFMod/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637210804875265128
+  lastModified: 637209153100000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -861,6 +1023,52 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1683
+--- !u!114 &-4454570003393463389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/TarMan/TarManAttack
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/TarMan/TarManAttack
+  guid: b5a763e84e349e4482b4d18e56f6cb96
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2351
+--- !u!114 &-4411170184153159722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/Sam/SamHappy
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/Sam/SamHappy
+  guid: d3d271c135be6e4fa3b6afd37942f313
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 780
 --- !u!114 &-4366760411519396690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,6 +1208,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 800
+--- !u!114 &-4085296759671582989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/Owl/OwlHappy
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/Owl/OwlHappy
+  guid: 0b75382467a3194789e3cd9c0486dd76
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1010
 --- !u!114 &-4039126005461530439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,6 +1248,52 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-4016832273730594863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/TarMan/TarManJump
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/TarMan/TarManJump
+  guid: cc5fbcfc5abc5045a5723212c718388f
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1010
+--- !u!114 &-4004290509986323182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/TarMan/TarManSad
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/TarMan/TarManSad
+  guid: 4cfaed73ba845b4bbc14e472b751796f
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1437
 --- !u!114 &-3976652072681818863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1087,6 +1364,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1415
+--- !u!114 &-3899597189965173296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/Owl/OwlSad
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/Owl/OwlSad
+  guid: 8389260397179749a002e0e065a7f9a2
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1010
 --- !u!114 &-3667173632954901765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1104,6 +1404,23 @@ MonoBehaviour:
   lastModified: 637175467814991596
   LoadResult: 0
   FileSizes: []
+  Exists: 1
+--- !u!114 &-3568029478298146956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Chase/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
   Exists: 1
 --- !u!114 &-3522303653929684458
 MonoBehaviour:
@@ -1317,6 +1634,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-3080149759687586365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Credits
+  m_EditorClassIdentifier: 
+  Path: event:/Credits
+  guid: 6295ae9426a4bd47b710cda7f55c09da
+  Banks:
+  - {fileID: -854925369128547262}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 132503
 --- !u!114 &-3038704840592369256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1356,7 +1696,7 @@ MonoBehaviour:
   Path: event:/World Theme
   guid: 47ac755901547148b4179aeb3ef3df71
   Banks:
-  - {fileID: -358999383972464299}
+  - {fileID: 0}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -1430,6 +1770,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1086
+--- !u!114 &-2791134073247418607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/Sam/SamSad
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/Sam/SamSad
+  guid: d96bc33d2ff4ca49a732ec9799caaf7f
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1161
 --- !u!114 &-2738910364770441342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1472,6 +1835,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &-2728265479763630550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/Owl/OwlNeutral
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/Owl/OwlNeutral
+  guid: 6c9b4161db85ac45991792278e8427c6
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1010
 --- !u!114 &-2668498874424428924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1796,6 +2182,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 592
+--- !u!114 &-1166603206087316450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/Sam/SamNeutral
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/Sam/SamNeutral
+  guid: f1540c203382cf458990e53fe45d7334
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 751
 --- !u!114 &-1137184825481400305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,6 +2229,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 143675
+--- !u!114 &-1081938790056098223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/TarMan/TarManWalk
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/TarMan/TarManWalk
+  guid: 3b0549d407fe244090957278a7bc162c
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 986
 --- !u!114 &-1022927480257660958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1853,6 +2285,65 @@ MonoBehaviour:
   guid: 9d0b2813269a08409f9a469830163b51
   Banks:
   - {fileID: 0}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1010
+--- !u!114 &-861853084039630384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637210810960000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-854925369128547262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637210901690000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-733717401589799549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/Owl/OwlAngry
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/Owl/OwlAngry
+  guid: 2abb972c1e1b0e4b92df0a6aad62a698
+  Banks:
+  - {fileID: 251718467483600174}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2064,7 +2555,7 @@ MonoBehaviour:
   lastModified: 637210804875205289
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-300261177118593620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2083,6 +2574,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-293889400823889087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-36973768279861644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2113,58 +2621,72 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -4820856872793943992}
-  - {fileID: 8009250511416625760}
-  - {fileID: -7066083880061726803}
-  - {fileID: -300261177118593620}
-  - {fileID: -1755490630460785318}
-  - {fileID: -3346286778184646433}
-  - {fileID: -314682910358603558}
+  - {fileID: 1232553699588573217}
+  - {fileID: -854925369128547262}
+  - {fileID: 251718467483600174}
   EditorEvents:
-  - {fileID: 1375580462368621797}
-  - {fileID: -2908176490117842306}
-  - {fileID: 742273536050311357}
-  - {fileID: -9052680054808318189}
-  - {fileID: 4385672457079273100}
-  - {fileID: 1498089101236527995}
-  - {fileID: 4854737532336454236}
-  - {fileID: -4320576211835610081}
-  - {fileID: -401364044246348013}
-  - {fileID: 0}
-  - {fileID: -1288761353187803177}
-  - {fileID: 0}
-  - {fileID: 6887761108441850161}
-  - {fileID: 0}
-  - {fileID: 2370844618337934024}
-  - {fileID: 4721493507250838486}
-  - {fileID: -1789099174713531507}
-  - {fileID: 481033040182623891}
-  - {fileID: -7536811185923893186}
-  - {fileID: 3187195788540374627}
-  - {fileID: 0}
-  - {fileID: 3454428244189232918}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: -7795106408227724104}
-  - {fileID: 0}
-  - {fileID: -3957181212557165654}
-  - {fileID: 0}
-  - {fileID: 2419754034886831360}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: -4966270223184382513}
-  - {fileID: 0}
-  - {fileID: -2863658952645661650}
-  - {fileID: 0}
-  - {fileID: -2736558314722587885}
-  - {fileID: 0}
+  - {fileID: -8206152545970944802}
+  - {fileID: 6656254763436429713}
+  - {fileID: -3080149759687586365}
+  - {fileID: 6068706511423637975}
+  - {fileID: 2566162669549102519}
+  - {fileID: 8753350289057885873}
+  - {fileID: -4085296759671582989}
+  - {fileID: 5541524118387948802}
+  - {fileID: -733717401589799549}
+  - {fileID: -7038345035552367179}
+  - {fileID: -7187600510738492741}
+  - {fileID: -1081938790056098223}
+  - {fileID: -4004290509986323182}
+  - {fileID: 5284367759069513485}
+  - {fileID: -2728265479763630550}
+  - {fileID: 6508357700379344590}
+  - {fileID: -4992239953790550899}
+  - {fileID: 8477432108743572957}
+  - {fileID: 7078475594625710508}
+  - {fileID: 8411284438567446560}
+  - {fileID: -3899597189965173296}
+  - {fileID: 5287066559273146517}
+  - {fileID: 928915617159135108}
+  - {fileID: 8127941089900429219}
+  - {fileID: -8110357679308535178}
+  - {fileID: -6068737764802828037}
+  - {fileID: 3156201222298540525}
+  - {fileID: 6694443773327654422}
+  - {fileID: -4454570003393463389}
+  - {fileID: 6081598764713314824}
+  - {fileID: 7790922959317486520}
+  - {fileID: 3009091455208070105}
+  - {fileID: -4016832273730594863}
+  - {fileID: -4411170184153159722}
+  - {fileID: -2791134073247418607}
+  - {fileID: -5189529002016357239}
+  - {fileID: -1166603206087316450}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 8009250511416625760}
+  - {fileID: -854925369128547262}
   StringsBanks:
-  - {fileID: -4820856872793943992}
-  stringsBankWriteTime: 637210804875265128
+  - {fileID: 1232553699588573217}
+  stringsBankWriteTime: 637210901690000000
   cacheVersion: 3
+--- !u!114 &251718467483600174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SoundBank.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/SoundBank.bank
+  SubDir: 
+  lastModified: 637210901690000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &252135343559794943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2296,7 +2818,7 @@ MonoBehaviour:
   Path: event:/Credits
   guid: 6295ae9426a4bd47b710cda7f55c09da
   Banks:
-  - {fileID: -358999383972464299}
+  - {fileID: 0}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2355,6 +2877,29 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &928915617159135108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/Sam/SamCrawl
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/Sam/SamCrawl
+  guid: 883c03c3b0671c4abf70bf36f8231a2a
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 592
 --- !u!114 &933546076849038492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2372,6 +2917,26 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &1232553699588573217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/dearBrotherFMod/Build/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637210901690000000
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 2478
+  Exists: 1
 --- !u!114 &1290709708452205148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2421,7 +2986,7 @@ MonoBehaviour:
   Path: event:/World Theme 2
   guid: 00e6d2330922f54abbf45269c0d3f6e0
   Banks:
-  - {fileID: -358999383972464299}
+  - {fileID: 0}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -2642,6 +3207,46 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1437
+--- !u!114 &2544306392254445535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SamRun/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 4
+  Default: 0
+  Exists: 1
+--- !u!114 &2566162669549102519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Easter Egg
+  m_EditorClassIdentifier: 
+  Path: event:/Easter Egg
+  guid: cc8e0db649953e459af616c81b1f0568
+  Banks:
+  - {fileID: -854925369128547262}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 31090
 --- !u!114 &2807180901140929331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2659,6 +3264,47 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &2900615383448611520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Main Menu/Start Game
+  m_EditorClassIdentifier: 
+  Name: Start Game
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &3009091455208070105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/Sam/SamRun
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/Sam/SamRun
+  guid: c46dcc2640b277479ebd9d5f417b4362
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 2544306392254445535}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 830
 --- !u!114 &3080426736574536634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2676,6 +3322,29 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &3156201222298540525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Misc/OwlDeath
+  m_EditorClassIdentifier: 
+  Path: event:/Misc/OwlDeath
+  guid: a6699270e697274f96ee28258203fd62
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1415
 --- !u!114 &3187195788540374627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2940,7 +3609,7 @@ MonoBehaviour:
   Path: event:/Easter Egg
   guid: cc8e0db649953e459af616c81b1f0568
   Banks:
-  - {fileID: -358999383972464299}
+  - {fileID: 0}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -3145,6 +3814,52 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1010
+--- !u!114 &5284367759069513485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Misc/MushroomPoof
+  m_EditorClassIdentifier: 
+  Path: event:/Misc/MushroomPoof
+  guid: 63ca0551202bac4ea7ec889ac5b7585a
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 700
+--- !u!114 &5287066559273146517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/Sam/SamJump
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/Sam/SamJump
+  guid: 845487cfcfc3d641b1bec63eaac8e9b0
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1360
 --- !u!114 &5335410801779934022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3162,6 +3877,46 @@ MonoBehaviour:
   Max: 4
   Default: 0
   Exists: 0
+--- !u!114 &5525169142610989036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Theme 2/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &5541524118387948802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/Sam/SamDoubleJump
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/Sam/SamDoubleJump
+  guid: 12ccb67169ad5a4fbe983fade9c1767b
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 488
 --- !u!114 &5759886679437607234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3219,7 +3974,7 @@ MonoBehaviour:
   Max: 4
   Default: 0
   Exists: 1
---- !u!114 &6100359824045244729
+--- !u!114 &6068706511423637975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3229,20 +3984,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Misc/MushroomPoof
+  m_Name: event:/Main Menu
   m_EditorClassIdentifier: 
-  Path: event:/Misc/MushroomPoof
-  guid: 63ca0551202bac4ea7ec889ac5b7585a
+  Path: event:/Main Menu
+  guid: bcfd4960122b2942b1b8594e7cea87de
   Banks:
-  - {fileID: -8138553935037946398}
-  IsStream: 0
+  - {fileID: -854925369128547262}
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
-  Parameters: []
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2900615383448611520}
   MinDistance: 0
   MaxDistance: 0
-  Length: 700
---- !u!114 &6288986473975154690
+  Length: 470000
+--- !u!114 &6081598764713314824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3251,14 +4007,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Chase/Pause Menu
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/TarMan/TarManAngry
   m_EditorClassIdentifier: 
-  Name: Pause Menu
-  Min: 0
-  Max: 1
-  Default: 0
-  Exists: 1
+  Path: event:/Dialogue/TarMan/TarManAngry
+  guid: c1ea06e6420a1341bc45b4fc87e11b4a
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2150
 --- !u!114 &6100359824045244729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3283,6 +4045,116 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1437
+--- !u!114 &6288986473975154690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Chase/Pause Menu
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &6508357700379344590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/Sam/SamAngry
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/Sam/SamAngry
+  guid: 6cbe7947361a614580c94c5dfc6ddf27
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 780
+--- !u!114 &6656254763436429713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/World Theme
+  m_EditorClassIdentifier: 
+  Path: event:/World Theme
+  guid: 47ac755901547148b4179aeb3ef3df71
+  Banks:
+  - {fileID: -854925369128547262}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -293889400823889087}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 122500
+--- !u!114 &6694443773327654422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Misc/TarManGrunt
+  m_EditorClassIdentifier: 
+  Path: event:/Misc/TarManGrunt
+  guid: a6f7edc2ac4fce42ac4c89c1dabc2dc1
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3500
+--- !u!114 &7078475594625710508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/Sam/SamScared
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/Sam/SamScared
+  guid: 77b1df0abccf1f4aa6797e068eb7a7e1
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 780
 --- !u!114 &7090355394258158017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3482,6 +4354,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 986
+--- !u!114 &7790922959317486520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/TarMan/TarManLand
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/TarMan/TarManLand
+  guid: c3414d780fcd4841916b156e72c64b4d
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 994
 --- !u!114 &7896591646046226577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3535,6 +4430,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &8127941089900429219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movement/TarMan/TarManCrawl
+  m_EditorClassIdentifier: 
+  Path: event:/Movement/TarMan/TarManCrawl
+  guid: 8e4b57a384bcfb42818eca3d9873ec5c
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 986
 --- !u!114 &8190094757471779846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3616,6 +4534,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1010
+--- !u!114 &8411284438567446560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Misc/BranchBreak
+  m_EditorClassIdentifier: 
+  Path: event:/Misc/BranchBreak
+  guid: 77c0659d79cbf141a0944aaf2422dde5
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1086
 --- !u!114 &8412423824045598181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3639,6 +4580,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3500
+--- !u!114 &8477432108743572957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue/TarMan/TarManNeutral
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue/TarMan/TarManNeutral
+  guid: 74273a750ec1aa44ad3a760946f5c4f1
+  Banks:
+  - {fileID: 251718467483600174}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 899
 --- !u!114 &8535447761455696824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3675,6 +4639,30 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &8753350289057885873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Chase
+  m_EditorClassIdentifier: 
+  Path: event:/Chase
+  guid: df48e14d08183e4db6ea6e2e375eadd5
+  Banks:
+  - {fileID: -854925369128547262}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3568029478298146956}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 21995
 --- !u!114 &8856760955672436282
 MonoBehaviour:
   m_ObjectHideFlags: 0

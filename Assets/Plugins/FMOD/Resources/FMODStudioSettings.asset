@@ -80,6 +80,9 @@ MonoBehaviour:
   - Master
   Banks:
   - Master
+  - Master
+  - Master
+  - Master
   - SoundBank
   BanksToLoad: []
   LiveUpdatePort: 9264
